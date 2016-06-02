@@ -6,7 +6,7 @@
 \title[高级Linux命令]{第五章\quad 高级Linux命令}
 \author[Yixf]{伊现富（Yi Xianfu）}
 \institute[TIJMU]{天津医科大学（TIJMU）\\ 生物医学工程与技术学院}
-\date{2015年6月}
+\date{2016年3月}
 
 
 \begin{frame}
@@ -92,13 +92,13 @@
 \end{frame}
 
 \subsection{元字符}
-\begin{frame}[fragile]
-  \frametitle{正则和元字符 | 元字符}
-  \begin{figure}
-    \centering
-    \includegraphics[width=12cm]{c5.meta.01.png}
-  \end{figure}
-\end{frame}
+%\begin{frame}[fragile]
+  %\frametitle{正则和元字符 | 元字符}
+  %\begin{figure}
+    %\centering
+    %\includegraphics[width=12cm]{c5.meta.01.png}
+  %\end{figure}
+%\end{frame}
 
 \begin{frame}[fragile]
   \frametitle{正则和元字符 | 元字符 | \alert{字符}}
@@ -254,6 +254,33 @@
   \end{block}
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{正则和元字符 | 正则表达式 | 易错实例}
+  \begin{block}{以下正则表达式中能够抓到abc字符串的有：}
+    \begin{enumerate}
+      \item \verb|x*|
+      \item \verb|ax*|
+      \item \verb|abx*|
+      \item \verb|ax*b|
+      \item \verb|abcx*|
+      \item \verb|abx*c|
+      \item \verb|ax*bc|
+      \item \verb|bx*c|
+      \item \verb|bcx*|
+      \item \verb|x*bc|
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{正则和元字符 | 正则表达式 | 比较}
+  \begin{itemize}
+    \item 在命令行（command line）的位置里，通配符（wildcard）只作用于参数（argument）的路径（path）上
+    \item 正则表达式（RE）却只用于"字符串处理" 的程序中，这与路径名一点关系也没有
+    \item 正则表达式（RE）所处理的字符串，通常是指纯文本或通过stdin读进的内容
+  \end{itemize}
+\end{frame}
+
 
 \section{find和grep}
 \subsection{find}
@@ -289,8 +316,8 @@
       +n & 搜索大于数字n的所有内容\\
       -n & 搜索小于数字n的所有内容\\
       n & 搜索准确匹配数字n的所有内容\\
-      -amin n & 搜索过去n分钟之内访问过的文件\\
-      -atime n & 搜索最近n天内没有访问过的文件\\
+      -amin +n & 搜索n分钟之前访问过的文件\\
+      -atime -n & 搜索n天内访问过的文件\\
       -fstype TYPE & 搜索指定类型的文件系统\\
       -gid n & 搜索GID等于n的文件\\
       -group GROUP & 搜索组名为GROUP的文件\\
@@ -1187,6 +1214,22 @@ awk
       \item<11-> \verb=cut -f1,6 gene.bed | sort | uniq -c | sort -nr=
     \end{itemize}
   \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Linux \& Bioinformatics \& One-Liners}
+  \begin{itemize}
+    \item \href{http://wiki.bits.vib.be/index.php/Introduction\_to\_Linux\_for\_bioinformatics}{Introduction to Linux for bioinformatics}
+    \item \href{http://lh3lh3.users.sourceforge.net/biounix.shtml}{A Bioinformatician's UNIX Toolbox}
+    \item \href{http://genomics-array.blogspot.com/2010/11/some-unixperl-oneliners-for.html}{Some unix/perl oneliners for Bioinformatics}
+    \item \href{https://wikis.utexas.edu/display/bioiteam/Scott's+list+of+linux+one-liners}{Scott's list of linux one-liners}
+    \item \href{https://github.com/stephenturner/oneliners}{Bioinformatics one-liners}
+    \item \href{http://www.catonmat.net/series/bash-one-liners-explained}{Article series ``Bash One-Liners Explained"}
+    \item \href{http://www.catonmat.net/series/awk-one-liners-explained}{Article series ``Awk One-Liners Explained"}
+    \item \href{http://www.catonmat.net/series/sed-one-liners-explained}{Article series ``Sed One-Liners Explained"}
+    \item \href{http://www.catonmat.net/series/perl-one-liners-explained}{Article series ``Perl One-Liners Explained"}
+    \item \href{http://www.catonmat.net/series/commandlinefu-one-liners-explained}{Article series ``CommandLineFu One-Liners Explained"}
+  \end{itemize}
 \end{frame}
 
 \section{回顾与总结}

@@ -6,7 +6,7 @@
 \title[shell编程]{第八章\quad shell编程}
 \author[Yixf]{伊现富（Yi Xianfu）}
 \institute[TIJMU]{天津医科大学（TIJMU）\\ 生物医学工程与技术学院}
-\date{2015年6月}
+\date{2016年4月}
 
 
 \begin{frame}
@@ -220,7 +220,7 @@ ls
   \frametitle{编程起步 | 特殊字符 | 脚本注释 | \alert{注释方法}}
   \begin{block}{注释方法}
     \begin{itemize}
-      \item 注释行以散列符号（\verb|#|）开头，在\verb|#|之后出现的所有内容都认为是注释，不解释为命令。
+      \item 注释行以散列符号（\verb|#|）开头，在 \verb|#|之后出现的所有内容都认为是注释，不解释为命令。
       \item 占用多行的注释在每行的开头都有一个\verb|#|。
       \item 可以在一行的中间插入\verb|#|，\verb|#|右边的所有内容都将看作注释。
     \end{itemize}
@@ -285,11 +285,11 @@ command # This is comment explaining the cmd
 \begin{frame}[fragile]
   \frametitle{编程起步 | 变量 | \alert{使用}}
   \begin{itemize}
-    \item 使用赋值运算符\verb|=|对变量进行赋值，\verb|=|两边不能有空格。
-    \item 如果要给变量赋空值，可以在\verb|=|后面跟一个换行符。
+    \item 使用赋值运算符 \verb|=|对变量进行赋值，\verb|=|两边不能有空格。
+    \item 如果要给变量赋空值，可以在 \verb|=|后面跟一个换行符。
     \item 在bash shell中，默认情况下将变量视作文本字符串。
-    \item 通过在变量名前加一个美元符号\verb|$|来访问该变量的值。
-    \item 如果变量名的前面有美元符号\verb|$|，那么可以将该变量替换成一个表达式。
+    \item 通过在变量名前加一个美元符号 \verb|$|来访问该变量的值。
+    \item 如果变量名的前面有美元符号 \verb|$|，那么可以将该变量替换成一个表达式。
     \item 变量名对大小写敏感。按照惯例，Linux变量用大写字母表示。
     \item 变量名长度没有限制，由字母、数字或下划线序列组成。
     \item 变量名必须以字母或下划线开头，不能用数字。
@@ -399,8 +399,8 @@ echo "Hello, $PERSON"
       \verb|0| & \verb|$0| & 当前脚本的文件名\\
       \verb|#| & \verb|$#| & 传递给脚本的参数个数\\
       \verb|1-9| & \verb|$1| & 传递给脚本的第1（2,3,\ldots,9）个参数\\
-      \verb|@| & \verb|"$@"| & 传递给脚本的所有参数的列表\\
-      \verb|*| & \verb|"$*"| & 传递给脚本的所有参数（作为一个单词）\\
+      \verb|*| & \verb|$*| & 传递给脚本的所有参数（作为一个单词）\\
+      \verb|@| & \verb|$@| & 传递给脚本的所有参数的列表\\
       \verb|_| & \verb|$_| & 上一个命令的最后一个参数\\
       \hline
     \end{tabularx}
@@ -676,7 +676,7 @@ read COLOR
 if [ $COLOR = "purple" ]
 then
   echo "You are correct."
-elif [ $COLOR = "bule" ]
+elif [ $COLOR = "blue" ]
 then
   echo "You are close."
 else
@@ -891,9 +891,10 @@ if (test -e filename)
 \begin{frame}[fragile]
   \frametitle{流程控制 | 条件流程控制 | 比较运算符 | \alert{算数运算}}
   \begin{description}
+    \item[\$(( ))] shell内置的算数运算格式
+    \item[\${[} {]}] 将中括号内的表达式作为数学运算先计算结果再输出
     \item[let] 表示数学运算
     \item[expr] 用于整数值运算，每一项用空格隔开
-    \item[\${[} {]}] 将中括号内的表达式作为数学运算先计算结果再输出
   \end{description}
 \end{frame}
 
@@ -1092,9 +1093,8 @@ echo "You have selected $var"
 # 运行结果
 What is your favourite OS?
 1) Linux
-2) Gnu Hurd
-3) Free BSD
-4) Other
+2) Free BSD
+3) Other
 #? 1
 You have selected Linux
 \end{lstlisting}
@@ -1512,10 +1512,17 @@ done
     \end{itemize}
   \end{block}
   \pause
+  \begin{block}{结束}
+    \begin{itemize}
+      \item break：结束循环（loop）
+      \item return：结束函数（function）
+      \item exit：结束脚本（script）或者shell
+    \end{itemize}
+  \end{block}
+  \pause
   \begin{block}{参数控制}
     \begin{itemize}
-      \item
-	shift：参数左移。每执行一次，参数序列顺次左移一个位置，\verb|$#|的值减1。用于分别处理每个参数，移出去的参数不再可用。
+      \item shift：参数左移。每执行一次，参数序列顺次左移一个位置，\verb|$#|的值减1。用于分别处理每个参数，移出去的参数不再可用。
     \end{itemize}
   \end{block}
 \end{frame}
@@ -1576,12 +1583,13 @@ echo $sum
       \hline
       \rowcolor{blue!50}操作符 & 含义\\
       \hline
-      < FILE & 把STDIN重定向到文件\\
+      < FILE & 等价于0< FILE，把STDIN重定向到文件\\
       > FILE & 等价于1> FILE，把STDOUT重定向到文件\\
       2> FILE & 把STDERR重定向到文件\\
       \verb|>>| FILE & 把STDOUT添加到文件末尾\\
       \&> FILE & 对STDOUT和STDERR同时进行重定向\\
       2>\&1 & 把STDERR重定向到STDOUT\\
+      1>\&2 & 把STDOUT重定向到STDERR\\
       | & 把一个程序的输出发送给另一个程序\\
       \verb|<<delimiter| & 使用here文档中的内容重定向STDIN\\
       \hline
@@ -1706,7 +1714,7 @@ cat test.txt | xargs -i echo rm {}
 \begin{frame}[fragile]
   \frametitle{高级概念 | \alert{命令替换}}
 \begin{lstlisting}
-L=`wc -l textfile` # 使用反引号`
+L=`wc -l textfile` # 使用反引号``
 L=$(wc -l textfile) # 使用$()
 echo "Next year will be 20$(expr $(date +%y) + 1)" # 嵌套
 \end{lstlisting}
@@ -1751,7 +1759,7 @@ var=$(($var+1)) #var: 2
 # $[ ]：算术运算
 var=$[$var+1] #var: 3
 
-# ${ }：变量保护
+# ${ }：变量保护（确切说是变量替换）
 num=1
 echo "The ${num}st." #The 1st.
 echo "The $numst." #The .
@@ -1928,6 +1936,13 @@ ls {1..5}.txt
     \begin{itemize}
       \item 调用函数时，可以传递参数
       \item 在函数中用\$1、\$2、……来引用参数
+    \end{itemize}
+  \end{block}
+  \pause
+  \begin{block}{注意}
+    \begin{itemize}
+      \item \$0：在脚本中，\$0是脚本的名字；在函数中，\$0还是脚本的名字，而非函数的名字
+      \item \$\#：在脚本和函数中，都是读入的参数个数
     \end{itemize}
   \end{block}
 \end{frame}
@@ -2137,7 +2152,8 @@ exit 0
 
 \subsection{数组}
 \begin{frame}[fragile]
-  \frametitle{shell函数 | 数组 | \alert{声明数组}}
+  %\frametitle{shell函数 | 数组 | \alert{声明数组}}
+  \frametitle{shell函数 | 数组 | 声明数组}
 \begin{lstlisting}
 # 第一种方法：array[index]=value
 day[0]=Sunday
@@ -2151,7 +2167,8 @@ day=([0]=Sunday [6]=Saturday [1]=Monday)
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{shell函数 | 数组 | \alert{解引用数组}}
+  %\frametitle{shell函数 | 数组 | \alert{解引用数组}}
+  \frametitle{shell函数 | 数组 | 解引用数组}
 \begin{lstlisting}
 # 获得数组中某个特定索引位置的数据：${array[index]}
 # 索引从0开始
@@ -2160,6 +2177,7 @@ echo "$firstDay"
 
 # 获得数组中的所有数据：arrayElements=${array[@]}
 allDay=${day[@]}
+#allDay=${day[*]}
 
 # 获得数组包含的元素数目：arrayLength=${#array[@]}
 numberDay=${#day[@]}
@@ -2171,7 +2189,8 @@ indexDay=${!day[@]}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{shell函数 | 数组 | \alert{解引用数组}}
+  %\frametitle{shell函数 | 数组 | \alert{解引用数组}}
+  \frametitle{shell函数 | 数组 | 解引用数组}
 \begin{lstlisting}
 # 获得数组中某个范围内的数据
 
@@ -2185,7 +2204,8 @@ WedThu=${day[@]:3:2}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{shell函数 | 数组 | \alert{删除数据}}
+  %\frametitle{shell函数 | 数组 | \alert{删除数据}}
+  \frametitle{shell函数 | 数组 | 删除数据}
 \begin{lstlisting}
 # 删除索引位置为1的元素的数据
 unset array[1]

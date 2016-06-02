@@ -9,19 +9,17 @@
   \item 熟练掌握目录和文件管理的相关方法。
   \item 掌握文件权限的修改方法。
   \item 掌握文件归档和压缩的方法。
-  \item 了解进行系统性能监视的基本方法。
   \item 掌握重定向、管道、通配符、历史记录等的使用方法。
   \item 掌握对文件进行排序的方法。
   \item 掌握利用shell命令管理用户和组群的方法。
   \item 理解 /etc/passwd和 /etc/group文件的含义。
-  \item 了解批量新建用户账号的步骤和方法。
 \end{enumerate}
 
 \vspace{0.2in}
 \noindent
 二、实验准备
 \begin{enumerate}
-  \item 安装有CentOS 7的计算机。
+  \item 安装有Ubuntu/CentOS的计算机。
 \end{enumerate}
 
 \vspace{0.2in}
@@ -29,168 +27,157 @@
 三、实验内容
 
 \vspace{0.1in}
-（一）使用联机帮助页。
+（一）使用联机帮助页
 \begin{enumerate}
-  \item 使用联机帮助页，搜索指定的关键字，查看显示了哪些命令。如果一个关键字都想不起来，可以使用\verb|man -k shell|。
+  \item 使用联机帮助页，搜索指定的关键字，查看显示了哪些命令。如果一个关键字都想不起来，可以使用 \verb|man -k shell|。
   \item 从搜索结果列表中选择一个命令，阅读它的联机帮助页。
 \end{enumerate}
 
 \vspace{0.1in}
-（二）对ls命令使用选项。
+（二）对ls命令使用选项
 
-尝试这个练习以了解Linux命令语法的灵活性。使用ls命令，添加-a选项以便在目录列表中包含隐藏文件；隐藏文件是那些文件名以点号开头的文件，例如.bashrc。
+尝试这个练习以了解Linux命令语法的灵活性。使用ls命令，添加 \verb|-a|选项以便在目录列表中包含隐藏文件；隐藏文件是那些文件名以点号开头的文件，例如.bashrc。
 \begin{enumerate}
-  \item 执行命令\verb|ls -l -a /etc|。
-  \item 执行命令\verb|ls -la /etc|。
+  \item 执行命令 \verb|ls -l -a /etc|。
+  \item 执行命令 \verb|ls -la /etc|。
   \item 比较两个命令的输出。它们的结果是一样的。
 \end{enumerate}
 
 \vspace{0.1in}
-（三）文件管理。
+（三）文件管理
 \begin{enumerate}
   \item 创建两个新目录dir1和dir2，然后将dir2目录移到dir1目录中，最后删除dir2目录。
     \begin{enumerate}
       \item 登录计算机，打开终端，当前目录为用户的主目录。
-      \item 输入命令\verb|ls -l|，查看当前目录中的所有文件。
-      \item 创建两个新目录，输入命令\verb|mkdir dir{1,2}|。使用mkdir命令创建多个目录时，如果目录名的开头都相同，可利用“\{ \}”符号。
-      \item 再次输入命令\verb|ls -l|，确认两个目录是否成功创建。
-      \item 输入命令\verb|mv dir2 dir1|，将dir2目录移动到dir1目录。
-      \item 输入命令\verb|cd dir1|，切换到dir1目录，再输入ls命令，会查看到dir2目录。
-      \item 输入命令\verb|rm -rf dir2|，删除dir2目录。删除目录时，当前目录不能为被删除的目录或者其子目录。
-      \item 输入命令\verb|ls|，发现dir2目录确实已被删除。
-      \item 输入命令\verb|cd ~|，回到用户主目录。
+      \item 输入命令 \verb|ls -l|，查看当前目录中的所有文件。
+      \item 创建两个新目录，输入命令 \verb|mkdir dir{1,2}|。使用mkdir命令创建多个目录时，如果目录名的开头都相同，可利用“\{ \}”符号。
+      \item 再次输入命令 \verb|ls -l|，确认两个目录是否成功创建。
+      \item 输入命令 \verb|mv dir2 dir1|，将dir2目录移动到dir1目录。
+      \item 输入命令 \verb|cd dir1|，切换到dir1目录，再输入ls命令，会查看到dir2目录。
+      \item 输入命令 \verb|rm -rf dir2|，删除dir2目录。删除目录时，当前目录不能为被删除的目录或者其子目录。
+      \item 输入命令 \verb|ls|，发现dir2目录确实已被删除。
+      \item 输入命令 \verb|cd ~|，回到用户主目录。
     \end{enumerate}
   \item 查找profile文件。
     \begin{enumerate}
-      \item 由于普通用户只对部分目录具有权限，不能从所有的目录查找文件。因此，先输入命令\verb|su -|，并输入超级用户的密码，验证成功后，从普通用户切换到超级用户。
-      \item 使用\verb|find / -name profile|命令进行查找，屏幕显示已找到 /etc/profile文件。
-      \item 使用\verb|exit|命令，退出超级用户身份。
+      \item 使用 \verb|find /etc -name profile|命令进行查找，屏幕显示已找到 /etc/profile文件。
     \end{enumerate}
+    \textbf{知识点解析：}由于普通用户只对部分目录具有权限，不能从所有的目录查找文件。因此，可以先输入命令 \verb|su -|，并输入超级用户的密码，验证成功后，从普通用户切换到超级用户。要切换回普通用户，使用 \verb|exit|命令，即可退出超级用户身份。
   \item 将 /etc/profile文件中所有包含HOSTNAME的行存入f4文件，并修改f4文件的权限，让所有的用户都可以读写。
     \begin{enumerate}
-      \item 使用命令\verb|grep -n "HOSTNAME" /etc/profile > f4|，查找 /etc/profile文件中所有包含HOSTNAME的行，并存入f4文件。grep命令中使用“-n”选项可显示出行号。
-      \item 输入命令\verb|cat f4|，查看f4文件的内容。
-      \item 输入命令\verb|ls -l|，查看f4文件的详细信息。
-      \item 使用\verb|chmod 666 f4|命令，修改f4文件的权限。
+      \item 使用命令 \verb|grep -n "HOSTNAME" /etc/profile > f4|，查找 /etc/profile文件中所有包含HOSTNAME的行，并存入f4文件。grep命令中使用 \verb|-n|选项可显示出行号。
+      \item 输入命令 \verb|cat f4|，查看f4文件的内容。
+      \item 输入命令 \verb|ls -l|，查看f4文件的详细信息。
+      \item 使用 \verb|chmod 666 f4|命令，修改f4文件的权限。
     \end{enumerate}
   \item 将f4文件复制到dir1目录，并在dir1目录中创建 /etc/fstab文件的符号链接文件fstab-link。
     \begin{enumerate}
-      \item 输入命令\verb|cp f4 dir1|，将f4文件复制到dir1目录。
-      \item 输入命令\verb|ln -s /etc/fstab fstab-link|，创建 /etc/fstab文件的符号链接文件。ln命令使用-s选项建立符号链接文件，一旦源文件被删除，符号链接文件就失效。
-      \item 输入命令\verb|ls -l|，可发现淡蓝色的符号链接文件fstab-link，“\verb|->|”符号后的内容为链接文件所指向的源文件。
+      \item 输入命令 \verb|cp f4 dir1|，将f4文件复制到dir1目录。
+      \item 输入命令 \verb|ln -s /etc/fstab fstab-link|，创建/etc/fstab文件的符号链接文件。ln命令使用 \verb|-s|选项建立符号链接文件，一旦源文件被删除，符号链接文件就失效。
+      \item 输入命令 \verb|ls -l|，可发现淡蓝色的符号链接文件fstab-link，“\verb|->|”符号后的内容为链接文件所指向的源文件。
     \end{enumerate}
   \item 查看用户目录占用磁盘的情况。
     \begin{enumerate}
-      \item 输入命令\verb|du -h|，显示当前目录和每个子目录的磁盘使用情况。
-      \item 输入命令\verb|du -sh|，显示当前目录总共使用的磁盘大小。
+      \item 输入命令 \verb|du -h|，显示当前目录和每个子目录的磁盘使用情况。
+      \item 输入命令 \verb|du -sh|，显示当前目录总共使用的磁盘大小。
     \end{enumerate}
 \end{enumerate}
 
 \vspace{0.1in}
-（四）文件归档与压缩。
+（四）文件归档与压缩
 \begin{enumerate}
   \item 将 /etc/X11目录归档为X.tar文件，并将X.tar文件压缩为.gz文件。
     \begin{enumerate}
       \item 方法一。
 	\begin{enumerate}
-	  \item 输入命令\verb|tar -czvf X.tar.gz /etc/X11|，将 /etc/X11目录中的所有文件归档并压缩为X.tar.gz文件。
-	  \item 输入命令\verb|tar -tf X.tar.gz|，可查看X.tar.gz所包含的所有文件。
+	  \item 输入命令 \verb|tar -czvf X.tar.gz /etc/X11|，将 /etc/X11目录中的所有文件归档并压缩为X.tar.gz文件。
+	  \item 输入命令 \verb|tar -tf X.tar.gz|，可查看X.tar.gz所包含的所有文件。
 	\end{enumerate}
       \item 方法二。
 	\begin{enumerate}
-	  \item 输入命令\verb|tar -cvf X.tar /etc/X11|，将 /etc/X11目录中的所有文件归档为X.tar文件，屏幕将显示命令的执行过程。
-	  \item 输入命令\verb|ls -l *.tar|，可发现新生成一个红色的X.tar文件。
-	  \item 压缩X.tar文件，输入命令\verb|gzip X.tar|。
-	  \item 再次输入命令\verb|ls -l *.tar.gz|，可发现X.tar文件已被X.tar.gz文件所取代，其字节数也有所减少。
-	  \item 输入命令\verb|tar -tf X.tar.gz|，查看X.tar.gz所包含的所有文件。
-	  \item 为方便下一步操作，输入命令\verb=tar -tf X.tar.gz | grep applnk=，查看X.tar.gz是否打包和压缩了/etc/X11/applnk目录。
+	  \item 输入命令 \verb|tar -cvf X.tar /etc/X11|，将 /etc/X11目录中的所有文件归档为X.tar文件，屏幕将显示命令的执行过程。
+	  \item 输入命令 \verb|ls -l *.tar|，可发现新生成一个红色的X.tar文件。
+	  \item 压缩X.tar文件，输入命令 \verb|gzip X.tar|。
+	  \item 再次输入命令 \verb|ls -l *.tar.gz|，可发现X.tar文件已被X.tar.gz文件所取代，其字节数也有所减少。
+	  \item 输入命令 \verb|tar -tf X.tar.gz|，查看X.tar.gz所包含的所有文件。
+	  \item 为方便下一步操作，输入命令 \verb=tar -tf X.tar.gz | grep applnk=，查看X.tar.gz是否打包和压缩了/etc/X11/applnk目录。
 	\end{enumerate}
     \end{enumerate}
   \item 将 /etc/X11目录归档压缩为X11.tar.gz文件，但跳过 /etc/X11/applnk目录。
     \begin{enumerate}
-      \item 输入命令\verb|tar --exclude /etc/X11/applnk -czvf X11.tar.gz /etc/X11|，创建新的打包压缩文件X11.tar.gz，但不包括 /etc/X11/applnk目录。打包压缩生成.tar.gz文件时，可利用“\verb|--exclude|”选项，排除不需要打包的目录或文件。
+      \item 输入命令 \verb|tar --exclude /etc/X11/applnk -czvf X11.tar.gz /etc/X11|，创建新的打包压缩文件X11.tar.gz，但不包括 /etc/X11/applnk目录。打包压缩生成.tar.gz文件时，可利用“\verb|--exclude|”选项，排除不需要打包的目录或文件。
       \item 查看X11.tar.gz中是否打包和压缩了 /etc/X11/applnk目录。
     \end{enumerate}
-  \item 将 /etc目录中所有2015年4月1日以后有过更新的文件，打包压缩到1504new.tar.gz文件。
+  \item 将 /etc目录中所有2017年1月1日以后有过更新的文件，打包压缩到1701new.tar.gz文件。
     \begin{enumerate}
-      \item 输入命令\verb|tar -N "2015/04/01" -czvf 1504new.tar.gz /etc|，显示大量的信息，如果在2015年4月1日以后没有更新的文件就会被跳过。打包压缩生成.tar.gz文件时，可利用“-N 时间”选项，选定指定时间以后更新的文件进行打包压缩。
+      \item 输入命令 \verb|tar -N "2015/04/01" -czvf 1504new.tar.gz /etc|，显示大量的信息，如果在2015年4月1日以后没有更新的文件就会被跳过。打包压缩生成.tar.gz文件时，可利用“-N 时间”选项，选定指定时间以后更新的文件进行打包压缩。
     \end{enumerate}
   \item 将X.tar.gz中的 /etc/X11/Xresources文件解压缩到dir1目录。
     \begin{enumerate}
       \item 首先切换到dir1目录，也就是解压缩的目标目录。
-      \item 执行\verb|tar -xzvf ~/X.tar.gz etc/X11/Xresources|命令。
+      \item 执行 \verb|tar -xzvf ~/X.tar.gz etc/X11/Xresources|命令。
       \item 查看解压缩的效果。
     \end{enumerate}
   \item 使用gzip。
     \begin{enumerate}
-      \item 使用\verb|cd /tmp;touch test-file|命令在 /tmp目录中创建一个名为test-file的文件。
-      \item 使用gedit或Vim在这个文件中输入一些文本——10行左右的随机语句——然后保存这个文件。
-      \item 使用\verb|ls -l|命令显示文件的大小。
+      \item 使用 \verb|cd /tmp;touch test-file|命令在 /tmp目录中创建一个名为test-file的文件。
+      \item 使用gedit或Vim在这个文件中输入一些文本——10行左右的随机语句——然后保存这个文件。（如果不想手动输入内容，也可以通过命令 \verb|man ls > test-file|把ls的联机帮助页保存到文件中。）
+      \item 使用 \verb|ls -l|命令显示文件的大小。
       \item 为了证明可以查看这个文件，因为它是一个普通的文本文件，使用cat命令。
       \item 使用gzip压缩这个刚才创建的文件。
       \item 现在在 /tmp目录中产生了一个名为test-file.gz的文件。
-      \item 使用\verb|ls -l|命令查看压缩文件的大小。这个文件应该比未压缩的版本占用较少的空间，因为gzip压缩了它的大小。
-      \item 使用gzip或gunzip解压文件：\verb|gzip -d test-file.gz|或\verb|gunzip -d test-file.gz|。
+      \item 使用 \verb|ls -l|命令查看压缩文件的大小。这个文件应该比未压缩的版本占用较少的空间，因为gzip压缩了它的大小。
+      \item 使用gzip或gunzip解压文件：\verb|gzip -d test-file.gz|或 \verb|gunzip -d test-file.gz|。
       \item 现在/tmp目录中有一个名为test-file的文件（test-file.gz文件已不存在）。使用cat命令查看该文件的内容。
-      \item 看到的输出应该和压缩该文件前使用cat命令看到的一样。再次使用\verb|ls -l|命令，将看到这个文件和原来的文件大小相同。
+      \item 看到的输出应该和压缩该文件前使用cat命令看到的一样。再次使用 \verb|ls -l|命令，将看到这个文件和原来的文件大小相同。
     \end{enumerate}
 \end{enumerate}
 
 \vspace{0.1in}
-（五）利用shell监视系统性能。
-\begin{enumerate}
-  \item 输入命令top，屏幕动态显示CPU使用率、内存使用率和进程状态等相关信息，且默认以CPU使用率进行排列。
-  \item 按【M】键，所有进程按照内存使用率排列。
-  \item 按【T】键，所有进程按照执行时间排列。
-  \item 按【P】键，恢复按照CPU使用率排列所有进程。
-  \item 按【Ctrl+C】组合键结束top命令。
-\end{enumerate}
+（五）通配符的使用
 
-\vspace{0.1in}
-（六）通配符的使用。
-
-shell命令的通配符包括\verb|*|、\verb|?|、\verb|[]|、\verb|-|和\verb|!|，灵活使用通配符可同时引用多个文件，方便操作。
+\textbf{知识点解析：}shell命令的通配符包括 \verb|*|、\verb|?|、\verb|[]|、\verb|-|和 \verb|!|，灵活使用通配符可同时引用多个文件，方便操作。
 \begin{itemize}
   \item \verb|*|：匹配任意长度的任何字符。
   \item \verb|?|：匹配一个字符。
   \item \verb|[]|：表示范围。
-  \item \verb|-|：通常与\verb|[]|配合使用，起始字符-终止字符构成范围。
-  \item \verb|!|：表示不在范围，通常也与\verb|[]|配合使用。
+  \item \verb|-|：通常与 \verb|[]|配合使用，起始字符-终止字符构成范围。
+  \item \verb|!|：表示不在范围，通常也与 \verb|[]|配合使用。
 \end{itemize}
 \begin{enumerate}
   \item 显示 /bin目录中所有以c为首字母的文件和目录。
     \begin{enumerate}
-      \item 输入命令\verb|ls /bin/c*|，屏幕将显示 /bin目录中以c开头的所有文件和目录。
+      \item 输入命令 \verb|ls /bin/c*|，屏幕将显示 /bin目录中以c开头的所有文件和目录。
     \end{enumerate}
   \item 显示 /bin目录中所有以c为首字母、文件名只有3个字符的文件和目录。
 
-    shell可以记录一定数量的已执行过的命令，当用户需要再次执行时，不用再次输入，可以直接调用。使用上、下方向键，【PaUp】或【PgDn】键，在shell命令提示符后将出现已执行过的命令。直接按【Enter】键就可以再次执行这一命令，也可以对出现的命令行进行编辑，修改为用户所需要的命令后再执行。
+    \textbf{知识点解析：}shell可以记录一定数量的已执行过的命令，当用户需要再次执行时，不用再次输入，可以直接调用。使用上、下方向键，【PaUp】或【PgDn】键，在shell命令提示符后将出现已执行过的命令。直接按【Enter】键就可以再次执行这一命令，也可以对出现的命令行进行编辑，修改为用户所需要的命令后再执行。
     \begin{enumerate}
-      \item 按向上方向键，shell命令提示符后出现上一步操作时输入的命令\verb|ls /bin/c*|。
-      \item 将其修改为\verb|ls /bin/c??|并执行，屏幕显示 /bin目录中以c为首字母、文件名只有3个字符的文件和目录。
+      \item 按向上方向键，shell命令提示符后出现上一步操作时输入的命令 \verb|ls /bin/c*|。
+      \item 将其修改为 \verb|ls /bin/c??|并执行，屏幕显示 /bin目录中以c为首字母、文件名只有3个字符的文件和目录。
     \end{enumerate}
   \item 显示 /bin目录中所有的首字母为c或s或h的文件和目录。
     \begin{enumerate}
-      \item 输入命令\verb|ls /bin/[csh]*|，屏幕显示 /bin目录中首字母为c或s或h的文件和目录。\verb|[csh]*|并非表示所有以csh开头的文件，而是表示以c或s或h为首字母的文件。为避免误解，也可以使用\verb|[c,s,h]*|，达到相同的效果。
+      \item 输入命令 \verb|ls /bin/[csh]*|，屏幕显示 /bin目录中首字母为c或s或h的文件和目录。\verb|[csh]*|并非表示所有以csh开头的文件，而是表示以c或s或h为首字母的文件。为避免误解，也可以使用 \verb|[c,s,h]*|，达到相同的效果。
     \end{enumerate}
   \item 显示 /bin目录中所有首字母是v、w、x、y、z的文件和目录。
     \begin{enumerate}
-      \item 输入命令\verb|ls /bin/[!a-u]*|，屏幕显示 /bin目录中首字母是v～z的文件和目录。
+      \item 输入命令 \verb|ls /bin/[!a-u]*|，屏幕显示 /bin目录中首字母是v～z的文件和目录。
     \end{enumerate}
   \item 重复上一步操作。
     
-    用户不仅可利用上、下方向键来显示执行过的命令，还可以使用history命令查看或调用执行过的命令。history命令可以查看到已执行命令在历史记录列表中的序号，使用“!序号”命令即可进行调用，而“\verb|!!|”命令则执行最后执行过的那个命令。
+    \textbf{知识点解析：}用户不仅可利用上、下方向键来显示执行过的命令，还可以使用history命令查看或调用执行过的命令。history命令可以查看到已执行命令在历史记录列表中的序号，使用“!序号”命令即可进行调用，而“\verb|!!|”命令则执行最后执行过的那个命令。
     \begin{enumerate}
-      \item 输入命令\verb|!!|，自动执行上一步操作中使用过的\verb|ls /bin/[!a-u]*|命令。
+      \item 输入命令 \verb|!!|，自动执行上一步操作中使用过的 \verb|ls /bin/[!a-u]*|命令。
     \end{enumerate}
   \item 查看刚执行过的5个命令。
     \begin{enumerate}
-      \item 输入命令\verb|history 5|，显示最近执行过的5个命令。
+      \item 输入命令 \verb|history 5|，显示最近执行过的5个命令。
     \end{enumerate}
 \end{enumerate}
 
 \vspace{0.1in}
-（七）对文件进行排序。
+（六）对文件进行排序
 \begin{enumerate}
   \item 用下面的文本创建文件 /tmp/outoforder：
 \begin{verbatim}
@@ -219,92 +206,52 @@ Bravo
 \end{enumerate}
 
 \vspace{0.1in}
-（八）利用shell命令管理用户与组。
+（七）利用shell命令管理用户与组
 \begin{enumerate}
   \item 新建一名为duser的用户，其密码是tdd63u2，主要组群为myusers。
     \begin{enumerate}
       \item 按【Ctrl+Alt+F3】组合键，切换到第三个虚拟终端，以超级用户身份登录。
-      \item 输入命令\verb|useradd -g myusers duser|，建立新用户duser，其主要组群是myusers。
-      \item 为新用户设置密码，输入命令\verb|passwd duser|，根据屏幕提示输入两次密码，最后屏幕提示密码成功设置信息。设置用户密码时，输入的密码在屏幕上并不显示出来，而输入两次的目的在于确保密码没有输错。
-      \item 输入命令\verb|cat /etc/passwd|，查看 /etc/passwd文件的内容，发现文件的末尾增加了duser用户的信息。
-      \item 输入命令\verb|cat /etc/group|，查看 /etc/group文件的内容，发现文件内容并未增加。
+      \item 输入命令 \verb|useradd -g myusers duser|，建立新用户duser，其主要组群是myusers。
+      \item 为新用户设置密码，输入命令 \verb|passwd duser|，根据屏幕提示输入两次密码，最后屏幕提示密码成功设置信息。设置用户密码时，输入的密码在屏幕上并不显示出来，而输入两次的目的在于确保密码没有输错。
+      \item 输入命令 \verb|cat /etc/passwd|，查看 /etc/passwd文件的内容，发现文件的末尾增加了duser用户的信息。
+      \item 输入命令 \verb|cat /etc/group|，查看 /etc/group文件的内容，发现文件内容并未增加。
       \item 按【Ctrl+Alt+F4】组合键，切换到第四个虚拟终端，输入duser用户名和密码可登录系统。
-      \item 输入命令\verb|exit|，duser用户退出登录。
-    \end{enumerate}
-  \item 将duser用户设置为不需要密码就能登录。
-    \begin{enumerate}
-      \item 按【Ctrl+Alt+F3】组合键，切换到正被超级用户使用的第三个虚拟终端。
-      \item 输入命令\verb|passwd -d duser|。
-      \item 按【Ctrl+Alt+F4】组合键，再次切换到第四个虚拟终端，在“Login:”后输入用户名duser，按【Enter】键直接出现shell命令提示符，说明duser用户不需要密码即可登录。
+      \item 输入命令 \verb|exit|，duser用户退出登录。
     \end{enumerate}
   \item 查看duser用户的相关信息。
     \begin{enumerate}
-      \item 在第三个虚拟终端输入命令\verb|id duser|，显示duser用户的用户ID（UID）、主要组群的名称和ID（GID）。
+      \item 在第三个虚拟终端输入命令 \verb|id duser|，显示duser用户的用户ID（UID）、主要组群的名称和ID（GID）。
     \end{enumerate}
   \item 从普通用户duser切换为超级用户。
     \begin{enumerate}
       \item 第四个虚拟终端当前的shell命令提示符为“\verb|$|”，表明当前用户是普通用户。
-      \item 输入命令\verb|ls /root|，屏幕上未列出 /root目录中的文件和子目录，而是出现提示信息，提示当前用户没有查看 /root目录的权限。
-      \item 输入命令\verb|su -| 或者是\verb|su - root|，屏幕提示输入密码，此时输入超级用户的密码，验证成功后shell提示符从“\verb|$|”变为“\verb|#|”，说明已从普通用户转换为超级用户。
-      \item 再次输入命令\verb|ls /root|，可查看 /root目录中的文件和子目录。
-      \item 输入命令\verb|exit|，回到普通用户的工作状态。
-      \item 输入命令\verb|exit|，duser用户退出登录。
+      \item 输入命令 \verb|ls /root|，屏幕上未列出 /root目录中的文件和子目录，而是出现提示信息，提示当前用户没有查看 /root目录的权限。
+      \item 输入命令 \verb|su -| 或者是 \verb|su - root|，屏幕提示输入密码，此时输入超级用户的密码，验证成功后shell提示符从“\verb|$|”变为“\verb|#|”，说明已从普通用户转换为超级用户。
+      \item 再次输入命令 \verb|ls /root|，可查看 /root目录中的文件和子目录。
+      \item 输入命令 \verb|exit|，回到普通用户的工作状态。
+      \item 输入命令 \verb|exit|，duser用户退出登录。
     \end{enumerate}
   \item 一次性删除duser用户及其工作目录。
     \begin{enumerate}
       \item 按【Ctrl+Alt+F3】组合键，切换到正被超级用户使用的第三个虚拟终端。
-      \item 输入命令\verb|userdel -r duser|，删除duser用户。处于登录状态的用户不能删除。如果在新建这个用户时还创建了私人组，而该私人组当前又没有其他用户，那么在删除用户的同时也将一并删除这一私人组。
-      \item 输入命令\verb|cat /etc/passwd|，查看 /etc/passwd文件的内容，发现duser用户的相关信息已消失。
-      \item 输入命令\verb|ls /home|，发现duser用户的主目录 /home/duser已不复存在。
+      \item 输入命令 \verb|userdel -r duser|，删除duser用户。处于登录状态的用户不能删除。如果在新建这个用户时还创建了私人组，而该私人组当前又没有其他用户，那么在删除用户的同时也将一并删除这一私人组。
+      \item 输入命令 \verb|cat /etc/passwd|，查看 /etc/passwd文件的内容，发现duser用户的相关信息已消失。
+      \item 输入命令 \verb|ls /home|，发现duser用户的主目录 /home/duser已不复存在。
     \end{enumerate}
   \item 新建组mygroup。
     \begin{enumerate}
-      \item 在超级用户的shell提示符后输入命令\verb|groupadd mygroup|，建立mygroup组。
-      \item 输入命令\verb|cat /etc/group|，发现group文件的末尾出现mygroup组的信息。
-      \item 输入命令\verb|cat /etc/gshadow|，发现gshadow文件的末尾也出现mygroup组的信息。
+      \item 在超级用户的shell提示符后输入命令 \verb|groupadd mygroup|，建立mygroup组。
+      \item 输入命令 \verb|cat /etc/group|，发现group文件的末尾出现mygroup组的信息。
+      \item 输入命令 \verb|cat /etc/gshadow|，发现gshadow文件的末尾也出现mygroup组的信息。
     \end{enumerate}
   \item 将mygroup组改名为newgroup。
     \begin{enumerate}
-      \item 在超级用户的shell提示符后输入命令\verb|groupmod -n newgroup mygroup|，其中-n选项表示更改组名称。
-      \item 输入命令\verb|cat /etc/group|，查看组信息，发现原来mygroup所在行的第一项变为newgroup。
+      \item 在超级用户的shell提示符后输入命令 \verb|groupmod -n newgroup mygroup|，其中 \verb|-n|选项表示更改组名称。
+      \item 输入命令 \verb|cat /etc/group|，查看组信息，发现原来mygroup所在行的第一项变为newgroup。
     \end{enumerate}
   \item 删除newgroup组。
     \begin{enumerate}
-      \item 超级用户输入命令\verb|groupdel newgroup|，删除newgroup组。
-    \end{enumerate}
-\end{enumerate}
-
-\vspace{0.1in}
-（九）批量新建多个用户账号。
-\begin{enumerate}
-  \item 为全班30位同学创建用户账号，用户名为“s”+学号的组合，其中班级名册中第一位同学的学号为140101。所有同学都属于class1401组。所有同学的初始密码都为123456。
-    \begin{enumerate}
-      \item 以超级用户身份登录系统，输入命令\verb|groupadd -g 600 class1401|（假设值为600的GID未被使用），新建全班同学的组class1401。
-      \item 输入命令vim students，新建用户信息文件。
-      \item 按【i】键，切换为Vim的文本编辑模式，输入第一行信息“s140101:x:601:600::/home/s140101:/bin/bash”，完成后按【Esc】键，切换到命令模式。
-      \item 按【:】键，并输入\verb|1,1co1|。此时将本身的一行复制为两行，继续输入\verb|1,2co2|从两行复制为四行，依此类推，直到出现30行信息。
-      \item 按【i】键，切换为文本编辑模式，修改每位同学用户信息不同的部分，编辑完成的文件如下所示。最后保存并退出Vim。
-\begin{verbatim}
-s140101:x:601:600::/home/s140101:/bin/bash
-s140102:x:602:600::/home/s140102:/bin/bash
-s140103:x:603:600::/home/s140103:/bin/bash
-...
-\end{verbatim}
-      \item 输入命令vim stu-passwd，新建用户密码文件。
-      \item 按【i】键，切换为Vim的文本编辑模式，输入第一行信息“s140101:123456”，即所有同学的初始密码为123456，然后进行复制，直至复制出30行信息，然后依次修改用户名。完成的文件如下所示，保存并退出Vim。
-\begin{verbatim}
-s140101:123456
-s140102:123456
-s140103:123456
-...
-\end{verbatim}
-      \item 输入命令\verb|newusers < students|，批量新建用户账号。
-      \item 输入命令\verb|pwunconv|，暂时取消shadow加密。
-      \item 输入命令\verb|chpasswd < stu-passwd|，批量新建用户的密码。
-      \item 输入命令\verb|pwconv|，进行shadow加密，完成批量创建用户账号工作。
-      \item 输入命令\verb|cat /etc/passwd|，查看/etc/passwd文件将发现所有的用户账号均已建立。
-      \item 可尝试以新建的用户名登录，并应该及时修改用户的密码。
-      \item 使用此方法批量建立的用户登录系统时，其命令提示符不是默认的格式：\verb|[用户名@localhost ~]$|，而是\verb|-bash-4.1$|。如果希望使用标准的命令提示符，可复制用户主目录中的配置文件.bash\_profile和.bahsrc到那些批量创建的用户的主目录中，再次登录，恢复标准的shell命令提示符。
+      \item 超级用户输入命令 \verb|groupdel newgroup|，删除newgroup组。
     \end{enumerate}
 \end{enumerate}
 

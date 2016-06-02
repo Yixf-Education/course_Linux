@@ -14,7 +14,7 @@
 \noindent
 二、实验准备
 \begin{enumerate}
-  \item 安装有CentOS 7的计算机。
+  \item 安装有Ubuntu/CentOS的计算机。
 \end{enumerate}
 
 \vspace{0.2in}
@@ -22,16 +22,16 @@
 三、实验内容
 
 \vspace{0.1in}
-（一）创建一个简单的shell脚本。
+（一）创建一个简单的shell脚本
 \begin{enumerate}
   \item 在主目录中创建bin目录，并进入其中。
   \item 创建一个空白文档，向其中输入下面几行内容：
 \begin{lstlisting}[language=bash]
+#!/bin/bash
+
 # ~/bin/dirinfo.sh
-# 20150501
 # A really stupid script to give some basic info about the current directory
 
-#!/bin/bash
 pwd
 ls
 \end{lstlisting}
@@ -41,7 +41,7 @@ ls
 \end{enumerate}
 
 \vspace{0.1in}
-（二）传递参数给函数。
+（二）传递参数给函数
 \begin{enumerate}
   \item 在主目录的bin目录中，创建一个空白文档，输入以下代码，并将其保存为func.sh。
 \begin{lstlisting}[language=bash]
@@ -52,7 +52,7 @@ ls
 # A simple function
 
 repeat ( ) {
-  echo -n "I don't know $1 $2"
+  echo "I don't know $1 $2"
 }
 
 repeat Your Name
@@ -62,7 +62,7 @@ repeat Your Name
 \end{enumerate}
 
 \vspace{0.1in}
-（三）使用嵌套函数。
+（三）使用嵌套函数
 \begin{enumerate}
   \item 在主目录的bin目录中，创建一个空白文档，输入以下代码，并将其保存为nested.sh。
 \begin{lstlisting}[language=bash]
@@ -87,7 +87,7 @@ number_one
 \end{enumerate}
 
 \vspace{0.1in}
-（四）处理作用域。
+（四）处理作用域
 \begin{enumerate}
   \item 在主目录的bin目录中，创建一个空白文档，输入以下代码，并将其保存为scope.sh。
 \begin{lstlisting}[language=bash]
@@ -117,57 +117,7 @@ exit 0
 \end{enumerate}
 
 \vspace{0.1in}
-（五）使用getopts。
-\begin{enumerate}
-  \item 在主目录的bin目录中，创建一个空白文档，输入以下代码，并将其保存为get.sh。
-\begin{lstlisting}[language=bash]
-#!/bin/bash
-
-# get
-# A script for demonstrating getopts
-
-while getopts "xy:z:" name
-do
-  echo "$name" $OPTIND $OPTARG
-done
-\end{lstlisting}
-  \item 使脚本变成可执行文件。
-  \item 在命令行调用脚本，传递一些参数，如：\verb|~/bin/get.sh -xy "one" -z "two"|。
-\end{enumerate}
-
-\vspace{0.1in}
-（六）用trap命令清除临时文件。
-\begin{enumerate}
-  \item 在主目录的bin目录中，创建一个空白文档，输入以下代码，并将其保存为sigtrap.sh。
-\begin{lstlisting}[language=bash]
-#!/bin/bash
-
-# sigtrap
-# A small script to demonstrate signal trapping
-
-tmpFile=/tmp/sigtrap$$
-cat > $tmpFile
-
-function removeTemp( ) {
-  if [ -f "$tmpFile" ]
-  then
-    echo "Sorting out the temp file..."
-    rm -f "$tmpFile"
-  fi
-}
-
-trap removeTemp 1 2
-
-exit 0
-\end{lstlisting}
-  \item 使脚本变成可执行文件。
-  \item 在命令行中运行该脚本。
-  \item 在命令行输入一些文本然后按下【Ctrl+D】组合键。一旦按下这个组合键，就会立即检查在tmp目录中创建的文件（它的名字可能和sigtrap(procid)差不多）。
-  \item 现在再次运行代码，但在按下【Ctrl+D】组合键之前，先按下【Ctrl+C】组合键。这一次会收到一条消息``Sorting out the temp file...''。如果此时去查看名称类似于sigtrap(procid)的文件，将发现它并不存在。
-\end{enumerate}
-
-\vspace{0.1in}
-（七）在数组中使用文本文件中的数据。
+（五）在数组中使用文本文件中的数据
 \begin{enumerate}
   \item 在主目录的tmp目录（如果不存在，就先创建该目录）中，创建一个空白文档，输入以下文本，并将其保存为sports.txt。
 \begin{verbatim}
@@ -192,7 +142,7 @@ exit 0
 \end{enumerate}
 
 \vspace{0.1in}
-（八）shell脚本实例。
+（六）shell脚本实例
 \begin{lstlisting}[language=bash]
 # 模拟Linux登录shell
 #!/bin/bash
@@ -200,7 +150,8 @@ echo -n "login:"
 read name
 echo -n "password:"
 read passwd
-if [ $name = "cht" -a $passwd = "abc"  ];then
+if [ $name = "cht" -a $passwd = "abc" ]
+then
   echo "the host and password is right!"
 else
   echo "input is error!"
@@ -211,20 +162,25 @@ fi
 echo "please enter two number"
 read a
 read b
-if test $a -eq $b
-  then echo "NO.1 = NO.2"
-elif test $a -gt $b
-  then echo "NO.1 > NO.2"
-else echo "NO.1 < NO.2"
+if (test $a -eq $b)
+then
+  echo "NO.1 = NO.2"
+elif (test $a -gt $b)
+then
+  echo "NO.1 > NO.2"
+else
+  echo "NO.1 < NO.2"
 fi
 
 # 查找/root/目录下是否存在该文件
 #!/bin/bash
 echo "enter a file name:"
 read a
-if test  -e /root/$a
-  then echo "the file is exist!"
-else echo "the file is not exist!"
+if (test  -e /root/$a)
+then
+  echo "the file is exist!"
+else
+  echo "the file is not exist!"
 fi
 
 # for循环的使用
@@ -240,21 +196,25 @@ done
 echo "Please enter a user:"
 read a
 b=$(whoami)
-if test $a = $b
-  then echo "the user is running."
-else echo "the user is not running."
+if (test $a = $b)
+then
+  echo "the user is running."
+else
+  echo "the user is not running."
 fi
 
 # 删除当前目录下大小为0的文件
 #!/bin/bash
 for filename in `ls`
 do
-  if test -d $filename
-    then b=0
+  if (test -d $filename)
+  then
+    b=0
   else
     a=$(ls -l $filename | awk '{ print $5 }')
-    if test $a -eq 0
-      then rm $filename
+    if (test $a -eq 0)
+    then
+      rm $filename
     fi
   fi
 done
@@ -283,9 +243,9 @@ while :
 do
   echo "please input file's name:"
   read a
-  if test -e /root/$a
+  if (test -e /root/$a)
   then
-    echo "the file is existing Please input new file name:"
+    echo "The file is existing! Please input new file name!"
   else
     mkdir $a
     echo "mkdir sussesful!"
@@ -303,7 +263,7 @@ a=0
 for name in *.*
 do
   b=$(ls -l $name | awk '{print $5}')
-  if test $b -gt $a
+  if (test $b -gt $a)
   then a=$b
     namemax=$name
   fi
@@ -361,7 +321,7 @@ read score
 if [ $score -lt 80  ]
 then
   echo "bad!!"
-elif [ $score -ge 80 -a -lt 90  ]
+elif [ $score -ge 80 -a $score -lt 90  ]
 then
   echo "good!!"
 else
@@ -386,10 +346,25 @@ case $choice in
   *) echo "wrong choice"
   ;;
 esac
+
+# Fork炸弹：总共只用了13个字符（包括空格）
+# 警告：切勿尝试，后果自负！
+:(){ :|:& };:
+# 注解如下
+:()      # 定义函数，函数名为":"，即每当输入":"时就会自动调用{}内的代码
+{        # ":"函数起始字符
+  :      # 用递归方式调用":"函数本身
+  |      # 并用管道(pipe)将其输出引至...（因为有一个管道操作字符，因此会生成一个新的进程）
+  :      # 另一次递归调用的":"函数
+# 综上，":|:"表示的即是每次调用函数":"的时候就会产生两份拷贝
+  &      # 调用后台运行字符，以使最初的":"函数被关闭后为其所调用的两个":"函数还能继续执行
+}        # ":"函数终止字符
+;        # ":"函数定义结束后将要进行的操作...
+:        # 调用":"函数，"引爆"fork炸弹
 \end{lstlisting}
 
 \vspace{0.1in}
-（九）shell脚本的调试。
+（七）shell脚本的调试
 
 练习理论课中演示的shell脚本，并对所有脚本进行调试。
 

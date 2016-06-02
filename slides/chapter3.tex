@@ -6,7 +6,7 @@
 \title[文件系统]{第三章\quad 文件系统}
 \author[Yixf]{伊现富（Yi Xianfu）}
 \institute[TIJMU]{天津医科大学（TIJMU）\\ 生物医学工程与技术学院}
-\date{2015年5月}
+\date{2016年3月}
 
 
 \begin{frame}
@@ -23,7 +23,7 @@
 
 \section{插曲}
 \begin{frame}[fragile]
-  \frametitle{插曲 | 抽签}
+  \frametitle{\textcolor{gray}{插曲 | 抽签}}
   \begin{block}{使用学生名单}
     \begin{itemize}
       \item \verb=shuf -n 10 students.list=
@@ -41,7 +41,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{插曲 | 抽奖}
+  \frametitle{\textcolor{gray}{插曲 | 抽奖}}
   %\begin{block}{使用观众名单}
     \begin{enumerate}
       \item 抽取三等奖：\verb=shuf -n 10 all.list > level3.list=
@@ -569,15 +569,16 @@
   \begin{table}
     \centering
     \rowcolors[]{1}{blue!20}{blue!10}
-    \begin{tabular}{cl}
+    \begin{tabular}{cm{0.7\columnwidth}}
       \hline
       \rowcolor{blue!50}文件类型 & 说明\\
       \hline
       \alert{-} & 普通文件（文本文件、二进制可执行文件、硬链接）\\
       \alert{d} & 目录文件\\
-      \alert{l} & 符号链接文件\\
-      b & 块设备文件（块输入/输出设备文件）\\
-      c & 字符设备文件（原始输入/输出设备文件）\\
+      \alert{l（小写L）} & 符号链接文件\\
+      b & 块设备文件（块输入/输出设备文件，如存储设备）\\
+      %c & 字符设备文件（原始输入/输出设备文件，将数据作为字节流处理，如Terminal）\\
+      c & 字符设备文件（原始输入/输出设备文件，将数据作为字节流处理，如Terminal）\\
       p & 命令管道（一种进程间通信的机制）\\
       s & 套接字（用于进程间通信）\\
       \hline
@@ -643,7 +644,7 @@
       \hline
       \rowcolor{blue!50}项目 & 硬链接 & 软链接\\
       \hline
-      语法 & ln source hardlink & ln -s source softlink\\
+      语法（LiNk） & ln source hardlink & ln -s source softlink\\
       本质 & 与原文件没区别 & 保存原文件的路径\\
       inode & 与原文件相同 & 与原文件不同，唯一\\
       类比 & 不占空间的复制+同步更新 & 快捷方式\\
@@ -732,7 +733,8 @@
         \begin{itemize}
           \item 用户：u, g, o, a
           \item 操作：+, -, =
-	  \item 权限：r, w, x, \textcolor{gray}{-}
+	  \item 权限：r, w, x
+	  %\item 权限：r, w, x, \textcolor{gray}{-}
         \end{itemize}
       \item 绝对模式：更加高效
         \begin{itemize}
@@ -774,7 +776,7 @@
         \item r：Read，读
         \item w：Write，写
         \item x：eXecute，执行
-	\item \textcolor{gray}{-：无}
+	%\item \textcolor{gray}{-：无}
         %\item -：无
       \end{itemize}
     \end{block}
@@ -824,7 +826,7 @@
 
 \subsection{特殊权限}
 \begin{frame}[fragile]
-  \frametitle{特殊权限 | SetUID}
+  \frametitle{\textcolor{gray}{特殊权限 | SetUID}}
   \begin{block}{SetUID：Set User ID，设置用户标识}
     当一个可执行程序（一般为一个命令）具有SetUID权限，用户执行这个程序时，将以这个程序的所有者的身份执行。
   \end{block}
@@ -844,7 +846,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{特殊权限 | SetGID}
+  \frametitle{\textcolor{gray}{特殊权限 | SetGID}}
   \begin{block}{SetGID：Set Group ID}
     当一个可执行程序（一般为一个命令）具有SetGID权限，用户执行这个程序时，将以这个程序所属组的身份执行。
   \end{block}
@@ -861,7 +863,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{特殊权限 | 粘着位}
+  \frametitle{\textcolor{gray}{特殊权限 | 粘着位}}
   \begin{block}{粘着位（Sticky Bit）}
     如果一个权限为777的目录，被设置了粘着位，每个用户都可以在这个目录里面创建文件，但是只可以删除所有者是自己的文件。
   \end{block}
@@ -881,7 +883,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{特殊权限 | 总结}
+  \frametitle{\textcolor{gray}{特殊权限 | 总结}}
   The \verb|chmod| command can be used to set or unset with the following values as a \textbf{prefix} to the normal three numeric privileges:
   \begin{table}
     \centering
@@ -904,7 +906,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{特殊权限 | 补充}
+  \frametitle{\textcolor{gray}{特殊权限 | 补充}}
   \begin{table}
     \centering
     \rowcolors[]{1}{blue!20}{blue!10}

@@ -6,7 +6,7 @@
 \title[用户和组]{第二章\quad 用户和组}
 \author[Yixf]{伊现富（Yi Xianfu）}
 \institute[TIJMU]{天津医科大学（TIJMU）\\ 生物医学工程与技术学院}
-\date{2015年5月}
+\date{2016年3月}
 
 
 \begin{frame}
@@ -455,7 +455,7 @@ useradd -c COMMENT -d HOME.DIRECTORY -e EXPIRATION.DATE -f INACTIVE.DTAE -g PRIM
   \end{block}
   \pause
   \begin{block}{修改账户}
-    修改账户名：usermod\quad -l\quad UERNAME.NEW\quad USERNAME.OLD\\
+    修改账户名：usermod\quad -l\textcolor{gray}{（小写L）}\quad NAME.NEW\quad NAME.OLD\\
     添加到组：usermod\quad -G\quad GROUP2\quad USER\\
     修改账户属性：usermod \quad -l\quad NAME.NEW\quad -d\quad DIR\quad -g\quad GROUP\quad NAME.OLD
   \end{block}
@@ -528,7 +528,7 @@ useradd -c COMMENT -d HOME.DIRECTORY -e EXPIRATION.DATE -f INACTIVE.DTAE -g PRIM
   \begin{block}{禁用}
     \begin{itemize}
       \item usermod -L USERNAME
-      \item passwd -l USERNAME
+      \item passwd -l\textcolor{gray}{（小写L）} USERNAME
     \end{itemize}
   \end{block}
   \pause

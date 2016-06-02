@@ -1,0 +1,122 @@
+\chapter{Perl脚本编程}
+
+%\vspace{0.2in}
+\noindent
+一、实验要求
+\begin{enumerate}
+  \item 掌握Perl脚本的语法结构与运行方法。
+  \item 掌握Perl读取写入文件的方法。
+  \item 了解Perl中获取标准输入的方法。
+  \item 熟练使用Perl的基本函数。
+  \item 掌握Perl中的判断语句和循环语句。
+\end{enumerate}
+
+\vspace{0.2in}
+\noindent
+二、实验准备
+\begin{enumerate}
+  \item 安装有CentOS 7的计算机。
+\end{enumerate}
+
+\vspace{0.2in}
+\noindent
+三、实验内容
+
+\vspace{0.1in}
+（一）用Perl编写的``Hello World''
+\begin{enumerate}
+  \item 用文本编辑器创建一个名为hello.pl的文件，内容如下：
+\begin{lstlisting}[language=perl]
+#!/usr/bin/perl -w
+# Classic "Hello World" as done with Perl
+
+print "Hello World!\n";
+\end{lstlisting}
+  \item 保存文件、退出编辑器之后，修改文件的权限并运行。
+\end{enumerate}
+
+\vspace{0.1in}
+（二）在Perl中打开文件和目录
+\begin{enumerate}
+  \item 在主目录中用文本编辑器创建一个名为file.pl的文件，内容如下：
+\begin{lstlisting}[language=perl]
+#!/usr/bin/perl -w
+# Create a file that will have a directory listing of user's home dir
+
+print "About to read user's home directory\n";
+# open the home directory and read it
+opendir(HOMEDIR, ".");
+@ls = readdir HOMEDIR;
+closedir(HOMEDIR);
+
+print "About to creat file dirlist.txt with a directory listing of user's home dir\n";
+# open a file and write the directory listing to he file
+open(FILE, ">dirlist.txt");
+foreach $item (@ls) {
+  print FILE $item . "\n";
+}
+close(FILE);
+print "All done\n\n";
+\end{lstlisting}
+  \item 保存文本、退出编辑器之后，修改文件的权限并运行。
+  \item 一旦脚本打印出“All done”，请找到dirlist.txt文件并用cat命令显示它的内容。
+\end{enumerate}
+
+\vspace{0.1in}
+（三）检查来自标准输入的输入
+\begin{enumerate}
+  \item 在文本编辑器中，输入以下脚本，把它保存为check.pl，并修改权限使得该脚本可执行。
+\begin{lstlisting}[language=perl]
+#!/usr/bin/perl -T
+# check.pl
+# A Perl script that checks the input to determine if it contains numeric information
+
+# First set up your Perl environment and import some useful Perl packages
+use warings;
+use diagnostics;
+use strict;
+my $result;
+
+# Next check for any input and then call the proper subroutine based on the test
+if (@ARGV) {
+  # If the test condition for data from standard in is true run the test subroutine on the input data
+  $result = &test;
+} else {
+  # else the test condition is false and you should run an error routine.
+  &error;
+}
+
+# Now print the results
+print $ARGV[0] . " has " . $result . " elements\n\n";
+exit(0);
+
+sub test{
+  # Get the first array element form the global array ARGV
+  # assign it to a local scalar and then test the local variable with a regular expression
+  my $cmd_arg = $ARGV[0];
+  if ($cmd_arg =~ m/[0-9]) {
+    return ('numeric');
+  } else {
+    # There was a error in the input; generate an error message
+    warn "Unknown input";
+  }
+}
+
+sub error {
+  # There was no input; generate an error message and quit
+  die "Usage: check.pl, (<INPUT TO CHECK>)";
+}
+\end{lstlisting}
+  \item 在命令行使用不同的参数或者不带任何参数运行该脚本。注意脚本输出的不同文本行取决于提供了什么样的参数：
+\begin{lstlisting}[language=bash]
+./check.pl
+./check.pl 42
+./check.pl h2g242
+./check.pl hg
+\end{lstlisting}
+\end{enumerate}
+
+\vspace{0.1in}
+（四）Perl的函数与脚本练习
+
+练习理论课中演示的Perl脚本，并尝试对脚本进行调试。

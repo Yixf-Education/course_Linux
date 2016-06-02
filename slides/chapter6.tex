@@ -6,7 +6,7 @@
 \title[软件安装]{第六章\quad 软件安装}
 \author[Yixf]{伊现富（Yi Xianfu）}
 \institute[TIJMU]{天津医科大学（TIJMU）\\ 生物医学工程与技术学院}
-\date{2015年6月}
+\date{2016年4月}
 
 
 \begin{frame}
@@ -322,7 +322,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{二进制软件包管理 | dpkg与APT | PPA | 简介}
+  \frametitle{二进制软件包管理 | dpkg与APT | \textcolor{gray}{PPA} | 简介}
   \begin{block}{PPA（Personal Package Archive，个人软件包档案）}
      因为安全或不稳定或其他种种因素，Ubuntu软件源中不可能收录所有软件，于是有了PPA，它的作用类似于Ubuntu官方的源，只不过是由个人提供打包，当然也会有某些官方源中的软件通过PPA发布不稳定版本等。\\
      \vspace{5pt}
@@ -333,12 +333,12 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{二进制软件包管理 | dpkg与APT | PPA | 使用}
+  \frametitle{二进制软件包管理 | dpkg与APT | \textcolor{gray}{PPA} | 使用}
   \begin{block}{三步走}
     \begin{enumerate}
-      \item 添加PPA源：sudo add-apt-repository ppa:user/ppa-name
+      \item 添加PPA源：sudo add-apt-repository ppa:USER/PPA-NAME
       \item 更新所有源：sudo apt-get update
-      \item 安装软件：sudo apt-get install <package\_name>
+      \item 安装软件：sudo apt-get install PACKAGE\_NAME
     \end{enumerate}
   \end{block}
   \pause
@@ -355,7 +355,7 @@
 \begin{frame}
   \frametitle{二进制软件包管理 | RPM与Yum | 简介}
   \begin{block}{RPM}
-    RPM包管理员（简称RPM，全称为The RPM Package Manager）是在Linux下广泛使用的软件包管理器。最早由Red Hat研制，现在也由开源社区开发。RPM仅适用于安装用RPM来打包的软件，目前是GNU/Linux下软件包资源最丰富的软件包类型之一。\\
+    RPM包管理器（简称RPM，全称为The RPM Package Manager）是在Linux下广泛使用的软件包管理器。最早由Red Hat研制，现在也由开源社区开发。RPM仅适用于安装用RPM来打包的软件，目前是GNU/Linux下软件包资源最丰富的软件包类型之一。\\
     RPM软件包分为二进制包（Binary）、源代码包（Source）和Delta包三种。二进制包可以直接安装在计算机中，而源代码包将会由RPM自动编译、安装。源代码包经常以src.rpm作为后缀名。
   \end{block}
   \pause
@@ -643,7 +643,7 @@
       一般以“LATEST”进行标记，通常情况下应该下载、安装正式版本。
     \item 在多个平台上稳定运行的以前的版本
     \item 用于测试的开发版本\\
-      测试版本通常成为alpha、beta、候选版本（release candidate）或每日快照（daily snapshot），它是潜在不稳定的，使用时必须小心。
+      测试版本通常称为alpha、beta、候选版本（RC，release candidate）或每日快照（daily snapshot），它是潜在不稳定的，使用时必须小心。
   \end{itemize}
 \end{frame}
 
@@ -651,7 +651,7 @@
 \begin{frame}
   \frametitle{源代码安装 | 下载软件}
   \begin{block}{文件格式}
-    下载的源代码文件内容通常由tar、gzip、bzip命令压缩过，形成的文件成为tarball，其典型的文件扩展名是.tgz、.tar.gz或.tar.bz2。
+    下载的源代码文件内容通常由tar、gzip、bzip命令打包压缩过，形成的文件称为tarball，其典型的文件扩展名是.tgz、.tar.gz或.tar.bz2。
   \end{block}
   \pause
   \begin{block}{下载技巧}
@@ -667,6 +667,7 @@
       \item md5：md5sum，md5deep
       \item SHA1：sha1sum，sha1deep
       \item SHA256：sha256sum，sha256deep
+      \item CRC-32：crc32
     \end{itemize}
   \end{block}
 \end{frame}

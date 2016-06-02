@@ -15,8 +15,7 @@
 \noindent
 二、实验准备
 \begin{enumerate}
-  \item 安装有CentOS 7的计算机。
-  \item 安装有Ubuntu 14.10的计算机。
+  \item 安装有Ubuntu/CentOS的计算机。
 \end{enumerate}
 
 \vspace{0.2in}
@@ -24,254 +23,92 @@
 三、实验内容
 
 \vspace{0.1in}
-（一）在命令行中下载安装包。
+（一）在命令行中下载安装包
 
-以datamash为例，使用wget和curl在命令行中下载其安装包。
-\begin{lstlisting}[language=bash]
-# wget
-wget -c http://files.housegordon.org/datamash/bin/datamash_1.0.6-1_amd64.deb
-wget -c http://ftp.gnu.org/gnu/datamash/datamash-1.0.6.tar.gz
-# curl
-## 使用原始文件名
-curl -O http://files.housegordon.org/datamash/bin/datamash-1.0.6-1.el6.x86_64.rpm
-## 使用新的文件名
-curl -o datamash.tar.gz http://ftp.gnu.org/gnu/datamash/datamash-1.0.6.tar.gz
-\end{lstlisting}
+为便于后续软件的安装，使用wget和/或curl在命令行中下载datamash、htop和Glances的安装包。通过查阅wget和curl的帮助页，掌握它们的使用方法。（提示：主要是wget的
+\verb|-c|选项和curl的 \verb|-o|和 \verb|-O|选项）
 
 \vspace{0.1in}
-（二）通过APT与Yum安装软件。
+（二）通过APT与Yum安装软件
 
-以htop（或Glances，dos2unix等）为例，使用APT在Ubuntu中安装htop，使用Yum在CentOS中安装htop。
+以dos2unix（或htop，Glances等）为例，使用APT在Ubuntu中安装dos2unix，使用Yum在CentOS中安装dos2unix。
 \begin{lstlisting}[language=bash]
 # 需要使用sudo
-apt-get install htop
-apt-get install glances
 apt-get install dos2unix
 
 # 需要切换为root用户
-yum install htop
-yum install glances
 yum install dos2unix
 \end{lstlisting}
 
 \vspace{0.1in}
-（三）通过dpkg与RPM安装软件。
+（三）通过dpkg与RPM安装软件
 
-以Webmin（或datamash，TeamViewer，RStudio等）为例，使用dpkg在Ubuntu中安装Webmin，使用RPM在CentOS中安装Webmin。
+以datamash（或Webmin，TeamViewer，RStudio等）为例，使用dpkg在Ubuntu中安装Webmin，使用RPM在CentOS中安装Webmin。
 \begin{lstlisting}[language=bash]
+# 需要预先使用wget或curl下载deb和/或rpm包
 # 需要使用sudo
-dpkg -i webmin_1.700_all.deb
 dpkg -i datamash_1.0.6-1_amd64.deb
-dpkg -i teamviewer_linux.deb
-dpkg -i rstudio-0.98.1062-amd64.deb
 
 # 需要切换为root用户
-rpm -ivh webmin-1.700-1.noarch.rpm
 rpm -ivh datamash-1.0.6-1.el6.x86_64.rpm
-rpm -ivh teamviewer_linux.rpm
-rpm -ivh rstudio-0.98.1062-x86_64.rpm
 \end{lstlisting}
 
 \vspace{0.1in}
-（四）通过源代码安装软件。
+（四）通过源代码安装软件
 
-以dos2unix（或datamash，htop，parallel，FASTX-Toolkit，msort，SAMtools，BEDTools，seqtk等）为例，使用源代码对其进行安装。
+以htop（或datamash，dos2unix，parallel，FASTX-Toolkit，msort，SAMtools，BEDTools，seqtk等）为例，使用源代码对其进行安装。
 \begin{lstlisting}[language=bash]
-# dos2unix
-tar -zxvf dos2unix-7.0.tar.gz
-cd dos2unix-7.0/
-vim INSTALL.txt
-make
-make check
-#make strip
-make install
-#make clean
-#make mostlyclean
-
-# datamash
-tar -zxvf datamash-1.0.6.tar.gz
-cd datamash-1.0.6/
-vim INSTALL
-vim README
-./configure
-make
-make check
-sudo make install
-#make installcheck
-#make clean
-#make uninstall
-
+# 需要预先使用wget或者curl下载htop的tar.gz源代码包
 # htop
 tar -zxvf htop-1.0.3.tar.gz
 cd htop-1.0.3/
-vim INSTALL
-vim README
+#vim INSTALL
+#vim README
 ./configure
 make
 make install
-
-# parallel
-tar -xjvf parallel-20140822.tar.bz2
-cd parallel-20140822/
-vim README
-./configure
-make
-make install
-
-# FASTX-Toolkit
-tar -xjvf fastx_toolkit-0.0.14.tar.bz2
-cd fastx_toolkit-0.0.14/
-vim INSTALL
-vim README
-./configure
-make
-sudo make install
-
-# msort
-tar -zxvf msort.tar.gz
-cd msort/
-vim README
-./autogen.sh                                                              
-./configure
-make
-
-# SAMtools
-tar -xjvf samtools-1.0.tar.bz2
-cd samtools-1.0/
-vim INSTALL
-make
-make install
-
-# BEDTools
-tar -zxvf bedtools-2.21.0.tar.gz
-cd bedtools2/
-make
-sudo cp ./bin/* /usr/local/bin
-
-# seqtk
-unzip seqtk-master.zip
-cd seqtk-master/
-make
 \end{lstlisting}
 
 \vspace{0.1in}
-（五）通过脚本安装软件。
+（五）通过脚本安装软件
 
-以cheat（或Glances，Webmin等）为例，使用脚本对其进行安装。
+以Glances（或cheat，Webmin等）为例，使用脚本对其进行安装。
 \begin{lstlisting}[language=bash]
-# cheat
-## First install the required python dependencies
-sudo pip install docopt pygments
-## Then
-unzip cheat-master.zip
-cd cheat-master
-vim README.md
-sudo python setup.py install
-
+# 需要预先下载Glances的zip源代码包
 # Glances
 unzip Glances-master.zip
 cd Glances-master
-vim README.rst
+#vim README.rst
 python setup.py install
-
-# Webmin
-tar -zxvf webmin-1.700.tar.gz
-cd webmin-1.700/
-vim README
-./setup.sh
 \end{lstlisting}
 
 \vspace{0.1in}
-（六）通过其他方式安装软件。
+（六）通过其他方式安装软件
 
 以Galaxy（或cheat，Glances等）为例，根据安装说明对其进行安装。
 \begin{lstlisting}[language=bash]
 # Galaxy
 cd ~
-hg clone https://bitbucket.org/galaxy/galaxy-dist/
-cd galaxy-dist
-hg update stable
-
-# cheat
-## Using pip
-sudo pip install cheat
-## Using homebrew
-brew install cheat
-
-# Glances
-pip install Glances
+git clone https://github.com/galaxyproject/galaxy
+cd galaxy
+git checkout -b master orgin/master
 \end{lstlisting}
 
 \vspace{0.1in}
-（七）不需要安装的软件。
+（七）不需要安装的软件
 
 以CPU-G（或FASTX-Toolkit，WebLogo，TeamViewer，IGV等）为例，下载后可以直接使用。
 \begin{lstlisting}[language=bash]
+# 需要预先下载CPU-G的tar.gz源代码包
 # CPU-G
 tar -zxvf cpu-g-0.9.0.tar.gz
 cd cpu-g-0.9.0/
 chmod 755 cpu-g
 ./cpu-g
-
-# FASTX-Toolkit
-tar -xjvf fastx_toolkit_0.0.13_binaries_Linux_2.6_amd64.tar.bz2
-cd bin
-
-# WebLogo
-tar -zxvf weblogo-3.3.tar.gz
-cd weblogo-3.3/
-./weblogo -h
-
-# TeamViewer
-tar -zxvf teamviewer_linux.tar.gz
-cd teamviewer9/
-./teamviewer
-
-# IGV
-unzip IGV_2.3.34.zip
-cd IGV_2.3.34/
-vim readme.txt
-./igv.sh
 \end{lstlisting}
 
 \vspace{0.1in}
-（八）从源代码编译openssl程序。
-\begin{enumerate}
-  \item 在主目录中，创建一个目录（例如src），然后切换到这个目录，软件的编译将在这个目录中进行。
-  \item 获取openssl的源代码。
-  \item 提取源代码并切换到新目录中。
-  \item 使用ls命令查看包含在安装目录中的文件（有多个README*和INSTALL*文件）。
-  \item 使用less或more命令阅读这些找到的文件。
-  \item 根据INSTALL文件中的说明，运行带有\verb|--prefix|开关的config脚本。
-  \item 开始编译：\verb|make|。
-  \item 为了在安装之前测试已编译好的程序，运行带有test的make命令：\verb|make test|。
-  \item 安装软件：\verb|make install|。
-\end{enumerate}
-
-\vspace{0.1in}
-（九）编译需要预装软件的代码。
-\begin{enumerate}
-  \item 切换到源代码编译目录。
-  \item 找到Lynx的源代码。
-  \item 提取源代码并切换到新创建的目录中。
-  \item 查找README或INSTALL文件。
-  \item 运行\verb|./configure --help|查看编译选项列表。
-  \item 必须执行一个特殊的步骤，这个步骤配置Lynx编译程序以便安装到主目录中，并使用前面已经安装的SSL库。
-  \item 准备安装：\verb|make|。
-  \item 为了安装软件，执行命令：\verb|make install|。
-  \item 如果希望安装其他Lynx文档，可以根据屏幕上给出的提示进行操作。
-\end{enumerate}
-
-\vspace{0.1in}
-（十）使用RPM。
-\begin{enumerate}
-  \item 在命令行中输入以下命令：\verb=rpm -qa | grep mysql=。根据个人的安装情况，要么会获得一些输出，显示在机器上安装了哪个版本的MySQL，要么什么输出都没有。
-  \item 要安装新版的MySQL，需要从MySQL的网站下载相关的RPM包并保存到所需要的文件夹中。
-  \item 执行命令：\verb|rpm -Uvh MySQL.rpm|。
-\end{enumerate}
-
-\vspace{0.1in}
-（十一）软件管理。
+（八）软件管理
 
 尝试使用dpkg与APT、RPM与Yum对软件（如：htop，Glances，dos2unix等）进行管理（如：查询、安装、卸载等）。
 

@@ -3,11 +3,11 @@
 {\itshape
 图形化用户界面下用户操作非常简单而直观，但到目前为止图形化用户界面还不能完成所有的操作任务。字符界面占用资源少，启动迅速，对于有经验的管理员而言，字符界面下使用shell命令更为直接高效。
 
-shell命令是Linux操作系统的灵魂，灵活运用shell命令可完成操作系统所有的工作。并且，类Unix的操作系统在shell命令方面具有高度的相似性。熟练掌握shell命令，不仅有助于掌握CentOS 7，而且几乎有助于掌握各种发行版本的Linux，甚至Unix。
+shell命令是Linux操作系统的灵魂，灵活运用shell命令可完成操作系统所有的工作。并且，类Unix的操作系统在shell命令方面具有高度的相似性。熟练掌握shell命令，不仅有助于掌握Ubuntu/CentOS等单个的Linux发行版，而且几乎有助于掌握各种发行版本的Linux，甚至Unix。
 
-包括CentOS 7在内的Linux系统都具有虚拟终端。虚拟终端为用户提供多个互不干扰、独立工作的工作界面，并且在不同的工作界面可用不同的用户身份登录。也就是说，虽然用户只面对一个显示器，但可以切换到多个虚拟终端，好像在使用多个显示器。
+包括Ubuntu/CentOS在内的Linux系统都具有虚拟终端。虚拟终端为用户提供多个互不干扰、独立工作的工作界面，并且在不同的工作界面可用不同的用户身份登录。也就是说，虽然用户只面对一个显示器，但可以切换到多个虚拟终端，好像在使用多个显示器。
 
-CentOS 7中不仅可在字符界面下使用shell命令，还可借助于桌面环境下的终端工具使用shell命令。桌面环境下的终端工具中使用shell命令可显示中文，而字符界面下默认仅显示英文。
+Ubuntu/CentOS中不仅可在字符界面下使用shell命令，还可借助于桌面环境下的终端工具使用shell命令。桌面环境下的终端工具中使用shell命令可显示中文，而字符界面下默认仅显示英文。
 }
 
 \vspace{0.2in}
@@ -16,14 +16,14 @@ CentOS 7中不仅可在字符界面下使用shell命令，还可借助于桌面�
 \begin{enumerate}
   \item 掌握图形化用户界面和字符界面下使用shell命令的方法。
   \item 掌握ls、cd等shell命令的功能。
-  \item 掌握shell命令挂载和卸载移动存储介质的方法。
+  \item 掌握软链接和硬链接的使用与区别。
 \end{enumerate}
 
 \vspace{0.2in}
 \noindent
 二、实验准备
 \begin{enumerate}
-  \item 安装有CentOS 7的计算机。
+  \item 安装有Ubuntu/CentOS的计算机。
 \end{enumerate}
 
 \vspace{0.2in}
@@ -31,167 +31,157 @@ CentOS 7中不仅可在字符界面下使用shell命令，还可借助于桌面�
 三、实验内容
 
 \vspace{0.1in}
-（一）图形化用户界面下的shell命令操作。
+（一）图形化用户界面下的shell命令操作
+
+启动计算机，登录图形化用户界面。依次选择“应用程序”$\rightarrow$“系统工具”$\rightarrow$“终端”命令，打开桌面环境下的终端工具。
 \begin{enumerate}
-  \item 显示系统时间，并将系统时间修改为2015年2月18日零时。
+  \item 显示系统时间。
     \begin{enumerate}
-      \item 启动计算机，以超级用户身份登录图形化用户界面。
-      \item 依次选择“应用程序”$\rightarrow$“系统工具”$\rightarrow$“终端”命令，打开桌面环境下的终端工具。
-      \item 输入命令\verb|date|，显示系统的当前日期和时间。
-      \item 输入命令\verb|date 021800002015|，屏幕显示新修改的系统时间。在桌面环境的终端执行时显示中文提示信息。
+      \item 输入命令 \verb|date|，显示系统的当前日期和时间。
     \end{enumerate}
-  \item 切换为普通用户，查看2015年3月5日是星期几。
+  \item 查看日历。
     \begin{enumerate}
-      \item 前一操作是以超级用户身份进行的，但通常情况下只有在必须使用超级用户权限时，才以超级用户身份登录系统执行操作。为提高操作安全性，输入命令su - USER切换为普通用户USER。
-      \item 输入命令\verb|cal 2015|，屏幕上显示出2015年的日历，由此可知2015年3月5日是星期四。
+      \item 输入命令 \verb|cal 2018|，屏幕上显示出2018年的日历。
     \end{enumerate}
   \item 查看ls命令的-s选项的帮助信息。
     \begin{itemize}
       \item 方法一：
 	\begin{enumerate}
-	  \item 输入命令\verb|man ls|，屏幕显示出手册页中ls命令相关帮助信息的第一页，介绍ls命令的含义、语法结构以及-a、-A、-b和-B等选项的含义。
-	  \item 使用【PgDn】键、【PgUp】键以及上、下方向键找到-s选项的说明信息。
-	  \item 由此可知，ls命令的-s选项等同于\verb|--size|选项，以文件块为单位显示文件和目录的大小。
+	  \item 输入命令 \verb|man ls|，屏幕显示出手册页中ls命令相关帮助信息的第一页，介绍ls命令的含义、语法结构以及 \verb|-a|、\verb|-A|、\verb|-b|和\verb|-B|等选项的含义。
+	  \item 使用【PgDn】键、【PgUp】键以及上、下方向键找到 \verb|-s|选项的说明信息。
+	  \item 由此可知，ls命令的 \verb|-s|选项等同于 \verb|--size|选项，以文件块为单位显示文件和目录的大小。
 	  \item 在屏幕上的“:”后输入q，退出ls命令的手册页帮助信息。
 	\end{enumerate}
       \item 方法二：
 	\begin{enumerate}
-	  \item 输入命令\verb|ls --help|，屏幕显示ls命令的中文帮助信息。
+	  \item 输入命令 \verb|ls --help|，屏幕显示ls命令的中文帮助信息。
 	  \item 拖动滚动条，找到-s选项的说明信息。
 	  \item 在屏幕上的“:”后输入q，退出ls命令的手册页帮助信息。
 	\end{enumerate}
     \end{itemize}
   \item 查看/etc目录下所有文件和子目录的详细信息。
     \begin{enumerate}
-      \item 输入命令\verb|cd /etc|，切换到 /etc目录。
-      \item 输入命令\verb|ls -al|，显示 /etc目录下所有文件和子目录的详细信息。
+      \item 输入命令 \verb|cd /etc|，切换到 /etc目录。
+      \item 输入命令 \verb|ls -al|，显示 /etc目录下所有文件和子目录的详细信息。
     \end{enumerate}
 \end{enumerate}
 
 \vspace{0.1in}
-（二）字符界面下的shell命令操作。
+（二）字符界面下的shell命令操作
+
+启动计算机后，默认进入Linux的图形化用户界面，此时按【Ctrl+Alt+F2】组合键切换到第一（CentOS）/二（Ubuntu）个虚拟终端（也可使用图形化界面中的终端）。输入一个普通用户的用户名和密码，登录系统。在字符界面下输入密码时，屏幕上不会出现类似“*”的提示信息，提高了密码的安全性。
 \begin{enumerate}
   \item 查看当前目录。
     \begin{enumerate}
-      \item 启动计算机后，默认进入CentOS 7的图形化用户界面，此时按【Ctrl+Alt+F2】组合键切换到第二个虚拟终端。（也可使用图形化界面中的终端）
-      \item 输入一个普通用户的用户名和密码，登录系统。在字符界面下输入密码时，屏幕上不会出现类似“*”的提示信息，提高了密码的安全性。
-      \item 输入命令\verb|pwd|，显示当前目录。
+      \item 输入命令 \verb|pwd|，显示当前目录。
     \end{enumerate}
-  \item 用cat命令在用户主目录下创建一个名为f1的文本文件，内容为：
+  \item 操作文本文件。
+    \begin{enumerate}
+      \item 创建文本文件。 
+
+首先，用cat命令在用户主目录下创建一个名为f1的文本文件，内容为：
 \begin{verbatim}
 Linux is useful for us all.
 You can never imagine how great it is.
 \end{verbatim}
+具体操作步骤如下：
     \begin{enumerate}
-      \item 输入命令\verb|cat >f1|，屏幕上输入点光标闪烁，依次输入上述内容。使用cat命令进行输入时，不能使用上、下、左、右方向键，只能用【Backspace】键来删除光标前一位置的字符。并且一旦按【Enter】键，该行输入的字符就不可修改了。
+      \item 输入命令 \verb|cat >f1|，屏幕上输入点光标闪烁，依次输入上述内容。使用cat命令进行输入时，不能使用上、下、左、右方向键，只能用【Backspace】键来删除光标前一位置的字符。并且一旦按【Enter】键，该行输入的字符就不可修改了。
       \item 上述内容输入后，按【Enter】键，让光标处于输入内容的下一行，按【Ctrl+D】组合键结束输入。
-      \item 要查看文件是否生成，输入命令\verb|ls|即可。
-      \item 输入命令\verb|cat f1|，查看f1文件的内容。
+      \item 要查看文件是否生成，输入命令 \verb|ls|即可。
+      \item 输入命令 \verb|cat f1|，查看f1文件的内容。
     \end{enumerate}
-  \item 向f1文件增加以下内容：Why not have a try？
+  \item 添加内容。
 
+然后，向f1文件增加以下内容：Why not have a try？具体操作步骤如下：
+    \begin{enumerate}
+      \item 输入命令 \verb|cat >>f1|，屏幕上输入点光标闪烁。
+      \item 输入上述内容后，按【Enter】键，让光标处于输入内容的下一行，按【Ctrl+D】组合键结束输入。
+      \item 输入命令 \verb|cat f1|，查看f1文件的内容，会发现f1文件增加了一行。
+    \end{enumerate}
+    \textbf{知识点解析：}
     shell命令中可使用重定向来改变命令的执行。此处使用“\verb|>>|”符号可向文件结尾处追加内容，而如果使用“\verb|>|”符号则将覆盖已有的内容。shell命令中常用的重定向符号共3个，如下所示：
     \begin{itemize}
       \item \verb|>|：输出重定向，将前一命令执行的结果保存到某个文件。如果这个文件不存在，则创建此文件；如果这个文件已存在，则将覆盖原有内容。
       \item \verb|>>|：附加输出重定向，将前一命令执行的结果追加到某个文件。
       \item \verb|<|：将某个文件交由命令处理。
     \end{itemize}
-    \begin{enumerate}
-      \item 输入命令\verb|cat >>f1|，屏幕上输入点光标闪烁。
-      \item 输入上述内容后，按【Enter】键，让光标处于输入内容的下一行，按【Ctrl+D】组合键结束输入。
-      \item 输入命令\verb|cat f1|，查看f1文件的内容，会发现f1文件增加了一行。
-    \end{enumerate}
-  \item 统计f1文件的行数、单词数和字符数，并将统计结果存放到countf1文件中。
-    \begin{enumerate}
-      \item 输入命令\verb|wc <f1 >countf1|，屏幕上不显示任何信息。
-      \item 输入命令\verb|cat countf1|，查看countf1文件的内容，其内容是f1文件的行数、单词数和字符数信息，即f1文件共有3行、19个单词和87个字符。
-    \end{enumerate}
-  \item 将f1和countf1文件合并为f文件。
-    \begin{enumerate}
-      \item 输入命令\verb|cat f1 countf1 >f|，将两个文件合并为一个文件。
-      \item 输入命令\verb|cat f|，查看f文件的内容。
-    \end{enumerate}
-  \item 分页显示 /etc目录中所有文件和子目录的信息。
+  \item 统计文本文件信息。
 
-    管道符号“\verb=|=”用于连接多个命令，前一命令的输出结果是后一命令的输入内容。
+    之后，统计f1文件的行数、单词数和字符数，并将统计结果存放到countf1文件中。具体操作步骤如下：
     \begin{enumerate}
-      \item 输入命令\verb=ls /etc | more=，屏幕显示出\verb|ls /etc|命令输出结果的第一页，屏幕的最后一行还出现“--More--”或“--更多--”字样，按【Space】键可查看下一页信息，按【Enter】键可查看下一行信息。
+      \item 输入命令 \verb|wc <f1 >countf1|，屏幕上不显示任何信息。
+      \item 输入命令 \verb|cat countf1|，查看countf1文件的内容，其内容是f1文件的行数、单词数和字符数信息，即f1文件共有3行、19个单词和87个字符。
+    \end{enumerate}
+  \item 合并文件。
+
+    最后，将f1和countf1文件合并为f文件。具体操作步骤如下：
+    \begin{enumerate}
+      \item 输入命令 \verb|cat f1 countf1 >f|，将两个文件合并为一个文件。
+      \item 输入命令 \verb|cat f|，查看f文件的内容。
+    \end{enumerate}
+    \end{enumerate}
+  \item 查看目录。
+    \begin{enumerate}
+      \item 分页显示 /etc目录中所有文件和子目录的信息。
+    \begin{enumerate}
+      \item 输入命令 \verb=ls /etc | more=，屏幕显示出 \verb|ls /etc|命令输出结果的第一页，屏幕的最后一行还出现“--More--”或“--更多--”字样，按【Space】键可查看下一页信息，按【Enter】键可查看下一行信息。
       \item 浏览过程中按【Q】键，可结束分页显示。
     \end{enumerate}
+    \textbf{知识点解析：}管道符号“\verb=|=”用于连接多个命令，前一命令的输出结果是后一命令的输入内容。
   \item 仅显示 /etc目录中的前5个文件和子目录。
     \begin{enumerate}
-      \item 输入命令\verb=ls /etc | head -n 5=，屏幕显示出\verb|ls /etc|命令输出结果的前面5行。
+      \item 输入命令 \verb=ls /etc | head -n 5=，屏幕显示出 \verb|ls /etc|命令输出结果的前面5行。
+    \end{enumerate}
     \end{enumerate}
   \item 清除屏幕内容。
     \begin{enumerate}
-      \item 输入命令\verb|clear|，则屏幕内容完全被清除，命令提示符定位在屏幕左上角。
+      \item 输入命令 \verb|clear|，或者使用快捷键【Ctrl+L】，屏幕内容将完全被清除，命令提示符定位在屏幕左上角。
     \end{enumerate}
 \end{enumerate}
 
 \vspace{0.1in}
-（三）创建链接。
+（三）链接操作
 \begin{enumerate}
   \item 创建原文件。
     \begin{enumerate}
-      \item 使用\verb|cd ~|命令定位到主目录。
-      \item 使用\verb|touch original_file|命令创建一个名为original\_file的文件。
-      \item 运行\verb|ls -l|命令来查看刚才创建的文件。注意该文件的链接数目。
+      \item 使用 \verb|cd ~|命令定位到主目录。
+      \item 使用 \verb|touch original_file|命令创建一个名为original\_file的文件。
+      \item 运行 \verb|ls -l|命令来查看刚才创建的文件。注意该文件的链接数目。
     \end{enumerate}
   \item 创建硬链接。
     \begin{enumerate}
-      \item 使用\verb|ln original_file hard_link|命令对original\_file创建一个硬链接，该链接命名为hard\_link。
-      \item 再次运行\verb|ls -l|。注意文件的链接数目和上一次的修改时间。
-      \item 运行\verb|ls -i|命令来显示文件的inode值。将会看到这两个文件的inode值是一样的。
+      \item 使用 \verb|ln original_file hard_link|命令对original\_file创建一个硬链接，该链接命名为hard\_link。
+      \item 再次运行 \verb|ls -l|。注意文件的链接数目和上一次的修改时间。
+      \item 运行 \verb|ls -i|命令来显示文件的inode值。将会看到这两个文件的inode值是一样的。
     \end{enumerate}
   \item 创建软链接。
     \begin{enumerate}
-      \item 使用\verb|ln -s original_file soft_link|命令为original\_file创建一个软链接，该链接命名为soft\_link。
-      \item 再次使用\verb|ls -l|命令显示文件。注意文件的链接数目和修改时间。
-      \item 使用\verb|ls -i|命令来查看所有文件的inode值。可以看出soft\_link的inode与original\_file和hard\_link的inode不同。
+      \item 使用 \verb|ln -s original_file soft_link|命令为original\_file创建一个软链接，该链接命名为soft\_link。
+      \item 再次使用 \verb|ls -l|命令显示文件。注意文件的链接数目和修改时间。
+      \item 使用 \verb|ls -i|命令来查看所有文件的inode值。可以看出soft\_link的inode与original\_file和hard\_link的inode不同。
     \end{enumerate}
   \item 原文件对链接文件的影响。
     \begin{enumerate}
-      \item 使用\verb|cat|命令来查看每个文件的内容，确认这些文件中没有包含任何文本或数据。
+      \item 使用 \verb|cat|命令来查看每个文件的内容，确认这些文件中没有包含任何文本或数据。
       \item 要了解原文件的改变是如何影响链接文件的，可以使用\\ \verb|echo "This text goes to the original_file" >>original_file| \\ 命令给original\_file中添加一行“This text goes to the original\_file”。
-      \item 运行\verb|ls -l|命令来查看原文件和链接文件在文件大小方面的变化。虽然我们只给original\_file文件添加了数据，但hard\_link文件的大小也会发生变化，而soft\_link文件的大小没有变化。
-      \item 使用\verb|cat|命令来查看文件的内容，可以发现三个文件具有完全相同的内容。
+      \item 运行 \verb|ls -l|命令来查看原文件和链接文件在文件大小方面的变化。虽然我们只给original\_file文件添加了数据，但hard\_link文件的大小也会发生变化，而soft\_link文件的大小没有变化。
+      \item 使用 \verb|cat|命令来查看文件的内容，可以发现三个文件具有完全相同的内容。
     \end{enumerate}
   \item 硬链接对原文件的影响。
     \begin{enumerate}
       \item 要了解硬链接文件的变化对原始文件的影响，可以使用\\ \verb|echo "This text goes to the hard_link file" >>hard_link| \\ 命令给hard\_link中添加一行文本“This text goes to the hrad\_link file”。
-      \item 运行\verb|ls -l|并观察输出。original\_file和hard\_link的修改时间和大小都发生了改变，但是soft\_link没有变化。
-      \item 现在再次使用\verb|cat|命令来显示文件的内容，注意每个文件的变化。
+      \item 运行 \verb|ls -l|并观察输出。original\_file和hard\_link的修改时间和大小都发生了改变，但是soft\_link没有变化。
+      \item 现在再次使用 \verb|cat|命令来显示文件的内容，注意每个文件的变化。
     \end{enumerate}
   \item 软链接对原文件的影响。
     \begin{enumerate}
-      \item 如果使用\verb|echo|命令给soft\_link文件添加一行文本，将会修改原始文件，从而也更新了hard\_link文件。使用\\ \verb|echo "This text goes to the soft_link file" >>soft_link| \\ 命令给soft\_link文件中添加一行“This text goes to the soft\_link file”。
-      \item 使用\verb|cat|命令来显示文件的内容。
+      \item 如果使用 \verb|echo|命令给soft\_link文件添加一行文本，将会修改原始文件，从而也更新了hard\_link文件。使用\\ \verb|echo "This text goes to the soft_link file" >>soft_link| \\ 命令给soft\_link文件中添加一行“This text goes to the soft\_link file”。
+      \item 使用 \verb|cat|命令来显示文件的内容。
     \end{enumerate}
 \end{enumerate}
 
 \vspace{0.1in}
-（四）字符界面下使用移动存储介质。
-\begin{enumerate}
-  \item 将光盘中的任意一个文件复制到用户主目录，最后卸载光盘。
-    \begin{enumerate}
-      \item 登录系统，使用命令\verb|ls /mnt/cdrom|查看光盘的挂载点是否有内容，/mnt/cdrom目录应为空。
-      \item 利用mount命令，手动挂载光盘。手动挂载光盘时，不仅可以使用\verb|mount /dev/cdrom|命令，也可以使用\verb|mount /mnt/cdrom|命令。也就是说，mount命令的参数既可以是设备名，也可以是挂载点。
-      \item 查看挂载点的内容，也就是查看光盘的内容。只能通过查看挂载点目录（例如，\verb|ls /mnt/cdrom|）来查看移动存储介质的内容，而\verb|ls /dev/cdrom|命令查看到的只是光盘的设备信息。
-      \item 使用cp命令复制光盘中任意一个文件到用户主目录。
-      \item 最后利用umount命令，卸载光盘。卸载光盘时，不仅可以使用\verb|umount /dev/cdrom|命令，也可以使用\verb|umount /mnt/cdrom|命令。
-    \end{enumerate}
-  \item 将U盘上的任意一个文件复制到用户主目录，并查看所有磁盘的使用情况，最后卸载U盘。
-    \begin{enumerate}
-      \item 登录系统，插入U盘。CentOS 7自动显示U盘的相关信息，按【Enter】键，出现命令提示符。
-      \item 利用\verb|mount /mnt/usb|命令，手动挂载U盘。
-      \item 使用\verb|ls /mnt/usb|命令查看U盘中的文件内容。
-      \item 使用\verb|df|命令查看已挂载的文件系统，并可了解U盘的使用率。此时，不仅能查看到硬盘上分区的使用率，还能查看到U盘的挂载信息和使用率。
-      \item 使用cp命令复制U盘中任意一个文件到用户主目录。
-      \item 最后利用\verb|umount /mnt/usb|命令，卸载U盘。
-    \end{enumerate}
-\end{enumerate}
-
-\vspace{0.1in}
-（五）常见文件与文件夹操作的命令实现。
+（四）常见文件与文件夹操作的命令实现
 
 回忆、总结图形界面下文件与文件夹的常见操作（如：新建、删除、重命名、移动等），在命令行界面中用命令将其实现。

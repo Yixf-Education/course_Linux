@@ -6,7 +6,7 @@
 \title[常用Linux命令]{第四章\quad 常用Linux命令}
 \author[Yixf]{伊现富（Yi Xianfu）}
 \institute[TIJMU]{天津医科大学（TIJMU）\\ 生物医学工程与技术学院}
-\date{2015年6月}
+\date{2016年3月}
 
 
 \begin{frame}
@@ -223,6 +223,7 @@
     %\begin{itemize}[<+-|alert@+>]
     \begin{itemize}[<+->]
       \item 通配符是专用字符，能够用于同时匹配多个文件，从而增大一次性找到想要的文件名或目标的可能性。
+      \item 通配符一种命令行的路径扩展（path expansion）功能，只作用在argument的path上。
       \item 指定工作目录中的所有word文件（*.doc）
       \item 指定工作目录中的所有以txt或text为后缀的文本文件（*.t[ex]*）
     \end{itemize}
@@ -929,7 +930,7 @@
     \begin{itemize}
       \item a：显示所有用户的进程
       \item e：显示所有进程，包括没有控制终端的进程
-      \item l：长格式显示
+      \item l：（小写L）长格式显示
       \item u：显示用户名和启动时间
       \item w：宽行显示，可以使用多个w进行加宽显示
       \item x：显示没有控制终端的进程
@@ -1115,7 +1116,7 @@
 \begin{frame}
   \frametitle{常用命令 | 进程管理 | \alert{nohup}}
   \begin{block}{用途}
-    使进程在用户退出登陆后仍旧继续执行。nohup命令将执行后的数据信息和错误信息默认储存到文件nohup.out中。
+    通过让提交的命令忽略HUP（hangup）信号，使进程在用户退出登陆后仍旧继续执行。nohup命令将执行后的数据信息和错误信息默认储存到文件nohup.out中。
   \end{block}
   \pause
   \begin{block}{使用}
@@ -1354,9 +1355,9 @@
     \end{itemize}
   \end{block}
   \pause
-  \begin{block}{在其它目录运行一个命令，然后自动返回当前工作目录}
+  \begin{block}{在子shell中运行命令：(CMD)}
     \begin{itemize}
-      \item \verb|(CMD)|
+      \item 在其它目录运行一个命令，然后自动返回当前工作目录
       \item \verb|(cd /tmp; ls)|
     \end{itemize}
   \end{block}

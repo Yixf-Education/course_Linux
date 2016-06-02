@@ -6,7 +6,7 @@
 \title[Linux基础]{第一章\quad Linux基础}
 \author[Yixf]{伊现富（Yi Xianfu）}
 \institute[TIJMU]{天津医科大学（TIJMU）\\ 生物医学工程与技术学院}
-\date{2015年5月}
+\date{2016年3月}
 
 %\input{snippet/class_info}
 
@@ -120,11 +120,13 @@
   \begin{itemize}[<+->]
     \item 1987，Andrew Tanenbaum（安德鲁\textbullet 谭宁邦），荷兰阿姆斯特丹自由大学，Minix
     \item 1990，FSF，Hurd：GNU项目中的操作系统
-    \item 1991，\alert{Linux Torvalds}（林纳斯\textbullet 托瓦兹），芬兰赫尔辛基大学，Freax$\rightarrow$ \alert{Linux}（类Unix系统，Unix-like）
+    \item 1991，\alert{Linus Torvalds}（李/林纳斯\textbullet 托瓦兹），芬兰赫尔辛基大学，Freax$\rightarrow$ \alert{Linux}（类Unix系统，Unix-like）
     \item 1992，在GNU GPL下Linux内核被重新授权使用
     \item 1993，Slackware首次发布；Debian项目设立
     \item 1994，Linux内核1.0版本发布
     \item 1996，Linux内核2.0版本发布
+    \item 2011，Linux内核3.0版本发布
+    \item 2015，Linux内核4.0版本发布
     \item GNU项目软件 + Linux内核 = \alert{GNU/Linux}
   \end{itemize}
     \column{0.22\textwidth}
@@ -187,6 +189,14 @@
   \begin{block}{Linux读Linux}
     ``Hello, this is Linus Torvalds, and I pronounce Linux as Linux''.
   \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Linux基础 | 简介 | 发音}
+  \begin{figure}
+    \centering
+    \includegraphics[width=12cm]{c1.linux.pronunciation.png}
+  \end{figure}
 \end{frame}
 
 \subsection{Linux操作系统}
@@ -437,6 +447,39 @@
   \end{block}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Linux基础 | 简介 | 发行版 | 2016（1/2）}
+  \begin{block}{2016最佳Linux发行版排行榜}
+  \begin{description}
+    \item[最好的企业级系统] SLE/RHEL
+    \item[最好的服务器操作系统] Debian/CentOS
+    \item[最好的台式机操作系统] Linux Mint Cinnamon
+    \item[最好的笔记本操作系统] Ubuntu MATE
+    \item[最好的旧硬件支持系统] Lubuntu
+    \item[最好看的发行版] elementary OS
+    \item[最可定制的发行版] Arch Linux
+    \item[最好的教育操作系统] ezgo Linux
+    \item[最佳新人] Solus
+  \end{description}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Linux基础 | 简介 | 发行版 | 2016（2/2）}
+  \begin{block}{2016最佳Linux发行版排行榜（续）}
+  \begin{description}
+    \item[最好的回归发行版] openSUSE
+    \item[最好的移动操作系统] Plasma Mobile
+    \item[最好的云操作系统] Chrome OS
+    \item[最好的隐私保护操作系统] Tails
+    \item[最好的多媒体制作系统] Ubuntu Studio
+    \item[最好的游戏系统] Steam OS
+    \item[最好的物联网操纵系统] Snappy Ubuntu Core
+    \item[最好的ARM设备发行版] Arch Linux ARM
+  \end{description}
+  \end{block}
+\end{frame}
+
 \subsection{应用领域}
 \begin{frame}
   \frametitle{Linux基础 | 简介 | 应用领域}
@@ -450,7 +493,7 @@
   \frametitle{Linux基础 | 简介 | 应用领域 | 桌面电脑}
   \begin{figure}
     \centering
-    \includegraphics[width=10cm]{c1.linux.area.desktop.2015.png}
+    \includegraphics[width=10cm]{c1.linux.area.desktop.2016.png}
   \end{figure}
 \end{frame}
 
@@ -458,7 +501,7 @@
   \frametitle{Linux基础 | 简介 | 应用领域 | 服务器}
   \begin{figure}
     \centering
-    \includegraphics[width=11cm]{c1.linux.area.server.2015.png}
+    \includegraphics[width=11cm]{c1.linux.area.server.2016.png}
   \end{figure}
 \end{frame}
 
@@ -474,7 +517,7 @@
   \frametitle{Linux基础 | 简介 | 应用领域 | 超级计算机}
   \begin{figure}
     \centering
-    \includegraphics[width=12cm]{c1.linux.area.super.2015.png}
+    \includegraphics[width=12cm]{c1.linux.area.super.2016.png}
   \end{figure}
 \end{frame}
 
@@ -516,7 +559,7 @@
   \pause
   \begin{block}{版本}
   \begin{itemize}
-    \item 版本格式为3.A.B（3.0版本之后）
+    \item 版本格式为3.A.B（3.0版本之后，含4.0）
     \item A：内核版本，随新版本的发布而增加
     \item B：安全补丁，bug修复、安全更新、新特性和驱动的次数
   \end{itemize}
@@ -563,7 +606,7 @@
   \begin{enumerate}[<+->]
     \item Live CD：一个可引导的CD-ROM，包含运行一个完整操作系统所需的所有内容：内核、实用工具等
     \item Live USB：类似于Live CD，但可以更改设置、保存文件、安装软件
-    \item 硬盘安装
+    \item 硬盘安装\textcolor{red}{（谨慎选择，尤其是品牌机笔记本）}
       \begin{itemize}
         \item \textcolor{gray}{Wubi（基于Windows的安装程序，Windows-based Ubuntu Installer），DeepWin：无需对硬盘进行格式化或重新分区}
         \item 虚拟机：在实体计算机上，使用宿主机的硬件资源，通过软件模拟出一台或者多台虚拟计算机，拥有真实计算机的绝大多数功能
@@ -574,7 +617,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Linux基础 | 学习 | 安装 | VirtualBox}
+  \frametitle{Linux基础 | 学习 | 安装 | 虚拟机 | VirtualBox}
   \begin{figure}
     \centering
     \includegraphics[width=10cm]{c1.virtualbox.01.png}
@@ -582,7 +625,15 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Linux基础 | 学习 | 安装 | Docker}
+  \frametitle{Linux基础 | 学习 | 安装 | 虚拟机 | VMware Player}
+  \begin{figure}
+    \centering
+    \includegraphics[width=9cm]{c1.vmware.01.jpg}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Linux基础 | 学习 | 安装 | \textcolor{gray}{容器 | Docker}}
   \begin{block}{Docker简介}
     Docker是一个开放源代码软件专案，在软件容器下自动布署应用程序，借此\textbf{在Linux操作系统上}，提供了一个额外的软件抽象层，以及操作系统层虚拟化的自动管理机制。Docker利用Linux内核中的资源分离机制，例如cgroups、以及Linux内核名称空间，来建立独立的软件容器（containers）。这可以在单一Linux实体下运作，避免启动一个虚拟机器造成的额外负担。
   \end{block}

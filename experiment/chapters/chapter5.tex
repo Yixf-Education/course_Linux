@@ -8,7 +8,6 @@
   \item 掌握grep的使用方法。
   \item 掌握sed的使用方法。
   \item 掌握AWK的使用方法。
-  \item 了解datamash的使用方法。
   \item 了解Linux命令在生物信息学文本处理中的应用。
 \end{enumerate}
 
@@ -16,7 +15,7 @@
 \noindent
 二、实验准备
 \begin{enumerate}
-  \item 安装有CentOS 7的计算机。
+  \item 安装有Ubuntu/CentOS的计算机。
 \end{enumerate}
 
 \vspace{0.2in}
@@ -24,17 +23,17 @@
 三、实验内容
 
 \vspace{0.1in}
-（一）使用find。
+（一）使用find
 \begin{enumerate}
   \item 使用以下命令，创建测试find命令的文件。
 \begin{lstlisting}[language=bash]
 # 切换至主目录
 cd ~
 
-# 创建测试find命令的根目录
+# 创建测试find命令的目录
 mkdir find_test
 
-# 切换至根目录
+# 切换至该目录
 cd find_test
 
 # 创建空文件
@@ -51,7 +50,7 @@ touch mycprogram.c
 touch MyCProgram.c
 touch Program.c
  
-# 切换回根目录
+# 切换回目录
 cd ..
 
 # 检查文件夹和文件的创建结果
@@ -60,39 +59,39 @@ ls -R
   \item 用文件名查找文件。
     \begin{enumerate}
       \item 用MyCProgram.c作为查找名在当前目录及其子目录中查找文件：\\ \verb|find -name "MyCProgram.c"|。
-      \item 用MyCProgram.c作为查找名在当前目录及其子目录中查找文件，忽略大小写：\verb|find -iname "MyCProgram.c"|。
+      \item 用MyCProgram.c作为查找名在当前目录及其子目录中查找文件，忽略大小写：\\ \verb|find -iname "MyCProgram.c"|。
+    \end{enumerate}
+  \item 在find命令查找到的文件上执行命令。
+    \begin{enumerate}
+      \item 计算所有不区分大小写的文件名为“MyCProgram.c”的文件的MD5校验和：\\ \verb|find -iname "MyCProgram.c" -exec md5sum {} \;|。\verb|{}|将会被当前文件名取代。
+    \end{enumerate}
+  \item 相反匹配。
+    \begin{enumerate}
+      \item 显示所有名字不是MyCProgram.c的文件或者目录：\\ \verb|find -maxdepth 1 -not -iname "MyCProgram.c"|。由于maxdepth是1，所以只会显示当前目录下的文件和目录。
     \end{enumerate}
   \item 限定搜索指定目录的深度。
     \begin{enumerate}
       \item 在root目录及其子目录下查找passwd文件：\verb|find / -name passwd|。
       \item 在root目录及其1层深的子目录中查找passwd：\verb|find / -maxdepth 2 -name passwd|。
-      \item 在root目录下及其最大两层深度的子目录中查找passwd文件：\verb|find / -maxdepth 3 -name passwd|。
-      \item 在第二层子目录和第四层子目录之间查找passwd文件：\verb|find / -mindepth 3 -maxdepth 5 -name passwd|。
-    \end{enumerate}
-  \item 在find命令查找到的文件上执行命令。
-    \begin{enumerate}
-      \item 计算所有不区分大小写的文件名为“MyCProgram.c”的文件的MD5验证和：\verb|find -iname "MyCProgram.c" -exec md5sum {} \;|。\verb|{}|将会被当前文件名取代。
-    \end{enumerate}
-  \item 相反匹配。
-    \begin{enumerate}
-      \item 显示所有名字不是MyCProgram.c的文件或者目录：\verb|find -maxdepth 1 -not -iname "MyCProgram.c"|。由于maxdepth是1，所以只会显示当前目录下的文件和目录。
+      \item 在root目录下及其最大两层深度的子目录中查找passwd文件：\\ \verb|find / -maxdepth 3 -name passwd|。
+      \item 在第二层子目录和第四层子目录之间查找passwd文件：\\ \verb|find / -mindepth 3 -maxdepth 5 -name passwd|。
     \end{enumerate}
   \item 使用inode编号查找文件。
     \begin{enumerate}
-      \item 创建两个名字相似的文件，例如一个有空格结尾，一个没有：\verb|touch "test-file-name"|，\verb|touch "test-file-name "|。
-      \item \verb|ls -1 test*|。从ls的输出不能区分哪个文件是以空格结尾的。使用选项-i，可以看到文件的inode编号，借此可以区分这两个文件：\verb|ls -i1 test*|。
+      \item 创建两个名字相似的文件，例如一个有空格结尾，一个没有：\\ \verb|touch "test-file-name"|，\verb|touch "test-file-name "|。
+      \item \verb|ls -l test*|。从ls的输出不能区分哪个文件是以空格结尾的。使用选项 \verb|-i|，可以看到文件的inode编号，借此可以区分这两个文件：\verb|ls -il test*|。
       \item 用inode编号重命名文件名中有特殊符号的文件：\\ \verb|find -inum INODE -exec mv {} new-test-file-name \;|，\\ 或者删除它：\verb|find -inum INODE -exec rm {} \;|。
     \end{enumerate}
   \item 根据文件权限查找文件。
     \begin{enumerate}
-      \item 找到当前目录下对同组用户具有读权限的文件，忽略该文件的其他权限：\verb|find . -perm -g=r -type f -exec ls -l {} \;|。
-      \item 找到对组用户具有只读权限的文件：\verb|find . -perm g=r -type f -exec ls -l {} \;|。
-      \item 找到对组用户具有只读权限的文件（使用八进制权限形式）：\verb|find . -perm 040 -type f -exec ls -l {} \;|。
+      \item 找到当前目录下对同组用户具有读权限的文件，忽略该文件的其他权限：\\ \verb|find . -perm -g=r -type f -exec ls -l {} \;|。
+      \item 找到对组用户具有只读权限的文件：\\ \verb|find . -perm g=r -type f -exec ls -l {} \;|。（仔细比较该命令和上一个命令的区别）
+      \item 找到对组用户具有只读权限的文件（使用八进制权限形式）：\\ \verb|find . -perm 040 -type f -exec ls -l {} \;|。
     \end{enumerate}
   \item 查找空文件。
     \begin{enumerate}
       \item 找到home目录及子目录下所有的空文件（0字节文件）：\verb|find ~ -empty|。
-      \item 只列出home目录里的空文件：\verb|find . -maxdepth 1 -empty|。
+      \item 只列出home目录里的空文件：\verb|find ~ -maxdepth 1 -empty|。
       \item 只列出当前目录下的非隐藏空文件：\\ \verb|find . -maxdepth 1 -empty -not -name ".*"|。
     \end{enumerate}
   \item 查找最大最小的文件。
@@ -117,8 +116,8 @@ ls -R
     \end{enumerate}
   \item 删除大型打包文件\textcolor{red}{【谨慎操作，请勿尝试】}。
     \begin{enumerate}
-      \item 删除大于100M的*.zip文件：\verb|find / -type f -name *.zip -size +100M -exec rm -i {} \;"|。
-      \item 删除所有大于100M的*.tar文件：\verb|find / -type f -name *.tar -size +100M -exec rm -i {} \;"|。
+      \item 删除大于100M的*.zip文件：\\ \verb|find / -type f -name *.zip -size +100M -exec rm -i {} \;|。
+      \item 删除所有大于100M的*.tar文件：\\ \verb|find / -type f -name *.tar -size +100M -exec rm -i {} \;|。
     \end{enumerate}
   \item 基于访问/修改/更改时间查找文件。
     \begin{enumerate}
@@ -126,10 +125,10 @@ ls -R
       \item 找到24小时（1天）内被修改过的文件（文件系统根目录/下）：\verb|find / -mtime -1|。
       \item 找到当前目录及其子目录下，最近一次访问时间在1个小时（60分钟）之内的文件或目录：\verb|find . -amin -60|。
       \item 找到24小时（1天）内被访问过的文件（文件系统根目录/下）：\verb|find / -atime -1|。
-      \item 在当前目录及其子目录下，查找1个小时（60分钟）内文件状态发生改变的文件：\verb|find . -cmin -60|。
-      \item 在根目录/及其子目录下，查找1天（24小时）内文件状态发生改变的文件：\verb|find / -ctime -1|。
-      \item 显示30分钟内被修改过的文件，但文件夹不显示：\verb|find /etc/sysconfig -mmin -30 -type f|。
-      \item 显示当前目录及其子目录下，15分钟内文件内容被修改过的文件，并且只列出非隐藏文件：\verb|find . -mmin -15 \( ! -regex ".*/\..*" \)|。
+      \item 在当前目录及其子目录下，查找1个小时（60分钟）内文件状态发生改变的文件：\\ \verb|find . -cmin -60|。
+      \item 在根目录/及其子目录下，查找1天（24小时）内文件状态发生改变的文件：\\ \verb|find / -ctime -1|。
+      \item 显示30分钟内被修改过的文件，但文件夹不显示：\\ \verb|find /etc/sysconfig -mmin -30 -type f|。
+      \item 显示当前目录及其子目录下，15分钟内文件内容被修改过的文件，并且只列出非隐藏文件：\\ \verb|find . -mmin -15 \( ! -regex ".*/\..*" \)|。
     \end{enumerate}
   \item 基于文件比较的查找。
     \begin{enumerate}
@@ -140,9 +139,9 @@ ls -R
     \end{enumerate}
   \item 在查找到的文件列表结果上直接执行命令。
     \begin{enumerate}
-      \item 在find命令输出上使用 ls -l，列举出1小时内被编辑过的文件的详细信息：\verb|find -mmin -60 -exec ls -l {} \;|。
-      \item 在同一个命令中使用多个{}：\verb|find -name "*.txt" cp {} {}.bak \;|。
-      \item 将所有mp3文件的文件名中的空格替换成下划线：\verb|find . -type f -iname “*.mp3″ -exec rename “s/ /_/g” {} \;|。
+      \item 在find命令输出上使用 ls -l，列举出1小时内被编辑过的文件的详细信息：\\ \verb|find -mmin -60 -exec ls -l {} \;|。
+      \item 在同一个命令中使用多个{}：\verb|find -name "*.txt" -exec cp {} {}.bak \;|。
+      \item 将所有mp3文件的文件名中的空格替换成下划线：\\ \verb|find . -type f -iname “*.mp3″ -exec rename “s/ /_/g” {} \;|。
     \end{enumerate}
   \item 将错误重定向到 /dev/null。
     \begin{enumerate}
@@ -151,12 +150,12 @@ ls -R
 \end{enumerate}
 
 \vspace{0.1in}
-（二）使用grep。
+（二）使用grep
 \begin{enumerate}
   \item 搜索和寻找文件：\verb=sudo dpkg -l | grep -i python=。
   \item 搜索和过滤文件，除掉所有的注释行：\verb|grep -v "#" /etc/apache2/sites-available/default-ssl|。
-  \item 找出艺术家JayZ的所有mp3格式的音乐文件，里面也不要有任何混合音轨：\verb=find . -name ".mp3" | grep -i JayZ | grep -vi "remix"=。
-  \item 显示搜索字符串后面、前面或前后的几行：\verb=ifconfig | grep -A 4 UP=，\verb=ifconfig | grep -B 2 UP|=，\verb=ifconfig | grep -C 2 lo=。
+  \item 找出艺术家JayZ的所有mp3格式的音乐文件，里面也不要有任何混合音轨：\\ \verb=find . -name ".mp3" | grep -i JayZ | grep -vi "remix"=。
+  \item 显示搜索字符串后面、前面或前后的几行：\\ \verb=ifconfig | grep -A 4 UP=，\verb=ifconfig | grep -B 2 UP|=，\verb=ifconfig | grep -C 2 lo=。
   \item 计算匹配项的数目：\verb=ifconfig | grep -c inet6=。
   \item 按给定字符串搜索文件中匹配的行号：\verb|grep -n "main" setup.py|。
   \item 递归搜索：\verb|grep -r "function" *|。
@@ -166,7 +165,7 @@ ls -R
 \end{enumerate}
 
 \vspace{0.1in}
-（三）使用sed进行操作。
+（三）使用sed进行操作
 \begin{enumerate}
   \item 使用vim创建两个文件，每个文件含有一组名字：
 \begin{verbatim}
@@ -185,11 +184,11 @@ Tom
 Pat
 \end{verbatim}
   \item 在命令行中输入并运行下面的命令：\\ \verb|sed -e s/Paul/Pablo/g names1.txt names2.txt > names3.txt|。
-  \item 使用\verb|cat names3.txt|命令显示第三个文件的输出，以观察得到的名字列表。
+  \item 使用 \verb|cat names3.txt|命令显示第三个文件的输出，以观察得到的名字列表。
 \end{enumerate}
 
 \vspace{0.1in}
-（四）使用带有多个命令的sed。
+（四）使用带有多个命令的sed
 \begin{enumerate}
   \item 定位先前示例中创建的两个含有一组名字的文本文件。
   \item 利用vim命令创建一个名为edits.sedscr的新文件，并为sed列出一组编辑指令：
@@ -203,13 +202,13 @@ s/Joe/Joseph/
 \end{enumerate}
 
 \vspace{0.1in}
-（五）使用AWK。
+（五）使用AWK
 \begin{enumerate}
   \item 在命令行中输入如下的awk命令：\verb|awk '{print $0}' /etc/passwd|。
 \end{enumerate}
 
 \vspace{0.1in}
-（六）使用AWK文件。
+（六）使用AWK文件
 \begin{enumerate}
   \item 使用vim命令输入如下内容，并将文件保存为print.awk：
 \begin{verbatim}
@@ -222,7 +221,15 @@ BEGIN {
 \end{enumerate}
 
 \vspace{0.1in}
-（七）使用datamash。
+（七）Linux命令在生物信息学文本处理中的应用
+\begin{enumerate}
+  \item Useful bash one-liners useful for bioinformatics：\\ \href{https://github.com/stephenturner/oneliners}{https://github.com/stephenturner/oneliners}。
+  \item Unix commands applied to bioinformatics：\\ \href{http://rous.mit.edu/index.php/Unix\_commands\_applied\_to\_bioinformatics}{http://rous.mit.edu/index.php/Unix\_commands\_applied\_to\_bioinformatics}。
+  \item Scott's list of linux one-liners：\\ \href{https://wikis.utexas.edu/display/bioiteam/Scott\%27s+list+of+linux+one-liners}{https://wikis.utexas.edu/display/bioiteam/Scott\%27s+list+of+linux+one-liners}。
+\end{enumerate}
+
+\vspace{0.1in}
+（八）【课外扩展】使用datamash
 \begin{enumerate}
   \item datamash与AWK、Perl和R的比较（\href{http://www.gnu.org/software/datamash/alternatives/}{http://www.gnu.org/software/datamash/alternatives/}）。
     \begin{enumerate}
@@ -328,13 +335,5 @@ datamash -s -g 3 count 2 < genes.txt
 datamash -s -g 3,4 count 2 < genes.txt
 \end{lstlisting}
     \end{enumerate}
-\end{enumerate}
-
-\vspace{0.1in}
-（八）Linux命令在生物信息学文本处理中的应用。
-\begin{enumerate}
-  \item Useful bash one-liners useful for bioinformatics：\\ \href{https://github.com/stephenturner/oneliners}{https://github.com/stephenturner/oneliners}。
-  \item Unix commands applied to bioinformatics：\\ \href{http://rous.mit.edu/index.php/Unix\_commands\_applied\_to\_bioinformatics}{http://rous.mit.edu/index.php/Unix\_commands\_applied\_to\_bioinformatics}。
-  \item Scott's list of linux one-liners：\\ \href{https://wikis.utexas.edu/display/bioiteam/Scott\%27s+list+of+linux+one-liners}{https://wikis.utexas.edu/display/bioiteam/Scott\%27s+list+of+linux+one-liners}。
 \end{enumerate}
 

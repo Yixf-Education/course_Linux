@@ -14,11 +14,11 @@
 %职称
 \zhicheng{讲师}
 %教学日期（格式：XXXX年XX月XX日XX时-XX时）
-\riqi{2015年6月2日13:30-15:20}
+\riqi{2016年3月23日8:00-10:00}
 %授课对象（格式：XXX系XXXX年级XX班（硕/本/专科））
-\duixiang{生物医学工程与技术学院2013级生信班（本）}
+\duixiang{生物医学工程与技术学院2014级生信班（本）}
 %听课人数
-\renshu{28}
+\renshu{30}
 %授课方式
 \fangshi{理论讲授}
 %学时数
@@ -186,8 +186,7 @@
     %\end{multicols}
     %\vspace*{-10pt}
 
-    \item
-      \textcolor{red}{\textbf{【难点】}}命令的修改（25分钟）\\ \textcolor{red}{（讲解、演示实例）}
+    \item \textcolor{red}{\textbf{【难点】}}命令的修改（25分钟）\\ \textcolor{red}{（讲解、演示实例）}
     \begin{enumerate}
       \item 通配符
 	\begin{itemize}
@@ -214,7 +213,7 @@
 \newpage
 \otherHeader
 
-      \item 管道
+      \item 管道\textcolor{red}{（实例：先复制后粘贴）}
 \parpic[fr]{\includegraphics[width=8cm]{c4.pipe.png}}
 	\verb=|=，一个操作符，把输入和输出重定向结合在一起，将一个命令的输出立即作为另一个命令的输入。\textcolor{red}{(ls -l /etc | less)}
       \item 命令置换
@@ -222,12 +221,11 @@
 	\begin{itemize}
 	  \item \verb|$()|: \verb|ls $(pwd)|
 	  \item \verb|``|: \verb|ls `pwd`|
-	  \item \verb|${}|: \verb|ls ${pwd}|
+	  %\item \verb|${}|: \verb|ls ${pwd}|
 	\end{itemize}
     \end{enumerate}
 
-  \item
-    \textcolor{red}{\textbf{【重点】}}常用命令汇总（35分钟）\textcolor{red}{（演示常用命令及其选项的操作）}
+  \item \textcolor{red}{\textbf{【重点】}}常用命令汇总（35分钟）\textcolor{red}{（演示常用命令及其选项的操作）}
     \begin{enumerate}
       \item 目录操作：pwd，ls，cd，mkdir，rmdir，tree，du
       \item 文件操作：file，cat，touch，cp，mv，rm，ln，head，tail，more，less，wc，sort，uniq，cut，tee

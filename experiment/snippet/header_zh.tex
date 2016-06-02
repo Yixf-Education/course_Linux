@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper,twoside]{book}
+\documentclass[11pt,a4paper,twoside,openany]{book}
 
 \usepackage{fontspec}
 \setmainfont{Times New Roman}
@@ -153,7 +153,7 @@
   breakatwhitespace=false,        % 断行只在空格处
   extendedchars=false,            % 解决代码跨页时，章节标题，页眉等汉字不显示的问题
   %escapeinside={\%*}{*},         % 跳脱字符，添加注释，暂时离开 listings 
-  escapeinside=``,
+  %escapeinside=``,
   commentstyle=\color{red!50!green!50!blue!50}\tt,  %浅灰色的注释
   rulesepcolor=\color{red!20!green!20!blue!20},     %代码块边框为淡青色
   keywordstyle=\color{blue!70}\bfseries\tt,         %代码关键字的颜色为蓝色，粗体
@@ -171,10 +171,10 @@
 
 %添加水印
 %\usepackage[final]{draftwatermark}
-\usepackage{draftwatermark}
-\SetWatermarkText{内部讲义}%设置水印文字
-\SetWatermarkLightness{0.9}%设置水印亮度
-\SetWatermarkScale{1}%设置水印大小
+%\usepackage{draftwatermark}
+%\SetWatermarkText{内部讲义}%设置水印文字
+%\SetWatermarkLightness{0.9}%设置水印亮度
+%\SetWatermarkScale{1}%设置水印大小
 
 %带圈的序号
 %\usepackage{pifont}
@@ -188,3 +188,5 @@
         \node[circle,draw,outer sep=0pt,inner sep=0.1ex] (a) {\scriptsize{#1}};
     \end{tikzpicture}
 }
+
+\usepackage{emptypage}

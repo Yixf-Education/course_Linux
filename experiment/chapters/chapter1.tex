@@ -1,4 +1,4 @@
-\chapter{在虚拟机中安装并体验Linux}
+\chapter{体验（虚拟机中的）Linux}
 
 %\begin{adjustwidth}{1cm}{1cm}
 %\shadowbox{
@@ -18,9 +18,9 @@
 \noindent
 一、实验要求
 \begin{enumerate}
-  \item 掌握在VirtualBox中安装Linux（Ubuntu 14.10和CentOS 7）的步骤。
-  \item 启动Linux（Ubuntu 14.10和CentOS 7）并进行初始化设置。
-  \item 登录不同Linux发行版的桌面环境，了解X Window图形化用户界面。
+  \item 了解在VirtualBox/VMware中安装Linux的步骤。
+  \item 启动Linux并进行初始化设置。
+  \item 登录不同Linux发行版的桌面环境，了解不同发行版的图形化用户界面。
   \item 掌握注销与关机的方法。
 \end{enumerate}
 
@@ -28,9 +28,8 @@
 \noindent
 二、实验准备
 \begin{enumerate}
-  \item 一台已安装有Windows操作系统和VirtualBox软件的计算机。
-  \item 一张Ubuntu 14.10的安装光盘或ISO映像文件。
-  \item 一张CentOS 7的安装光盘或ISO映像文件。
+  \item 一台已安装有Windows操作系统和VirtualBox/VMware软件的计算机。
+  \item VirtualBox/VMware中已安装多个Linux发行版。
 \end{enumerate}
 
 \vspace{0.2in}
@@ -38,41 +37,35 @@
 三、实验内容
 
 \vspace{0.1in}
-（一）Ubuntu 14.10的安装与启动
+（一）了解虚拟机和Linux发行版
 \begin{enumerate}
-  \item 新建虚拟电脑。
+  \item 通过检索了解虚拟机的基本概念及常用虚拟机软件。
+  \item 通过检索了解常见的Linux发行版。
+  \item 通过检索进入各个Linux发行版的官网，熟悉其界面。
+  \item 通过检索了解Linux发行版的排名。
+\end{enumerate}
+
+为了快速、顺利完成检索，请参看以下提示：
+\begin{itemize}
+  \item 检索工具：引擎首选\textbf{谷歌}，次选百度等；百科首选\textbf{维基百科}，次选百度百科等。
+  \item 检索策略：关键词首选\textbf{英文}，次选中文。
+  \item 发行版排名：\textbf{DistroWatch}网站。
+\end{itemize}
+
+\vspace{0.1in}
+（二）Linux发行版（在虚拟机中）的安装与启动
+\begin{enumerate}
+  \item 在虚拟机中安装Linux（Ubuntu/CentOS等）。
+\\ 检索Virtuabox/VMware的使用方法，以及在其中安装Linux的图文教程，详细阅读，理解主要的安装步骤。
+  \item 启动Linux。
     \begin{enumerate}
-      \item 启动VirtualBox软件，进入主界面。单击“新建”图标新建一个虚拟机。
-      \item 在“新建虚拟电脑”的“虚拟电脑名称和系统类型”设置中，“名称”中输入虚拟机的名称，如“Ubuntu14.10”，“操作系统”选择“Linux”，“版本”选择“Ubuntu”。
-      \item 在“内存大小”的设置中，调整虚拟电脑的内存大小，不少于建议的内存大小。一般使用建议的内存大小即可。
-      \item 在“虚拟硬盘”的设置中，选中“现在创建虚拟硬盘”。
-      \item 在“虚拟硬盘文件类型”的设置中，使用默认的“VDI”即可。
-      \item 在“存储在物理硬盘上”的设置中，选中“固定大小”单选按钮。
-      \item 在“文件位置和大小”的设置中，根据需要修改虚拟电脑的存储位置和虚拟硬盘的大小，虚拟硬盘要不小于建议的硬盘大小。单击“创建”按钮，稍等片刻即可完成虚拟电脑的创建。
-    \end{enumerate}
-  \item 在虚拟机中安装Ubuntu 14.10。
-\\ 在VirtualBox虚拟机上安装操作系统时，既可以使用光盘进行安装，也可以利用ISO映像文件进行安装。此处通过ISO映像文件进行安装。
-    \begin{enumerate}
-      \item 回到VirtualBox的主界面后，选中刚才创建的虚拟电脑。
-      \item 点击主界面中的“设置”图标，可单击左侧的“存储”进行设置，为IDE控制器分配光驱，选择Ubuntu 14.10的虚拟光盘，即ISO映像文件。
-      \item 回到VirtualBox主界面后，点击“启动”图标启动虚拟电脑。
-      \item 虚拟机自动从安装源引导后进入Ubuntu 14.10的启动界面。在“Welcome”界面中，选择安装语言“中文（简体）”，界面随之刷新，选择“安装Ubuntu”进行安装。
-      \item 在“准备安装Ubuntu”界面中进行相应的设置。一般默认即可。
-      \item 在“安装类型”界面中，选择磁盘分区类型。对于初学者来说，使用默认的“清除整个磁盘并安装Ubuntu”即可。
-      \item 在“您在什么地方？”界面中，点选“Shanghai”设置时区。
-      \item 在“键盘布局”界面中，一般默认即可。
-      \item 在“您是谁？”界面中，设置个人信息。依次填写个人姓名、计算机名、用户名和密码。
-      \item 点击“继续”安装系统。系统安装完成后，单击“现在重启”按钮，启动Ubuntu 14.10。
-    \end{enumerate}
-  \item 启动Ubuntu 14.10。
-    \begin{enumerate}
-      \item 启动Ubuntu 14.10后，将出现用户登录列表。选择相应的用户，输入对应的密码，回车确认输入。
-      \item 用户名和密码验证通过后，进入Unity桌面环境。
+      \item 启动Linux后，将出现用户登录列表。选择相应的用户，输入对应的密码，回车确认输入。
+      \item 用户名和密码验证通过后，进入Linux桌面环境。
     \end{enumerate}
   \item 注销用户。
     \begin{enumerate}
       \item 单击右上角类似齿轮的图标，从中选择“注销…”。
-      \item 在弹出的对话框中单击“注销”按钮，将退出Unity桌面环境，屏幕再次显示登录界面，等待新用户登录系统。
+      \item 在弹出的对话框中单击“注销”按钮，将退出Linux桌面环境，屏幕再次显示登录界面，等待新用户登录系统。
     \end{enumerate}
   \item 关机。
     \begin{enumerate}
@@ -82,11 +75,6 @@
 \end{enumerate}
 
 \vspace{0.1in}
-（二）CentOS 7的安装与启动
+（三）体验其他Linux发行版
 
-参考Ubuntu 14.10的安装步骤在VirtualBox中安装CentOS 7。
-
-\vspace{0.1in}
-（三）体验其他Linux发行版。
-
-在VirtualBox虚拟机中已经安装好了其他多个Linux发行版（Linux Mint，ElementaryOS，Fedora，openSUSE，Debian，Deepin等），依次启动这些操作系统，体验不同的桌面环境。
+在VirtualBox/VMware虚拟机中已经安装好了其他多个Linux发行版（Linux Mint，ElementaryOS，Fedora，openSUSE，Debian，Deepin等），依次启动这些操作系统，根据自己的喜好对各个发行版进行排名。
