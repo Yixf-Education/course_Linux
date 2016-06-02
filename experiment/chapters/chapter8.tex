@@ -1,0 +1,395 @@
+\chapter{shell脚本编程}
+
+%\vspace{0.2in}
+\noindent
+一、实验要求
+\begin{enumerate}
+  \item 掌握shell脚本的结构和运行方法。
+  \item 掌握shell函数的使用方法。
+  \item 掌握shell脚本中的流程控制。
+  \item 掌握shell脚本的调试方法。
+\end{enumerate}
+
+\vspace{0.2in}
+\noindent
+二、实验准备
+\begin{enumerate}
+  \item 安装有CentOS 7的计算机。
+\end{enumerate}
+
+\vspace{0.2in}
+\noindent
+三、实验内容
+
+\vspace{0.1in}
+（一）创建一个简单的shell脚本。
+\begin{enumerate}
+  \item 在主目录中创建bin目录，并进入其中。
+  \item 创建一个空白文档，向其中输入下面几行内容：
+\begin{lstlisting}[language=bash]
+# ~/bin/dirinfo.sh
+# 20150501
+# A really stupid script to give some basic info about the current directory
+
+#!/bin/bash
+pwd
+ls
+\end{lstlisting}
+  \item 把文件保存为dirinfo.sh
+  \item 利用下面的命令使文件可执行：\verb|chmod a+x dirinfo.sh|。
+  \item 运行该脚本：\verb|./dirinfo.sh|。
+\end{enumerate}
+
+\vspace{0.1in}
+（二）传递参数给函数。
+\begin{enumerate}
+  \item 在主目录的bin目录中，创建一个空白文档，输入以下代码，并将其保存为func.sh。
+\begin{lstlisting}[language=bash]
+#!/bin/bash
+
+# func
+
+# A simple function
+
+repeat ( ) {
+  echo -n "I don't know $1 $2"
+}
+
+repeat Your Name
+\end{lstlisting}
+  \item 使脚本变成可执行文件：\verb|chmod 755 ~/bin/func.sh|。
+  \item 在命令行运行脚本：\verb|~/bin/func.sh|。
+\end{enumerate}
+
+\vspace{0.1in}
+（三）使用嵌套函数。
+\begin{enumerate}
+  \item 在主目录的bin目录中，创建一个空白文档，输入以下代码，并将其保存为nested.sh。
+\begin{lstlisting}[language=bash]
+#!/bin/bash
+
+# nested
+# Calling one function from another
+
+number_one ( ) {
+  echo "This is the first function speaking..."
+  number_two
+}
+
+number_two ( ) {
+  echo "This is now the second function speaking..."
+}
+
+number_one
+\end{lstlisting}
+  \item 使脚本变成可执行文件。
+  \item 在命令行中运行该脚本。
+\end{enumerate}
+
+\vspace{0.1in}
+（四）处理作用域。
+\begin{enumerate}
+  \item 在主目录的bin目录中，创建一个空白文档，输入以下代码，并将其保存为scope.sh。
+\begin{lstlisting}[language=bash]
+#!/bin/bash
+
+# scope
+# dealing with local and global variables
+
+scope ( ) {
+  local lclVariable=1
+  gblVariable=2
+  echo "lclVariable in function = $lclVariable"
+  echo "gblVariable in function = $gblVariable"
+}
+
+scope
+
+# We now test the two variables outside the function block to see what happens
+
+echo "lclVariable outside function = $lclVariable"
+echo "gblVariable outside function = $gblVariable"
+
+exit 0
+\end{lstlisting}
+  \item 使脚本变成可执行文件。
+  \item 在命令行中运行该脚本。
+\end{enumerate}
+
+\vspace{0.1in}
+（五）使用getopts。
+\begin{enumerate}
+  \item 在主目录的bin目录中，创建一个空白文档，输入以下代码，并将其保存为get.sh。
+\begin{lstlisting}[language=bash]
+#!/bin/bash
+
+# get
+# A script for demonstrating getopts
+
+while getopts "xy:z:" name
+do
+  echo "$name" $OPTIND $OPTARG
+done
+\end{lstlisting}
+  \item 使脚本变成可执行文件。
+  \item 在命令行调用脚本，传递一些参数，如：\verb|~/bin/get.sh -xy "one" -z "two"|。
+\end{enumerate}
+
+\vspace{0.1in}
+（六）用trap命令清除临时文件。
+\begin{enumerate}
+  \item 在主目录的bin目录中，创建一个空白文档，输入以下代码，并将其保存为sigtrap.sh。
+\begin{lstlisting}[language=bash]
+#!/bin/bash
+
+# sigtrap
+# A small script to demonstrate signal trapping
+
+tmpFile=/tmp/sigtrap$$
+cat > $tmpFile
+
+function removeTemp( ) {
+  if [ -f "$tmpFile" ]
+  then
+    echo "Sorting out the temp file..."
+    rm -f "$tmpFile"
+  fi
+}
+
+trap removeTemp 1 2
+
+exit 0
+\end{lstlisting}
+  \item 使脚本变成可执行文件。
+  \item 在命令行中运行该脚本。
+  \item 在命令行输入一些文本然后按下【Ctrl+D】组合键。一旦按下这个组合键，就会立即检查在tmp目录中创建的文件（它的名字可能和sigtrap(procid)差不多）。
+  \item 现在再次运行代码，但在按下【Ctrl+D】组合键之前，先按下【Ctrl+C】组合键。这一次会收到一条消息``Sorting out the temp file...''。如果此时去查看名称类似于sigtrap(procid)的文件，将发现它并不存在。
+\end{enumerate}
+
+\vspace{0.1in}
+（七）在数组中使用文本文件中的数据。
+\begin{enumerate}
+  \item 在主目录的tmp目录（如果不存在，就先创建该目录）中，创建一个空白文档，输入以下文本，并将其保存为sports.txt。
+\begin{verbatim}
+rugby hockey swimming
+polo cricket squash
+basketball baseball football
+\end{verbatim}
+  \item 在主目录的bin目录中，创建一个空白文档，输入以下代码，并将其保存为array.sh。
+\begin{lstlisting}
+#!/bin/bash
+
+# array
+# A script for polulating an array from a file
+
+populated=($(cat ~/tmp/sports.txt | tr '\n' ' '))
+echo ${populated[@]}
+
+exit 0
+\end{lstlisting}
+  \item 使脚本变成可执行文件。
+  \item 在命令行中运行该脚本。
+\end{enumerate}
+
+\vspace{0.1in}
+（八）shell脚本实例。
+\begin{lstlisting}[language=bash]
+# 模拟Linux登录shell
+#!/bin/bash
+echo -n "login:"
+read name
+echo -n "password:"
+read passwd
+if [ $name = "cht" -a $passwd = "abc"  ];then
+  echo "the host and password is right!"
+else
+  echo "input is error!"
+fi
+
+# 比较两个数的大小
+#!/bin/bash
+echo "please enter two number"
+read a
+read b
+if test $a -eq $b
+  then echo "NO.1 = NO.2"
+elif test $a -gt $b
+  then echo "NO.1 > NO.2"
+else echo "NO.1 < NO.2"
+fi
+
+# 查找/root/目录下是否存在该文件
+#!/bin/bash
+echo "enter a file name:"
+read a
+if test  -e /root/$a
+  then echo "the file is exist!"
+else echo "the file is not exist!"
+fi
+
+# for循环的使用
+#!/bin/bash
+clear
+for num in 1 2 3 4 5 6 7 8 9 10
+do
+  echo "$num"
+done
+
+# 查看是否是当前用户
+#!/bin/bash
+echo "Please enter a user:"
+read a
+b=$(whoami)
+if test $a = $b
+  then echo "the user is running."
+else echo "the user is not running."
+fi
+
+# 删除当前目录下大小为0的文件
+#!/bin/bash
+for filename in `ls`
+do
+  if test -d $filename
+    then b=0
+  else
+    a=$(ls -l $filename | awk '{ print $5 }')
+    if test $a -eq 0
+      then rm $filename
+    fi
+  fi
+done
+
+# 普通无参数函数
+#!/bin/bash
+p ( ) {
+  echo "hello"
+}
+p
+
+# 给函数传递参数
+#!/bin/bash
+p_num ( ) {
+  num=$1
+  echo $num
+}
+for n in $@
+do
+  p_num $n
+done
+
+# 创建文件夹
+#!/bin/bash
+while :
+do
+  echo "please input file's name:"
+  read a
+  if test -e /root/$a
+  then
+    echo "the file is existing Please input new file name:"
+  else
+    mkdir $a
+    echo "mkdir sussesful!"
+    break
+  fi
+done
+
+# 获取本机IP地址
+#!/bin/bash
+ifconfig | grep "inet addr:" | awk '{ print $2  }'| sed 's/addr://g'
+
+# 查找最大文件
+#!/bin/bash
+a=0
+for name in *.*
+do
+  b=$(ls -l $name | awk '{print $5}')
+  if test $b -gt $a
+  then a=$b
+    namemax=$name
+  fi
+done
+echo "the max file is $namemax"
+
+# case语句练习
+#!/bin/bash
+clear
+echo "enter a number from 1 to 5:"
+read num
+case $num in
+  1) echo "you enter 1"
+  ;;
+  2) echo "you enter 2"
+  ;;
+  3) echo "you enter 3"
+  ;;
+  4) echo "you enter 4"
+  ;;
+  5) echo "you enter 5"
+  ;;
+  *) echo "error"
+  ;;
+esac
+
+# yes/no返回不同的结构
+#!/bin/bash
+clear
+echo "enter [y/n]:"
+read a
+case $a in
+  y|Y|Yes|YES) echo "you enter $a"
+  ;;
+  n|N|NO|no) echo "you enter $a"
+  ;;
+  *) echo "error"
+  ;;
+esac
+
+# 内置命令的使用
+#!/bin/bash
+clear
+echo "Hello, $USER"
+echo "Today's date is $(date)"
+echo "the user is :"
+who
+echo "this is $(uname -s)"
+echo "that's all folks!"
+
+# 输入分数显示好坏
+#!/bin/bash
+echo "Please enter score: "
+read score
+if [ $score -lt 80  ]
+then
+  echo "bad!!"
+elif [ $score -ge 80 -a -lt 90  ]
+then
+  echo "good!!"
+else
+  echo "very good!!"
+fi
+
+# 编辑服务列
+#!/bin/bash
+echo "Services: "
+echo -n "1) ls "
+echo -n "2) ls -l"
+echo -n "3) exit"
+echo "Please choice [1-3]"
+read choice
+case $choice in
+  1) ls
+  ;;
+  2) ls -l
+  ;;
+  3)exit
+  ;;
+  *) echo "wrong choice"
+  ;;
+esac
+\end{lstlisting}
+
+\vspace{0.1in}
+（九）shell脚本的调试。
+
+练习理论课中演示的shell脚本，并对所有脚本进行调试。
+

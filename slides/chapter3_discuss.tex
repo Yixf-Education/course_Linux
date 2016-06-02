@@ -1,0 +1,868 @@
+\input{snippet/beamer_head}
+\input{snippet/class_head}
+
+%\includeonlyframes{current}
+
+\title[文件系统]{第三章\quad 文件系统\\（集体备课）}
+\author[Yixf]{伊现富（Yi Xianfu）}
+\institute[TIJMU]{天津医科大学（TIJMU）\\ 生物医学工程与技术学院}
+\date{2015年4月28日}
+
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}[plain,label=current]
+  \frametitle{教学提纲}
+  \setcounter{tocdepth}{3}
+  \begin{multicols}{2}
+    \tableofcontents
+  \end{multicols}
+\end{frame}
+
+\section{指导思想}
+\begin{frame}
+  \frametitle{指导思想 | 章节结构}
+    \begin{table}
+      \centering
+      \rowcolors[]{1}{blue!20}{blue!10}
+      \begin{tabular}{cllcc}
+        \hline
+        \rowcolor{blue!50}顺序 & 授课内容 & 教材章节 & 学时 & 日期\\
+        \hline
+1 & Linux基础 & 第1、2章 & 2 & 5.12\\
+2 & 用户和组 & 第3章 & 2 & 5.19\\
+\rowcolor{red}3 & 文件系统 & 第4章 & 2 & 5.26\\
+4 & Linux命令 & 第6章 & 2 & 6.02\\
+5 & 高级Linux命令 & 第8、9章 & 2 & 6.09\\
+6 & 软件安装 & 第19章 & 2 & 6.16\\
+7 & vi/Vim编辑器 & 第7章 & 2 & 6.23\\
+8 & shell脚本编程 & 第13、14章 & 2 & 6.30\\
+9 & Perl语言简介 & 第17章 & 2 & 7.07\\
+      \hline
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}
+  \frametitle{指导思想 | 学时分配}
+    \begin{columns}
+    \column{0.5\textwidth}
+      \begin{block}{内容}
+        \begin{itemize}
+          \item 引言与导入
+          \item 文件系统基础
+          \item 文件系统导航
+          \item 文件类型
+          \item 文件和目录权限
+          \item 挂载文件系统
+          \item 总结与答疑
+        \end{itemize}
+      \end{block}
+    \column{0.2\textwidth}
+      \begin{block}{学时（分钟）}
+        \begin{itemize}
+          \item 5
+          \item 20
+          \item 25
+          \item 20
+          \item 20
+          \item 5
+          \item 5
+        \end{itemize}
+      \end{block}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{指导思想 | 授课策略}
+    \begin{columns}
+    \column{0.3\textwidth}
+      \begin{block}{内容特点}
+        \begin{itemize}
+          \item 知识新颖
+          \item 内容抽象
+          \item 命令繁杂
+          \item 缩写泛滥
+          \item 学以致用
+        \end{itemize}
+      \end{block}
+    \column{0.5\textwidth}
+      \begin{block}{对应策略}
+        \begin{itemize}
+          \item 温故知新（熟悉$\Rightarrow$陌生）
+          \item 类比举例（死记$\Rightarrow$理解）
+          \item 详略得当（讲授$\Rightarrow$自学）
+          \item 全称助记（表象$\Rightarrow$本质）
+          \item 学练结合（理论$\Rightarrow$实践）
+        \end{itemize}
+      \end{block}
+    \end{columns}
+\end{frame}
+
+\section{引言}
+\begin{frame}
+  \frametitle{文件系统 | 引言 | 文件系统}
+  \textcolor{gray}{
+  计算机的\textbf{文件系统（File system）}是一种存储和组织计算机数据的方法，它使得对其访问和查找变得容易，文件系统使用\textbf{文件}和\textbf{树形目录}的抽象逻辑概念代替了硬盘和光盘等物理设备使用数据块的概念，用户使用文件系统来保存数据不必关心数据实际保存在硬盘（或者光盘）的地址为多少的数据块上，只需要记住这个文件的所属目录和文件名。在写入新数据之前，用户不必关心硬盘上的那个块地址有没有被使用，硬盘上的存储空间管理（分配和释放）功能由文件系统自动完成，用户只需要记住数据被写入到了哪个文件中。\\
+  \vspace{0.1cm}
+严格地说，文件系统是一套实现了数据的存储、分级组织、访问和获取等操作的抽象数据类型（Abstract data type）。\\
+  \vspace{0.1cm}
+文件系统通常使用硬盘和光盘这样的存储设备，并维护文件在设备中的物理位置。但是，实际上文件系统也可能仅仅是一种访问数据的界面而已，实际的数据是通过网络协议（如NFS、SMB、9P等）提供的或者存储在内存中，甚至可能根本没有对应的文件（如proc文件系统）。
+}
+\end{frame}
+
+\begin{frame}
+  \frametitle{文件系统 | 引言 | 文件系统}
+\begin{block}{操作系统 vs. 文件系统}
+\begin{itemize}
+  \item 终端用户 $\Longleftrightarrow$ 操作系统 $\Longleftrightarrow$ 计算机硬件
+  \item 终端用户 $\Longleftrightarrow$ 文件系统 $\Longleftrightarrow$ 硬盘等存储设备
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{文件系统 | 引言 | 文件系统的类型}
+  \begin{block}{\textcolor{red}{引入}}
+    \begin{itemize}
+      \item 在Windows中，把硬盘/U盘格式化为FAT32或NTFS格式。
+      \item 16G的U盘却装不下4G的电影！原因何在？
+    \end{itemize}
+  \end{block}
+  \pause
+  \begin{enumerate}
+    \item<2-> 面向磁盘的文件系统（本地的文件系统）：位于硬盘、移动硬盘、光盘、U盘或其他设备上的实际可访问的文件系统。
+      \begin{itemize}
+        \item<5-> FAT、NTFS：Windows
+	\item<5-> \alert{EXT4}、Btrfs、XFS：Linux
+	\item<5-> \alert{ISO9660}：CD-ROM
+        \item<5-> UFS：Unix
+      \end{itemize}
+    \item<3->
+      面向网络的文件系统（基于网络的文件系统）：可以远程访问的文件系统。如：NFS、Samba。
+    \item<4-> 专用的或虚拟的文件系统：没有实际驻留在磁盘上的文件系统。如：TMPFS、PROXFS。
+  \end{enumerate}
+\end{frame}
+
+\section{文件系统基础}
+\subsection{文件系统和分区}
+\begin{frame}
+  \frametitle{文件系统 | 基础 | 文件系统和分区}
+  \begin{block}{文件系统和分区}
+    \begin{itemize}
+      \item 分区是信息的容器，包含整个硬盘或硬盘的一部分
+      \item 文件系统是多个文件的逻辑集合，位于分区或磁盘上
+      \item 一个分区通常只包含一个文件系统
+    \end{itemize}
+  \end{block}
+  \vspace*{-0.5cm}
+  \begin{columns}
+    \column{0.5\textwidth}
+  \begin{figure}
+    \centering
+    \visible<2>{ \includegraphics[width=6cm]{c3.partition.10.jpg} }
+  \end{figure}
+  \pause
+  \column{0.5\textwidth}
+  \begin{block}{类比Windows}
+    \begin{itemize}
+      \item 一块硬盘
+      \item C/D/E多个分区
+      \item FAT32、NTFS不同文件系统
+    \end{itemize}
+  \end{block}
+\end{columns}
+\end{frame}
+
+\subsection{目录结构}
+\begin{frame}
+  \frametitle{文件系统 | 基础 | \alert{目录结构}}
+  \begin{figure}
+    \centering
+    \includegraphics[width=9.5cm]{c3.filesystem.11.png}
+  \end{figure}
+  \pause
+  \vspace{-0.3cm}
+    \begin{itemize}[<+->]
+      \item Everything is a file.（一切皆文件。）
+      \item 使用自顶而下的分层结构来组织文件
+      \item 每个文件和目录都是从根目录（/）（Root Directory）开始的
+      \item 文件和目录名的大小写是有区别的
+      \item 定位文件：（根）目录$\Rightarrow$子目录$\Rightarrow$ \ldots $\Rightarrow$文件
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{文件系统 | 基础 | 目录结构 | \alert{基本目录}}
+  \begin{figure}
+    \centering
+    \includegraphics[width=12cm]{c3.filesystem.01.jpg}
+  \end{figure}
+  \pause
+  \begin{block}{\textcolor{red}{全称/助记}}
+  bin: binary; dev: device; lib: library; mnt: mount; proc: process;\\
+  etc: etcetera => Extended Tool Chest, Editable Text Configuration;\\
+  opt: optional; sbin: system binary; srv: service; tmp: temporary;\\
+  usr: user => User System/Software Resources; var: variable.
+\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{文件系统 | 基础 | 目录结构 | \alert{基本目录} | 详解（1/2）}
+  \begin{table}
+    \centering
+    \rowcolors[]{1}{blue!20}{blue!10}
+    \begin{tabular}{ll}
+      \hline
+      \rowcolor{blue!50}目录 & 内容\\
+      \hline
+      / & 根目录\\
+      /bin & 基本程序\\
+      /boot & 启动系统时所需的文件\\
+      /dev & 设备文件\\
+      /etc & 配置文件\\
+      /home & 用户的home目录\\
+      /lib & 基本共享库，内核模块\\
+      /lost+found & 由fsck恢复的受损文件\\
+      /media & 可移动介质的挂载点\\
+      /mnt & 不能挂载在其他位置上的固定介质的挂载点\\
+      \hline
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}
+  \frametitle{文件系统 | 基础 | 目录结构 | \alert{基本目录} | 详解（2/2）}
+  \begin{table}
+    \centering
+    \rowcolors[]{1}{blue!20}{blue!10}
+    \begin{tabular}{ll}
+      \hline
+      \rowcolor{blue!50}目录 & 内容\\
+      \hline
+      /opt & 第三方应用程序（“可选软件”）\\
+      /proc & proc文件\\
+      /root & 根用户（超级用户）的home目录\\
+      /sbin & 由超级用户运行的基本系统管理程序\\
+      /srv & 本地系统所提供服务的数据\\
+      /tmp & 临时文件\\
+      /usr & 静态数据使用的辅助文件系统\\
+      /var & 可变数据使用的辅助文件系统\\
+      \hline
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}
+  \frametitle{文件系统 | 基础 | 目录结构 | 基本目录 | \alert{/usr}}
+  \begin{table}
+    \centering
+    \rowcolors[]{1}{blue!20}{blue!10}
+    \begin{tabular}{ll}
+      \hline
+      \rowcolor{blue!50}目录 & 内容\\
+      \hline
+      /usr/bin & 非基本程序（大多数用户程序）\\
+      /usr/games & 游戏等娱乐和教育程序\\
+      /usr/include & C程序的头文件\\
+      /usr/lib & 非基本共享库\\
+      /usr/local & 本地安装程序\\
+      /usr/sbin & 由超级用户运行的非基本系统管理程序\\
+      /usr/share & 共享系统数据\\
+      /usr/src & 源代码（只用于参考）\\
+      \hline
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\subsection{路径}
+\begin{frame}[fragile]
+  \frametitle{文件系统 | 基础 | \alert{路径}}
+  \begin{block}{绝对 vs. 相对\textcolor{red}{（和现实生活中的定位方式相类比）}}
+    \begin{itemize}
+      \item 绝对路径（Absolute Path）：文件在文件系统中的精确位置，总是起始于root（/）
+      \item 相对路径（Relative Path）：相对于用户当前位置的一个文件或目录的位置
+    \end{itemize}
+  \end{block}
+  \pause
+  \begin{block}{相对路径}
+    \begin{itemize}
+      \item \verb|.|：当前目录
+      \item \verb|..|：上一层目录
+      \item \verb|~|：当前用户的家目录（Home Directory）
+      \item \verb|-|：上一个工作目录
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{文件系统 | 基础 | 路径 | 绝对 vs. 相对}
+  \begin{figure}
+    \centering
+    \includegraphics[width=9cm]{c3.path.png}
+  \end{figure}
+  \pause
+  \begin{block}{绝对 vs. 相对\textcolor{red}{（比较两者的优缺点）}}
+    %\begin{itemize}[<+-|alert@+>]
+    \begin{itemize}[<+->]
+      \item 绝对路径：\verb|/var/log/mail|；精确 vs. 冗长
+      \item 相对路径：\verb|../../var/log/mail|；（多数时候）简短 vs. 隐患
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{文件系统 | 基础 | \alert{补充}}
+  \begin{block}{\textcolor{red}{和Windows进行比较}}
+  \begin{itemize}[<+->]
+    \item \textcolor{red}{一切都源于根目录}（\verb|/|）
+    \item 文件名除了\verb|/|之外，所有的字符都合法
+    \item 有些字符最好不用，如空格符、制表符、退格符和\verb|@#$&()-|等字符
+    \item 避免使用\verb|.|作为普通文件名的第一个字符（隐藏文件）
+    \item \textcolor{red}{大小写敏感}，Linux是区分大小写的操作系统
+    \item real\_file、Real\_file、REAL\_FILE是三个不同的文件名
+    \item 按惯例文件名都是小写的
+  \end{itemize}
+\end{block}
+\end{frame}
+
+\section{文件系统导航}
+\begin{frame}
+  \frametitle{文件系统 | 导航}
+  \begin{block}{\textcolor{red}{引入}}
+    \begin{itemize}
+      \item 文件系统不同，但其中的操作大同小异
+      \item 学生总结Windows中的常见操作，老师给出Linux中对应的命令
+      \item 给出命令的全称辅助记忆，详细讲解个别重要的命令
+    \end{itemize}
+  \end{block}
+  \vspace*{-0.5cm}
+  \begin{columns}
+    \pause
+    \column[t]{0.3\textwidth}
+    \begin{block}{目录}
+      \begin{itemize}
+        \item 定位，pwd
+        \item 切换，cd
+        \item 列出，ls
+        \item 创建，mkdir
+        \item 删除，rmdir
+        \item 树图，tree
+      \end{itemize}
+    \end{block}
+    \pause
+    \column[t]{0.3\textwidth}
+    \begin{block}{文件}
+      \begin{itemize}
+        \item 查看，cat
+        \item 识别，file
+        \item 创建，touch
+        \item 复制，cp
+        \item 移动，mv
+        \item 重命名，mv
+        \item 删除，rm
+      \end{itemize}
+    \end{block}
+    \pause
+    \column[t]{0.3\textwidth}
+    \begin{block}{管理}
+      \begin{itemize}
+        \item 查找，find
+        \item 空间，df
+        \item 大小，du
+      \end{itemize}
+    \end{block}
+  \end{columns}
+\end{frame}
+
+\subsection{目录操作}
+\begin{frame}
+  \frametitle{文件系统 | 导航 | \alert{目录}}
+  \begin{table}
+    \centering
+    \rowcolors[]{1}{blue!20}{blue!10}
+    \begin{tabular}{ccl}
+      \hline
+      \rowcolor{blue!50}命令 & 助记 & 说明\\
+      \hline
+      pwd & Print Work Directory & 显示用户的当前目录\\
+      ls & LiSt & 列出指定目录的内容\\
+      cd & Change Directory & 转到指定的目录\\
+      mkdir & MaKe DIRectory & 创建指定的目录\\
+      rmdir & ReMove DIRectory & 删除空目录\\
+      tree & --- & 以树状图列出目录的内容结构\\
+      \hline
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\subsection{文件操作}
+\begin{frame}
+  \frametitle{文件系统 | 导航 | \alert{文件}}
+  \begin{table}
+    \centering
+    \rowcolors[]{1}{blue!20}{blue!10}
+    \begin{tabularx}{0.9\textwidth}{ccX}
+      \hline
+      \rowcolor{blue!50}命令 & 助记 & 说明\\
+      \hline
+      file & --- & 识别文件类型（二进制、文本等）\\
+      cat & conCATenate & 显示一个文件\\
+      touch & --- & 创建一个空文件或者修改一个现有文件的属性\\
+      cp & CoPy & 把一个文件/目录复制到指定位置\\
+      mv & MoVe & 移动文件/目录的位置或重命名一个文件/目录\\
+      rm & ReMove & 删除文件\\
+      head & --- & 显示文件的开始部分\\
+      tail & --- & 显示文件的结尾部分\\
+      more & --- & 从头到尾浏览一个文件\\
+      less & --- & 从开头或结尾开始浏览整个文件\\
+      %ln & LiNk & 创建链接\\
+      %chmod & CHange file MODe & 改变文件属性\\
+      %wc & Word Count & 计算文件行、字（符）数\\
+      %mount & --- & 挂载文件系统\\
+      \hline
+    \end{tabularx}
+  \end{table}
+\end{frame}
+
+\subsection{文件系统管理}
+\begin{frame}
+  \frametitle{文件系统 | 导航 | \alert{管理}}
+  \begin{table}
+    \centering
+    \rowcolors[]{1}{blue!20}{blue!10}
+    \begin{tabularx}{0.9\textwidth}{ccX}
+      \hline
+      \rowcolor{blue!50}命令 & 助记 & 说明\\
+      \hline
+      which & --- & 如果文件位于用户的PATH内，则显示文件位置\\
+      whereis & --- & 显示文件的位置\\
+      find & --- & 查找文件/目录\\
+      df & Disk Free & 显示磁盘空间的使用情况\\
+      du & Disk Usage & 显示目录空间占用情况\\
+      \hline
+    \end{tabularx}
+  \end{table}
+\end{frame}
+
+\subsection{命令详解}
+\begin{frame}
+  \frametitle{文件系统 | 导航 | 命令详解 | cp}
+  \begin{block}{选项\textcolor{red}{（给出全称辅助记忆）}}
+    \begin{itemize}
+      \item -p：Preserve，保持目录和文件的属性
+      \item -R：Recursive，递归
+      \item -u：Update，增量备份
+    \end{itemize}
+  \end{block}
+  \pause
+  \begin{block}{cp妙用：备份目录}
+    cp\quad -Rpu\quad 待备份目录\quad 目标目录
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{文件系统 | 导航 | 命令详解 | cd}
+  \begin{block}{\alert{cd}}
+    \begin{itemize}
+      \item \verb|cd|：返回家目录
+      \item \verb|cd ~|：返回家目录
+      \item \verb|cd ..|：返回上一层目录
+    \end{itemize}
+  \end{block}
+  \pause
+  \begin{block}{which vs. whereis}
+    \begin{itemize}
+      \item which：只在用户的PATH所指定的文件中查找
+      \item whereis：在系统的所有目录中定位要查找的命令
+    \end{itemize}
+  \end{block}
+  \pause
+  \begin{block}{find}
+    \verb|find /usr/share -name lostfile -print|
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{文件系统 | 导航 | 命令详解 | \alert{ls}}
+  %\begin{itemize}[<+-|alert@+>]
+  \begin{itemize}[<+->]
+    \item \verb|ls|：列出用户有权访问的任何目录的内容
+    \item \verb|ls -i|（Inode）：显示文件的inode信息\textcolor{red}{（埋伏笔：inode）}
+    \item \verb|ls -a|（All）：显示所有的文件和目录，包括隐藏的文件和目录
+    \item 在文件名的前面加一个\verb|.|（英文句号）可以隐藏该文件或目录
+    \item \verb|ls -l|（Long）：显示目录内容的相关扩展信息\textcolor{red}{（埋伏笔：文件类型、链接、权限）}
+  \end{itemize}
+  \begin{figure}
+    \centering
+    \visible<5>{ \includegraphics[width=10cm]{c3.ls.png} }
+  \end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{文件系统 | 导航 | 命令详解 | cat}
+  \begin{block}{cat vs. more vs. less}
+    友好性：cat $\textless$ more $\textless$ less
+  \end{block}
+  \pause
+  \begin{block}{\alert{head vs. tail}}
+    \begin{itemize}
+      \item 默认显示文件的前/后10行
+      \item \verb|-n x|：指定查看文件的前/后x行
+      \item \verb|tail -f|（Follow）：监视文件内容的变化
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{文件系统 | 导航 | 命令详解 | \alert{rm}}
+  %\begin{itemize}[<+-|alert@+>]
+  \begin{itemize}[<+->]
+    \item \verb|rmdir|：只能删除空目录
+    \item \verb|rm|：不能删除目录
+    \item \verb|-f|（Force）：强行删除文件
+    \item \verb|-r|（Recursive）：进入到目录中递归删除文件
+    \item \verb|-fr|：删除目录及其子目录，\textcolor{red}{\textbf{谨慎使用}}
+    \item \textcolor{red}{\textbf{切勿尝试（为什么？）}}：\verb|rm -rf /|，\verb|rm -rf *|
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{文件系统 | 导航 | 命令详解 | \alert{df}}
+  \begin{figure}
+    \centering
+    \includegraphics[width=10cm]{c3.df.01.jpg}\\
+    \includegraphics[width=10cm]{c3.df.02.jpg}
+  \end{figure}
+  \vspace{-0.5cm}
+  \begin{block}{参数}
+    \begin{itemize}
+      \item \verb|df -h|，\verb|du -h|（Human-readable）：K，M，G
+      \item \verb|du -s|（Summarize）：目录的总大小
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\section{文件类型}
+\subsection{类型简介}
+\begin{frame}
+  \frametitle{文件系统 | 文件类型 | 简介}
+  \begin{table}
+    \centering
+    \rowcolors[]{1}{blue!20}{blue!10}
+    \begin{tabular}{cl}
+      \hline
+      \rowcolor{blue!50}文件类型 & 说明\\
+      \hline
+      \alert{-} & 普通文件（文本文件、二进制可执行文件、硬链接）\\
+      \alert{d} & 目录文件\\
+      \alert{l} & 符号链接文件\\
+      b & 块设备文件（块输入/输出设备文件）\\
+      c & 字符设备文件（原始输入/输出设备文件）\\
+      p & 命令管道（一种进程间通信的机制）\\
+      s & 套接字（用于进程间通信）\\
+      \hline
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\subsection{链接}
+\begin{frame}
+  \frametitle{文件系统 | 文件类型 | 链接 | inode}
+  \begin{block}{\textcolor{red}{类比:身份证号 vs. 姓名 vs. 曾用名/笔名/外号}}
+  \begin{itemize}[<+->]
+    \item 在Linux中，每一个文件都有一个相关联的数字：inode
+    \item Linux使用inode而不是文件名来引用文件
+    \item 在一个分区中，inode是唯一的
+    \item 不同分区内的文件可以有相同的inode
+  \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{文件系统 | 文件类型 | \alert{链接}}
+  \begin{block}{硬链接（Hard Link）\textcolor{red}{（孙悟空的分身）}}
+    %\begin{itemize}[<+-|alert@+>]
+    \begin{itemize}[<+->]
+      \item 硬链接与原文件具有相同的inode，两者本质上没有区别
+      \item 对硬链接的修改会反映到原文件上，反之亦然
+      \item 如果删除硬链接，原文件照样正常使用，反之亦然
+      \item 不能跨越文件系统，“等同于”不占空间的复制+同步更新
+      \item 只能对文件建立硬链接，而不能对目录建立硬链接
+    \end{itemize}
+  \end{block}
+  \pause
+  \begin{block}{软链接（Soft Link，符号链接，Symbolic Link）}
+    %\begin{itemize}[<+-|alert@+>]
+    \begin{itemize}[<+->]
+      \item 能够跨越文件系统，相当于\textcolor{red}{Windows中的快捷方式}
+      \item 软链接具有唯一的inode，内部保存的是原文件的路径地址
+      \item 如果打开并修改软链接，原文件也会随之改变
+      \item 如果删除软链接，原文件并不会受到影响
+      \item 如果删除原文件，软链接将失效
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{文件系统 | 文件类型 | 链接}
+  \begin{figure}
+    \centering
+    \includegraphics[width=6cm]{c3.ln.png}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{文件系统 | 文件类型 | 链接 | \alert{比较}}
+  \begin{table}
+    \centering
+    \rowcolors[]{1}{blue!20}{blue!10}
+    \begin{tabularx}{0.94\textwidth}{ccc}
+      \hline
+      \rowcolor{blue!50}项目 & 硬链接 & 软链接\\
+      \hline
+      语法 & ln source hardlink & ln -s source softlink\\
+      本质 & 与原文件没区别 & 保存原文件的路径\\
+      inode & 与原文件相同 & 与原文件不同，唯一\\
+      类比 & 不占空间的复制+同步更新 & 快捷方式\\
+      文件系统 & 不能跨越 & 能跨越\\
+      删除原文件 & 不受影响 & 失效\\
+      使用对象 & 文件 & 文件和目录\\
+      \hline
+      修改链接 & \multicolumn{2}{c}{原文件随之改变}\\
+      删除链接 & \multicolumn{2}{c}{原文件不受影响}\\
+      \hline
+    \end{tabularx}
+  \end{table}
+\end{frame}
+
+\begin{frame}
+  \frametitle{文件系统 | 文件类型 | 链接 | 用途}
+  \begin{itemize}
+    \item 为命令、程序或文件取别名
+    \item 创建不占存储空间的文件副本
+    \item 为文件创建方便的快捷方式
+    \item 对文件进行分组
+  \end{itemize}
+\end{frame}
+
+\section{文件和目录权限}
+\subsection{权限简介}
+\begin{frame}
+  \frametitle{文件系统 | 权限 | \alert{简介}}
+  \begin{figure}
+    \centering
+    \includegraphics[width=11cm]{c3.permission.01.png}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{文件系统 | 权限 | \alert{简介}}
+  \begin{figure}
+    \centering
+    \includegraphics[width=8cm]{c3.ugo.01.png}
+  \end{figure}
+  \begin{table}
+    \centering
+    \rowcolors[]{1}{blue!20}{blue!10}
+    \begin{tabular}{ccl}
+      \hline
+      \rowcolor{blue!50}字符位置 & 含义 & 助记\\
+      \hline
+      2～4 & 文件所有者 & user\\
+      5～7 & 文件所属组 & group\\
+      8～10 & 其他任何人 & others\\
+      \hline
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}
+  \frametitle{文件系统 | 权限 | 简介 | \alert{基本类型}}
+  \begin{table}
+    \centering
+    \rowcolors[]{1}{blue!20}{blue!10}
+    \begin{tabularx}{\textwidth}{cccXX}
+      \hline
+      \rowcolor{blue!50}字符 & 助记 & 权限 & 对文件 & 对目录\\
+      \hline
+      r & Read & 读 & 查看文件内容【cat】 & 读取/列出目录或子目录内容【ls】\\
+      w & Write & 写 & 修改文件内容（添加文本或删除文件）【vim】 & 在目录中创建、修改、删除文件或子目录【touch】\\
+      x & eXecute & 执行 & 执行/运行文件【sh】 & 进入目录搜索【cd】\\
+      - & - & - & 无 & 无\\
+      \hline
+    \end{tabularx}
+  \end{table}
+  \centering
+  注意：目录必须具有x权限，否则无法进入并查看其内容！
+\end{frame}
+
+\subsection{修改权限}
+\begin{frame}
+  \frametitle{文件系统 | 权限 | \alert{修改}}
+  \begin{block}{修改权限}
+    chmod（CHange MODe）
+  \end{block}
+  \pause
+  \begin{block}{两种方式\textcolor{red}{（板书）}}
+    \begin{enumerate}
+      \item 符号模式：容易理解
+        \begin{itemize}
+          \item 用户：u, g, o, a
+          \item 操作：+, -, =
+          \item 权限：r, w, x, -
+        \end{itemize}
+      \item 绝对模式：更加高效
+        \begin{itemize}
+          \item 0, 1, 2, 4
+          \item $3 = 1 + 2$
+          \item $5 = 1 + 4$
+          \item $6 = 2 + 4$
+          \item $7 = 1 + 2 + 4$
+        \end{itemize}
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{文件系统 | 权限 | 修改 | \alert{符号模式}}
+  \begin{columns}
+    \column[t]{0.35\textwidth}
+    \begin{block}{用户}
+      \begin{itemize}
+        \item u：User，用户
+        \item g：Group，组
+        \item o：Other，其他人
+        \item a：All，所有人
+      \end{itemize}
+    \end{block}
+    \pause
+    \column[t]{0.2\textwidth}
+    \begin{block}{操作}
+      \begin{itemize}
+        \item +：添加
+        \item -：删除
+        \item =：指定
+      \end{itemize}
+    \end{block}
+    \pause
+    \column[t]{0.35\textwidth}
+    \begin{block}{权限}
+      \begin{itemize}
+        \item r：Read，读
+        \item w：Write，写
+        \item x：eXecute，执行
+        \item -：无
+      \end{itemize}
+    \end{block}
+  \end{columns}
+  \pause
+  \begin{block}{实例\textcolor{red}{（一一解释具体含义）}}
+    \begin{itemize}
+      \item \verb|chmod u-x testfile|
+      \item \verb|chmod g=r-x testfile|
+      \item \verb|chmod o+wx testfile|
+      \item \verb|chmod uo+x,g-w testfile|
+      \item \verb|chmod u-x,g=r-x,o+wx testfile|
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{文件系统 | 权限 | 修改 | \alert{绝对模式}}
+  \begin{table}
+    \centering
+    \rowcolors[]{1}{blue!20}{blue!10}
+    \begin{tabular}{ccl}
+      \hline
+      \rowcolor{blue!50}数字 & 符号 & 权限\\
+      \hline
+      0 & \verb|---| & 无权限\\
+      1 & \verb|--x| & 可执行\\
+      2 & \verb|-w-| & 可写\\
+      3 & \verb|-wx| & 可写、可执行（2+1）\\
+      4 & \verb|r--| & 可读\\
+      5 & \verb|r-x| & 可读、可执行（4+1）\\
+      6 & \verb|rw-| & 可读、可写（4+2）\\
+      7 & \verb|rwx| & 可读、可写、可执行（4+2+1）\\
+      \hline
+    \end{tabular}
+  \end{table}
+  \pause
+  \begin{block}{实例\textcolor{red}{（一一解释具体含义）}}
+    \begin{itemize}
+      \item \verb|chmod 740 testfile|
+      \item \verb|chmod 755 testfile|
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\section{挂载文件系统}
+\begin{frame}[fragile]
+  \frametitle{文件系统 | 挂载 | mount }
+  \begin{figure}
+    \centering
+    \includegraphics[width=9cm]{c3.mount.jpg}
+  \end{figure}
+  \pause
+  \vspace{-0.3cm}
+  \begin{block}{\alert{语法\textcolor{red}{（回顾文件系统的类型）}}}
+    \begin{itemize}
+      \item \verb|mount -t FILE.SYSTEM.TYPE DEVICE DIRECTORY|
+      \item \verb|mount -t iso9660 /dev/cdrom /mnt/cdrom|
+      \item \verb|umount DEVICE.TO.UNMOUNT|
+      \item \verb|umount /dev/cdrom|
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\section{回顾与总结}
+\subsection{总结}
+\begin{frame}
+  \frametitle{文件系统 | 总结}
+  \begin{block}{知识点}
+    \begin{itemize}
+      \item Linux的文件系统：目录结构，主要的基本目录
+      \item Linux中的路径：绝对路径和相对路径
+      \item 文件系统导航的常见命令
+      \item Linux中的文件类型：常见类型，硬链接和软链接
+      \item Linux中的权限：文件和目录的权限，符号模式和绝对模式
+      \item 文件系统的挂载与卸载
+    \end{itemize}
+  \end{block}
+  \begin{block}{技能}
+    \begin{itemize}
+      \item 在命令行中进行文件系统的导航
+      \item 在命令行中创建硬链接和软链接
+      \item 在命令行中修改文件的权限
+      \item 在命令行中挂载、卸载文件系统
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\subsection{思考题}
+\begin{frame}
+  \frametitle{文件系统 | 思考题}
+  \begin{enumerate}
+    \item 列举Linux中的基本目录并解释其功能。
+    \item 举例说明绝对路径和相对路径的区别。
+    \item 列举几个进行文件系统导航的命令。
+    \item 解释ls -l输出结果中每一列的含义。
+    \item 比较Linux中的硬链接和软链接。
+    \item Linux中的权限包括几种，针对哪些用户？
+    \item 文件和目录的rwx权限有何异同？
+    \item 举例说明如何使用符号模式修改权限？
+    \item 举例说明如何使用绝对模式修改权限？
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{下节预告}
+  总结日常使用Windows过程中的基本操作：目录操作、文件操作、系统管理、压缩解压、关机重启、……
+\end{frame}
+
+
+\input{snippet/class_tail}

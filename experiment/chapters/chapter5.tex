@@ -1,0 +1,340 @@
+\chapter{Linux高级命令的操作}
+
+%\vspace{0.2in}
+\noindent
+一、实验要求
+\begin{enumerate}
+  \item 掌握find的使用方法。
+  \item 掌握grep的使用方法。
+  \item 掌握sed的使用方法。
+  \item 掌握AWK的使用方法。
+  \item 了解datamash的使用方法。
+  \item 了解Linux命令在生物信息学文本处理中的应用。
+\end{enumerate}
+
+\vspace{0.2in}
+\noindent
+二、实验准备
+\begin{enumerate}
+  \item 安装有CentOS 7的计算机。
+\end{enumerate}
+
+\vspace{0.2in}
+\noindent
+三、实验内容
+
+\vspace{0.1in}
+（一）使用find。
+\begin{enumerate}
+  \item 使用以下命令，创建测试find命令的文件。
+\begin{lstlisting}[language=bash]
+# 切换至主目录
+cd ~
+
+# 创建测试find命令的根目录
+mkdir find_test
+
+# 切换至根目录
+cd find_test
+
+# 创建空文件
+touch MybashProgram.sh
+touch mycprogram.c
+touch MyCProgram.c
+touch Program.c
+
+# 创建文件夹和文件 
+mkdir backup
+cd backup
+touch MybashProgram.sh
+touch mycprogram.c
+touch MyCProgram.c
+touch Program.c
+ 
+# 切换回根目录
+cd ..
+
+# 检查文件夹和文件的创建结果
+ls -R
+\end{lstlisting}
+  \item 用文件名查找文件。
+    \begin{enumerate}
+      \item 用MyCProgram.c作为查找名在当前目录及其子目录中查找文件：\\ \verb|find -name "MyCProgram.c"|。
+      \item 用MyCProgram.c作为查找名在当前目录及其子目录中查找文件，忽略大小写：\verb|find -iname "MyCProgram.c"|。
+    \end{enumerate}
+  \item 限定搜索指定目录的深度。
+    \begin{enumerate}
+      \item 在root目录及其子目录下查找passwd文件：\verb|find / -name passwd|。
+      \item 在root目录及其1层深的子目录中查找passwd：\verb|find / -maxdepth 2 -name passwd|。
+      \item 在root目录下及其最大两层深度的子目录中查找passwd文件：\verb|find / -maxdepth 3 -name passwd|。
+      \item 在第二层子目录和第四层子目录之间查找passwd文件：\verb|find / -mindepth 3 -maxdepth 5 -name passwd|。
+    \end{enumerate}
+  \item 在find命令查找到的文件上执行命令。
+    \begin{enumerate}
+      \item 计算所有不区分大小写的文件名为“MyCProgram.c”的文件的MD5验证和：\verb|find -iname "MyCProgram.c" -exec md5sum {} \;|。\verb|{}|将会被当前文件名取代。
+    \end{enumerate}
+  \item 相反匹配。
+    \begin{enumerate}
+      \item 显示所有名字不是MyCProgram.c的文件或者目录：\verb|find -maxdepth 1 -not -iname "MyCProgram.c"|。由于maxdepth是1，所以只会显示当前目录下的文件和目录。
+    \end{enumerate}
+  \item 使用inode编号查找文件。
+    \begin{enumerate}
+      \item 创建两个名字相似的文件，例如一个有空格结尾，一个没有：\verb|touch "test-file-name"|，\verb|touch "test-file-name "|。
+      \item \verb|ls -1 test*|。从ls的输出不能区分哪个文件是以空格结尾的。使用选项-i，可以看到文件的inode编号，借此可以区分这两个文件：\verb|ls -i1 test*|。
+      \item 用inode编号重命名文件名中有特殊符号的文件：\\ \verb|find -inum INODE -exec mv {} new-test-file-name \;|，\\ 或者删除它：\verb|find -inum INODE -exec rm {} \;|。
+    \end{enumerate}
+  \item 根据文件权限查找文件。
+    \begin{enumerate}
+      \item 找到当前目录下对同组用户具有读权限的文件，忽略该文件的其他权限：\verb|find . -perm -g=r -type f -exec ls -l {} \;|。
+      \item 找到对组用户具有只读权限的文件：\verb|find . -perm g=r -type f -exec ls -l {} \;|。
+      \item 找到对组用户具有只读权限的文件（使用八进制权限形式）：\verb|find . -perm 040 -type f -exec ls -l {} \;|。
+    \end{enumerate}
+  \item 查找空文件。
+    \begin{enumerate}
+      \item 找到home目录及子目录下所有的空文件（0字节文件）：\verb|find ~ -empty|。
+      \item 只列出home目录里的空文件：\verb|find . -maxdepth 1 -empty|。
+      \item 只列出当前目录下的非隐藏空文件：\\ \verb|find . -maxdepth 1 -empty -not -name ".*"|。
+    \end{enumerate}
+  \item 查找最大最小的文件。
+    \begin{enumerate}
+      \item 列出当前目录及子目录下5个最大的文件：\\ \verb=find . -type f -exec ls -s {} \; | sort -n -r | head -5=。
+      \item 查找5个最小的文件：\\ \verb=find . -type f -exec ls -s {} \; | sort -n  | head -5=。
+      \item 列出最小的文件，而不是0字节文件：\\ \verb=find . -not -empty -type f -exec ls -s {} \; | sort -n  | head -5=。
+    \end{enumerate}
+  \item 查找指定文件类型的文件。
+    \begin{enumerate}
+      \item 查找socket文件：\verb|find . -type s|。
+      \item 查找所有的目录：\verb|find . -type d|。
+      \item 查找所有的一般文件：\verb|find . -type f|。
+      \item 查找所有的隐藏文件：\verb|find . -type f -name ".*"|。
+      \item 查找所有的隐藏目录：\verb|find . -type d -name ".*"|。
+    \end{enumerate}
+  \item 通过文件大小查找文件。\verb|+|指比给定尺寸大，\verb|–|指比给定尺寸小，没有符号代表和给定尺寸完全一样大。 
+    \begin{enumerate}
+      \item 查找比指定文件大的文件：\verb|find ~ -size +100M|。
+      \item 查找比指定文件小的文件：\verb|find ~ -size -100M|。
+      \item 查找符合给定大小的文件：\verb|find ~ -size 100M|。
+    \end{enumerate}
+  \item 删除大型打包文件\textcolor{red}{【谨慎操作，请勿尝试】}。
+    \begin{enumerate}
+      \item 删除大于100M的*.zip文件：\verb|find / -type f -name *.zip -size +100M -exec rm -i {} \;"|。
+      \item 删除所有大于100M的*.tar文件：\verb|find / -type f -name *.tar -size +100M -exec rm -i {} \;"|。
+    \end{enumerate}
+  \item 基于访问/修改/更改时间查找文件。
+    \begin{enumerate}
+      \item 找到当前目录及其子目录下，最近一次修改时间在1个小时（60分钟）之内的文件或目录：\verb|find . -mmin -60|。
+      \item 找到24小时（1天）内被修改过的文件（文件系统根目录/下）：\verb|find / -mtime -1|。
+      \item 找到当前目录及其子目录下，最近一次访问时间在1个小时（60分钟）之内的文件或目录：\verb|find . -amin -60|。
+      \item 找到24小时（1天）内被访问过的文件（文件系统根目录/下）：\verb|find / -atime -1|。
+      \item 在当前目录及其子目录下，查找1个小时（60分钟）内文件状态发生改变的文件：\verb|find . -cmin -60|。
+      \item 在根目录/及其子目录下，查找1天（24小时）内文件状态发生改变的文件：\verb|find / -ctime -1|。
+      \item 显示30分钟内被修改过的文件，但文件夹不显示：\verb|find /etc/sysconfig -mmin -30 -type f|。
+      \item 显示当前目录及其子目录下，15分钟内文件内容被修改过的文件，并且只列出非隐藏文件：\verb|find . -mmin -15 \( ! -regex ".*/\..*" \)|。
+    \end{enumerate}
+  \item 基于文件比较的查找。
+    \begin{enumerate}
+      \item 显示所有在ordinary\_file之后创建修改的文件：\verb|find -newer ordinary_file|。
+      \item 显示在 /etc/passwd修改之后被修改过的文件：\verb|find -newer /etc/passwd|。
+      \item 显示所有在 /etc/hosts文件被修改之后被访问过的文件：\verb|find -anewer /etc/hosts|。
+      \item 显示在修改文件 /etc/fstab之后所有文件状态发生改变的文件：\verb|find -cnewer /etc/fstab|。
+    \end{enumerate}
+  \item 在查找到的文件列表结果上直接执行命令。
+    \begin{enumerate}
+      \item 在find命令输出上使用 ls -l，列举出1小时内被编辑过的文件的详细信息：\verb|find -mmin -60 -exec ls -l {} \;|。
+      \item 在同一个命令中使用多个{}：\verb|find -name "*.txt" cp {} {}.bak \;|。
+      \item 将所有mp3文件的文件名中的空格替换成下划线：\verb|find . -type f -iname “*.mp3″ -exec rename “s/ /_/g” {} \;|。
+    \end{enumerate}
+  \item 将错误重定向到 /dev/null。
+    \begin{enumerate}
+      \item 将错误消息重定向到 /dev/null中去：\verb|find / -name "*.conf" 2>>/dev/null|。
+    \end{enumerate}
+\end{enumerate}
+
+\vspace{0.1in}
+（二）使用grep。
+\begin{enumerate}
+  \item 搜索和寻找文件：\verb=sudo dpkg -l | grep -i python=。
+  \item 搜索和过滤文件，除掉所有的注释行：\verb|grep -v "#" /etc/apache2/sites-available/default-ssl|。
+  \item 找出艺术家JayZ的所有mp3格式的音乐文件，里面也不要有任何混合音轨：\verb=find . -name ".mp3" | grep -i JayZ | grep -vi "remix"=。
+  \item 显示搜索字符串后面、前面或前后的几行：\verb=ifconfig | grep -A 4 UP=，\verb=ifconfig | grep -B 2 UP|=，\verb=ifconfig | grep -C 2 lo=。
+  \item 计算匹配项的数目：\verb=ifconfig | grep -c inet6=。
+  \item 按给定字符串搜索文件中匹配的行号：\verb|grep -n "main" setup.py|。
+  \item 递归搜索：\verb|grep -r "function" *|。
+  \item 进行精确匹配搜索（包含要搜索的单词，而不是通配）：\verb=ifconfig | grep -w RUNNING=。
+  \item 在Gzip压缩文件中搜索：\verb|zgrep -i error /var/log/syslog.2.gz|。
+  \item 在一个文件或文件列表中搜索固定样式的字符串（读取保存在文件中的匹配模式），功能与grep -F相同：\verb|fgrep -f file_full_of_patterns.txt file_to_search.txt|。
+\end{enumerate}
+
+\vspace{0.1in}
+（三）使用sed进行操作。
+\begin{enumerate}
+  \item 使用vim创建两个文件，每个文件含有一组名字：
+\begin{verbatim}
+#names1.txt
+Paul
+Craig
+Debra
+Joe
+Jeremy
+
+#names2.txt
+Paul
+Katie
+Mike
+Tom
+Pat
+\end{verbatim}
+  \item 在命令行中输入并运行下面的命令：\\ \verb|sed -e s/Paul/Pablo/g names1.txt names2.txt > names3.txt|。
+  \item 使用\verb|cat names3.txt|命令显示第三个文件的输出，以观察得到的名字列表。
+\end{enumerate}
+
+\vspace{0.1in}
+（四）使用带有多个命令的sed。
+\begin{enumerate}
+  \item 定位先前示例中创建的两个含有一组名字的文本文件。
+  \item 利用vim命令创建一个名为edits.sedscr的新文件，并为sed列出一组编辑指令：
+\begin{verbatim}
+s/Pat/Patricia/
+s/Tom/Thomas/
+s/Joe/Joseph/
+1d
+\end{verbatim}
+  \item 调用sed：\verb|sed -f edits.sedscr names1.txt names2.txt > names3.txt|。查看names3.txt文件中的内容。
+\end{enumerate}
+
+\vspace{0.1in}
+（五）使用AWK。
+\begin{enumerate}
+  \item 在命令行中输入如下的awk命令：\verb|awk '{print $0}' /etc/passwd|。
+\end{enumerate}
+
+\vspace{0.1in}
+（六）使用AWK文件。
+\begin{enumerate}
+  \item 使用vim命令输入如下内容，并将文件保存为print.awk：
+\begin{verbatim}
+BEGIN {
+  FS=":"
+}
+{ printf "username: " $1 "\t\t\t user id: " $3 }
+\end{verbatim}
+  \item 以如下方式执行awk命令：\verb|awk -f print.awk /etc/passwd|。
+\end{enumerate}
+
+\vspace{0.1in}
+（七）使用datamash。
+\begin{enumerate}
+  \item datamash与AWK、Perl和R的比较（\href{http://www.gnu.org/software/datamash/alternatives/}{http://www.gnu.org/software/datamash/alternatives/}）。
+    \begin{enumerate}
+      \item 计算总和、最小值、最大值、平均值：
+\begin{lstlisting}[language=bash]
+# sum
+seq 10 | datamash sum 1
+seq 10 | awk '{sum+=$1} END {print sum}'
+
+# minimum value
+seq -5 1 7 | datamash min 1
+seq -5 1 7 | awk 'NR==1 {min=$1} NR>1 && $1<min { min=$1  } END {print min}'
+
+# maximum value
+seq -5 -1 | datamash max 1
+seq -5 -1 | awk 'NR==1 {max=$1} NR>1 && $1>max { max=$1  } END {print max}'
+
+# mean
+seq 10 | datamash mean 1
+seq 10 | awk '{sum+=$1} END {print sum/NR}'
+\end{lstlisting}
+      \item 处理分组数据：
+\begin{lstlisting}[language=bash]
+# data
+DATA=$(printf "%s\t%d\n" a 1 b 2 a 3 b 4 a 3 a 6)
+
+# First value of each group
+echo "$DATA" | datamash -s -g 1 first 2
+echo "$DATA" | awk '!($1 in a){a[$1]=$2} END {for(i in a) { print i, a[i] }}'
+
+# Last value of each group:
+echo "$DATA" | datamash -s -g 1 last 2
+echo "$DATA" | awk '{a[$1]=$2} END {for(i in a) { print i, a[i]  }}'
+
+# Number of values in each group:
+echo "$DATA" | datamash -s -g 1 count 2
+echo "$DATA" | awk '{a[$1]++} END {for(i in a) { print i, a[i]  }}'
+
+# Collapse all values in each group:
+echo "$DATA" | datamash -s -g 1 collapse 2
+echo "$DATA" | perl -lane '{push @{$a{$F[0]}},$F[1]} END{print join("\n",map{"$_ ".join(",",@{$a{$_}})} sort keys %a);}'
+
+# Collapse unique values in each group:
+echo "$DATA" | datamash -s -g 1 unique 2
+echo "$DATA" | perl -lane '{$a{$F[0]}{$F[1]}=1} END{print join("\n",map{"$_ ".join(",",sort keys %{$a{$_}})} sort keys %a);}'
+
+# Print a random value from each group:
+echo "$DATA" | datamash -s -g 1 rand 2
+echo "$DATA" | perl -lane '{ push @{$a{$F[0]}},$F[1]  } END{ print join("\n",map{"$_ ".$a{$_}->[rand(@{$a{$_}})] } sort keys %a ) ; }'
+\end{lstlisting}
+      \item 统计操作：
+\begin{lstlisting}[language=bash]
+# A simple summary of the data, without grouping:
+echo "$DATA" | datamash min 2 q1 2 median 2 mean 2 q3 2 max 2
+echo "$DATA" | Rscript -e 'summary(read.table("stdin"))
+
+# A simple summary of the data, with grouping:
+echo "$DATA" | datamash -s --header-out -g 1 min 2 q1 2 median 2 mean 2 q3 2 max 2 | expand -t 18
+echo "$DATA" | Rscript -e 'a=read.table("stdin")' -e 'aggregate(a$V2,by=list(a$V1),summary)'
+
+# Calculating mean and standard-deviation for each group:
+echo "$DATA" | datamash -s -g 1 mean 2 sstdev 2
+echo "$DATA" | Rscript -e 'a=read.table("stdin")' -e 'f=function(x){c(mean(x),sd(x))}' -e 'aggregate(a$V2,by=list(a$V1),f)'
+\end{lstlisting}
+      \item 反转、转置：
+\begin{lstlisting}[language=bash]
+# reverse fields:
+echo "$DATA" | datamash reverse
+echo "$DATA" | perl -lane 'print join(" ", reverse @F)'
+
+# transpose a file (swap rows and columns):
+echo "$DATA" | datamash transpose
+echo "$DATA" | Rscript -e 'write.table(t(read.table("stdin")),quote=F,col.names=F,row.names=F)'
+\end{lstlisting}
+    \end{enumerate}
+  \item datamash在生物信息学文本处理中的应用（\href{http://www.gnu.org/software/datamash/examples/\#example\_genes}{http://www.gnu.org/software/datamash/examples/\#example\_genes}）。
+    \begin{enumerate}
+      \item 使用的数据：\href{http://git.savannah.gnu.org/cgit/datamash.git/plain/examples/genes.txt}{http://git.savannah.gnu.org/cgit/datamash.git/plain/examples/genes.txt}。
+      \item 数据中16列的含义：\circled{1}bin，\circled{2}name (isoform/transcript identifier)，\circled{3}chromosome，\circled{4}strand，\circled{5}txStart (transcription start site)，\circled{6}txEnd (transcription end site)，\circled{7}cdsStart (coding start site)，\circled{8}cdsEnd (coding end site)，\circled{9}exonCount n(umber of exons)，\circled{10}exonStarts，\circled{11}exonEnds，\circled{12}score，\circled{13}GeneName (gene identifier)，\circled{14}cdsStartStat，\circled{15}cdsEndStat，\circled{16}exonFrames。
+      \item 使用datamash处理genes.txt文件：
+\begin{lstlisting}[language=bash]
+# Find Number of isoforms per gene
+datamash -s -g 13 count 2 < genes.txt
+# print all the isoforms for each gene
+datamash -s -g 13 count 2 collapse 2 < genes.txt
+
+# Find genes with more than 5 isoforms
+cat genes.txt | datamash -s -g 13 count 2 collapse 2 | awk '$2>5'
+
+# Which genes are transcribes from both strands? 
+cat genes.txt | datamash -s -g 13 countunique 4 | awk '$2>1'
+
+# Which genes are transcribes from multiple chromosomes? 
+cat genes.txt | datamash -s -g 13 countunique 3 unique 3 | awk '$2>1'
+
+# Examine Exon-count variability
+cat genes.txt | datamash -s -g 13 count 9 min 9 max 9 mean 9 pstdev 9 | awk '$2>1'
+
+# How many transcripts are in each chromosome?
+datamash -s -g 3 count 2 < genes.txt
+
+# How many transcripts are in each chromsomse AND strand?
+datamash -s -g 3,4 count 2 < genes.txt
+\end{lstlisting}
+    \end{enumerate}
+\end{enumerate}
+
+\vspace{0.1in}
+（八）Linux命令在生物信息学文本处理中的应用。
+\begin{enumerate}
+  \item Useful bash one-liners useful for bioinformatics：\\ \href{https://github.com/stephenturner/oneliners}{https://github.com/stephenturner/oneliners}。
+  \item Unix commands applied to bioinformatics：\\ \href{http://rous.mit.edu/index.php/Unix\_commands\_applied\_to\_bioinformatics}{http://rous.mit.edu/index.php/Unix\_commands\_applied\_to\_bioinformatics}。
+  \item Scott's list of linux one-liners：\\ \href{https://wikis.utexas.edu/display/bioiteam/Scott\%27s+list+of+linux+one-liners}{https://wikis.utexas.edu/display/bioiteam/Scott\%27s+list+of+linux+one-liners}。
+\end{enumerate}
+

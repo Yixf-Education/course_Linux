@@ -1,0 +1,304 @@
+
+[TOC]
+
+
+* * *
+
+## 第一章 Linux基础
+
+### Linux的发音
+![](./LinuxP.mp3)
+
+### Shell种类
+```bash
+echo $SHELL
+cat /etc/shells
+```
+
+### 内核版本
+```bash
+uname -r
+```
+
+### Docker
+1. 打开Docker
+```bash
+sudo docker run -t -i ubuntu:14.04 /bin/bash
+sudo docker run -t -i ubuntu:class /bin/bash
+```
+2. 运行命令
+```bash
+man man
+man -k manual
+exit
+```
+
+### 常见错误
+```bash
+$sl
+#Command not found
+$cat no_exist_file.txt
+#No such file or directory
+$apt-get install htop
+#Permission denied
+```
+
+### man与联机帮助页
+```bash
+#查找命令的联机帮助页
+man man
+man ls
+#根据关键字搜索联机帮助页
+man -k permission
+man -k manual
+man -k shell
+```
+
+* * *
+
+## 第二章 用户和组
+
+### 配置文件
+```bash
+ls -l /etc/passwd /etc/shadow /etc/group /etc/gshadow
+```
+
+### 配置文件格式
+```bash
+cat /etc/passwd
+cat /etc/passwd | column -entx -s ":"
+cat /etc/shadow | column -entx -s ":"
+cat /etc/group | column -entx -s ":"
+cat /etc/gshadow | column -entx -s ":"
+```
+### 配置文件之间的关系
+```bash
+grep root /etc/passwd /etc/shadow /etc/group /etc/gshadow | column -entx -s ":"
+```
+
+### 账户管理
+```bash
+useradd -c “Jane Doe” -d /home/unixnewbie -e 2006-07-06 -f 60 -g users -G authors -s /bin/sh -m unixnewbie
+```
+
+### 辅助命令
+```bash
+whoami
+who am i
+id
+groups
+finger root
+last
+```
+
+* * *
+
+## 第三章 文件系统
+
+### 基本目录
+```bash
+ls /
+```
+
+### 相对路径
+```bash
+pwd
+cd ~
+cd .
+cd ..
+cd -
+```
+
+### 文件系统导航
+```bash
+ls -l /etc/passwd
+```
+
+### 链接
+```bash
+#创建文件
+touch source
+ln hard source
+ln -s soft source
+＃查看属性
+ls -l source hard soft
+#修改文件
+echo "For source" > source
+ls -l source hard soft
+echo "For hard" > hard
+ls -l source hard soft
+echo "For soft" > soft
+ls -l source hard soft
+#删除文件
+rm source
+cat hard
+cat soft
+```
+
+* * *
+
+## 第四章　常用Linux命令
+
+### 命令的剖析
+```bash
+ls
+ls -a
+ls --all
+ls -al
+```
+
+### 查找命令的相关信息
+```bash
+man ls
+info ls
+ls --help
+apropos who
+```
+
+### 命令的修改
+```bash
+#通配符
+ls /etc/*.conf
+#转义
+echo $SHELL
+echo '$SHELL'
+echo "$SHELL"
+echo \$SHELL
+$$
+#管道
+ls --help | less
+#命令替换
+ls $(pwd)
+ls `pwd`
+ls ${pwd}
+```
+
+### 常用命令
+```bash
+#echo
+echo "First line\nSecond line"
+echo -e "First line\nSecond line"
+```
+
+### 命令使用技巧
+```bash
+#Tab补全
+#命令历史
+history
+#命令别名
+alias
+ll
+alias ll="ls -l"
+alias
+ll
+unalias ll
+alias
+ll
+alias ls="ls -l"
+\ls
+##终端快捷键
+Ctrl+L
+Ctrl+R
+!!
+```
+
+* * *
+
+## 第五章 高级Linux命令
+
+### grep
+```bash
+grep root /etc/*
+grep -v root /etc/passwd
+```
+
+### find
+```bash
+find /etc -name passwd
+```
+
+### AWK
+```bash
+awk -F: '$3==0 {print $1}' /etc/passwd
+awk -F: 'length($2)==0 {print $1}' /etc/shadow
+```
+
+### 生物信息学中的应用
+```bash
+echo {A,C,G,T}{A,C,G,T}{A,C,G,T}
+echo {A,C,G,T}{A,C,G,T} | sed 's/ /\n/g'
+echo {A,C,G,T}{A,C,G,T} | tr ' ' '\n'
+```
+
+* * *
+
+## 第六章 软件安装
+
+## 第七章 Vim编辑器
+
+### 工作模式
+
+### 移动定位
+```bash
+h, j, k, l
+0, ^, $, gg, G
+```
+
+### 文件编辑
+```bash
+#进入插入模式
+i, I, a, A, o, O
+#剪切删除
+x, dd
+#修改替换
+r, R
+#复制粘贴
+J, yy, p, P
+#撤销重做
+u, U, Ctrl+R
+#搜索
+/word, n
+#替换
+:s/old/new/, :s/old/new/g, :%s/old/new/g
+#保存退出
+:wq, :q!
+```
+
+* * *
+
+## 第八章 shell编程
+
+### 变量
+```bash
+num=2
+echo "this is the ${num}nd" # this is the 2nd
+VAR=1
+VAR=$VAR+1
+echo $VAR
+echo $SHELL # 输出:/bin/bash
+echo "$SHELL" # 同上
+echo '$SHELL' # 输出:$SHELL
+echo \$SHELL # 同上
+```
+
+### 算术运算
+```bash
+var=1 # var:1
+let "var+=1" # var:2
+var="$[$var+1]" # var:3
+((var++)) # var:4
+var=$(($var+1)) # var:5
+var="$(expr "$var" + 1)" # var:6,不建议使用
+var="`expr "$var" + 1`" # var:7,强烈不建议使用,注意加号两边的空格,否则还是按照字符串的方式赋值,`为Esc下方的`,而不是单引号'
+```
+
+### 命令替换
+```bash
+D1=`date`
+D2=$(date)
+```
+
+* * *
+
+## 第九章 Perl语言简介
+

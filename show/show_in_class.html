@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>show_in_class.html</title>
+  <meta name="generator" content="Haroopad 0.13.1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>div.oembedall-githubrepos{border:1px solid #DDD;border-radius:4px;list-style-type:none;margin:0 0 10px;padding:8px 10px 0;font:13.34px/1.4 helvetica,arial,freesans,clean,sans-serif;width:452px;background-color:#fff}div.oembedall-githubrepos .oembedall-body{background:-moz-linear-gradient(center top,#FAFAFA,#EFEFEF);background:-webkit-gradient(linear,left top,left bottom,from(#FAFAFA),to(#EFEFEF));border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-top:1px solid #EEE;margin-left:-10px;margin-top:8px;padding:5px 10px;width:100%}div.oembedall-githubrepos h3{font-size:14px;margin:0;padding-left:18px;white-space:nowrap}div.oembedall-githubrepos p.oembedall-description{color:#444;font-size:12px;margin:0 0 3px}div.oembedall-githubrepos p.oembedall-updated-at{color:#888;font-size:11px;margin:0}div.oembedall-githubrepos ul.oembedall-repo-stats{border:none;float:right;font-size:11px;font-weight:700;padding-left:15px;position:relative;z-index:5;margin:0}div.oembedall-githubrepos ul.oembedall-repo-stats li{border:none;color:#666;display:inline-block;list-style-type:none;margin:0!important}div.oembedall-githubrepos ul.oembedall-repo-stats li a{background-color:transparent;border:none;color:#666!important;background-position:5px -2px;background-repeat:no-repeat;border-left:1px solid #DDD;display:inline-block;height:21px;line-height:21px;padding:0 5px 0 23px}div.oembedall-githubrepos ul.oembedall-repo-stats li:first-child a{border-left:medium none;margin-right:-3px}div.oembedall-githubrepos ul.oembedall-repo-stats li a:hover{background:5px -27px no-repeat #4183C4;color:#FFF!important;text-decoration:none}div.oembedall-githubrepos ul.oembedall-repo-stats li:first-child a:hover{border-bottom-left-radius:3px;border-top-left-radius:3px}ul.oembedall-repo-stats li:last-child a:hover{border-bottom-right-radius:3px;border-top-right-radius:3px}span.oembedall-closehide{background-color:#aaa;border-radius:2px;cursor:pointer;margin-right:3px}div.oembedall-container{margin-top:5px;text-align:left}.oembedall-ljuser{font-weight:700}.oembedall-ljuser img{vertical-align:bottom;border:0;padding-right:1px}.oembedall-stoqembed{border-bottom:1px dotted #999;float:left;overflow:hidden;width:730px;line-height:1;background:#FFF;color:#000;font-family:Arial,Liberation Sans,DejaVu Sans,sans-serif;font-size:80%;text-align:left;margin:0;padding:0}.oembedall-stoqembed a{color:#07C;text-decoration:none;margin:0;padding:0}.oembedall-stoqembed a:hover{text-decoration:underline}.oembedall-stoqembed a:visited{color:#4A6B82}.oembedall-stoqembed h3{font-family:Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;font-size:130%;font-weight:700;margin:0;padding:0}.oembedall-stoqembed .oembedall-reputation-score{color:#444;font-size:120%;font-weight:700;margin-right:2px}.oembedall-stoqembed .oembedall-user-info{height:35px;width:185px}.oembedall-stoqembed .oembedall-user-info .oembedall-user-gravatar32{float:left;height:32px;width:32px}.oembedall-stoqembed .oembedall-user-info .oembedall-user-details{float:left;margin-left:5px;overflow:hidden;white-space:nowrap;width:145px}.oembedall-stoqembed .oembedall-question-hyperlink{font-weight:700}.oembedall-stoqembed .oembedall-stats{background:#EEE;margin:0 0 0 7px;padding:4px 7px 6px;width:58px}.oembedall-stoqembed .oembedall-statscontainer{float:left;margin-right:8px;width:86px}.oembedall-stoqembed .oembedall-votes{color:#555;padding:0 0 7px;text-align:center}.oembedall-stoqembed .oembedall-vote-count-post{font-size:240%;color:#808185;display:block;font-weight:700}.oembedall-stoqembed .oembedall-views{color:#999;padding-top:4px;text-align:center}.oembedall-stoqembed .oembedall-status{margin-top:-3px;padding:4px 0;text-align:center;background:#75845C;color:#FFF}.oembedall-stoqembed .oembedall-status strong{color:#FFF;display:block;font-size:140%}.oembedall-stoqembed .oembedall-summary{float:left;width:635px}.oembedall-stoqembed .oembedall-excerpt{line-height:1.2;margin:0;padding:0 0 5px}.oembedall-stoqembed .oembedall-tags{float:left;line-height:18px}.oembedall-stoqembed .oembedall-tags a:hover{text-decoration:none}.oembedall-stoqembed .oembedall-post-tag{background-color:#E0EAF1;border-bottom:1px solid #3E6D8E;border-right:1px solid #7F9FB6;color:#3E6D8E;font-size:90%;line-height:2.4;margin:2px 2px 2px 0;padding:3px 4px;text-decoration:none;white-space:nowrap}.oembedall-stoqembed .oembedall-post-tag:hover{background-color:#3E6D8E;border-bottom:1px solid #37607D;border-right:1px solid #37607D;color:#E0EAF1}.oembedall-stoqembed .oembedall-fr{float:right}.oembedall-stoqembed .oembedall-statsarrow{background-image:url(http://cdn.sstatic.net/stackoverflow/img/sprites.png?v=3);background-repeat:no-repeat;overflow:hidden;background-position:0 -435px;float:right;height:13px;margin-top:12px;width:7px}.oembedall-facebook1{border:1px solid #1A3C6C;padding:0;font:13.34px/1.4 verdana;width:500px}.oembedall-facebook2{background-color:#627add}.oembedall-facebook2 a{color:#e8e8e8;text-decoration:none}.oembedall-facebookBody{background-color:#fff;vertical-align:top;padding:5px}.oembedall-facebookBody .contents{display:inline-block;width:100%}.oembedall-facebookBody div img{float:left;margin-right:5px}div.oembedall-lanyard{-webkit-box-shadow:none;-webkit-transition-delay:0s;-webkit-transition-duration:.4000000059604645s;-webkit-transition-property:width;-webkit-transition-timing-function:cubic-bezier(0.42,0,.58,1);background-attachment:scroll;background-clip:border-box;background-color:transparent;background-image:none;background-origin:padding-box;border-width:0;box-shadow:none;color:#112644;display:block;float:left;font-family:'Trebuchet MS',Trebuchet,sans-serif;font-size:16px;height:253px;line-height:19px;margin:0;max-width:none;min-height:0;outline:#112644 0;overflow-x:visible;overflow-y:visible;padding:0;position:relative;text-align:left;vertical-align:baseline;width:804px}div.oembedall-lanyard .tagline{font-size:1.5em}div.oembedall-lanyard .wrapper{overflow:hidden;clear:both}div.oembedall-lanyard .split{float:left;display:inline}div.oembedall-lanyard .prominent-place .flag:active,div.oembedall-lanyard .prominent-place .flag:focus,div.oembedall-lanyard .prominent-place .flag:hover,div.oembedall-lanyard .prominent-place .flag:link,div.oembedall-lanyard .prominent-place .flag:visited{float:left;display:block;width:48px;height:48px;position:relative;top:-5px;margin-right:10px}div.oembedall-lanyard .place-context{font-size:.889em}div.oembedall-lanyard .prominent-place .sub-place{display:block}div.oembedall-lanyard .prominent-place{font-size:1.125em;line-height:1.1em;font-weight:400}div.oembedall-lanyard .main-date{color:#8CB4E0;font-weight:700;line-height:1.1}div.oembedall-lanyard .first{width:48.57%;margin:0 0 0 2.857%}.mermaid .label{color:#333}.node circle,.node polygon,.node rect{fill:#cde498;stroke:#13540c;stroke-width:1px}.edgePath .path{stroke:green;stroke-width:1.5px}.cluster rect{fill:#cdffb2;rx:40;stroke:#6eaa49;stroke-width:1px}.cluster text{fill:#333}.actor{stroke:#13540c;fill:#cde498}text.actor{fill:#000;stroke:none}.actor-line{stroke:grey}.messageLine0{stroke-width:1.5;stroke-dasharray:"2 2";marker-end:"url(#arrowhead)";stroke:#333}.messageLine1{stroke-width:1.5;stroke-dasharray:"2 2";stroke:#333}#arrowhead{fill:#333}#crosshead path{fill:#333!important;stroke:#333!important}.messageText{fill:#333;stroke:none}.labelBox{stroke:#326932;fill:#cde498}.labelText,.loopText{fill:#000;stroke:none}.loopLine{stroke-width:2;stroke-dasharray:"2 2";marker-end:"url(#arrowhead)";stroke:#326932}.note{stroke:#6eaa49;fill:#fff5ad}.noteText{fill:#000;stroke:none;font-family:'trebuchet ms',verdana,arial;font-size:14px}.section{stroke:none;opacity:.2}.section0,.section2{fill:#6eaa49}.section1,.section3{fill:#fff;opacity:.2}.sectionTitle0,.sectionTitle1,.sectionTitle2,.sectionTitle3{fill:#333}.sectionTitle{text-anchor:start;font-size:11px;text-height:14px}.grid .tick{stroke:lightgrey;opacity:.3;shape-rendering:crispEdges}.grid path{stroke-width:0}.today{fill:none;stroke:red;stroke-width:2px}.task{stroke-width:2}.taskText{text-anchor:middle;font-size:11px}.taskTextOutsideRight{fill:#000;text-anchor:start;font-size:11px}.taskTextOutsideLeft{fill:#000;text-anchor:end;font-size:11px}.taskText0,.taskText1,.taskText2,.taskText3{fill:#fff}.task0,.task1,.task2,.task3{fill:#487e3a;stroke:#13540c}.taskTextOutside0,.taskTextOutside1,.taskTextOutside2,.taskTextOutside3{fill:#000}.active0,.active1,.active2,.active3{fill:#cde498;stroke:#13540c}.activeText0,.activeText1,.activeText2,.activeText3{fill:#000!important}.done0,.done1,.done2,.done3{stroke:grey;fill:lightgrey;stroke-width:2}.doneText0,.doneText1,.doneText2,.doneText3{fill:#000!important}.crit0,.crit1,.crit2,.crit3{stroke:#f88;fill:red;stroke-width:2}.activeCrit0,.activeCrit1,.activeCrit2,.activeCrit3{stroke:#f88;fill:#cde498;stroke-width:2}.doneCrit0,.doneCrit1,.doneCrit2,.doneCrit3{stroke:#f88;fill:lightgrey;stroke-width:2;cursor:pointer;shape-rendering:crispEdges}.activeCritText0,.activeCritText1,.activeCritText2,.activeCritText3,.doneCritText0,.doneCritText1,.doneCritText2,.doneCritText3{fill:#000!important}.titleText{text-anchor:middle;font-size:18px;fill:#000}text{font-family:'trebuchet ms',verdana,arial;font-size:14px}html{height:100%}body{margin:0!important;padding:5px 20px 26px!important;background-color:#fff;font-family:"Lucida Grande","Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Lucida Sans Unicode",Helvetica,Arial,sans-serif;font-size:.9em;overflow-x:hidden;overflow-y:auto}br,h1,h2,h3,h4,h5,h6{clear:both}hr.page{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x;border:0;height:3px;padding:0}hr.underscore{border-top-style:dashed!important}body >:first-child{margin-top:0!important}img.plugin{box-shadow:0 1px 3px rgba(0,0,0,.1);border-radius:3px}iframe{border:0}figure{-webkit-margin-before:0;-webkit-margin-after:0;-webkit-margin-start:0;-webkit-margin-end:0}kbd{border:1px solid #aaa;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;-moz-box-shadow:1px 2px 2px #ddd;-webkit-box-shadow:1px 2px 2px #ddd;box-shadow:1px 2px 2px #ddd;background-color:#f9f9f9;background-image:-moz-linear-gradient(top,#eee,#f9f9f9,#eee);background-image:-o-linear-gradient(top,#eee,#f9f9f9,#eee);background-image:-webkit-linear-gradient(top,#eee,#f9f9f9,#eee);background-image:linear-gradient(top,#eee,#f9f9f9,#eee);padding:1px 3px;font-family:inherit;font-size:.85em}.oembeded .oembed_photo{display:inline-block}img[data-echo]{margin:25px 0;width:100px;height:100px;background:url(../img/ajax.gif) center center no-repeat #fff}.spinner{display:inline-block;width:10px;height:10px;margin-bottom:-.1em;border:2px solid rgba(0,0,0,.5);border-top-color:transparent;border-radius:100%;-webkit-animation:spin 1s infinite linear;animation:spin 1s infinite linear}.spinner:after{content:'';display:block;width:0;height:0;position:absolute;top:-6px;left:0;border:4px solid transparent;border-bottom-color:rgba(0,0,0,.5);-webkit-transform:rotate(45deg);transform:rotate(45deg)}@-webkit-keyframes spin{to{-webkit-transform:rotate(360deg)}}@keyframes spin{to{transform:rotate(360deg)}}p.toc{margin:0!important}p.toc ul{padding-left:10px}p.toc>ul{padding:10px;margin:0 10px;display:inline-block;border:1px solid #ededed;border-radius:5px}p.toc li,p.toc ul{list-style-type:none}p.toc li{width:100%;padding:0;overflow:hidden}p.toc li a::after{content:"."}p.toc li a:before{content:"• "}p.toc h5{text-transform:uppercase}p.toc .title{float:left;padding-right:3px}p.toc .number{margin:0;float:right;padding-left:3px;background:#fff;display:none}input.task-list-item{margin-left:-1.62em}.markdown{font-family:"Hiragino Sans GB","Microsoft YaHei",STHeiti,SimSun,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",'Segoe UI',AppleSDGothicNeo-Medium,'Malgun Gothic',Verdana,Tahoma,sans-serif;padding:20px}.markdown a{text-decoration:none;vertical-align:baseline}.markdown a:hover{text-decoration:underline}.markdown h1{font-size:2.2em;font-weight:700;margin:1.5em 0 1em}.markdown h2{font-size:1.8em;font-weight:700;margin:1.275em 0 .85em}.markdown h3{font-size:1.6em;font-weight:700;margin:1.125em 0 .75em}.markdown h4{font-size:1.4em;font-weight:700;margin:.99em 0 .66em}.markdown h5{font-size:1.2em;font-weight:700;margin:.855em 0 .57em}.markdown h6{font-size:1em;font-weight:700;margin:.75em 0 .5em}.markdown h1+p,.markdown h1:first-child,.markdown h2+p,.markdown h2:first-child,.markdown h3+p,.markdown h3:first-child,.markdown h4+p,.markdown h4:first-child,.markdown h5+p,.markdown h5:first-child,.markdown h6+p,.markdown h6:first-child{margin-top:0}.markdown hr{border:1px solid #ccc}.markdown p{margin:1em 0;word-wrap:break-word}.markdown ol{list-style-type:decimal}.markdown li{display:list-item;line-height:1.4em}.markdown blockquote{margin:1em 20px}.markdown blockquote>:first-child{margin-top:0}.markdown blockquote>:last-child{margin-bottom:0}.markdown blockquote cite:before{content:'\2014 \00A0'}.markdown .code{border-radius:3px;word-wrap:break-word}.markdown pre{border-radius:3px;word-wrap:break-word;border:1px solid #ccc;overflow:auto;padding:.5em}.markdown pre code{border:0;display:block}.markdown pre>code{font-family:Consolas,Inconsolata,Courier,monospace;font-weight:700;white-space:pre;margin:0}.markdown code{border-radius:3px;word-wrap:break-word;border:1px solid #ccc;padding:0 5px;margin:0 2px}.markdown img{max-width:100%}.markdown mark{color:#000;background-color:#fcf8e3}.markdown table{padding:0;border-collapse:collapse;border-spacing:0;margin-bottom:16px}.markdown table tr td,.markdown table tr th{border:1px solid #ccc;margin:0;padding:6px 13px}.markdown table tr th{font-weight:700}.markdown table tr th>:first-child{margin-top:0}.markdown table tr th>:last-child{margin-bottom:0}.markdown table tr td>:first-child{margin-top:0}.markdown table tr td>:last-child{margin-bottom:0}@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700);.haroopad{padding:20px;color:#222;font-size:15px;font-family:"Roboto Condensed",Tauri,"Hiragino Sans GB","Microsoft YaHei",STHeiti,SimSun,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",'Segoe UI',AppleSDGothicNeo-Medium,'Malgun Gothic',Verdana,Tahoma,sans-serif;background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}.haroopad a{color:#3269a0}.haroopad a:hover{color:#4183c4}.haroopad h2{border-bottom:1px solid #e6e6e6}.haroopad h6{color:#777}.haroopad hr{border:1px solid #e6e6e6}.haroopad blockquote>code,.haroopad h1>code,.haroopad h2>code,.haroopad h3>code,.haroopad h4>code,.haroopad h5>code,.haroopad h6>code,.haroopad li>code,.haroopad p>code,.haroopad td>code{font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;font-size:85%;background-color:rgba(0,0,0,.02);padding:.2em .5em;border:1px solid #efefef}.haroopad pre>code{font-size:1em;letter-spacing:-1px;font-weight:700}.haroopad blockquote{border-left:4px solid #e6e6e6;padding:0 15px;color:#777}.haroopad table{background-color:#fafafa}.haroopad table tr td,.haroopad table tr th{border:1px solid #e6e6e6}.haroopad table tr:nth-child(2n){background-color:#f2f2f2}.hljs{display:block;overflow-x:auto;padding:.5em;background:#fdf6e3;color:#657b83;-webkit-text-size-adjust:none}.diff .hljs-header,.hljs-comment,.hljs-doctype,.hljs-javadoc,.hljs-pi,.lisp .hljs-string{color:#93a1a1}.css .hljs-tag,.hljs-addition,.hljs-keyword,.hljs-request,.hljs-status,.hljs-winutils,.method,.nginx .hljs-title{color:#859900}.hljs-command,.hljs-dartdoc,.hljs-hexcolor,.hljs-link_url,.hljs-number,.hljs-phpdoc,.hljs-regexp,.hljs-rules .hljs-value,.hljs-string,.hljs-tag .hljs-value,.tex .hljs-formula{color:#2aa198}.css .hljs-function,.hljs-built_in,.hljs-chunk,.hljs-decorator,.hljs-id,.hljs-identifier,.hljs-localvars,.hljs-title,.vhdl .hljs-literal{color:#268bd2}.hljs-attribute,.hljs-class .hljs-title,.hljs-constant,.hljs-link_reference,.hljs-parent,.hljs-type,.hljs-variable,.lisp .hljs-body,.smalltalk .hljs-number{color:#b58900}.css .hljs-pseudo,.diff .hljs-change,.hljs-attr_selector,.hljs-cdata,.hljs-header,.hljs-pragma,.hljs-preprocessor,.hljs-preprocessor .hljs-keyword,.hljs-shebang,.hljs-special,.hljs-subst,.hljs-symbol,.hljs-symbol .hljs-string{color:#cb4b16}.hljs-deletion,.hljs-important{color:#dc322f}.hljs-link_label{color:#6c71c4}.tex .hljs-formula{background:#eee8d5}.MathJax_Hover_Frame{border-radius:.25em;-webkit-border-radius:.25em;-moz-border-radius:.25em;-khtml-border-radius:.25em;box-shadow:0 0 15px #83A;-webkit-box-shadow:0 0 15px #83A;-moz-box-shadow:0 0 15px #83A;-khtml-box-shadow:0 0 15px #83A;border:1px solid #A6D!important;display:inline-block;position:absolute}.MathJax_Hover_Arrow{position:absolute;width:15px;height:11px;cursor:pointer}#MathJax_About{position:fixed;left:50%;width:auto;text-align:center;border:3px outset;padding:1em 2em;background-color:#DDD;color:#000;cursor:default;font-family:message-box;font-size:120%;font-style:normal;text-indent:0;text-transform:none;line-height:normal;letter-spacing:normal;word-spacing:normal;word-wrap:normal;white-space:nowrap;float:none;z-index:201;border-radius:15px;-webkit-border-radius:15px;-moz-border-radius:15px;-khtml-border-radius:15px;box-shadow:0 10px 20px gray;-webkit-box-shadow:0 10px 20px gray;-moz-box-shadow:0 10px 20px gray;-khtml-box-shadow:0 10px 20px gray;filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}.MathJax_Menu{position:absolute;background-color:#fff;color:#000;width:auto;padding:5px 0;border:1px solid #CCC;margin:0;cursor:default;font:menu;text-align:left;text-indent:0;text-transform:none;line-height:normal;letter-spacing:normal;word-spacing:normal;word-wrap:normal;white-space:nowrap;float:none;z-index:201;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;-khtml-border-radius:5px;box-shadow:0 10px 20px gray;-webkit-box-shadow:0 10px 20px gray;-moz-box-shadow:0 10px 20px gray;-khtml-box-shadow:0 10px 20px gray;filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}.MathJax_MenuItem{padding:1px 2em;background:0 0}.MathJax_MenuArrow{position:absolute;right:.5em;color:#666}.MathJax_MenuActive .MathJax_MenuArrow{color:#fff}.MathJax_MenuArrow.RTL{left:.5em;right:auto}.MathJax_MenuCheck{position:absolute;left:.7em}.MathJax_MenuCheck.RTL{right:.7em;left:auto}.MathJax_MenuRadioCheck{position:absolute;left:.7em}.MathJax_MenuRadioCheck.RTL{right:.7em;left:auto}.MathJax_MenuLabel{padding:1px 2em 3px 1.33em;font-style:italic}.MathJax_MenuRule{border-top:1px solid #DDD;margin:4px 3px}.MathJax_MenuDisabled{color:GrayText}.MathJax_MenuActive{background-color:#606872;color:#fff}.MathJax_Menu_Close{position:absolute;width:31px;height:31px;top:-15px;left:-15px}#MathJax_Zoom{position:absolute;background-color:#F0F0F0;overflow:auto;display:block;z-index:301;padding:.5em;border:1px solid #000;margin:0;font-weight:400;font-style:normal;text-align:left;text-indent:0;text-transform:none;line-height:normal;letter-spacing:normal;word-spacing:normal;word-wrap:normal;white-space:nowrap;float:none;box-shadow:5px 5px 15px #AAA;-webkit-box-shadow:5px 5px 15px #AAA;-moz-box-shadow:5px 5px 15px #AAA;-khtml-box-shadow:5px 5px 15px #AAA;filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}#MathJax_ZoomOverlay{position:absolute;left:0;top:0;z-index:300;display:inline-block;width:100%;height:100%;border:0;padding:0;margin:0;background-color:#fff;opacity:0;filter:alpha(opacity=0)}#MathJax_ZoomFrame{position:relative;display:inline-block;height:0;width:0}#MathJax_ZoomEventTrap{position:absolute;left:0;top:0;z-index:302;display:inline-block;border:0;padding:0;margin:0;background-color:#fff;opacity:0;filter:alpha(opacity=0)}.MathJax_Preview{color:#888}#MathJax_Message{position:fixed;left:1px;bottom:2px;background-color:#E6E6E6;border:1px solid #959595;margin:0;padding:2px 8px;z-index:102;color:#000;font-size:80%;width:auto;white-space:nowrap}#MathJax_MSIE_Frame{position:absolute;top:0;left:0;width:0;z-index:101;border:0;margin:0;padding:0}.MathJax_Error{color:#C00;font-style:italic}footer{position:fixed;font-size:.8em;text-align:right;bottom:0;margin-left:-25px;height:20px;width:100%}</style>
+</head>
+<body class="markdown haroopad">
+<p class="toc" style="undefined"></p><ul>
+<li><ul>
+<li><span class="title">
+<a href="#第一章-linux基础" title="第一章 Linux基础">第一章 Linux基础</a>
+</span>
+<!--span class="number">
+0
+</span-->
+<ul>
+<li><span class="title">
+<a href="#linux的发音" title="Linux的发音">Linux的发音</a>
+</span>
+<!--span class="number">
+1
+</span-->
+</li>
+<li><span class="title">
+<a href="#shell种类" title="Shell种类">Shell种类</a>
+</span>
+<!--span class="number">
+2
+</span-->
+</li>
+<li><span class="title">
+<a href="#内核版本" title="内核版本">内核版本</a>
+</span>
+<!--span class="number">
+3
+</span-->
+</li>
+<li><span class="title">
+<a href="#docker" title="Docker">Docker</a>
+</span>
+<!--span class="number">
+4
+</span-->
+</li>
+<li><span class="title">
+<a href="#常见错误" title="常见错误">常见错误</a>
+</span>
+<!--span class="number">
+5
+</span-->
+</li>
+<li><span class="title">
+<a href="#man与联机帮助页" title="man与联机帮助页">man与联机帮助页</a>
+</span>
+<!--span class="number">
+6
+</span-->
+</li>
+</ul>
+</li>
+<li><span class="title">
+<a href="#第二章-用户和组" title="第二章 用户和组">第二章 用户和组</a>
+</span>
+<!--span class="number">
+7
+</span-->
+<ul>
+<li><span class="title">
+<a href="#配置文件" title="配置文件">配置文件</a>
+</span>
+<!--span class="number">
+8
+</span-->
+</li>
+<li><span class="title">
+<a href="#配置文件格式" title="配置文件格式">配置文件格式</a>
+</span>
+<!--span class="number">
+9
+</span-->
+</li>
+<li><span class="title">
+<a href="#配置文件之间的关系" title="配置文件之间的关系">配置文件之间的关系</a>
+</span>
+<!--span class="number">
+10
+</span-->
+</li>
+<li><span class="title">
+<a href="#账户管理" title="账户管理">账户管理</a>
+</span>
+<!--span class="number">
+11
+</span-->
+</li>
+<li><span class="title">
+<a href="#辅助命令" title="辅助命令">辅助命令</a>
+</span>
+<!--span class="number">
+12
+</span-->
+</li>
+</ul>
+</li>
+<li><span class="title">
+<a href="#第三章-文件系统" title="第三章 文件系统">第三章 文件系统</a>
+</span>
+<!--span class="number">
+13
+</span-->
+<ul>
+<li><span class="title">
+<a href="#基本目录" title="基本目录">基本目录</a>
+</span>
+<!--span class="number">
+14
+</span-->
+</li>
+<li><span class="title">
+<a href="#相对路径" title="相对路径">相对路径</a>
+</span>
+<!--span class="number">
+15
+</span-->
+</li>
+<li><span class="title">
+<a href="#文件系统导航" title="文件系统导航">文件系统导航</a>
+</span>
+<!--span class="number">
+16
+</span-->
+</li>
+<li><span class="title">
+<a href="#链接" title="链接">链接</a>
+</span>
+<!--span class="number">
+17
+</span-->
+</li>
+</ul>
+</li>
+<li><span class="title">
+<a href="#第四章-常用linux命令" title="第四章　常用Linux命令">第四章　常用Linux命令</a>
+</span>
+<!--span class="number">
+18
+</span-->
+<ul>
+<li><span class="title">
+<a href="#命令的剖析" title="命令的剖析">命令的剖析</a>
+</span>
+<!--span class="number">
+19
+</span-->
+</li>
+<li><span class="title">
+<a href="#查找命令的相关信息" title="查找命令的相关信息">查找命令的相关信息</a>
+</span>
+<!--span class="number">
+20
+</span-->
+</li>
+<li><span class="title">
+<a href="#命令的修改" title="命令的修改">命令的修改</a>
+</span>
+<!--span class="number">
+21
+</span-->
+</li>
+<li><span class="title">
+<a href="#常用命令" title="常用命令">常用命令</a>
+</span>
+<!--span class="number">
+22
+</span-->
+</li>
+<li><span class="title">
+<a href="#命令使用技巧" title="命令使用技巧">命令使用技巧</a>
+</span>
+<!--span class="number">
+23
+</span-->
+</li>
+</ul>
+</li>
+<li><span class="title">
+<a href="#第五章-高级linux命令" title="第五章 高级Linux命令">第五章 高级Linux命令</a>
+</span>
+<!--span class="number">
+24
+</span-->
+<ul>
+<li><span class="title">
+<a href="#grep" title="grep">grep</a>
+</span>
+<!--span class="number">
+25
+</span-->
+</li>
+<li><span class="title">
+<a href="#find" title="find">find</a>
+</span>
+<!--span class="number">
+26
+</span-->
+</li>
+<li><span class="title">
+<a href="#awk" title="AWK">AWK</a>
+</span>
+<!--span class="number">
+27
+</span-->
+</li>
+<li><span class="title">
+<a href="#生物信息学中的应用" title="生物信息学中的应用">生物信息学中的应用</a>
+</span>
+<!--span class="number">
+28
+</span-->
+</li>
+</ul>
+</li>
+<li><span class="title">
+<a href="#第六章-软件安装" title="第六章 软件安装">第六章 软件安装</a>
+</span>
+<!--span class="number">
+29
+</span-->
+</li>
+<li><span class="title">
+<a href="#第七章-vim编辑器" title="第七章 Vim编辑器">第七章 Vim编辑器</a>
+</span>
+<!--span class="number">
+30
+</span-->
+<ul>
+<li><span class="title">
+<a href="#工作模式" title="工作模式">工作模式</a>
+</span>
+<!--span class="number">
+31
+</span-->
+</li>
+<li><span class="title">
+<a href="#移动定位" title="移动定位">移动定位</a>
+</span>
+<!--span class="number">
+32
+</span-->
+</li>
+<li><span class="title">
+<a href="#文件编辑" title="文件编辑">文件编辑</a>
+</span>
+<!--span class="number">
+33
+</span-->
+</li>
+</ul>
+</li>
+<li><span class="title">
+<a href="#第八章-shell编程" title="第八章 shell编程">第八章 shell编程</a>
+</span>
+<!--span class="number">
+34
+</span-->
+<ul>
+<li><span class="title">
+<a href="#变量" title="变量">变量</a>
+</span>
+<!--span class="number">
+35
+</span-->
+</li>
+<li><span class="title">
+<a href="#算术运算" title="算术运算">算术运算</a>
+</span>
+<!--span class="number">
+36
+</span-->
+</li>
+<li><span class="title">
+<a href="#命令替换" title="命令替换">命令替换</a>
+</span>
+<!--span class="number">
+37
+</span-->
+</li>
+</ul>
+</li>
+<li><span class="title">
+<a href="#第九章-perl语言简介" title="第九章 Perl语言简介">第九章 Perl语言简介</a>
+</span>
+<!--span class="number">
+38
+</span-->
+</li>
+</ul>
+</li>
+
+</ul>
+<p></p><hr class="page"><h2 id="第一章-linux基础"><a name="第一章-linux基础" href="#第一章-linux基础"></a>第一章 Linux基础</h2><h3 id="linux的发音"><a name="linux的发音" href="#linux的发音"></a>Linux的发音</h3><p><audio controls=""><source src="file:///tmp/.org.chromium.Chromium.6VzbmT/LinuxP.mp3" type="audio/mp3">Your browser does not support the audio tag!</audio></p><h3 id="shell种类"><a name="shell种类" href="#shell种类"></a>Shell种类</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>echo $SHELL
+cat /etc/shells
+</code></pre>"><span class="hljs-built_in">echo</span> <span class="hljs-variable">$SHELL</span>
+cat /etc/shells
+</code></pre><h3 id="内核版本"><a name="内核版本" href="#内核版本"></a>内核版本</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>uname -r
+</code></pre>">uname -r
+</code></pre><h3 id="docker"><a name="docker" href="#docker"></a>Docker</h3><ol>
+<li>打开Docker<pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>sudo docker run -t -i ubuntu:14.04 /bin/bash
+sudo docker run -t -i ubuntu:class /bin/bash
+</code></pre>">sudo docker run -t -i ubuntu:<span class="hljs-number">14.04</span> /bin/bash
+sudo docker run -t -i ubuntu:class /bin/bash
+</code></pre>
+</li><li>运行命令<pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>man man
+man -k manual
+exit
+</code></pre>">man man
+man -k manual
+<span class="hljs-built_in">exit</span>
+</code></pre>
+</li></ol><h3 id="常见错误"><a name="常见错误" href="#常见错误"></a>常见错误</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>$sl
+#Command not found
+$cat no_exist_file.txt
+#No such file or directory
+$apt-get install htop
+#Permission denied
+</code></pre>"><span class="hljs-variable">$sl</span>
+<span class="hljs-comment">#Command not found</span>
+<span class="hljs-variable">$cat</span> no_exist_file.txt
+<span class="hljs-comment">#No such file or directory</span>
+<span class="hljs-variable">$apt</span>-get install htop
+<span class="hljs-comment">#Permission denied</span>
+</code></pre><h3 id="man与联机帮助页"><a name="man与联机帮助页" href="#man与联机帮助页"></a>man与联机帮助页</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>#查找命令的联机帮助页
+man man
+man ls
+#根据关键字搜索联机帮助页
+man -k permission
+man -k manual
+man -k shell
+</code></pre>"><span class="hljs-comment">#查找命令的联机帮助页</span>
+man man
+man ls
+<span class="hljs-comment">#根据关键字搜索联机帮助页</span>
+man -k permission
+man -k manual
+man -k shell
+</code></pre><hr class="page"><h2 id="第二章-用户和组"><a name="第二章-用户和组" href="#第二章-用户和组"></a>第二章 用户和组</h2><h3 id="配置文件"><a name="配置文件" href="#配置文件"></a>配置文件</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>ls -l /etc/passwd /etc/shadow /etc/group /etc/gshadow
+</code></pre>">ls <span class="hljs-operator">-l</span> /etc/passwd /etc/shadow /etc/group /etc/gshadow
+</code></pre><h3 id="配置文件格式"><a name="配置文件格式" href="#配置文件格式"></a>配置文件格式</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>cat /etc/passwd
+cat /etc/passwd | column -entx -s &quot;:&quot;
+cat /etc/shadow | column -entx -s &quot;:&quot;
+cat /etc/group | column -entx -s &quot;:&quot;
+cat /etc/gshadow | column -entx -s &quot;:&quot;
+</code></pre>">cat /etc/passwd
+cat /etc/passwd | column -entx <span class="hljs-operator">-s</span> <span class="hljs-string">":"</span>
+cat /etc/shadow | column -entx <span class="hljs-operator">-s</span> <span class="hljs-string">":"</span>
+cat /etc/group | column -entx <span class="hljs-operator">-s</span> <span class="hljs-string">":"</span>
+cat /etc/gshadow | column -entx <span class="hljs-operator">-s</span> <span class="hljs-string">":"</span>
+</code></pre><h3 id="配置文件之间的关系"><a name="配置文件之间的关系" href="#配置文件之间的关系"></a>配置文件之间的关系</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>grep root /etc/passwd /etc/shadow /etc/group /etc/gshadow | column -entx -s &quot;:&quot;
+</code></pre>">grep root /etc/passwd /etc/shadow /etc/group /etc/gshadow | column -entx <span class="hljs-operator">-s</span> <span class="hljs-string">":"</span>
+</code></pre><h3 id="账户管理"><a name="账户管理" href="#账户管理"></a>账户管理</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>useradd -c “Jane Doe” -d /home/unixnewbie -e 2006-07-06 -f 60 -g users -G authors -s /bin/sh -m unixnewbie
+</code></pre>">useradd -c “Jane Doe” <span class="hljs-operator">-d</span> /home/unixnewbie <span class="hljs-operator">-e</span> <span class="hljs-number">2006</span>-<span class="hljs-number">07</span>-<span class="hljs-number">06</span> <span class="hljs-operator">-f</span> <span class="hljs-number">60</span> -g users -G authors <span class="hljs-operator">-s</span> /bin/sh -m unixnewbie
+</code></pre><h3 id="辅助命令"><a name="辅助命令" href="#辅助命令"></a>辅助命令</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>whoami
+who am i
+id
+groups
+finger root
+last
+</code></pre>">whoami
+who am i
+id
+groups
+finger root
+last
+</code></pre><hr class="page"><h2 id="第三章-文件系统"><a name="第三章-文件系统" href="#第三章-文件系统"></a>第三章 文件系统</h2><h3 id="基本目录"><a name="基本目录" href="#基本目录"></a>基本目录</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>ls /
+</code></pre>">ls /
+</code></pre><h3 id="相对路径"><a name="相对路径" href="#相对路径"></a>相对路径</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>pwd
+cd ~
+cd .
+cd ..
+cd -
+</code></pre>"><span class="hljs-built_in">pwd</span>
+<span class="hljs-built_in">cd</span> ~
+<span class="hljs-built_in">cd</span> .
+<span class="hljs-built_in">cd</span> ..
+<span class="hljs-built_in">cd</span> -
+</code></pre><h3 id="文件系统导航"><a name="文件系统导航" href="#文件系统导航"></a>文件系统导航</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>ls -l /etc/passwd
+</code></pre>">ls <span class="hljs-operator">-l</span> /etc/passwd
+</code></pre><h3 id="链接"><a name="链接" href="#链接"></a>链接</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>#创建文件
+touch source
+ln hard source
+ln -s soft source
+＃查看属性
+ls -l source hard soft
+#修改文件
+echo &quot;For source&quot; &amp;gt; source
+ls -l source hard soft
+echo &quot;For hard&quot; &amp;gt; hard
+ls -l source hard soft
+echo &quot;For soft&quot; &amp;gt; soft
+ls -l source hard soft
+#删除文件
+rm source
+cat hard
+cat soft
+</code></pre>"><span class="hljs-comment">#创建文件</span>
+touch <span class="hljs-built_in">source</span>
+ln hard <span class="hljs-built_in">source</span>
+ln <span class="hljs-operator">-s</span> soft <span class="hljs-built_in">source</span>
+＃查看属性
+ls <span class="hljs-operator">-l</span> <span class="hljs-built_in">source</span> hard soft
+<span class="hljs-comment">#修改文件</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"For source"</span> &gt; <span class="hljs-built_in">source</span>
+ls <span class="hljs-operator">-l</span> <span class="hljs-built_in">source</span> hard soft
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"For hard"</span> &gt; hard
+ls <span class="hljs-operator">-l</span> <span class="hljs-built_in">source</span> hard soft
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"For soft"</span> &gt; soft
+ls <span class="hljs-operator">-l</span> <span class="hljs-built_in">source</span> hard soft
+<span class="hljs-comment">#删除文件</span>
+rm <span class="hljs-built_in">source</span>
+cat hard
+cat soft
+</code></pre><hr class="page"><h2 id="第四章-常用linux命令"><a name="第四章-常用linux命令" href="#第四章-常用linux命令"></a>第四章　常用Linux命令</h2><h3 id="命令的剖析"><a name="命令的剖析" href="#命令的剖析"></a>命令的剖析</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>ls
+ls -a
+ls --all
+ls -al
+</code></pre>">ls
+ls <span class="hljs-operator">-a</span>
+ls --all
+ls -al
+</code></pre><h3 id="查找命令的相关信息"><a name="查找命令的相关信息" href="#查找命令的相关信息"></a>查找命令的相关信息</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>man ls
+info ls
+ls --help
+apropos who
+</code></pre>">man ls
+info ls
+ls --help
+apropos who
+</code></pre><h3 id="命令的修改"><a name="命令的修改" href="#命令的修改"></a>命令的修改</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>#通配符
+ls /etc/*.conf
+#转义
+echo $SHELL
+echo '$SHELL'
+echo &quot;$SHELL&quot;
+echo \$SHELL
+$
+#管道
+ls --help | less
+#命令替换
+ls $(pwd)
+ls `pwd`
+ls ${pwd}
+</code></pre>"><span class="hljs-comment">#通配符</span>
+ls /etc/*.conf
+<span class="hljs-comment">#转义</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">$SHELL</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">'$SHELL'</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">$SHELL</span>"</span>
+<span class="hljs-built_in">echo</span> \<span class="hljs-variable">$SHELL</span>
+$
+<span class="hljs-comment">#管道</span>
+ls --help | less
+<span class="hljs-comment">#命令替换</span>
+ls $(<span class="hljs-built_in">pwd</span>)
+ls `<span class="hljs-built_in">pwd</span>`
+ls <span class="hljs-variable">${pwd}</span>
+</code></pre><h3 id="常用命令"><a name="常用命令" href="#常用命令"></a>常用命令</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>#echo
+echo &quot;First line\nSecond line&quot;
+echo -e &quot;First line\nSecond line&quot;
+</code></pre>"><span class="hljs-comment">#echo</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"First line\nSecond line"</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-operator">-e</span> <span class="hljs-string">"First line\nSecond line"</span>
+</code></pre><h3 id="命令使用技巧"><a name="命令使用技巧" href="#命令使用技巧"></a>命令使用技巧</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>#Tab补全
+#命令历史
+history
+#命令别名
+alias
+ll
+alias ll=&quot;ls -l&quot;
+alias
+ll
+unalias ll
+alias
+ll
+alias ls=&quot;ls -l&quot;
+\ls
+##终端快捷键
+Ctrl+L
+Ctrl+R
+!!
+</code></pre>"><span class="hljs-comment">#Tab补全</span>
+<span class="hljs-comment">#命令历史</span>
+<span class="hljs-built_in">history</span>
+<span class="hljs-comment">#命令别名</span>
+<span class="hljs-built_in">alias</span>
+ll
+<span class="hljs-built_in">alias</span> ll=<span class="hljs-string">"ls -l"</span>
+<span class="hljs-built_in">alias</span>
+ll
+<span class="hljs-built_in">unalias</span> ll
+<span class="hljs-built_in">alias</span>
+ll
+<span class="hljs-built_in">alias</span> ls=<span class="hljs-string">"ls -l"</span>
+\ls
+<span class="hljs-comment">##终端快捷键</span>
+Ctrl+L
+Ctrl+R
+!!
+</code></pre><hr class="page"><h2 id="第五章-高级linux命令"><a name="第五章-高级linux命令" href="#第五章-高级linux命令"></a>第五章 高级Linux命令</h2><h3 id="grep"><a name="grep" href="#grep"></a>grep</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>grep root /etc/*
+grep -v root /etc/passwd
+</code></pre>">grep root /etc/*
+grep -v root /etc/passwd
+</code></pre><h3 id="find"><a name="find" href="#find"></a>find</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>find /etc -name passwd
+</code></pre>">find /etc -name passwd
+</code></pre><h3 id="awk"><a name="awk" href="#awk"></a>AWK</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>awk -F: '$3==0 {print $1}' /etc/passwd
+awk -F: 'length($2)==0 {print $1}' /etc/shadow
+</code></pre>">awk -F: <span class="hljs-string">'$3==0 {print $1}'</span> /etc/passwd
+awk -F: <span class="hljs-string">'length($2)==0 {print $1}'</span> /etc/shadow
+</code></pre><h3 id="生物信息学中的应用"><a name="生物信息学中的应用" href="#生物信息学中的应用"></a>生物信息学中的应用</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>echo {A,C,G,T}{A,C,G,T}{A,C,G,T}
+echo {A,C,G,T}{A,C,G,T} | sed 's/ /\n/g'
+echo {A,C,G,T}{A,C,G,T} | tr ' ' '\n'
+</code></pre>"><span class="hljs-built_in">echo</span> {A,C,G,T}{A,C,G,T}{A,C,G,T}
+<span class="hljs-built_in">echo</span> {A,C,G,T}{A,C,G,T} | sed <span class="hljs-string">'s/ /\n/g'</span>
+<span class="hljs-built_in">echo</span> {A,C,G,T}{A,C,G,T} | tr <span class="hljs-string">' '</span> <span class="hljs-string">'\n'</span>
+</code></pre><hr class="page"><h2 id="第六章-软件安装"><a name="第六章-软件安装" href="#第六章-软件安装"></a>第六章 软件安装</h2><h2 id="第七章-vim编辑器"><a name="第七章-vim编辑器" href="#第七章-vim编辑器"></a>第七章 Vim编辑器</h2><h3 id="工作模式"><a name="工作模式" href="#工作模式"></a>工作模式</h3><h3 id="移动定位"><a name="移动定位" href="#移动定位"></a>移动定位</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>h, j, k, l
+0, ^, $, gg, G
+</code></pre>">h, j, k, l
+<span class="hljs-number">0</span>, ^, $, gg, G
+</code></pre><h3 id="文件编辑"><a name="文件编辑" href="#文件编辑"></a>文件编辑</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>#进入插入模式
+i, I, a, A, o, O
+#剪切删除
+x, dd
+#修改替换
+r, R
+#复制粘贴
+J, yy, p, P
+#撤销重做
+u, U, Ctrl+R
+#搜索
+/word, n
+#替换
+:s/old/new/, :s/old/new/g, :%s/old/new/g
+#保存退出
+:wq, :q!
+</code></pre>"><span class="hljs-comment">#进入插入模式</span>
+i, I, a, A, o, O
+<span class="hljs-comment">#剪切删除</span>
+x, dd
+<span class="hljs-comment">#修改替换</span>
+r, R
+<span class="hljs-comment">#复制粘贴</span>
+J, yy, p, P
+<span class="hljs-comment">#撤销重做</span>
+u, U, Ctrl+R
+<span class="hljs-comment">#搜索</span>
+/word, n
+<span class="hljs-comment">#替换</span>
+:s/old/new/, :s/old/new/g, :%s/old/new/g
+<span class="hljs-comment">#保存退出</span>
+:wq, :q!
+</code></pre><hr class="page"><h2 id="第八章-shell编程"><a name="第八章-shell编程" href="#第八章-shell编程"></a>第八章 shell编程</h2><h3 id="变量"><a name="变量" href="#变量"></a>变量</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>num=2
+echo &quot;this is the ${num}nd&quot; # this is the 2nd
+VAR=1
+VAR=$VAR+1
+echo $VAR
+echo $SHELL # 输出:/bin/bash
+echo &quot;$SHELL&quot; # 同上
+echo '$SHELL' # 输出:$SHELL
+echo \$SHELL # 同上
+</code></pre>">num=<span class="hljs-number">2</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"this is the <span class="hljs-variable">${num}</span>nd"</span> <span class="hljs-comment"># this is the 2nd</span>
+VAR=<span class="hljs-number">1</span>
+VAR=<span class="hljs-variable">$VAR</span>+<span class="hljs-number">1</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">$VAR</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">$SHELL</span> <span class="hljs-comment"># 输出:/bin/bash</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">$SHELL</span>"</span> <span class="hljs-comment"># 同上</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">'$SHELL'</span> <span class="hljs-comment"># 输出:$SHELL</span>
+<span class="hljs-built_in">echo</span> \<span class="hljs-variable">$SHELL</span> <span class="hljs-comment"># 同上</span>
+</code></pre><h3 id="算术运算"><a name="算术运算" href="#算术运算"></a>算术运算</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>var=1 # var:1
+let &quot;var+=1&quot; # var:2
+var=&quot;$[$var+1]&quot; # var:3
+((var++)) # var:4
+var=$(($var+1)) # var:5
+var=&quot;$(expr &quot;$var&quot; + 1)&quot; # var:6,不建议使用
+var=&quot;`expr &quot;$var&quot; + 1`&quot; # var:7,强烈不建议使用,注意加号两边的空格,否则还是按照字符串的方式赋值,`为Esc下方的`,而不是单引号'
+</code></pre>">var=<span class="hljs-number">1</span> <span class="hljs-comment"># var:1</span>
+<span class="hljs-built_in">let</span> <span class="hljs-string">"var+=1"</span> <span class="hljs-comment"># var:2</span>
+var=<span class="hljs-string">"$[<span class="hljs-variable">$var</span>+1]"</span> <span class="hljs-comment"># var:3</span>
+((var++)) <span class="hljs-comment"># var:4</span>
+var=$((<span class="hljs-variable">$var</span>+<span class="hljs-number">1</span>)) <span class="hljs-comment"># var:5</span>
+var=<span class="hljs-string">"<span class="hljs-variable">$(expr "$var" + 1)</span>"</span> <span class="hljs-comment"># var:6,不建议使用</span>
+var=<span class="hljs-string">"`expr "</span><span class="hljs-variable">$var</span><span class="hljs-string">" + 1`"</span> <span class="hljs-comment"># var:7,强烈不建议使用,注意加号两边的空格,否则还是按照字符串的方式赋值,`为Esc下方的`,而不是单引号'</span>
+</code></pre><h3 id="命令替换"><a name="命令替换" href="#命令替换"></a>命令替换</h3><pre class="bash hljs"><code class="bash" data-origin="<pre><code class=&quot;bash&quot;>D1=`date`
+D2=$(date)
+</code></pre>">D1=`date`
+D2=$(date)
+</code></pre><hr class="page"><h2 id="第九章-perl语言简介"><a name="第九章-perl语言简介" href="#第九章-perl语言简介"></a>第九章 Perl语言简介</h2>
+
+<footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;">generated by <a href="http://pad.haroopress.com" target="_blank">haroopad</a></footer>
+</body>
+</html>
