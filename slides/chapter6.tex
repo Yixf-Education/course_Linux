@@ -132,9 +132,56 @@
     包中通常含有可执行文件、配置示例或基本的配置、文档和辅助数据文件。\\
     包中还包含了元数据，如包的简要描述、谁或在何处编译了它、它提供了什么、它依赖于哪些包。
   \end{block}
-  \pause
+\end{frame}
+
+\begin{frame}
+  \frametitle{二进制软件包管理 | 管理工具}
   \begin{block}{软件包管理工具}
-    管理工具用于安装软件、自动安装必须预备的包、显示已安装的包、列出可用的包、显示文件列表、删除包、检索包、验证已安装的文件、提供包安全提示器等。
+  管理工具用于安装软件、自动安装必须预备的包、显示已安装的包、列出可用的包、显示文件列表、删除包、检索包、验证已安装的文件、提供包安全提示器等。
+  \begin{itemize}
+    \item 低级工具：能在后端实际安装、升级、卸载软件包文件
+    \item 高级工具：负责确保能很好的执行依赖性解决和元数据检索的任务
+  \end{itemize}
+  \end{block}
+  \pause
+  \begin{table}
+    \centering
+    \rowcolors[]{1}{blue!20}{blue!10}
+    \begin{tabularx}{0.658\textwidth}{ccc}
+      \hline
+      \rowcolor{blue!50}发行版 & 低级工具 & 高级工具\\
+      \hline
+      Debian版 & dpkg & apt-get/Aptitude\\
+      CentOS版 & RPM & Yum\\
+      openSUSE版 & RPM & Zypper\\
+      \hline
+    \end{tabularx}
+  \end{table}
+\end{frame}
+
+\begin{frame}
+  \frametitle{二进制软件包管理 | 管理工具 | 低级 vs. 高级}
+  \begin{block}{dpkg}
+    基于Debian的系统的一个低级包管理器。它可以安装，删除，提供有关资料，以及建立*.deb包，但它不能自动下载并安装它们相应的依赖包。
+  \end{block}
+  \pause
+  \begin{block}{apt-get}
+    Debian及其衍生版的高级包管理器，并提供命令行方式来从多个来源检索和安装软件包，其中包括解决依赖性。和dpkg不同的是，apt-get不是直接基于.deb文件工作，而是基于软件包的正确名称。
+  \end{block}
+  \pause
+  \begin{block}{Aptitude}
+    基于Debian的系统的另一个高级包管理器，它可用于快速简便的执行管理任务（安装，升级和删除软件包，还可以自动处理解决依赖性）。它在atp-get的基础上提供了更多功能，例如提供对软件包的几个版本的访问。
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{二进制软件包管理 | 管理工具 | 低级 vs. 高级}
+  \begin{block}{RPM}
+    Linux标准基础（LSB）兼容发行版所使用的一种软件包管理器，用来对软件包进行低级处理。就像dpkg一样，RPM可以查询、安装、检验、升级和卸载软件包，它多数用于基于Fedora的系统，比如RHEL和CentOS。
+  \end{block}
+  \pause
+  \begin{block}{Yum}
+    相对于基于RPM的系统，Yum增加了系统自动更新的功能和带依赖性管理的软件包管理功能。作为一个高级工具，和apt-get或者Aptitude相似，Yum需要配合仓库工作。
   \end{block}
 \end{frame}
 
