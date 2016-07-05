@@ -7,3 +7,8 @@
 * [操作系统使用份额](http://zh.wikipedia.org/wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%E4%BB%BD%E9%A2%9D#.E7.B6.B2.E8.B7.AF.E7.94.A8.E6.88.B6.E7.AB.AF.E4.BD.9C.E6.A5.AD.E7.B3.BB.E7.B5.B1)
 
 * [Did Linux drive supers, and can it drive corporate data centers?](http://www.theregister.co.uk/2013/08/02/linux_drives_supercomputing_and_maybe_clouds/)
+
+
+* [Desktop Operating System Market Share](http://www.netmarketshare.com/operating-system-market-share.aspx?qprid=8&qpcustomd=0&qpsp=209&qpnp=1&qptimeframe=M)
+* [Desktop Top Operating System Share Trend](http://www.netmarketshare.com/operating-system-market-share.aspx?qprid=9&qpcustomb=0&qpsp=186&qpnp=24&qptimeframe=M&qpstick=1&qpct=0&qpdt=1)
+* [Browser & Platform Market Share](https://www.w3counter.com/globalstats.php?year=2016&month=6)
