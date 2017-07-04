@@ -12,3 +12,6 @@
 * [Desktop Operating System Market Share](http://www.netmarketshare.com/operating-system-market-share.aspx?qprid=8&qpcustomd=0&qpsp=209&qpnp=1&qptimeframe=M)
 * [Desktop Top Operating System Share Trend](http://www.netmarketshare.com/operating-system-market-share.aspx?qprid=9&qpcustomb=0&qpsp=186&qpnp=24&qptimeframe=M&qpstick=1&qpct=0&qpdt=1)
 * [Browser & Platform Market Share](https://www.w3counter.com/globalstats.php?year=2016&month=6)
+
+
+* [Linux is Running on Almost All of the Top 500 Supercomputers](https://itsfoss.com/linux-supercomputers-2017/?utm_source=newsletter&utm_medium=email&utm_campaign=linux_owns_supercomputers&utm_term=2017-07-02)
