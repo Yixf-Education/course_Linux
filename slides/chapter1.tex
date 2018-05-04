@@ -62,10 +62,14 @@
 \begin{frame}
   \frametitle{Linux基础 | 简介 | 历史 | 概述}
   \begin{description}
-    \item[燃烧的长江] 20世纪60年代末～80年代初\\Unix帝国的崛起、繁荣与分裂
-    \item[英雄的黎明] 20世纪80年代\\黎明前的黑暗——只为等待Linux的诞生
-    \item[辽阔的大地] 20世纪90年代～至今\\Linux帝国的诞生与成长
+    \item[燃烧的长江] 20世纪60年代末～80年代初：Unix帝国的崛起、繁荣与分裂
+    \item[英雄的黎明] 20世纪80年代：黎明前的黑暗——只为等待Linux的诞生
+    \item[辽阔的大地] 20世纪90年代～至今：Linux帝国的诞生与成长
   \end{description}
+  \begin{figure}
+    \centering
+    \visible<2->{\includegraphics[height=0.55\textheight,width=0.9\textwidth]{c1.history.sanguo.png}}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
@@ -119,7 +123,7 @@
   %\begin{itemize}[<+-|alert@+>]
   \begin{itemize}[<+->]
     \item 1987，Andrew Tanenbaum（安德鲁\textbullet 谭宁邦），荷兰阿姆斯特丹自由大学，Minix
-    \item 1990，FSF，Hurd：GNU项目中的操作系统
+    \item 1990，FSF，Hurd：GNU操作系统的微内核
     \item 1991，\alert{Linus Torvalds}（李/林纳斯\textbullet 托瓦兹），芬兰赫尔辛基大学，Freax$\rightarrow$ \alert{Linux}（类Unix系统，Unix-like）
     \item 1992，在GNU GPL下Linux内核被重新授权使用
     \item 1993，Slackware首次发布；Debian项目设立
@@ -149,10 +153,11 @@
     \item 1984，苹果公司，System 1.0
     \item 1985，微软公司，Windows 1.0
     \item 1993，Patrick Volkerding，Slackware（现存最古老的Linux发行版）
-    \item 1995，Red Hat（红帽公司）成立
+    \item 1995，Red Hat（红帽公司）成立；1999年上市
     \item 1996，Larry Ewing（拉里\textbullet 厄文），设计创作了Linux吉祥物——\alert{Tux}
-    \item 2001，苹果公司，Mac OS X
-    \item 2004，Canonical公司成立
+    % \item 2001，苹果公司，Mac OS X/OS X/macOS = Darwin（Mach内核 + BSD实现）+ Aqua界面
+    \item 2001，苹果公司，Mac OS X/OS X/macOS
+    \item 2004，Canonical公司（科能软件有限公司）成立（Ubuntu家族的Linux发行版）
     \item 2007，Google发布Android的源代码（Apache）
     \item 2008，第一部Android智能手机发布
   \end{itemize}
@@ -376,9 +381,9 @@
 \begin{frame}
   \frametitle{Linux基础 | 简介 | 发行版 | 桌面环境 | Linux}
   \begin{description}
-    \item[GNOME] GNU网络对象模型环境（The GNU Network Object Model Environment），GNU计划的一部分，开放源码运动的一个重要组成部分。其目标是基于自由软件，为Unix及类Unix系统构造一个功能完善、操作简单以及界面友好的桌面环境。它是GNU计划的正式桌面。
+    \item[GNOME] GNU网络对象模型环境（The GNU Network Object Model Environment），GNU计划的一部分，开放源代码运动的一个重要组成部分。其目标是基于自由软件，为Unix及类Unix系统构造一个功能完善、操作简单以及界面友好的桌面环境。它是GNU计划的正式桌面。
     \item[KDE] 一个国际性的自由软件社区，开发运行在Linux、BSD、Solaris、Microsoft Windows与Mac OS X等平台上的一系列跨平台应用程序。它最著名的产品是Plasma桌面，是许多Linux发布版的默认桌面环境。
-    \item[Unity] Canonical公司为GNOME桌面环境所开发的图形用户界面，用于Ubuntu操作系统。Unity在Ubuntu 10.10上网本版中首次推出，最初是为了充分利用上网本有限的屏幕尺寸。不同于GNOME、KDE，Unity并非一个桌面包。
+    \item[Unity] Canonical公司为GNOME桌面环境所开发的图形用户界面，用于Ubuntu操作系统。Unity在Ubuntu 10.10上网本版中首次推出，最初是为了充分利用上网本有限的屏幕尺寸。不同于GNOME、KDE，Unity并非一个桌面包。Ubuntu 17.04是最后一个预载Unity桌面环境的版本。
   \end{description}
 \end{frame}
 
@@ -390,7 +395,7 @@
     \item[Xfce] 一个在Unix与Unix-like操作系统上运行的桌面环境。Xfce的设计目的是“设计为可作为实际应用，快速加载及运行程序，并减少耗用系统资源”。
     \item[LXDE] Lightweight X11 Desktop Environment，是自由桌面环境，可在Unix以及Linux等POSIX兼容平台运行。LXDE项目旨在提供新的轻量、快速的桌面环境。LXDE重视实用性和轻巧性，并且尽力降低其所耗系统资源。
     \item[Enlightenment] 常简称为E。0.17以前版本属于X窗口管理器，0.17版已经接近完整的桌面环境。而从0.19版开始，同时也是Wayland的合成管理器。
-    \item[Cinnamon] Unix-like系统下的一个用户接口。是GNOME Shell的一个派生版本，最初是为Linux Mint所开发，其提供了如同GNOME 2般，易于使用的拟真接口。
+    \item[Cinnamon] Unix-like系统下的一个用户接口。是GNOME Shell的一个派生版本，最初是为Linux Mint所开发，其提供了如同GNOME 2般易于使用的拟真接口。
     \item[MATE] 由已经停止官方维护的GNOME 2源代码派生而来的桌面环境。
     \item[深度桌面环境] Deepin Desktop Environment，基于HTML5和WebKit开发，主要由桌面、启动器、任务栏和深度控制中心组成。除深度控制中心前端使用QML技术，后端使用Go语言编写外，其余部分均为HTML5和WebKit实现。
   \end{description}
@@ -408,7 +413,7 @@
       \hline
       GNOME & RHEL、CentOS、Fedora、Debian\\
       KDE & openSUSE、Mandriva Linux、Kubuntu\\
-      Unity & Ubuntu（>11.04）\\
+      Unity & Ubuntu（11.04～17.04）\\
       Xfce & Xubuntu\\
       LXDE & Lubuntu\\
       Cinnamon & Linux Mint\\
@@ -422,6 +427,8 @@
 
 \begin{frame}
   \frametitle{Linux基础 | 简介 | 发行版 | 选择}
+  \begin{columns}
+    \column{0.45\textwidth}
   \begin{block}{企业环境}
     \begin{itemize}
       \item RHEL
@@ -433,16 +440,61 @@
     \begin{itemize}
       \item CentOS
       \item openSUSE
+      \item Debian
+      \item Ubuntu Server
     \end{itemize}
   \end{block}
   \pause
+    \column{0.45\textwidth}
   \begin{block}{桌面环境}
     \begin{itemize}
       \item Ubuntu
-      \item Fedora
       \item Linux Mint
+      \item Fedora
       \item Deepin
+      \item elementary OS
+      \item Manjaro Linux
       \item Gentoo
+      \item Arch Linux
+    \end{itemize}
+  \end{block}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Linux基础 | 简介 | 发行版 | 2018}
+  \begin{block}{2018最佳Linux发行版排行榜}
+    \begin{description}
+      \item[最适合系统管理员的发行版] Debian GNU/Linux
+      \item[最好的服务器发行版] Ubuntu Server
+      \item[最好的桌面发行版] elementary OS
+      \item[最漂亮的发行版] Pop!\_OS 
+      \item[最好的轻量级发行版] Lubuntu
+      \item[最年轻的发行版] Nitrux
+      \item[发展最快的发行版] Manjaro Linux 
+      \item[性能最好的发行版] Clear Linux
+      \item[包管理最好的发行版] Arch Linux
+      \item[最能证明能力的发行版] Linux From Scratch 8.0
+      \item[最好的教育发行版] ezgo Linux 
+      \item[最好的物联网发行版] Ubuntu Core
+    \end{description}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Linux基础 | 简介 | 发行版 | 2018}
+  \begin{block}{2018年10大最漂亮的Linux发行版}
+    \begin{itemize}
+      \item \href{https://elementary.io/}{elementary OS}: 类macOS的外观
+      \item \href{https://zorinos.com/}{Zorin OS}: 类Windows界面及操作，Windows用户上手容易
+      \item \href{https://neon.kde.org/}{KDE Neon}: 流畅、稳定、漂亮的扁平化桌面
+      \item \href{http://www.deepin.com}{Deepin Linux}: 对一些中国软件的良好支持
+      \item \href{https://nxos.org/}{Nitrux}: 极度简约的漂亮桌面
+      \item \href{http://ferenos.weebly.com/}{feren OS}: 提供Wine，方便运行Windows程序
+      \item \href{https://system76.com/pop}{Pop!\_OS}: 新奇的外观，舒缓的视觉外观，眼睛舒服
+      \item \href{https://solus-project.com/}{Solus OS}: 增长最快的新发行版之一
+      \item \href{https://mauilinux.org/}{Maui Linux}: 够小众，用户数超少
+      \item \href{https://www.opensuse.org}{openSUSE}: 主流发行版，用户庞大，社区支持优异
     \end{itemize}
   \end{block}
 \end{frame}
@@ -480,6 +532,14 @@
   \end{block}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Linux基础 | 简介 | 发行版 | 总结}
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{c1.distrowatch.png}
+  \end{figure}
+\end{frame}
+
 \subsection{应用领域}
 \begin{frame}
   \frametitle{Linux基础 | 简介 | 应用领域}
@@ -493,7 +553,7 @@
   \frametitle{Linux基础 | 简介 | 应用领域 | 桌面电脑}
   \begin{figure}
     \centering
-    \includegraphics[width=10cm]{c1.linux.area.desktop.2016.png}
+    \includegraphics[width=10cm]{c1.linux.area.desktop.2018.png}
   \end{figure}
 \end{frame}
 
@@ -509,7 +569,7 @@
   \frametitle{Linux基础 | 简介 | 应用领域 | 智能手机}
   \begin{figure}
     \centering
-    \includegraphics[width=11cm]{c1.linux.area.mobile.2015.png}
+    \includegraphics[width=11cm]{c1.linux.area.mobile.2018.png}
   \end{figure}
 \end{frame}
 
@@ -517,7 +577,7 @@
   \frametitle{Linux基础 | 简介 | 应用领域 | 超级计算机}
   \begin{figure}
     \centering
-    \includegraphics[width=12cm]{c1.linux.area.super.2016.png}
+    \includegraphics[width=12cm]{c1.linux.area.super.2018.png}
   \end{figure}
 \end{frame}
 
@@ -525,7 +585,7 @@
   \frametitle{Linux基础 | 简介 | 应用领域 | 分类汇总}
   \begin{figure}
     \centering
-    \includegraphics[width=12cm]{c1.linux.area.all.2015.png}
+    \includegraphics[width=7.5cm]{c1.linux.area.all.2018.png}
   \end{figure}
 \end{frame}
 
@@ -579,8 +639,8 @@
     \item sh（Bourne shell）：Unix的第一个shell
     \item bash（Bourne-Again shell）：Bourne shell的后继相容版本与开放源代码版本
     \item dash（Debian Almquist shell）：快而轻巧，兼容于POSIX标准
-    \item ksh（Korn shell）：完全向上兼容Bourne shell并包含了C shell的很多特性
     \item zsh（Z shell）：一种Bourne shell的扩展，带有数量庞大的改进
+    \item ksh（Korn shell）：完全向上兼容Bourne shell并包含了C shell的很多特性
     \item csh（C shell）：语法类似于C语言；tcsh：csh的增强版本
   \end{itemize}
   \end{block}
@@ -606,6 +666,7 @@
   \begin{enumerate}[<+->]
     \item Live CD：一个可引导的CD-ROM，包含运行一个完整操作系统所需的所有内容：内核、实用工具等
     \item Live USB：类似于Live CD，但可以更改设置、保存文件、安装软件
+    \item \alert{MultiBootUSB}：MultiBootUSB is a cross platform software written in python which allows you to install multiple live linux on a USB disk non destructively and option to uninstall distros.
     \item 硬盘安装\textcolor{red}{（谨慎选择，尤其是品牌机笔记本）}
       \begin{itemize}
         \item \textcolor{gray}{Wubi（基于Windows的安装程序，Windows-based Ubuntu Installer），DeepWin：无需对硬盘进行格式化或重新分区}
@@ -614,6 +675,14 @@
         \item 单系统：在计算机上只安装一个操作系统
       \end{itemize}
   \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Linux基础 | 学习 | 安装 | 虚拟机 | VirtualBox}
+  \begin{figure}
+    \centering
+    \includegraphics[width=7.8cm]{c1.multibootusb.png}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
@@ -676,8 +745,8 @@ possible.
   \pause
   \begin{block}{界面比较}
     \begin{itemize}
-      \item GUI对于用户来说在视觉上更易于接受，操作简单而且直观；在不同系统间、不同发行版间差异大，不能完成所有的操作任务
-      \item CLI占用资源少，启动迅速，操作更加高效，可以完成所有的工作，不同系统间、不同发行版间具有高度的相似性
+      \item GUI对于用户来说在视觉上更易于接受，操作简单而且直观；在不同系统间、不同发行版间差异大，不能完成所有的操作任务。
+      \item CLI占用资源少，启动迅速，操作更加高效，可以完成所有的工作，不同系统间、不同发行版间具有高度的相似性。
     \end{itemize}
   \end{block}
   \pause
@@ -693,7 +762,7 @@ possible.
     %\begin{enumerate}[<+-|alert@+>]
     \begin{enumerate}[<+->]
       \item 计算机概论
-      \item Linux的安装与命令
+      \item Linux的安装/远程连接与命令
       \item Linux操作系统的基本技能：用户/用户组，权限
       \item vi文本编辑器
       \item shell与shell脚本：正则表达式，管道，重定向
@@ -709,7 +778,7 @@ possible.
     \begin{itemize}[<+->]
       \item 忘记Windows的思维方式
       \item GUI是表象，CLI是本质
-      \item 注意系统的提示信息，自行解决疑难杂症
+      \item 注意系统的提示信息，自行解决“疑难杂症”
       \begin{itemize}
         \item Command not found
         \item No such file or directory
@@ -723,11 +792,74 @@ possible.
       \end{itemize}
       \item 查询后，注意网络礼节，在论坛/讨论群里大胆提问、发言
       \begin{itemize}
-        \item \href{http://www.wapm.cn/smart-questions/smart-questions-zh.html}{提问的智慧（How To Ask Questions The Smart Way）}
-        \item \href{http://code.google.com/p/cpyug/wiki/ZenForAsk}{回答的智慧}
+        % \item \href{http://www.wapm.cn/smart-questions/smart-questions-zh.html}{提问的智慧（How To Ask Questions The Smart Way）}
+        % \item \href{http://code.google.com/p/cpyug/wiki/ZenForAsk}{回答的智慧}
+        \item \href{https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md}{提问的智慧（How To Ask Questions The Smart Way）}
+        \item \href{http://dbanotes.net/tech-memo/how_to_answer_questions_the_smart_way.html}{回答的智慧}
+        \item \href{https://blog.m157q.tw/posts/2017/12/21/how-to-answer-questions-in-a-helpful-way-zh-tw/}{回答的智慧}
       \end{itemize}
     \end{itemize}
   \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Linux基础 | 学习 | 方法 | 提问}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{c1.asking.png}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Linux基础 | 学习 | 方法 | 提问}
+    \begin{block}{提问前}
+      \begin{itemize}
+        \item 尝试搜索答案——官网/手册/FAQ/Google/论坛
+        \item 尝试自己检查或试验以找到答案
+        \item 尝试阅读源代码以找到答案
+      \end{itemize}
+    \end{block}
+    \pause
+    \begin{block}{提问}
+      \begin{itemize}
+        \item 清楚明确的表达你的问题以及需求，描述目标而不是过程
+        \item 按发生时间先后列出问题症状，描述问题症状而非你的猜测
+        \item 提供最精简的Bug展示测试用例（bug-demonstrating test case）
+        \item 即使你很急也不要在标题写“紧急”，问题解决后加个简短的补充说明
+      \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Linux基础 | 学习 | 方法 | 提问 | 实例}
+  \begin{block}{蠢问题}
+    \begin{itemize}
+      \item 救命啊！我的笔记本电脑不能正常显示了！
+      \item 我可以在哪儿找到关于Foonly Flurbamatic的资料？
+      \item 我的主机板有问题了，谁来帮我？
+      % \item 我从foo项目找来的源码没法编译。它怎么这么烂？
+    \end{itemize}
+  \end{block}
+  \pause
+  \vspace{-0.5em}
+  \begin{block}{聪明问题}
+    \begin{itemize}
+      \item X.org 6.8.1的鼠标光标，在某牌显卡MV1005芯片组环境下——会变形。
+      \item 我用Google搜索过``Foonly Flurbamatic 2600"，但是没找到有用的结果。谁知道上哪儿去找对这种设备编程的资料
+      \item 我在S2464主机板上试过了X、Y和Z，但没什么作用，我又试了A、B和C。请注意当我尝试C时的奇怪现象。显然florbish正在grommicking，但结果出人意料。通常在Athlon MP主机板上引起grommicking的原因是什么？有谁知道接下来我该做些什么测试才能找出问题？
+      % \item foo项目代码在Nulix 6.2版下无法编译通过。我读过了FAQ，但里面没有提到跟Nulix有关的问题。这是我编译过程的记录，我有什么做的不对的地方吗？
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Linux基础 | 学习 | 方法 | 提问 | 实例}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.35\textwidth]{c1.asking.weixin.01.png}
+    \includegraphics[width=0.25\textwidth]{c1.asking.weixin.02.png}
+    \includegraphics[width=0.35\textwidth]{c1.asking.weixin.03.png}
+  \end{figure}
 \end{frame}
 
 \section{Linux起步}
@@ -761,7 +893,7 @@ possible.
   \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{Linux基础 | 起步 | 登录 | 远程登录}
   \begin{table}
     \centering
@@ -777,6 +909,13 @@ possible.
       \hline
     \end{tabular}
   \end{table}
+  \pause
+  \begin{block}{ssh实例}
+    \begin{itemize}
+      \item \verb|ssh 000.000.000.000|
+      \item \verb|ssh zhangsan@000.000.000.000|
+    \end{itemize}
+  \end{block}
 \end{frame}
 
 \subsection{退出Linux}
@@ -893,8 +1032,9 @@ possible.
   \end{block}
   \begin{block}{技能}
     \begin{itemize}
-      \item VirtualBox虚拟机的使用
-      \item Linux系统的安装
+      \item \textcolor{gray}{VirtualBox虚拟机的使用}
+      \item \textcolor{gray}{Linux系统的安装}
+      \item 远程连接Linux服务器
       \item Linux系统的学习
     \end{itemize}
   \end{block}
