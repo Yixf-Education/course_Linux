@@ -735,6 +735,208 @@ useradd -c COMMENT -d HOME.DIRECTORY -e EXPIRATION.DATE -f INACTIVE.DTAE -g PRIM
   \end{enumerate}
 \end{frame}
 
+\section{定制工作环境}
+\begin{frame}
+  \frametitle{知识拓展 | 环境变量}
+  \begin{block}{环境变量}
+    一个环境变量控制Linux环境的一个特定方面。\\
+    环境变量将影响用户使用计算机时的视觉和感觉，以及用户可能从来不会注意到的许多底层的操作。\\
+    可以使用环境变量来修改Linux环境的几乎每一个方面。
+  \end{block}
+  \pause
+  \begin{block}{定制工作环境}
+    \begin{itemize}
+      \item PS1环境变量
+      \item PATH环境变量
+      \item 配置shell
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{知识拓展 | PS1环境变量}
+  \begin{block}{PS1}
+    环境变量PS1：控制命令提示符（command prompt），也就是光标前的字符串。\\
+    命令提示符：用户打开一个终端窗口或者登录到控制台后，就可以看到该提示符。\\
+    定制：只要使用适当的值来定义PS1环境变量，命令提示符就几乎能够包含用户所希望的任何内容。
+  \end{block}
+  \vspace{-1em}
+  \begin{columns}
+    \column{0.42\textwidth}
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{c2.prompt.01.png}\\
+    \vspace{-0.2em}
+    \includegraphics[width=\textwidth]{c2.prompt.02.png}\\
+    \vspace{0.2em}
+    \includegraphics[width=\textwidth]{c2.prompt.03.png}\\
+    \vspace{0.2em}
+    \includegraphics[width=\textwidth]{c2.prompt.04.png}\\
+  \end{figure}
+    \column{0.58\textwidth}
+    \begin{figure}
+      \centering
+    \includegraphics[width=\textwidth]{c2.prompt.05.png}
+    \end{figure}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{知识拓展 | PS1环境变量 | 配置}
+\begin{lstlisting}
+PS1=">" # >
+PS1="Type command here >>>" # Type command here >>>
+PS1=" [\u@\h \w]\$ " # 显示用户名、主机名和工作目录
+\end{lstlisting}
+  \pause
+  \begin{table}
+    \centering
+    \rowcolors[]{1}{blue!20}{blue!10}
+    \begin{tabularx}{\textwidth}{cXX}
+      \hline
+      \rowcolor{blue!50}转义序列 & 功能\\
+      \hline
+      \verb|\t| & 当前时间（HH:MM:SS）\\
+      \verb|\d| & 当前日期（星期、月、日）\\
+      \verb|\s| & 当前的shell环境\\
+      \verb|\W| & 工作目录\\
+      \verb|\w| & 工作目录的绝对路径\\
+      \verb|\u| & 当前用户的用户名\\
+      \verb|\h| & 当前机器的主机名\\
+      \verb|\$| & UID为0时使用\verb|#|，否则使用\verb|$|\\
+      \hline
+    \end{tabularx}
+  \end{table}
+\end{frame}
+
+\begin{frame}
+  \frametitle{知识拓展 | PS1环境变量 | 配置}
+  \begin{block}{PS1 Generator}
+    \begin{itemize}
+      \item \href{http://omar.io/ps1gen/}{ps1gen}
+      \item \href{https://xta.github.io/HalloweenBash/}{Bash Profile Generator}
+      \item \href{http://bashrcgenerator.com/}{.bashrc generator}
+      \item \href{http://ezprompt.net/}{Easy Bash PS1 Generator}
+      \item \href{https://www.kirsle.net/wizards/ps1.html}{Bash \$PS1 Generator 2.0}
+      \item \href{https://www.askapache.com/linux/bash-power-prompt/}{Crazy POWERFUL Bash Prompt}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{知识拓展 | PATH环境变量}
+  \vspace{-0.5em}
+  \begin{block}{PATH环境变量}
+    \begin{itemize}
+      \item PATH环境变量包含一组目录，可执行程序可能位于这些目录中。
+      \item 如果PATH变量的值中含有某个目录，那么调用该目录中的可执行文件时就不需要输入目录名。
+      \item PATH变量的值通常在一个配置文件中设置，具有全局意义。
+      \item 用户可以向PATH变量中添加自己的值。
+      \item 尽管大多数用户不需要考虑将目录名添加到PATH值中的次序，但有些时候这个次序是很重要的。
+      \item shell依次在PATH目录中查找命令，只要发现匹配的程序，就会启动改程序。
+    \end{itemize}
+  \end{block}
+  \pause
+  \vspace{-1em}
+\begin{lstlisting}
+PATH=$PATH:NewPath # 向PATH变量添加值的格式
+PATH=$PATH:/home/joe/bin
+# 一次添加多个目录，用冒号将这些目录隔开
+PATH=$PATH:/home/joe/bin:/home/joe/myprog/bin
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+  \frametitle{知识拓展 | 配置shell}
+  \begin{block}{shell启动与运行控制文件}
+    \begin{itemize}
+      \item 当shell启动时，它解析所有可用的运行控制文件。
+      \item shell检查的第一个运行控制文件是一个/系列全局配置文件。
+      \item 完成全局配置文件的解析之后，shell接着解析存储在用户账户中的任何已有的个人配置文件。
+    \end{itemize}
+  \end{block}
+  \pause
+  \begin{block}{shell会话类型}
+    \begin{itemize}
+      \item 确切的启动顺序依赖于要运行的shell会话类型。
+      \item 有两种shell会话类型
+        \begin{itemize}
+          \item 登录shell会话：提示用户输入用户名和密码
+          \item 非登录shell会话：在GUI下启动终端会话时出现
+        \end{itemize}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{知识拓展 | 配置shell | 启动顺序}
+  \begin{block}{登录shell会话}
+  \begin{table}
+    \centering
+    \rowcolors[]{1}{blue!20}{blue!10}
+    \begin{tabularx}{\textwidth}{ccX}
+      \hline
+      \rowcolor{blue!50}顺序 & 配置文件 & 文件用途\\
+      \hline
+      1 & \verb|/etc/profile| & 应用于所有用户的全局配置脚本\\
+      2 & \verb|~/.bash_profile| & 用户个人的启动文件；可以用来扩展或重写全局配置脚本中的设置\\
+      3 & \verb|~/.bash_login| & 如果文件2没有找到，bash会尝试读取这个脚本\\
+      4 & \alert{\verb|~/.profile|} & 如果文件2或3都没有找到，bash会试图读取这个文件\\
+      \hline
+    \end{tabularx}
+  \end{table}
+  \vspace{-1em}
+  \end{block}
+  \pause
+  \begin{block}{非登录shell会话}
+  \begin{table}
+    \centering
+    \rowcolors[]{1}{blue!20}{blue!10}
+    \begin{tabularx}{\textwidth}{ccX}
+      \hline
+      \rowcolor{blue!50}顺序 & 配置文件 & 文件用途\\
+      \hline
+      1 & \verb|/etc/bash.bashrc| & 应用于所有用户的全局配置文件\\
+      2 & \alert{\verb|~/.bashrc|} & 用户个人的启动文件；可以用来扩展或重写全局配置脚本中的设置\\
+      \hline
+    \end{tabularx}
+  \end{table}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{知识拓展 | 配置shell | $\sim$/.profile}
+\begin{lstlisting}
+# .bash_profile
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi
+
+# User specific environment and startup programs
+PATH=$PATH:$HOME/bin
+export PATH
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{知识拓展 | 配置shell | $\sim$/.bashrc}
+\begin{lstlisting}
+umask 0002
+export HISTSIZE=1000
+alias ll='ls -l --color=auto'
+
+case "$TERM" in
+xterm-color)
+    PS1='[${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\h\[\033[00m\]] \[\033[01;34m\]\w\[\033[00m\]\$ '
+    ;;
+*)
+    PS1='[${debian_chroot:+($debian_chroot)}\h] \w\$ '
+    ;;
+esac
+\end{lstlisting}
+\end{frame}
+
 \begin{frame}
   \frametitle{下节预告}
   \begin{itemize}
