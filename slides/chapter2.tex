@@ -6,7 +6,7 @@
 \title[用户和组]{第二章\quad 用户和组}
 \author[Yixf]{伊现富（Yi Xianfu）}
 \institute[TIJMU]{天津医科大学（TIJMU）\\ 生物医学工程与技术学院}
-\date{2016年3月}
+\date{2018年5月}
 
 
 \begin{frame}
@@ -40,7 +40,7 @@
         \item<4-> 不受任何限制，能够进行任何操作，包括自我毁灭
         \item<5-> 谨慎使用，仅在必要且用于最重要的任务时使用
       \end{itemize}
-    \item<2-> 系统账户（伪用户，UID：1-499/999）
+    \item<2-> 系统账户（伪用户，UID：1-499/999；CentOS/Ubuntu）
       \begin{itemize}
         \item<6-> 与系统和程序服务相关
 	  \begin{itemize}
@@ -53,7 +53,7 @@
         \item<6-> 对系统特定组件进行操作，协助用户所需的服务或程序
         \item<7-> 不要轻易修改，否则可能会给系统带来不良影响
       \end{itemize}
-    \item<3-> 用户账户（普通用户账户，UID：500/1000-60000）
+    \item<3-> 用户账户（普通用户账户，UID：500/1000-60000；CentOS/Ubuntu）
       \begin{itemize}
         \item<8-> 为用户和用户组提供对系统的交互式访问
         \item<8-> 对关键系统文件和目录的访问权限是有限的
@@ -111,7 +111,7 @@
       /etc/passwd & 用户信息文件，为系统识别已授权的用户 & 任何用户都可以查看，只有根用户才能修改\\
       /etc/shadow & 密码文件，保存相应账户加密后的口令 & 普通用户无法查看，根用户能读取但不能直接编辑\\
       /etc/group & 用户组文件，存放组账户的信息 & 同/etc/passwd\\
-      /etc/gshadow & 用户组密码文件，保存组相应组加密后的口令 & 同/etc/shadow\\
+      /etc/gshadow & 用户组密码文件，保存相应组加密后的口令 & 同/etc/shadow\\
       \hline
     \end{tabularx}
   \end{table}
@@ -397,6 +397,7 @@
 \subsection{账户管理}
 \begin{frame}[fragile]
   \frametitle{用户和组 | 管理 | 命令 | 账户管理}
+  \vspace{-1em}
   \begin{table}
     \centering
     \rowcolors[]{1}{blue!20}{blue!10}
@@ -418,6 +419,7 @@
     \end{tabular}
   \end{table}
   \pause
+  \vspace{-0.5em}
 \begin{lstlisting}
 useradd -c COMMENT -d HOME.DIRECTORY -e EXPIRATION.DATE -f INACTIVE.DTAE -g PRIMARY.GROUP -G SECONDARY.GROUPS -m -s SHELL -u UID ACCOUNTNAME
 \end{lstlisting}
@@ -584,6 +586,11 @@ useradd -c COMMENT -d HOME.DIRECTORY -e EXPIRATION.DATE -f INACTIVE.DTAE -g PRIM
       \item 超级用户root为\verb|#|
     \end{itemize}
   \end{block}
+  \begin{figure}
+    \centering
+    \visible<2->{\includegraphics[width=0.45\textwidth]{c2.shell.prompt.01.jpg}}
+    \visible<2->{\includegraphics[width=0.45\textwidth]{c2.shell.prompt.02.png}}
+  \end{figure}
 \end{frame}
 
 \subsection{安全的sudo}
@@ -593,7 +600,7 @@ useradd -c COMMENT -d HOME.DIRECTORY -e EXPIRATION.DATE -f INACTIVE.DTAE -g PRIM
     \begin{itemize}
       \item 在执行sudo命令时，临时成为root。sudo执行命令的流程是当前用户切换到root，然后以root身份执行命令，执行完成后，直接退回到当前用户。
       \item 不会泄漏root口令。使用sudo时，输入的是当前用户的密码。
-      \item 仅向用户提供有限的命令使用权限。通过sudo，能把某些超级权限有针对性的下放，并且不需要普通用户知道root密码。
+      \item 仅向用户提供有限的命令使用权限。通过sudo，能把某些超级权限有针对性得下放，并且不需要普通用户知道root密码。
     \end{itemize}
   \end{block}
   \pause
@@ -607,7 +614,7 @@ useradd -c COMMENT -d HOME.DIRECTORY -e EXPIRATION.DATE -f INACTIVE.DTAE -g PRIM
   \frametitle{用户和组 | 身份变换 | su vs. sudo}
   \begin{block}{su的缺点}
     \begin{itemize}
-      \item 不安全：su只适用于一两个人参与管理的系统，毕竟su并不能让普通用户受限的使用；超级用户root密码应该掌握在少数用户手中
+      \item 不安全：su只适用于一两个人参与管理的系统，毕竟su并不能让普通用户受限得使用；超级用户root密码应该掌握在少数用户手中
       \item 麻烦：需要把root密码告知每个需要root权限的人
     \end{itemize}
   \end{block}
@@ -618,7 +625,7 @@ useradd -c COMMENT -d HOME.DIRECTORY -e EXPIRATION.DATE -f INACTIVE.DTAE -g PRIM
       \item sudo能够限制用户只在某台主机上运行某些命令
       \item sudo提供了丰富的日志，详细地记录了每个用户干了什么
       \item sudo使用时间戳文件来执行类似的“检票”系统。当用户调用sudo并且输入它的密码时，用户获得了一张存活期为5分钟的票
-      \item sudo的配置文件是sudoers文件（/etc/sudoers，属性为0411，编辑配置文件命令visudo），它允许系统管理员集中的管理用户的使用权限和使用的主机
+      \item sudo的配置文件是sudoers文件（/etc/sudoers，属性为0411，编辑配置文件命令visudo），它允许系统管理员集中得管理用户的使用权限和使用的主机
     \end{itemize}
   \end{block}
 \end{frame}
