@@ -265,6 +265,18 @@
 
 \subsection{Linux发行版}
 \begin{frame}
+  \frametitle{Linux基础 | 简介 | 发行版 | vs. 品牌机}
+  \begin{block}{品牌机}
+    由公司性质组装起来的电脑，并且经过兼容性测试，而正式对外出售的整套的电脑。
+  \end{block}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{c1.pinpai.computer.01.jpg}
+    \includegraphics[width=0.45\textwidth]{c1.pinpai.mobile.png}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
   \frametitle{Linux基础 | 简介 | 发行版}
   \begin{block}{Linux发行版}
     Linux distributions是“Linux Kernel + Free Software + Documentations（Tools） + 可完全安装的程序”所制成的一套完整的系统。
@@ -558,7 +570,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Linux基础 | 简介 | 应用领域 | 桌面电脑}
+  \frametitle{Linux基础 | 简介 | 应用领域 | 桌面电脑：微乎其微}
   \begin{figure}
     \centering
     \includegraphics[width=10cm]{c1.linux.area.desktop.2018.png}
@@ -566,7 +578,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Linux基础 | 简介 | 应用领域 | 服务器}
+  \frametitle{Linux基础 | 简介 | 应用领域 | 服务器：三分之二}
   \begin{figure}
     \centering
     \includegraphics[width=11cm]{c1.linux.area.server.2016.png}
@@ -574,7 +586,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Linux基础 | 简介 | 应用领域 | 智能手机}
+  \frametitle{Linux基础 | 简介 | 应用领域 | 智能手机：三分之二}
   \begin{figure}
     \centering
     \includegraphics[width=11cm]{c1.linux.area.mobile.2018.png}
@@ -582,7 +594,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Linux基础 | 简介 | 应用领域 | 超级计算机}
+  \frametitle{Linux基础 | 简介 | 应用领域 | 超级计算机：独领风骚}
   \begin{figure}
     \centering
     \includegraphics[width=12cm]{c1.linux.area.super.2018.png}
@@ -648,8 +660,8 @@
     \item bash（Bourne-Again shell）：Bourne shell的后继相容版本与开放源代码版本
     \item dash（Debian Almquist shell）：快而轻巧，兼容于POSIX标准
     \item zsh（Z shell）：一种Bourne shell的扩展，带有数量庞大的改进
-    \item ksh（Korn shell）：完全向上兼容Bourne shell并包含了C shell的很多特性
     \item csh（C shell）：语法类似于C语言；tcsh：csh的增强版本
+    \item ksh（Korn shell）：完全向上兼容Bourne shell并包含了C shell的很多特性
   \end{itemize}
   \end{block}
 \end{frame}
@@ -718,8 +730,8 @@
   \begin{block}{安装使用}
     \begin{enumerate}
       \item 安装Docker：sudo apt-get install docker.io，sudo yum install docker
-      \item 获取镜像：sudo docker pull ubuntu:14.04（centos:centos7，……)
-      \item 启动容器：sudo docker run -t -i ubuntu:14.04（centos:centos7） /bin/bash
+      \item 获取镜像：sudo docker pull ubuntu:18.04（centos:centos7，……)
+      \item 启动容器：sudo docker run -t -i ubuntu:18.04（centos:centos7） /bin/bash
     \end{enumerate}
   \end{block}
 \end{frame}
@@ -830,7 +842,7 @@ possible.
     \pause
     \begin{block}{提问}
       \begin{itemize}
-        \item 清楚明确的表达你的问题以及需求，描述目标而不是过程
+        \item 清楚明确得表达你的问题以及需求，描述目标而不是过程
         \item 按发生时间先后列出问题症状，描述问题症状而非你的猜测
         \item 提供最精简的Bug展示测试用例（bug-demonstrating test case）
         \item 即使你很急也不要在标题写“紧急”，问题解决后加个简短的补充说明
@@ -975,12 +987,20 @@ possible.
       \item \href{https://freefilesync.org/}{FreeFileSync: Synchronize Files and Folders}
     \end{itemize}
   \end{block}
+  \pause
+  \begin{block}{常用端口}
+    \begin{itemize}
+      \item 21：FTP
+      \item 22：SSH
+      \item 其他：23——Telnet；80——HTTP；443——HTTPS
+    \end{itemize}
+  \end{block}
 \end{frame}
 
 \begin{frame}
   \frametitle{Linux基础 | 起步 | 上机实习环境}
   \begin{block}{简单}
-    直接使用机房中的台式机（\alert{每次重启自动还原}）
+    直接使用机房中的台式机（\alert{警告：每次重启自动还原}）
   \end{block}
   \pause
   \begin{block}{推荐}
