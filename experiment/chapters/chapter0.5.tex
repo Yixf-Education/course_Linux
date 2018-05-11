@@ -1,0 +1,68 @@
+\chapter{远程登录Linux服务器}
+
+%\begin{adjustwidth}{1cm}{1cm}
+%\shadowbox{
+%\begin{minipage}[l]{0.8\textwidth}
+{\itshape
+通常我们可以将服务器看做一台配置功能强大的超级电脑，它也有自己独立的操作系统，其中核心系统以Linux系统为主的服务器，我们都可以称为Linux服务器。
+}
+%\end{minipage}
+%}
+%\end{adjustwidth}
+
+\vspace{0.2in}
+\noindent
+一、实验要求
+\begin{enumerate}
+  \item 熟悉远程登录Linux服务器的工具。
+  \item 掌握远程登录Linux服务器的方法。
+  \item 掌握登录和退出Linux的基本命令。
+\end{enumerate}
+
+\vspace{0.2in}
+\noindent
+二、实验准备
+\begin{enumerate}
+  \item 一台已安装有Linux操作系统的（远程）服务器。
+  \item 一台安装有Windows（或/和Linux）操作系统的台式机。
+\end{enumerate}
+
+\vspace{0.2in}
+\noindent
+三、实验内容
+
+\vspace{0.1in}
+（一）使用Windows操作系统远程登录Linux服务器
+\begin{enumerate}
+  \item 检索可以使用的远程登录工具。
+  \item 检索远程登录工具的使用方法并进行练习与使用。
+  \item 尝试对远程登录工具进行个性化配置。
+  \item 尝试与远程服务器进行文件交互。
+\end{enumerate}
+
+为了快速、顺利完成检索与学习，请参看以下提示：
+\begin{itemize}
+  \item 远程登录：\href{https://www.putty.org/}{PuTTY}；\href{https://mobaxterm.mobatek.net/}{MobaXterm}；等。
+  \item 文件交互：\href{https://filezilla-project.org/}{FileZilla}；等。
+  \item 工具选择：首选开源工具，次选收费工具，\textbf{不要使用破解软件}。
+  \item 工具下载：\textbf{一定从官网下载软件！}
+  \item 检索工具：引擎首选\textbf{谷歌/必应}，次选百度等；百科首选\textbf{维基百科}，次选百度百科等。
+  \item 检索策略：关键词首选\textbf{英文}，次选中文。
+\end{itemize}
+
+\vspace{0.1in}
+（二）使用Linux操作系统远程登录Linux服务器
+
+在本地Linux操作系统中找到终端（Terminal），之后尝试登陆、退出远程Linux服务器。
+\begin{enumerate}
+  \item 登录命令：ssh
+  \item 退出命令：logout, exit
+\end{enumerate}
+
+登录远程Linux服务器时，思考以下问题（提示：从安全的角度进行思考）：
+\begin{itemize}
+  \item 登录前会有用户名或者密码的提示吗？
+  \item 输入密码时与常规的登录网站有何不同？为什么这么“反人类”？
+  \item 如果登录失败会有失败信息的提示吗？为什么这么“反人类”？
+  \item 登录后看到了哪些基本信息？这些信息有什么作用？
+\end{itemize}
