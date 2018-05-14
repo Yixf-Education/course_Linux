@@ -122,14 +122,14 @@
   \begin{table}
     \centering
     \rowcolors[]{1}{blue!20}{blue!10}
-    \begin{tabularx}{0.6\textwidth}{cX}
+    \begin{tabularx}{\textwidth}{ccX}
       \hline
-      \rowcolor{blue!50}文件 & 用途\\
+      \rowcolor{blue!50}文件 & 用途 & 备注\\
       \hline
-      /etc/login.defs & 用户配置文件\\
-      /etc/default/useradd & 用户配置文件\\
-      /etc/skel & 新用户信息文件\\
-      /etc/issue & 登录信息\\
+      /etc/login.defs & 用户配置文件 & 文件，设置默认登录环境\\
+      /etc/default/useradd & 用户配置文件 & 文件，添加用户时的默认设置\\
+      /etc/skel & 新用户信息文件 & 目录，里面放置用户的初始配置文件\\
+      /etc/issue & 登录显示信息 & 文件，设置登录的默认显示信息\\
       \hline
     \end{tabularx}
   \end{table}
@@ -453,7 +453,7 @@ useradd -c COMMENT -d HOME.DIRECTORY -e EXPIRATION.DATE -f INACTIVE.DTAE -g PRIM
   \frametitle{用户和组 | 管理 | 命令 | \alert{账户管理}}
   \begin{block}{添加账户}
     创建账户：useradd\quad USERNAME\\
-    创建密码：passwd\quad UERNAME
+    设置密码：passwd\quad UERNAME
   \end{block}
   \pause
   \begin{block}{修改账户}
@@ -833,7 +833,7 @@ PS1=" [\u@\h \w]\$ " # 显示用户名、主机名和工作目录
       \item PATH变量的值通常在一个配置文件中设置，具有全局意义。
       \item 用户可以向PATH变量中添加自己的值。
       \item 尽管大多数用户不需要考虑将目录名添加到PATH值中的次序，但有些时候这个次序是很重要的。
-      \item shell依次在PATH目录中查找命令，只要发现匹配的程序，就会启动改程序。
+      \item shell依次在PATH目录中查找命令，只要发现匹配的程序，就会启动该程序。
     \end{itemize}
   \end{block}
   \pause
