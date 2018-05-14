@@ -6,7 +6,7 @@
 \title[文件系统]{第三章\quad 文件系统}
 \author[Yixf]{伊现富（Yi Xianfu）}
 \institute[TIJMU]{天津医科大学（TIJMU）\\ 生物医学工程与技术学院}
-\date{2016年3月}
+\date{2018年5月}
 
 
 \begin{frame}
@@ -33,9 +33,9 @@
   \pause
   \begin{block}{通过学号}
     \begin{itemize}
-      \item 简单的学号数字（剔除没有的学号）：\verb=seq 33 | grep -v "^8$" | grep -v "^11$" | shuf -n 10=
-      \item 添加学号前缀：\verb=seq -w 33 | grep -v "^8$" | nl -s "20130521" | cut -c7- | shuf -n 10=
-      \item 添加学号前缀：\verb=seq -w 33 | grep -v "^8$" | sed "s/^/20130521/" | shuf -n 10=
+      \item 简单的学号数字（剔除没有的学号）：\verb=seq 30 | grep -v "^9$" | grep -v "^21$" | shuf -n 10=
+      \item 添加学号前缀：\verb=seq -w 30 | grep -v "^09$" | nl -s "20160521" | cut -c7- | shuf -n 10=
+      \item 添加学号前缀：\verb=seq -w 30 | grep -v "^09$" | sed "s/^/20160521/" | shuf -n 10=
     \end{itemize}
   \end{block}
 \end{frame}
