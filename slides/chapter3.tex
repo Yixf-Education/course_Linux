@@ -185,6 +185,14 @@
 \end{frame}
 
 \begin{frame}
+  \frametitle{文件系统 | 基础 | 目录结构 | \alert{基本目录}}
+  \begin{figure}
+    \centering
+    \includegraphics[width=12cm]{c3.filesystem.03.png}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
   \frametitle{文件系统 | 基础 | 目录结构 | \alert{基本目录} | 详解（1/2）}
   \begin{table}
     \centering
@@ -253,7 +261,7 @@
   \frametitle{文件系统 | 基础 | 目录结构 | 基本目录}
   \begin{figure}
     \centering
-    \includegraphics[width=6cm]{c3.etc.var.jpg}
+    \includegraphics[width=5cm]{c3.etc.var.jpg}
     \includegraphics[width=6cm]{c3.lib.media.jpg}
   \end{figure}
 \end{frame}
@@ -267,11 +275,11 @@
       \hline
       \rowcolor{blue!50}目录 & 内容\\
       \hline
-      /usr/bin & 非基本程序（大多数用户程序）\\
+      \alert{/usr/bin} & 非基本程序（大多数用户程序）\\
       /usr/games & 游戏等娱乐和教育程序\\
       /usr/include & C程序的头文件\\
       /usr/lib & 非基本共享库\\
-      /usr/local & 本地安装程序\\
+      \alert{/usr/local} & 本地安装程序\\
       /usr/sbin & 由超级用户运行的非基本系统管理程序\\
       /usr/share & 共享系统数据\\
       /usr/src & 源代码（只用于参考）\\
@@ -661,12 +669,23 @@
 
 \begin{frame}
   \frametitle{文件系统 | 文件类型 | 链接 | 用途}
+  \begin{block}{可能的用途}
   \begin{itemize}
     \item 为命令、程序或文件取别名
     \item 创建不占存储空间的文件副本
     \item 为文件创建方便的快捷方式
     \item 对文件进行分组
   \end{itemize}
+  \end{block}
+  \pause
+  \begin{block}{应用实例}
+    （假设）在/home/share下面有一个2G的Linux演示视频，服务器上的50个用户都要保存该视频到自己的家目录并进行观看。用户该如何保存该视频呢？哪种方式更加节省硬盘资源？哪种方式更加安全？
+    \begin{itemize}
+      \item cp：复制2G的视频到家目录——总共占据100G！
+      \item ln -s：把2G的视频软连接到家目录——总共占据2G+！
+      \item ln：把2G的视频硬链接到家目录——总共占据2G！
+    \end{itemize}
+  \end{block}
 \end{frame}
 
 \section{文件和目录权限}
@@ -830,6 +849,7 @@
   \begin{block}{SetUID：Set User ID，设置用户标识}
     当一个可执行程序（一般为一个命令）具有SetUID权限，用户执行这个程序时，将以这个程序的所有者的身份执行。
   \end{block}
+  \vspace{-0.5em}
   \pause
   \begin{block}{设置SetUID}
     \begin{itemize}
@@ -839,9 +859,10 @@
       \item 查找：\verb|find / -perm -4000|
     \end{itemize}
   \end{block}
+  \vspace{-0.5em}
   \pause
   \begin{block}{注意事项}
-    将命令设置成SetUID是一件很危险的事情！它可以让一个用户瞬间变成超级用户、使系统不断重启、使用户不需要密码就可以登录……比如将vi设置成SetUID，则它可以编辑并保存系统中所有的文件，甚至是系统配置文件！
+将命令设置成SetUID是一件很危险的事情！它可以让一个用户瞬间变成超级用户、使系统不断重启、使用户不需要密码就可以登录……比如将vi设置成SetUID，则它可以编辑并保存系统中所有的文件，甚至是系统配置文件！
   \end{block}
 \end{frame}
 
