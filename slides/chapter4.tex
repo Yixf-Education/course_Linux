@@ -86,7 +86,7 @@
     \item 目标为命令提供了所要处理的目标位置（/etc）
     \item 有些命令要求多个目标（cp source destination）
     \item 特定的命令通常具有自己独特的选项/开关/标记（-l）
-    \item 选项通常（但不一定）位于一个或两个连字符之后（-a = -\ -all）
+    \item 选项通常（但不一定）位于一个或两个连字符之后（-a = -\!-all）
     \item 多个选项可以独立或是合并添加（-a -l = -al）
   \end{itemize}
 \end{frame}
@@ -98,7 +98,7 @@
   \begin{enumerate}
     \item The man pages (short for manual pages)
     \item GNU Info
-    \item The help command and -\ -help option
+    \item The help command and -\!-help option
     \item Other Documentation Sources, e.g. \href{https://www.gentoo.org/doc/en/}{https://www.gentoo.org/doc/en/}
   \end{enumerate}
   \begin{figure}
@@ -159,11 +159,11 @@
   \end{figure}
 \end{frame}
 
-\subsection{-\ -help/-h}
+\subsection{-\!-help/-h}
 \begin{frame}[fragile]
-  \frametitle{命令信息 | -\ -help}
-  \begin{block}{-\ -help}
-    \alert{COMMAND -\ -help}：显示命令的帮助信息；\alert{CMD -h}\\
+  \frametitle{命令信息 | -\!-help}
+  \begin{block}{-\!-help}
+    \alert{COMMAND -\!-help}：显示命令的帮助信息；\alert{CMD -h}\\
     \verb|help BUILD-IN SHELL CMD|：例如\verb|help echo|
   \end{block}
   \vspace{-0.2cm}
@@ -192,17 +192,17 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{命令信息 | man vs. info vs. -\ -help}
+  \frametitle{命令信息 | man vs. info vs. -\!-help}
   \begin{block}{man}
     man可以显示系统手册页中的内容，这些内容大多数都是对命令的解释信息，这些信息是操作系统文档里面的。如果没有文档，是不会显示这些帮助信息的。一般比help出来的要详细。
   \end{block}
   \pause
   \begin{block}{info}
-    info是一个基于菜单的超文本系统，是由GNU项目开发并由Linux发布。info工具包括一些关于Linux Shell、工具、GNU项目开发程序的说明文档。
+    info是一个基于菜单的超文本系统，由GNU项目开发并由Linux发布。info工具包括一些关于Linux Shell、工具、GNU项目开发程序的说明文档。
   \end{block}
   \pause
-  \begin{block}{-\ -help}
-    \verb|--help|并不是一个独立的工具，而是一个工具选项，可以用来显示一些工具的信息。这些帮助信息是程序的作者加上去的，也就是说，这些信息是程序内部的。一般比man出来的要简单。
+  \begin{block}{-\!-help}
+-\!-help并不是一个独立的工具，而是一个工具选项，可以用来显示一些工具的信息。这些帮助信息是程序的作者加上去的，也就是说，这些信息是程序内部的。一般比man出来的要简单。
   \end{block}
 \end{frame}
 
@@ -254,13 +254,26 @@
     \includegraphics[width=12cm]{c4.shell.01.png}
   \end{figure}
   \pause
-  \begin{block}{比较输出结果}
+  \begin{columns}
+    \column{0.55\textwidth}
+  \begin{block}{转义符使用}
     \begin{itemize}
       \item 使用单引号：\verb|echo '$SHELL'|
       \item 使用双引号：\verb|echo "$SHELL"|
       \item 使用反斜杠：\verb|echo \$SHELL|
     \end{itemize}
   \end{block}
+    \column{0.4\textwidth}
+    \pause
+    \pause
+    \begin{block}{输出结果}
+      \begin{itemize}
+        \item \verb|$SHELL|
+        \item \verb|/bin/bash|
+        \item \verb|$SHELL|
+      \end{itemize}
+    \end{block}
+  \end{columns}
 \end{frame}
 
 \subsection{输入输出重定向}
@@ -294,12 +307,12 @@
       \hline
       \rowcolor{blue!50}字符 & 说明 & 实例\\
       \hline
-      < & 重定向STDIN & \verb|sort < term|\\
-      > & 将STDOUT重定向到文件（覆盖） & \verb|ls > lsoutput|\\
-      \verb|>>| & 将STDOUT重定向到文件（追加） & \verb|date >> outfile|\\
-      2> & 将STDERR重定向到文件（覆盖） & \verb|ls no 2> errorout|\\
-      2>\&1 & 将STDERR与STDOUT结合 & \verb|ls no 2>&1 allout|\\
-      < > & 结合输入输出重定向 & \verb|sort <term >alpha|\\
+      < & 重定向STDIN & \verb|sort < sort.in|\\
+      > & 将STDOUT重定向到文件（覆盖） & \verb|ls > ls.out|\\
+      \verb|>>| & 将STDOUT重定向到文件（追加） & \verb|date >> date.out|\\
+      2> & 将STDERR重定向到文件（覆盖） & \verb|ls no 2> ls.err|\\
+      2>\&1 & 将STDERR与STDOUT结合 & \verb|ls no 2>&1 ls.all|\\
+      < > & 结合输入输出重定向 & \verb|sort <IN >OUT|\\
       \hline
     \end{tabular}
   \end{table}
@@ -382,6 +395,8 @@
       -i & Inode & 列出目录内容，包括inode或磁盘索引号\\
       -l & Long & 用长格式（大小、权限等信息）列出目录的内容\\
       -R & Recursive & 列出目录内容，包括所有的子目录以及它们的内容\\
+      -r & Reverse & 排序时反向排序\\
+      -S & Size & 依据文件大小（由大到小）列出目录内容\\
       -t & Time & 依据时间标记（上一次的修改时间）列出目录内容\\
       \hline
     \end{tabular}
@@ -432,7 +447,7 @@
       wc & Word Count & 计算文件行、字（符）数\\
       sort & --- & 对命令或文件的输出进行排序\\
       uniq & --- & 报告或删除重复的行\\
-      cut & --- & 以行为处理对象切割数据\\
+      cut & --- & 以行为处理对象切割数据字段/列\\
       tee & --- & 将命令的输出发送到多个位置\\
       diff/diff3 & --- & 逐行比较两/三个文本文件，列出其不同之处\\
       patch & --- & 使用diff的结果来完成打补丁的工作\\
@@ -468,14 +483,16 @@
       \hline
       \rowcolor{blue!50}选项 & 助记 & 说明\\
       \hline
-      -E & End & 在每一行的结尾显示一个\verb|$|字符\\
+      -e & --- & 等同于 \verb|-vE|\\
+      -E & End & 在每一行的结尾显示一个 \verb|$|字符\\
       -n & Number & 在每一行的开头显示行号\\
       -s & Squeeze & 将连续的空行合并成一个空行\\
-      -t & Tabs & 将非打印字符tab显示成\verb|^I|\\
+      -t & Tabs & 将非打印字符tab显示成 \verb|^I|\\
       -v & --- & 显示所有的非打印字符\\
       \hline
     \end{tabularx}
   \end{table}
+  \vspace{-0.5em}
   \pause
   \begin{block}{基本用法}
     \begin{itemize}
@@ -483,6 +500,7 @@
       \item \verb|cat file1 file2 file3|
     \end{itemize}
   \end{block}
+  \vspace{-0.5em}
   \pause
   \begin{block}{\alert{妙用}}
     \begin{itemize}
@@ -573,6 +591,7 @@
       -r & Reverse & 倒序排序\\
       -t & --- & 指定分隔符\\
       -u & Unique & 排序，只考虑唯一的值\\
+      -V & Version & 版本号排序（能正确排序字符数字混杂的情况，如：chr1,chr2,chr10,...）\\
       \hline
     \end{tabularx}
   \end{table}
@@ -605,7 +624,7 @@
       \rowcolor{blue!50}选项 & 助记 & 说明 & 实例\\
       \hline
       -d & Delimiter & 指定分隔符 & -d:\\
-      -f & Fields & 表示取第几片 & -f1;-f1,5;-f1-5\\
+      -f & Fields & 表示取第几个字段 & -f1;-f1,5;-f1-5\\
       \hline
     \end{tabularx}
   \end{table}
@@ -945,7 +964,7 @@
       \item ps：查看隶属于自己的进程
       \item ps -u or -l：查看隶属于自己的进程的详细信息
       \item ps -le or -aux：查看所有用户执行的进程的详细信息
-      \item ps -aux -\ -sort pid：可按进程执行的时间、PID、UID等对进程进行排序
+      \item ps -aux -\!-sort pid：可按进程执行的时间、PID、UID等对进程进行排序
       \item ps -aux | grep USER，ps -uU USER：查看系统中指定用户执行的进程
       \item ps -le | grep PROCESS：查看指定进程信息
     \end{itemize}
@@ -1038,8 +1057,8 @@
   \begin{itemize}
     \item 进程的挂起（中止）：Ctrl+Z
     \item 进程的终止：Ctrl+C
-    \item 恢复到前台继续运行：fg
-    \item 恢复到后台继续运行：bg
+    \item 恢复挂起/后台的进程到前台继续运行：fg
+    \item 恢复挂起/后台的进程到后台继续运行：bg
     \item 查看被挂起的进程：jobs
   \end{itemize}
 \end{frame}
@@ -1092,7 +1111,7 @@
 \end{lstlisting}
 \pause
 \begin{enumerate}
-  \item Schedule a job to execute 'script.sh' every minute of every hour of every day of the month, and every month and every day in the week.
+  \item Schedule a job to execute `script.sh' every minute of every hour of every day of the month, and every month and every day in the week.
   \item Schedule a full-backup at 8.30am, 10-June irrespective of the day of the week.
 \end{enumerate}
 \end{frame}
@@ -1116,7 +1135,7 @@
 \begin{frame}
   \frametitle{常用命令 | 进程管理 | \alert{nohup}}
   \begin{block}{用途}
-    通过让提交的命令忽略HUP（hangup）信号，使进程在用户退出登陆后仍旧继续执行。nohup命令将执行后的数据信息和错误信息默认储存到文件nohup.out中。
+    通过让提交的命令忽略HUP（hangup）信号，使进程在用户退出登录后仍旧继续执行。\\ nohup命令将执行后的数据信息和错误信息默认储存到文件nohup.out中。\\ \alert{远程登录服务器运行大型程序时常用/必用！}
   \end{block}
   \pause
   \begin{block}{使用}
@@ -1308,7 +1327,7 @@
       whatis & --- & 显示联机帮助页中对命令的简短描述\\
       makewhatis & --- & 建立 whatis 和 apropos 搜索使用的数据库\\
       whereis & --- & 查找软件包\\
-      \verb|--help|/\verb|-h| & --- & 命令的\verb|--help|/\verb|-h|选项\\
+      -\!-help/-h & --- & 命令的 -\!-help/-h选项\\
       \hline
     \end{tabularx}
   \end{table}
@@ -1325,12 +1344,12 @@
   \pause
   \begin{block}{命令历史}
     %命令历史允许用户浏览先前输入的命令并重新调用它们，用history命令可以显示命令列表，按方向键$\UArrow$和$\DArrow$可查找以前执行过的命令。
-    命令历史允许用户浏览先前输入的命令并重新调用它们，用\alert{history}命令可以显示命令列表，按方向键（上、下）可查找以前执行过的命令。
+    命令历史允许用户浏览先前输入的命令并重新调用它们，用 \alert{history} 命令可以显示命令列表，按方向键（上、下）可查找以前执行过的命令。
   \end{block}
   \pause
   \begin{block}{命令别名}
     \begin{itemize}
-      \item \alert{alias}查看、定义别名；unalias删除别名
+      \item \alert{alias} 查看、定义别名；unalias删除别名
       \item \verb|alias ll="ls -l"|; \quad \verb|alias la="ls -al"|; \verb|alias cd3="cd ../../.."|
       \item \verb|alias ls="ls -l"|; 执行原始的ls命令：\verb|\ls|
     \end{itemize}
@@ -1342,19 +1361,21 @@
   \frametitle{命令技巧 | \alert{连接符}}
   \begin{block}{命令连接符}
     \begin{description}
-      \item[;] 用\verb|;|间隔的各命令按顺序依次执行
-      \item[\&\&] 前后命令的执行存在逻辑与关系：只有\verb|&&|前面的命令执行成功后，它后面的命令才被执行
-      \item[||] 前后命令的执行存在逻辑或关系：只有\verb=||=前面的命令执行失败后，它后面的命令才被执行。
+      \item[;] 用 \verb|;|间隔的各命令按顺序依次执行
+      \item[\&\&] 前后命令的执行存在逻辑与关系：只有 \verb|&&|前面的命令执行成功后，它后面的命令才被执行
+      \item[||] 前后命令的执行存在逻辑或关系：只有 \verb=||=前面的命令执行失败后，它后面的命令才被执行。
     \end{description}
   \end{block}
   \pause
+  \vspace{-0.5em}
   \begin{block}{后台运行}
     \begin{itemize}
-      \item \verb|COMMAND &|：后台运行，关掉终端会停止运行
-      \item \verb|nohup COMMAND &|：后台运行，关掉终端仍会继续运行
+      \item \verb|COMMAND &|：后台运行，关掉客户端/终端会停止运行
+      \item \verb|nohup COMMAND &|：后台运行，关掉客户端/终端仍会继续运行
     \end{itemize}
   \end{block}
   \pause
+  \vspace{-0.5em}
   \begin{block}{在子shell中运行命令：(CMD)}
     \begin{itemize}
       \item 在其它目录运行一个命令，然后自动返回当前工作目录
@@ -1478,7 +1499,7 @@
   \begin{block}{知识点}
     \begin{itemize}
       \item Linux命令的基本结构：命令、参数（选项、目标）
-      \item 查找命令相关信息的方法：man、info、\verb|--help|/\verb|-h|、apropos
+      \item 查找命令相关信息的方法：man、info、-\!-help/-h、apropos
       \item 命令的修改：通配符、转义符、输入输出重定向、管道、命令置换
       \item 目录和文件操作、权限管理、系统导航、压缩解压等常用命令
       \item 命令使用技巧：补全、历史、别名、连接符、后台运行、快捷键
