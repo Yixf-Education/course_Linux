@@ -816,7 +816,7 @@
       \verb|/pattern/,n| & 从包含指定模式的行到第n行\\
       \verb|n,/pattern/| & 从第n行到包含指定模式的行\\
       \verb|/pattern1/,/pattern2/| & 从包含模式1的行到包含模式2的行\\
-      \verb|!| & 反向选择，不包含指定行，如\verb|m,n!|\\
+      \verb|!| & 反向选择，不包含指定行，如 \verb|m,n!|\\
       \hline
     \end{tabularx}
   \end{table}
@@ -899,7 +899,7 @@
       \item<4-> 输出匹配“the”的行，并且输出每行行号
       \item<6-> 将“this”全部替换成“that”
       \item<8-> 添加文件扩展名
-      \item<10-> 输出\verb|ls -l|结果中的第1-3行
+      \item<10-> 输出 \verb|ls -l|结果中的第1-3行
     \end{itemize}
   \end{block}
   \begin{block}{sed命令}
@@ -989,8 +989,8 @@ InputFile
 \begin{frame}[fragile]
   \frametitle{AWK | 脚本结构}
   \begin{itemize}
-    \item \verb|BEGIN{actions}|和\verb|END{actions}|是可选的
-    \item \verb|/pattern/|和\verb|{actions}|可以省略，但不能同时省略
+    \item \verb|BEGIN{actions}|和 \verb|END{actions}|是可选的
+    \item \verb|/pattern/|和 \verb|{actions}|可以省略，但不能同时省略
       \begin{itemize}
         \item \verb|/pattern/|省略时表示对所有的输入行执行指定的actions
         \item \verb|{actions}|省略时表示打印整行
@@ -1133,7 +1133,7 @@ awk
   \begin{block}{具体问题}
     \begin{itemize}
 %      \item<2-> 输出文件全部文本
-      \item<2-> 输出\verb|ls -l|中非文件夹的完整信息
+      \item<2-> 输出 \verb|ls -l|中非文件夹的完整信息
       \item<4-> 给文本的每一行添加行号 
       \item<6-> 将文本中的空格换成制表符
       \item<8-> 检测系统中UID为0的用户

@@ -132,7 +132,7 @@ ls
     \begin{enumerate}
       \item 创建一个包含命令和控制结构的文件。\verb|vim script.sh|
       \item 修改文件的权限使它可执行。\verb|chmod u+x script.sh|
-      \item 运行文件。\verb|./script.sh|或\verb|sh script.sh|（不需要可执行权限）
+      \item 运行文件。\verb|./script.sh|或 \verb|sh script.sh|（不需要可执行权限）
     \end{enumerate}
   \end{block}
 \end{frame}
@@ -160,7 +160,7 @@ ls
     \item 在向脚本中添加任何其他内容之前，用户需要告诉系统将要启动一个shell脚本。
     \item 使用shebang结构，如：\verb|#!/bin/bash|告诉系统接下来的命令由bash shell执行。
     \item 要创建一个脚本，用户应该首先添加shebang行，然后添加命令。
-    \item shebang是因为\verb|#|称为hash，\verb|!|称为bang。
+    \item shebang是因为 \verb|#|称为hash，\verb|!|称为bang。
   \end{itemize}
 \end{frame}
 
@@ -221,8 +221,8 @@ ls
   \begin{block}{注释方法}
     \begin{itemize}
       \item 注释行以散列符号（\verb|#|）开头，在 \verb|#|之后出现的所有内容都认为是注释，不解释为命令。
-      \item 占用多行的注释在每行的开头都有一个\verb|#|。
-      \item 可以在一行的中间插入\verb|#|，\verb|#|右边的所有内容都将看作注释。
+      \item 占用多行的注释在每行的开头都有一个 \verb|#|。
+      \item 可以在一行的中间插入 \verb|#|，\verb|#|右边的所有内容都将看作注释。
     \end{itemize}
   \end{block}
   \pause
@@ -1870,7 +1870,7 @@ done
   \begin{itemize}
     \item \verb|*|、\verb|?|、\verb|[ ]|的通配都会按读取目录并过滤的方式展开通配项目
     \item \verb|{ }|则不会有读取目录的过程，它是通过枚举所有符合条件的通配项直接展开的
-    \item \verb|*|通配的结果与目录中存在哪些文件有关系，而\verb|{ }|的通配结果与目录中存在哪些文件无关。若用\verb|{ }|进行通配，则有可能将不存在的文件路径作为命令行参数传给程序。
+    \item \verb|*|通配的结果与目录中存在哪些文件有关系，而 \verb|{ }|的通配结果与目录中存在哪些文件无关。若用 \verb|{ }|进行通配，则有可能将不存在的文件路径作为命令行参数传给程序。
   \end{itemize}
 \end{frame}
 
