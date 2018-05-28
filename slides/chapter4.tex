@@ -355,6 +355,7 @@
       \item \verb|ls $(pwd)|
       \item \verb|ls `pwd`|
       %\item \verb|ls ${pwd}|
+      \item 等同于 \verb|ls|或者 \verb|ls .|
     \end{itemize}
   \end{block}
 \end{frame}
@@ -468,8 +469,8 @@
   \begin{block}{\alert{-e}}
     \begin{itemize}
       \item 启用反斜线控制字符（如 \verb|\n|，\verb|\t|等转义字符）的转换
-      \item \verb|echo "line1\nline2"|
-      \item \verb|echo -e "line1\nline2"|
+      \item \verb|echo "line1\tline2"|（输出：\verb|line1\tline2|）
+      \item \verb|echo -e "line1\tline2"|（输出：\verb|line1    line2|）
     \end{itemize}
   \end{block}
 \end{frame}
@@ -502,10 +503,10 @@
   \end{block}
   \vspace{-0.5em}
   \pause
-  \begin{block}{\alert{妙用}}
+  \begin{block}{\alert{妙用：将多个文件连接成一个更长的新文件}}
     \begin{itemize}
-      \item 将多个文件连接成一个更长的新文件
       \item \verb|cat file1 file2 file3 > newfile|
+      \item \verb|cat chr{{1..22},X,Y,M}.fa > human_genome.fa|
     \end{itemize}
   \end{block}
 \end{frame}

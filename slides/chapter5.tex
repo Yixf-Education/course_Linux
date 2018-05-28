@@ -6,7 +6,7 @@
 \title[高级Linux命令]{第五章\quad 高级Linux命令}
 \author[Yixf]{伊现富（Yi Xianfu）}
 \institute[TIJMU]{天津医科大学（TIJMU）\\ 生物医学工程与技术学院}
-\date{2016年3月}
+\date{2018年6月}
 
 
 \begin{frame}
@@ -276,8 +276,8 @@
   \frametitle{正则和元字符 | 正则表达式 | 比较}
   \begin{itemize}
     \item 在命令行（command line）的位置里，通配符（wildcard）只作用于参数（argument）的路径（path）上
-    \item 正则表达式（RE）却只用于"字符串处理" 的程序中，这与路径名一点关系也没有
-    \item 正则表达式（RE）所处理的字符串，通常是指纯文本或通过stdin读进的内容
+    \item 正则表达式（RE）却只用于“字符串处理” 的程序中，这与路径名一点关系也没有
+    \item 正则表达式（RE）所处理的字符串，通常是指纯文本或通过STDIN读进的内容
   \end{itemize}
 \end{frame}
 
@@ -344,9 +344,9 @@
   \frametitle{find | \alert{实例}}
   \begin{block}{实际问题}
     \begin{itemize}
-      \item<2-> 找到/etc目录下面的passwd文件
-      \item<4-> 找到用户USER在/home目录下拥有的所有文件
-      \item<6-> 找到/home目录下大于2G的文件
+      \item<2-> 找到 /etc目录下面的passwd文件
+      \item<4-> 找到用户USER在 /home目录下拥有的所有文件
+      \item<6-> 找到 /home目录下大于2G的文件
     \end{itemize}
   \end{block}
   \begin{block}{解决方法}
@@ -365,7 +365,7 @@
     \includegraphics[width=11cm]{c5.find.02.jpg}
   \end{figure}
   \pause
-  \begin{block}{\textbackslash; vs. ';' \qquad -exec vs. -ok}
+  \begin{block}{\textbackslash; vs. `;' \qquad -exec vs. -ok}
   \begin{itemize}
     \item \verb|find -name "*.swp" -exec rm {} \;|
     \item \verb|find -name "*.swp" -exec rm {} ';'|
