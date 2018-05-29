@@ -36,7 +36,7 @@
 \vspace{0.1in}
 （二）对ls命令使用选项
 
-尝试这个练习以了解Linux命令语法的灵活性。使用ls命令，添加 \verb|-a|选项以便在目录列表中包含隐藏文件；隐藏文件是那些文件名以点号开头的文件，例如.bashrc。
+尝试这个练习以了解Linux命令语法的灵活性。使用ls命令，添加 \verb|-a| 选项以便在目录列表中包含隐藏文件；隐藏文件是那些文件名以点号开头的文件，例如.bashrc。
 \begin{enumerate}
   \item 执行命令 \verb|ls -l -a /etc|。
   \item 执行命令 \verb|ls -la /etc|。
@@ -62,18 +62,18 @@
     \begin{enumerate}
       \item 使用 \verb|find /etc -name profile|命令进行查找，屏幕显示已找到 /etc/profile文件。
     \end{enumerate}
-    \textbf{知识点解析：}由于普通用户只对部分目录具有权限，不能从所有的目录查找文件。因此，可以先输入命令 \verb|su -|，并输入超级用户的密码，验证成功后，从普通用户切换到超级用户。要切换回普通用户，使用 \verb|exit|命令，即可退出超级用户身份。
+    \textbf{知识点解析：}由于普通用户只对部分目录具有权限，不能从所有的目录查找文件。因此，可以先输入命令 \verb|su -|，并输入超级用户的密码，验证成功后，从普通用户切换到超级用户。要切换回普通用户，使用 \verb|exit| 命令，即可退出超级用户身份。
   \item 将 /etc/profile文件中所有包含HOSTNAME的行存入f4文件，并修改f4文件的权限，让所有的用户都可以读写。
     \begin{enumerate}
       \item 使用命令 \verb|grep -n "HOSTNAME" /etc/profile > f4|，查找 /etc/profile文件中所有包含HOSTNAME的行，并存入f4文件。grep命令中使用 \verb|-n|选项可显示出行号。
       \item 输入命令 \verb|cat f4|，查看f4文件的内容。
       \item 输入命令 \verb|ls -l|，查看f4文件的详细信息。
-      \item 使用 \verb|chmod 666 f4|命令，修改f4文件的权限。
+      \item 使用 \verb|chmod 666 f4| 命令，修改f4文件的权限。
     \end{enumerate}
   \item 将f4文件复制到dir1目录，并在dir1目录中创建 /etc/fstab文件的符号链接文件fstab-link。
     \begin{enumerate}
       \item 输入命令 \verb|cp f4 dir1|，将f4文件复制到dir1目录。
-      \item 输入命令 \verb|ln -s /etc/fstab fstab-link|，创建/etc/fstab文件的符号链接文件。ln命令使用 \verb|-s|选项建立符号链接文件，一旦源文件被删除，符号链接文件就失效。
+      \item 输入命令 \verb|ln -s /etc/fstab fstab-link|，创建/etc/fstab文件的符号链接文件。ln命令使用 \verb|-s| 选项建立符号链接文件，一旦源文件被删除，符号链接文件就失效。
       \item 输入命令 \verb|ls -l|，可发现淡蓝色的符号链接文件fstab-link，“\verb|->|”符号后的内容为链接文件所指向的源文件。
     \end{enumerate}
   \item 查看用户目录占用磁盘的情况。
@@ -115,34 +115,34 @@
   \item 将X.tar.gz中的 /etc/X11/Xresources文件解压缩到dir1目录。
     \begin{enumerate}
       \item 首先切换到dir1目录，也就是解压缩的目标目录。
-      \item 执行 \verb|tar -xzvf ~/X.tar.gz etc/X11/Xresources|命令。
+      \item 执行 \verb|tar -xzvf ~/X.tar.gz etc/X11/Xresources| 命令。
       \item 查看解压缩的效果。
     \end{enumerate}
   \item 使用gzip。
     \begin{enumerate}
-      \item 使用 \verb|cd /tmp;touch test-file|命令在 /tmp目录中创建一个名为test-file的文件。
-      \item 使用gedit或Vim在这个文件中输入一些文本——10行左右的随机语句——然后保存这个文件。（如果不想手动输入内容，也可以通过命令 \verb|man ls > test-file|把ls的联机帮助页保存到文件中。）
-      \item 使用 \verb|ls -l|命令显示文件的大小。
+      \item 使用 \verb|cd /tmp;touch test-file| 命令在 /tmp目录中创建一个名为test-file的文件。
+      \item 使用gedit或Vim在这个文件中输入一些文本——10行左右的随机语句——然后保存这个文件。（如果不想手动输入内容，也可以通过命令 \verb|man ls > test-file| 把ls的联机帮助页保存到文件中。）
+      \item 使用 \verb|ls -l| 命令显示文件的大小。
       \item 为了证明可以查看这个文件，因为它是一个普通的文本文件，使用cat命令。
       \item 使用gzip压缩这个刚才创建的文件。
       \item 现在在 /tmp目录中产生了一个名为test-file.gz的文件。
-      \item 使用 \verb|ls -l|命令查看压缩文件的大小。这个文件应该比未压缩的版本占用较少的空间，因为gzip压缩了它的大小。
-      \item 使用gzip或gunzip解压文件：\verb|gzip -d test-file.gz|或 \verb|gunzip -d test-file.gz|。
+      \item 使用 \verb|ls -l| 命令查看压缩文件的大小。这个文件应该比未压缩的版本占用较少的空间，因为gzip压缩了它的大小。
+      \item 使用gzip或gunzip解压文件：\verb|gzip -d test-file.gz| 或 \verb|gunzip -d test-file.gz|。
       \item 现在/tmp目录中有一个名为test-file的文件（test-file.gz文件已不存在）。使用cat命令查看该文件的内容。
-      \item 看到的输出应该和压缩该文件前使用cat命令看到的一样。再次使用 \verb|ls -l|命令，将看到这个文件和原来的文件大小相同。
+      \item 看到的输出应该和压缩该文件前使用cat命令看到的一样。再次使用 \verb|ls -l| 命令，将看到这个文件和原来的文件大小相同。
     \end{enumerate}
 \end{enumerate}
 
 \vspace{0.1in}
 （五）通配符的使用
 
-\textbf{知识点解析：}shell命令的通配符包括 \verb|*|、\verb|?|、\verb|[]|、\verb|-|和 \verb|!|，灵活使用通配符可同时引用多个文件，方便操作。
+\textbf{知识点解析：}shell命令的通配符包括 \verb|*|、\verb|?|、\verb|[]|、\verb|-| 和 \verb|!|，灵活使用通配符可同时引用多个文件，方便操作。
 \begin{itemize}
   \item \verb|*|：匹配任意长度的任何字符。
   \item \verb|?|：匹配一个字符。
   \item \verb|[]|：表示范围。
-  \item \verb|-|：通常与 \verb|[]|配合使用，起始字符-终止字符构成范围。
-  \item \verb|!|：表示不在范围，通常也与 \verb|[]|配合使用。
+  \item \verb|-|：通常与 \verb|[]| 配合使用，起始字符-终止字符构成范围。
+  \item \verb|!|：表示不在范围，通常也与 \verb|[]| 配合使用。
 \end{itemize}
 \begin{enumerate}
   \item 显示 /bin目录中所有以c为首字母的文件和目录。
@@ -154,11 +154,11 @@
     \textbf{知识点解析：}shell可以记录一定数量的已执行过的命令，当用户需要再次执行时，不用再次输入，可以直接调用。使用上、下方向键，【PaUp】或【PgDn】键，在shell命令提示符后将出现已执行过的命令。直接按【Enter】键就可以再次执行这一命令，也可以对出现的命令行进行编辑，修改为用户所需要的命令后再执行。
     \begin{enumerate}
       \item 按向上方向键，shell命令提示符后出现上一步操作时输入的命令 \verb|ls /bin/c*|。
-      \item 将其修改为 \verb|ls /bin/c??|并执行，屏幕显示 /bin目录中以c为首字母、文件名只有3个字符的文件和目录。
+      \item 将其修改为 \verb|ls /bin/c??| 并执行，屏幕显示 /bin目录中以c为首字母、文件名只有3个字符的文件和目录。
     \end{enumerate}
   \item 显示 /bin目录中所有的首字母为c或s或h的文件和目录。
     \begin{enumerate}
-      \item 输入命令 \verb|ls /bin/[csh]*|，屏幕显示 /bin目录中首字母为c或s或h的文件和目录。\verb|[csh]*|并非表示所有以csh开头的文件，而是表示以c或s或h为首字母的文件。为避免误解，也可以使用 \verb|[c,s,h]*|，达到相同的效果。
+      \item 输入命令 \verb|ls /bin/[csh]*|，屏幕显示 /bin目录中首字母为c或s或h的文件和目录。\verb|[csh]*| 并非表示所有以csh开头的文件，而是表示以c或s或h为首字母的文件。为避免误解，也可以使用 \verb|[c,s,h]*|，达到相同的效果。
     \end{enumerate}
   \item 显示 /bin目录中所有首字母是v、w、x、y、z的文件和目录。
     \begin{enumerate}
@@ -168,7 +168,7 @@
     
     \textbf{知识点解析：}用户不仅可利用上、下方向键来显示执行过的命令，还可以使用history命令查看或调用执行过的命令。history命令可以查看到已执行命令在历史记录列表中的序号，使用“!序号”命令即可进行调用，而“\verb|!!|”命令则执行最后执行过的那个命令。
     \begin{enumerate}
-      \item 输入命令 \verb|!!|，自动执行上一步操作中使用过的 \verb|ls /bin/[!a-u]*|命令。
+      \item 输入命令 \verb|!!|，自动执行上一步操作中使用过的 \verb|ls /bin/[!a-u]*| 命令。
     \end{enumerate}
   \item 查看刚执行过的5个命令。
     \begin{enumerate}
@@ -246,7 +246,7 @@ Bravo
     \end{enumerate}
   \item 将mygroup组改名为newgroup。
     \begin{enumerate}
-      \item 在超级用户的shell提示符后输入命令 \verb|groupmod -n newgroup mygroup|，其中 \verb|-n|选项表示更改组名称。
+      \item 在超级用户的shell提示符后输入命令 \verb|groupmod -n newgroup mygroup|，其中 \verb|-n| 选项表示更改组名称。
       \item 输入命令 \verb|cat /etc/group|，查看组信息，发现原来mygroup所在行的第一项变为newgroup。
     \end{enumerate}
   \item 删除newgroup组。

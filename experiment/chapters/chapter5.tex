@@ -108,7 +108,7 @@ ls -R
       \item 查找所有的隐藏文件：\verb|find . -type f -name ".*"|。
       \item 查找所有的隐藏目录：\verb|find . -type d -name ".*"|。
     \end{enumerate}
-  \item 通过文件大小查找文件。\verb|+|指比给定尺寸大，\verb|–|指比给定尺寸小，没有符号代表和给定尺寸完全一样大。 
+  \item 通过文件大小查找文件。\verb|+| 指比给定尺寸大，\verb|-| 指比给定尺寸小，没有符号代表和给定尺寸完全一样大。 
     \begin{enumerate}
       \item 查找比指定文件大的文件：\verb|find ~ -size +100M|。
       \item 查找比指定文件小的文件：\verb|find ~ -size -100M|。
@@ -184,7 +184,7 @@ Tom
 Pat
 \end{verbatim}
   \item 在命令行中输入并运行下面的命令：\\ \verb|sed -e s/Paul/Pablo/g names1.txt names2.txt > names3.txt|。
-  \item 使用 \verb|cat names3.txt|命令显示第三个文件的输出，以观察得到的名字列表。
+  \item 使用 \verb|cat names3.txt| 命令显示第三个文件的输出，以观察得到的名字列表。
 \end{enumerate}
 
 \vspace{0.1in}
