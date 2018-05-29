@@ -406,9 +406,9 @@
   \frametitle{grep | \alert{实例}}
   \begin{block}{实际问题}
     \begin{itemize}
-      \item<2-> 在/etc目录下面的文件中搜索root字符串
-      \item<4-> 搜索/etc/passwd中不含root字符串的所有账户
-      \item<6-> 搜索/etc/passwd中包含root字符串的所有账户
+      \item<2-> 在 /etc目录下面的文件中搜索root字符串
+      \item<4-> 搜索 /etc/passwd中不含root字符串的所有账户
+      \item<6-> 搜索 /etc/passwd中包含root字符串的所有账户
     \end{itemize}
   \end{block}
   \begin{block}{解决方法}
@@ -552,7 +552,7 @@
 
 \begin{frame}[fragile]
   \frametitle{文本处理命令 | tee}
-  \textbf{tee} takes the output from any command, and while sending it to standard output, it also saves it to a file. In other words, it "tees" the output stream from the command: one stream is displayed on the standard output and the other is saved to a file.\\
+  \textbf{tee} takes the output from any command, and while sending it to standard output, it also saves it to a file. In other words, it ``tees" the output stream from the command: one stream is displayed on the standard output and the other is saved to a file.\\
   \vspace{0.3cm}
   For example, to list the contents of a directory on the screen and save the output to a file, at the command prompt type \verb=ls -l | tee newfile= and press the \textbf{Enter} key.
 \end{frame}
@@ -707,6 +707,26 @@
   \end{table}
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{文本处理命令 | \alert{生物信息学实例}}
+  \begin{block}{具体问题}
+    \begin{itemize}
+      \item<2-> 计算DNA序列长度
+      \item<4-> 计算DNA序列中A的个数
+      \item<6-> 获取DNA序列的反向互补序列
+      \item<8-> 重排（shuffle）DNA序列
+    \end{itemize}
+  \end{block}
+  \begin{block}{命令}
+    \begin{itemize}
+      \item<3-> \verb=echo -n "AACGT" | wc -m= \\ \verb=printf "AACGT" | wc -m=
+      \item<5-> \verb=echo "AACGT" | fold -w1 | grep "A" | wc -l=
+      \item<7-> \verb=echo "AACGT" | rev | tr "ACGT" "TGCA"=
+      \item<9-> \verb=echo "AACGT" | fold -w1 | shuf | paste -s -d ""=
+    \end{itemize}
+  \end{block}
+\end{frame}
+
 \section{sed和AWK}
 \begin{frame}
   \frametitle{sed和AWK | 简介}
@@ -720,7 +740,7 @@
   \begin{block}{处理对象}
     对已有文本进行操作：
     \begin{itemize}
-      \item 管理文件（如/etc/passwd）的内容
+      \item 管理文件（如 /etc/passwd）的内容
       \item 另一个命令（如ls）的输出
       \item 冗长的文本文件（如FASTA格式的序列）的内容
     \end{itemize}
@@ -1160,7 +1180,7 @@ awk
       \item<2-> Count FASTA record
       \item<4-> Split a multi-FASTA file into individual FASTA files
       \item<6-> Convert a FASTQ file to FASTA 
-      \item<8-> Returns all lines on Chr 1 between 1MB and 2MB in file.txt 
+      \item<8-> Returns all lines on chromosome 1 between 1MB and 2MB in file.txt 
     \end{itemize}
   \end{block}
   \begin{block}{命令}
@@ -1181,13 +1201,13 @@ awk
       \item<2-> Print all possible 3mer DNA sequence combinations
       \item<4-> Determine the number of genes annotated in a GFF3 file
       \item<6-> Determine all feature types annotated in a GFF3 file
-      \item<8-> Basic FASTQ sequence statistics(number,percentage,\ldots)
+      \item<8-> Basic FASTQ sequence statistics(number, percentage, \ldots)
     \end{itemize}
   \end{block}
   \begin{block}{命令}
     \begin{itemize}
       \item<3-> \verb=echo {A,C,G,T}{A,C,G,T}{A,C,G,T}=
-      \item<5-> \verb|grep -c '\tgene\t' yourannots.gff3|
+      \item<5-> \verb|grep -c '\tgene\t' youranno.gff3|
       \item<7-> \verb~grep -v '^#' GFF3 | cut -s -f 3 | sort | uniq~
       \item<9-> {\tiny \verb~cat myfile.fq | awk '((NR-2)%4==0){read=$1;total++;count[read]++}END{for(read in count){if(!max||count[read]>max) {max=count[read];maxRead=read};if(count[read]==1){unique++}};print total,unique,unique*100/total,maxRead,count[maxRead],count[maxRead]*100/total}'~}
     \end{itemize}
