@@ -1215,6 +1215,33 @@ awk
   \end{block}
 \end{frame}
 
+\begin{frame}
+  \frametitle{BED格式}
+  {\small
+  \begin{block}{BED}
+    BED format is a concise and flexible way to represent genomic features and annotations.
+    \begin{enumerate}
+    \setlength{\itemsep}{0pt}
+    \setlength{\parsep}{0pt}
+    \setlength{\parskip}{0pt}
+      \item chrom: The name of the chromosome on which the genome feature exists.
+      \item start: The zero-based starting position of the feature in the chromosome.
+      \item end: The one-based ending position of the feature in the chromosome.
+      \item name: Defines the name of the BED feature.
+      \item score: 0 to 1000, or any string.
+      \item strand: Defines the strand - either `+' or `-'.
+    \end{enumerate}
+  \end{block}
+  }
+  \pause
+  \begin{block}{BED6}
+    \begin{itemize}
+      \item A BED file where each feature is described by chrom, start, end, name, score, and strand.
+      \item chr17\quad 7571720\quad 7578811\quad TP53\quad 0\quad -
+    \end{itemize}
+  \end{block}
+\end{frame}
+
 \begin{frame}[fragile]
   \frametitle{\alert{Useful bash one-liners for bioinformatics}}
   \begin{block}{具体问题}
