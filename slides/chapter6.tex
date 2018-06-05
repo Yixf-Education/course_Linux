@@ -33,9 +33,9 @@
 
 \begin{frame}
   \frametitle{引言 | 软件 | Windows vs. Linux}
-  Windows平台下软件安装的易用性非常不错。多数时候就是一个可执行的exe或msi文件，双击然后一路点击下一步即可；又或者解压，就可以直接运行。基本上，会用电脑的人都知道怎样在Windows上安装软件。\\
+  Windows平台下软件安装的易用性非常不错。多数时候就是一个可执行的exe或msi文件，双击然后一路点击下一步即可；又或者解压后就可以直接运行。基本上，会用电脑的人都知道怎样在Windows上安装软件。\\
   \vspace{5pt}
-  软件包包含程序运行的所需文件。但同样是“包”，又可以分两种，一种是源文件包，一种是已经编译过的二进制包。二进制文件计算机可以直接执行，比如Windows下的exe文件，或者Ubuntu下的deb包；而源文件不行，需要编译才行。那为什么Linux下软件包不全部以二进制可直接执行的形式提供呢？这是因为Linux系统种类繁多，所使用的二进制有所不同，需要分别打包才行，比如，x86架构跟AMD64的需要分别提供，32位系统与64位的也需要分别提供。\\
+  软件包包含程序运行的所需文件。但同样是“包”，又可以分两种，一种是源文件包，一种是已经编译过的二进制包。二进制文件计算机可以直接执行，比如Windows下的exe文件，或者Ubuntu下的deb包；而源文件则不行，需要编译才可以。那为什么Linux下软件包不全部以二进制可直接执行的形式提供呢？这是因为Linux系统种类繁多，所使用的二进制有所不同，需要分别打包才行，比如，x86架构跟AMD64的需要分别提供，32位系统与64位的也需要分别提供。\\
   \vspace{5pt}
   也就是说，Windows下提供的软件安装文件基本都是已编译过的，而Linux下就不一定。
 \end{frame}
@@ -91,7 +91,7 @@
     \begin{itemize}
       \item 二进制包（预编译的软件包）
 	\begin{itemize}
-	  \item deb软件包：Debian, Ubuntu
+    \item deb软件包：Debian, Ubuntu, Linux Mint
 	  \item rpm软件包：RHEL, CentOS，Fedora, SUSE, openSUSE, Mandriva Linux, Mageia, PCLinuxOS
 	\end{itemize}
       \item 源代码安装包
@@ -104,11 +104,11 @@
   \frametitle{引言 | 软件包管理系统}
   \begin{block}{\alert{二进制包管理系统}}
     \begin{description}
-      \item[dpkg及其前端APT] Ubuntu, Debian, Deepin
+      \item[dpkg及其前端APT] Ubuntu, Debian, Linux Mint, Deepin
       \item[RPM及其前端Yum] Red Hat Enterprise Linux, CentOS, Fedora
       \item[ZYpp及其前端Zypper] SUSE, openSUSE
       \item[urpmi] Mandriva Linux, Mageia Linux, ROSA Linux
-      \item[pacman] Arch Linux
+      \item[pacman] Manjora, Arch Linux
       \item[Portage] Gentoo
       \item[slapt-get] Slackware
       \item[\ldots] \ldots
@@ -151,7 +151,7 @@
       \hline
       \rowcolor{blue!50}发行版 & 低级工具 & 高级工具\\
       \hline
-      Debian版 & dpkg & apt-get/Aptitude\\
+      Debian版 & dpkg & apt/apt-get/Aptitude\\
       CentOS版 & RPM & Yum\\
       openSUSE版 & RPM & Zypper\\
       \hline
@@ -162,15 +162,15 @@
 \begin{frame}
   \frametitle{二进制软件包管理 | 管理工具 | 低级 vs. 高级}
   \begin{block}{dpkg}
-    基于Debian的系统的一个低级包管理器。它可以安装，删除，提供有关资料，以及建立*.deb包，但它不能自动下载并安装它们相应的依赖包。
+    基于Debian系统的一个低级包管理器。它可以安装，删除，提供有关资料，以及建立*.deb包，但它不能自动下载并安装它们相应的依赖包。
   \end{block}
   \pause
-  \begin{block}{apt-get}
+  \begin{block}{apt/apt-get}
     Debian及其衍生版的高级包管理器，并提供命令行方式来从多个来源检索和安装软件包，其中包括解决依赖性。和dpkg不同的是，apt-get不是直接基于.deb文件工作，而是基于软件包的正确名称。
   \end{block}
   \pause
   \begin{block}{Aptitude}
-    基于Debian的系统的另一个高级包管理器，它可用于快速简便的执行管理任务（安装，升级和删除软件包，还可以自动处理解决依赖性）。它在atp-get的基础上提供了更多功能，例如提供对软件包的几个版本的访问。
+    基于Debian系统的另一个高级包管理器，它可用于快速简便得执行管理任务（安装，升级和删除软件包，还可以自动处理解决依赖性）。它在atp-get的基础上提供了更多功能，例如提供对软件包的几个版本的访问。
   \end{block}
 \end{frame}
 
@@ -189,14 +189,14 @@
 \begin{frame}
   \frametitle{二进制软件包管理 | dpkg与APT | 简介}
   \begin{block}{dpkg}
-  dpkg（Debian Package）是Debian软件包管理器的基础，它被伊恩·默多克创建于1993年。dpkg与RPM十分相似，同样被用于安装、卸载和提供与.deb软件包相关的信息。\\ 
+  dpkg（Debian Package）是Debian软件包管理器的基础，它被伊恩·默多克创建于1993年。dpkg与RPM十分相似，同样被用于安装、卸载和提供与 .deb软件包相关的信息。\\ 
 
   dpkg本身是一个底层的工具。上层的工具，像是APT，被用于从远程获取软件包以及处理复杂的软件包关系。
   \end{block}
   \pause
   \begin{block}{APT}
   APT（Advanced Packaging Tools，高级包装工具）是Debian及其派生发行版的软件包管理器。APT可以自动下载，配置，安装二进制或者源代码格式的软件包，因此简化了Linux系统上管理软件的过程。\\
-  APT最早被设计成dpkg的前端，用来处理deb格式的软件包。现在经过APT-RPM组织修改，APT已经可以安装在支持RPM包管理的系统。
+  APT最早被设计成dpkg的前端，用来处理deb格式的软件包。现在经过APT-RPM组织修改，APT已经可以安装在支持RPM包管理的系统上了。
   \end{block}
 \end{frame}
 
@@ -233,9 +233,9 @@
       \rowcolor{blue!50}命令 & 作用\\
       \hline
       dpkg-reconfigure package & 重新配置已安装的软件包\\
-      \verb|dpkg --get-selections| & 获取软件包状态\\
-      \verb|dpkg --set-selections| & 设置软件包状态\\
-      \verb|dpkg --force-all --purge package| & 强制卸载（有风险！）\\
+      dpkg -\!-get-selections & 获取软件包状态\\
+      dpkg -\!-set-selections & 设置软件包状态\\
+      dpkg -\!-force-all -\!-purge package & 强制卸载（有风险！）\\
       \hline
     \end{tabularx}
   \end{table}
@@ -252,7 +252,7 @@
 \begin{frame}
   \frametitle{二进制软件包管理 | dpkg与APT | APT | 工具}
   \begin{description}
-    \item[apt-get] 负责软件包的在线安装与升级，底层对deb包的处理还是用的dpkg，解决依赖关系
+    \item[apt/apt-get] 负责软件包的在线安装与升级，底层对deb包的处理还是用的dpkg，解决依赖关系
     \item[apt-cache] 用来查询软件包的状态和依赖关系
     \item[apt-file] 负责查询软件包名称和软件包包含的文件（值得注意的是它要自己同步）
     \item[apt-cross] 负责为交叉编译的软件包的安装与编译等
@@ -292,9 +292,9 @@
       \rowcolor{blue!50}命令 & 作用\\
       \hline
       apt-get install package & 安装软件包\\
-      apt-get \verb|--|reinstall install package & 重新安装软件包\\
+      apt-get -\!-reinstall install package & 重新安装软件包\\
       apt-get remove package & 卸载软件包（保留配置文件）\\
-      apt-get \verb|--|purge remove package & 完全卸载软件包（删除配置文件）\\
+      apt-get -\!-purge remove package & 完全卸载软件包（删除配置文件）\\
       apt-get -f install & 修正依赖关系损坏的软件包\\
       apt-get check & 检查是否有损坏的依赖\\
       apt-get clean & 清除软件包缓存\\
@@ -335,7 +335,7 @@
 \begin{frame}
   \frametitle{二进制软件包管理 | dpkg与APT | Aptitude}
   \begin{block}{Aptitude}
-    一个基于Ncurses的Apt文字接口前端程序，是Debian及其派生系统中功能极其强大的软件包管理系统。\\
+    一个基于Ncurses的APT文字接口前端程序，是Debian及其派生系统中功能极其强大的软件包管理系统。\\
      \vspace{5pt}
     以交互形式运行时，它可以显示出所有可用的软件包，并允许用户选择包来安装或卸载。它还有一个强大的搜索系统，可通过多种搜索模式进行搜索。\\
      \vspace{5pt}
@@ -389,11 +389,18 @@
     \end{enumerate}
   \end{block}
   \pause
-  \begin{block}{实例（安装Ubuntu Tweak）}
+  % \begin{block}{实例（安装Ubuntu Tweak）}
+  %   \begin{enumerate}
+  %     \item sudo add-apt-repository ppa:tualatrix/ppa
+  %     \item sudo apt-get update
+  %     \item sudo apt-get install ubuntu-tweak
+  %   \end{enumerate}
+  % \end{block}
+  \begin{block}{实例（安装Java）}
     \begin{enumerate}
-      \item sudo add-apt-repository ppa:tualatrix/ppa
+      \item sudo add-apt-repository ppa:webupd8team/java
       \item sudo apt-get update
-      \item sudo apt-get install ubuntu-tweak
+      \item sudo apt-get install oracle-java8-installer
     \end{enumerate}
   \end{block}
 \end{frame}
@@ -466,13 +473,13 @@
       -s & State & 软件包状态 & \\
       \hline
       -h & Hash & 进度条 & 安装选项\\
-      \verb|--nodeps| & --- & 不检查依赖性 & \\
-      \verb|--excludedocs| & --- & 不安装文档 & \\
-      \verb|--prefix| & --- & 指定安装路径 & \\
-      \verb|--test| & --- & 测试而不安装 & \\
-      \verb|--replacepkgs| & --- & 覆盖安装 & \\
-      \verb|--replacefiles| & --- & 替换文件 & \\
-      \verb|--force| & --- & 强制安装 & \\
+      -\!-nodeps & --- & 不检查依赖性 & \\
+      -\!-excludedocs & --- & 不安装文档 & \\
+      -\!-prefix & --- & 指定安装路径 & \\
+      -\!-test & --- & 测试而不安装 & \\
+      -\!-replacepkgs & --- & 覆盖安装 & \\
+      -\!-replacefiles & --- & 替换文件 & \\
+      -\!-force & --- & 强制安装 & \\
       \hline
     \end{tabularx}
   \end{table}
@@ -621,7 +628,7 @@
 \begin{frame}
   \frametitle{源代码安装 | 开源许可证 | BSD}
   \begin{block}{BSD许可证}
-    \alert{BSD}许可证（Berkeley Software Distribution license），是自由软件中使用最广泛的许可证之一。BSD（Berkeley Software Distribution，伯克利软件套件，Unix变种）就是遵照这个许可证来发布，该许可证也因此而得名。\\
+    \alert{BSD}许可证（Berkeley Software Distribution license），是自由软件中使用最广泛的许可证之一。BSD（Berkeley Software Distribution，伯克利软件套件，Unix变种）就是遵照这个许可证来发布的，该许可证也因此而得名。\\
     跟其他许可证相比，从GNU通用公共许可证（GPL）到限制重重的著作权（Copyright），BSD许可证比较宽松，甚至跟公有领域更为接近。事实上，BSD许可证被认为是copycenter（中间版权），界乎标准的copyright与GPL的copyleft之间。GPL强迫后续版本必须一样是自由软件，BSD的后续版本可以选择要继续是BSD或其他自由软件条款或封闭软件等等。\\
     遵守BSD许可证的软件，允许用作商业用途，甚至可按照专属许可证进行再发布。比较著名的例子如微软产品中引入了BSD网络部分的代码，Mac OS X中使用了不少FreeBSD的组件。也可以将一部分遵照BSD许可证发布，另外一些采取其他许可证。
   \end{block}
@@ -631,8 +638,10 @@
   \frametitle{源代码安装 | 开源许可证 | GPL}
   \begin{block}{GPL}
     GNU通用公共许可协议（GNU General Public License，缩写：GNU GPL、GPL），是一个广泛被使用的自由软件许可协议条款，最初由理查德·斯托曼（Richard Matthrew Stallman）为GNU计划而撰写。\\
-    \alert{GPL}给予了计算机程序自由软件（free software）的定义，并且使用Copyleft来确保程序的自由被完善的保留。\\
-    GPL与其他一些更“许可的”自由软件许可证（比如BSD许可证）相比，主要区别就在于GPL寻求确保“自由”能在复制件及演绎作品中得到保障。它通过一种由斯托曼发明的叫Copyleft的法律机制实现，即要求GPL程序的演绎作品也要在GPL之下。相反，BSD式的许可证并不禁止演绎作品变成专有软件。
+    \vspace{0.5em}
+    \alert{GPL} 给予了计算机程序自由软件（free software）的定义，并且使用Copyleft来确保程序的自由被完善的保留。\\
+    \vspace{0.5em}
+GPL与其他一些更“许可的”自由软件许可证（比如BSD许可证）相比，主要区别就在于GPL寻求确保“自由”能在复制件及演绎作品中得到保障。它通过一种由斯托曼发明的叫Copyleft的法律机制实现，即要求GPL程序的演绎作品也要在GPL之下。相反，BSD式的许可证并不禁止演绎作品变成专有软件。
   \end{block}
 \end{frame}
 
@@ -698,7 +707,7 @@
 \begin{frame}
   \frametitle{源代码安装 | 下载软件}
   \begin{block}{文件格式}
-    下载的源代码文件内容通常由tar、gzip、bzip命令打包压缩过，形成的文件称为tarball，其典型的文件扩展名是.tgz、.tar.gz或.tar.bz2。
+    下载的源代码文件内容通常由tar、gzip、bzip命令打包压缩过，形成的文件称为tarball，其典型的文件扩展名是 .tgz、.tar.gz或 .tar.bz2。
   \end{block}
   \pause
   \begin{block}{下载技巧}
@@ -724,7 +733,7 @@
   \frametitle{源代码安装 | \alert{编译和安装}}
   \begin{block}{准备工作}
     \begin{enumerate}
-      \item 下载软件：\verb|wget -c software.tar.gz|
+      \item 下载软件：\verb|wget -c https://url/software.tar.gz|
       \item 提取文件：\verb|tar -xzvf software.tar.gz|
       \item 切换目录：\verb|cd software|
     \end{enumerate}
@@ -765,13 +774,125 @@
   \frametitle{脚本安装 | \alert{基本步骤}}
   \begin{block}{基本步骤}
     \begin{enumerate}
-      \item 下载软件：\verb|wget -c software.tar.gz|
+      \item 下载软件：\verb|wget -c https://url/software.tar.gz|
       \item 提取文件：\verb|tar -xzvf software.tar.gz|
       \item 切换目录：\verb|cd software|
       \item 查阅说明：\verb|vim README|
       \item 安装软件：\verb|./setup.sh|，或 \verb|./install.sh|
     \end{enumerate}
   \end{block}
+\end{frame}
+
+\section{使用biocoda管理生信软件}
+\begin{frame}
+  \frametitle{biocoda | conda | 简介}
+  \begin{block}{conda}
+    Conda是开源的包管理系统和环境管理系统，可以安装软件包的多个版本和依赖，而且各环境之间可以很方便得切换。Conda支持Linux，Mac OS X和Windows系统。\\
+    \vspace{0.5em}
+    Conda主要为Python程序所创建，但是可以打包和分布任意软件。\\
+    Package, dependency and environment management for any language—Python, R, Ruby, Lua, Scala, Java, JavaScript, C/ C++, FORTRAN.\\
+    \vspace{0.5em}
+    Conda有多个版本，包括Anaconda, Anaconda Server和Miniconda。
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{biocoda | conda | 安装配置}
+  \begin{block}{安装与配置}
+    \begin{enumerate}
+      \item 下载\\ \verb|wget -c https://url/Miniconda3-latest-Linux-x86_64.sh|
+      \item 安装\\ \verb|bash Miniconda3-latest-Linux-x86_64.sh|
+      \item 配置（修改 .bashrc）\\ \verb|export PATH="PathToMiniconda/bin:$PATH"|
+      \item 配置 .bashrc（修改 .profile）\\ \verb|source $HOME/.bashrc|
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{biocoda | 简介}
+  \begin{block}{biocoda}
+    Bioconda is a channel for the conda package manager specializing in bioinformatics software. Bioconda consists of:
+    \begin{itemize}
+      \item a repository of recipes hosted on GitHub
+      \item a build system that turns these recipes into conda packages
+      \item a repository of >1500 bioinformatics packages ready to use with conda install
+      \item Over 130 contributors that add, modify, update and maintain the recipes
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{biocoda | 使用}
+  \begin{block}{Using biocoda}
+    Bioconda supports only 64-bit Linux and Mac OSX.
+    \begin{enumerate}
+      \item Install conda
+      \item Set up channels (It is important to add them in this order)
+\vspace{-0.5em}
+\begin{lstlisting}
+conda config --add channels defaults
+conda config --add channels conda-forge
+conda config --add channels bioconda
+\end{lstlisting}
+\vspace{-0.8em}
+      \item Install packages
+\vspace{-0.5em}
+\begin{lstlisting}
+# install into the current conda environment:
+conda install bwa
+# a new environment can be created
+conda create -n aligners bwa bowtie
+\end{lstlisting}
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{biocoda | 使用镜像加速}
+  \begin{block}{镜像}
+    \begin{itemize}
+      \item 清华（TUNA）镜像\\ \verb|https://mirrors.tuna.tsinghua.edu.cn|
+      \item 中科大（USTC）镜像\\ \verb|https://mirrors.ustc.edu.cn|
+    \end{itemize}
+  \end{block}
+  \pause
+  \begin{block}{添加镜像（1/2）}
+    \begin{itemize}
+      \item Anaconda
+\begin{lstlisting}
+conda config --add channels TUNA/anaconda/pkgs/main/
+conda config --add channels TUNA/anaconda/pkgs/free/
+conda config --set show_channel_urls yes
+\end{lstlisting}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{biocoda | 使用镜像加速}
+  \begin{block}{添加镜像（2/2）}
+    \begin{itemize}
+      \item Conda Forge
+\begin{lstlisting}
+conda config --add channels TUNA/anaconda/cloud/conda-forge/
+\end{lstlisting}
+      \item R \& biocoda
+\begin{lstlisting}
+conda config --add channels TUNA/anaconda/pkgs/r/
+conda config --add channels TUNA/anaconda/cloud/bioconda/
+\end{lstlisting}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{biocoda | 参考资料}
+  \begin{itemize}
+    \item \href{https://conda.io/docs/}{conda使用手册}
+    \item \href{https://bioconda.github.io/}{bioconda}
+    \item \href{https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/}{Anaconda镜像使用帮助}
+    \item \href{https://github.com/Yixf-Education/demo4bx/tree/master/conda}{生物信息学软件的安装与维护}
+  \end{itemize}
 \end{frame}
 
 \section{回顾与总结}
@@ -791,6 +912,7 @@
       \item Ubuntu中的软件管理
       \item CentOS中的软件管理
       \item 通过源代码安装软件
+      \item 使用conda管理生信软件
     \end{itemize}
   \end{block}
 \end{frame}
