@@ -215,7 +215,7 @@ s/Joe/Joseph/
 BEGIN {
   FS=":"
 }
-{ printf "username: " $1 "\t\t\t user id: " $3 }
+{ printf "username: " $1 "\t\t\t user id: " $3 "\n"}
 \end{verbatim}
   \item 以如下方式执行awk命令：\verb|awk -f print.awk /etc/passwd|。
 \end{enumerate}
