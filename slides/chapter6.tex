@@ -783,9 +783,9 @@ GPL与其他一些更“许可的”自由软件许可证（比如BSD许可证�
   \end{block}
 \end{frame}
 
-\section{使用biocoda管理生信软件}
+\section{使用bioconda管理生信软件}
 \begin{frame}
-  \frametitle{biocoda | conda | 简介}
+  \frametitle{bioconda | conda | 简介}
   \begin{block}{conda}
     Conda是开源的包管理系统和环境管理系统，可以安装软件包的多个版本和依赖，而且各环境之间可以很方便得切换。Conda支持Linux，Mac OS X和Windows系统。\\
     \vspace{0.5em}
@@ -797,7 +797,7 @@ GPL与其他一些更“许可的”自由软件许可证（比如BSD许可证�
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{biocoda | conda | 安装配置}
+  \frametitle{bioconda | conda | 安装配置}
   \begin{block}{安装与配置}
     \begin{enumerate}
       \item 下载\\ \verb|wget -c https://url/Miniconda3-latest-Linux-x86_64.sh|
@@ -809,8 +809,8 @@ GPL与其他一些更“许可的”自由软件许可证（比如BSD许可证�
 \end{frame}
 
 \begin{frame}
-  \frametitle{biocoda | 简介}
-  \begin{block}{biocoda}
+  \frametitle{bioconda | 简介}
+  \begin{block}{bioconda}
     Bioconda is a channel for the conda package manager specializing in bioinformatics software. Bioconda consists of:
     \begin{itemize}
       \item a repository of recipes hosted on GitHub
@@ -822,8 +822,8 @@ GPL与其他一些更“许可的”自由软件许可证（比如BSD许可证�
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{biocoda | 使用}
-  \begin{block}{Using biocoda}
+  \frametitle{bioconda | 使用}
+  \begin{block}{Using bioconda}
     Bioconda supports only 64-bit Linux and Mac OSX.
     \begin{enumerate}
       \item Install conda
@@ -848,7 +848,7 @@ conda create -n aligners bwa bowtie
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{biocoda | 使用镜像加速}
+  \frametitle{bioconda | 使用镜像加速}
   \begin{block}{镜像}
     \begin{itemize}
       \item 清华（TUNA）镜像\\ \verb|https://mirrors.tuna.tsinghua.edu.cn|
@@ -869,14 +869,14 @@ conda config --set show_channel_urls yes
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{biocoda | 使用镜像加速}
+  \frametitle{bioconda | 使用镜像加速}
   \begin{block}{添加镜像（2/2）}
     \begin{itemize}
       \item Conda Forge
 \begin{lstlisting}
 conda config --add channels TUNA/anaconda/cloud/conda-forge/
 \end{lstlisting}
-      \item R \& biocoda
+      \item R \& bioconda
 \begin{lstlisting}
 conda config --add channels TUNA/anaconda/pkgs/r/
 conda config --add channels TUNA/anaconda/cloud/bioconda/
@@ -886,7 +886,7 @@ conda config --add channels TUNA/anaconda/cloud/bioconda/
 \end{frame}
 
 \begin{frame}
-  \frametitle{biocoda | 参考资料}
+  \frametitle{bioconda | 参考资料}
   \begin{itemize}
     \item \href{https://conda.io/docs/}{conda使用手册}
     \item \href{https://bioconda.github.io/}{bioconda}

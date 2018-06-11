@@ -799,8 +799,8 @@
   \begin{block}{sed命令}
     \begin{itemize}
       \item<2-> \verb|sed s/Paul/Pablo/g names1.txt > names3.txt|
-      \item<4-> \verb|sed 's/Paul/Pablo/g;s/Pat/Patricia/g' names1.txt names2.txt|
-      \item<6-> \verb|sed -e 's/Paul/Pablo/g' -e 's/Pat/Patricia/g' names1.txt names2.txt|
+      \item<4-> \verb|sed 's/Paul/Pablo/g;s/Pat/Patricia/g' names1.txt > names2.txt|
+      \item<6-> \verb|sed -e 's/Paul/Pablo/g' -e 's/Pat/Patricia/g' names1.txt > names2.txt|
       \item<8-> \verb|sed -f edits.sedscr names1.txt > names3.txt|
     \end{itemize}
   \end{block}
@@ -1028,7 +1028,7 @@ awk
   '
   BEGIN {FS=":"}
 
-  {printf "username: " $1 "\t\t\t user id: " $3}
+  {printf "username: " $1 "\t\t\t user id: " $3 "\n"}
 
   END {printf "All done processing /etc/passwd"}
   '
