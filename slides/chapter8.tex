@@ -6,7 +6,7 @@
 \title[shell编程]{第八章\quad shell编程}
 \author[Yixf]{伊现富（Yi Xianfu）}
 \institute[TIJMU]{天津医科大学（TIJMU）\\ 生物医学工程与技术学院}
-\date{2016年4月}
+\date{2018年7月}
 
 
 \begin{frame}
@@ -180,6 +180,8 @@ $cat /etc/shells
 /usr/bin/tmux
 /bin/ksh93
 /usr/bin/screen
+/bin/zsh
+/usr/bin/zsh
 \end{lstlisting}
     \column{0.5\textwidth}
     \includegraphics[width=\textwidth]{c8_shells.jpg}
@@ -213,6 +215,7 @@ ls
 \begin{frame}
   \frametitle{编程起步 | 特殊字符 | 脚本注释 | 注释简介}
   好的注释对好的程序而言非常关键：为什么编写它、脚本中各部分的作用、如何使用脚本、……\\
+  \vspace{0.5em}
   shell脚本是独立的文档，因此注释它们的最简单也是最好的方法是使用脚本自己的注释。
 \end{frame}
 
@@ -315,7 +318,7 @@ command # This is comment explaining the cmd
   \vspace{0.2cm}
   While child processes are allowed to modify the value of exported variables, the parent will not see any changes; exported variables are not shared, but only copied.
 \end{frame}
-  
+
 \begin{frame}[fragile]
   \frametitle{编程起步 | 变量 | \alert{实例}}
 \begin{lstlisting}
@@ -343,7 +346,7 @@ echo 'Hello, $PERSON' # 输出：Hello, $PERSON
   \begin{block}{引号}
     在向程序传递任何参数之前，程序会扩展通配符和变量。这里所谓的扩展是指程序会把通配符（比如*）替换成适当的文件名，把变量替换成变量值。我们可以使用引号来防止这种扩展。
     \begin{itemize}
-      \item 引号（单引号和双引号）可以防止通配符*的扩展 
+      \item 引号（单引号和双引号）可以防止通配符*的扩展
       \item 单引号更严格一些，它可以防止任何变量扩展
       \item 双引号可以防止通配符扩展但允许变量扩展
       \item 还有一种防止这种扩展的方法，即使用转义字符——反斜线（\verb|\|）
@@ -374,7 +377,7 @@ echo \$SHELL # 输出：$SHELL
 \subsection{从键盘读取输入}
 \begin{frame}[fragile]
   \frametitle{编程起步 | 从键盘读取输入}
-  用户可以通过\alert{read}命令读取键盘的输入值为变量赋值。
+  用户可以通过 \alert{read} 命令读取键盘的输入值为变量赋值。
 \begin{lstlisting}
 echo "What is your name?"
 # read读取键盘输入，并赋值给变量PERSON
@@ -1255,17 +1258,17 @@ esac
 select DRINK in tea cofee water juice appe all none
 do
   case $DRINK in
-    tea|cofee|water|all) 
+    tea|cofee|water|all)
       echo "Go to canteen"
       ;;
     juice|appe)
       echo "Available at home"
       ;;
-    none) 
-      break 
+    none)
+      break
       ;;
     *)
-      echo "ERROR: Invalid selection" 
+      echo "ERROR: Invalid selection"
       ;;
   esac
 done
@@ -1334,7 +1337,7 @@ done
 \begin{lstlisting}
 #!/bin/bash
 
-read -p "Guess the secret color(red, blue, yellow, purple, or orange):" COLOR 
+read -p "Guess the secret color(red, blue, yellow, purple, or orange):" COLOR
 
 while [ $COLOR != "purple" ]
 do
@@ -1391,7 +1394,7 @@ done
 \begin{lstlisting}
 #!/bin/bash
 
-read -p "Guess the secret color(red, blue, yellow, purple, or orange):" COLOR 
+read -p "Guess the secret color(red, blue, yellow, purple, or orange):" COLOR
 
 until [ $COLOR = "purple" ]
 do
@@ -1499,7 +1502,7 @@ done
 for ((i=1; i<=10; i++))
 do
   echo $i
-done 
+done
 \end{lstlisting}
 \end{frame}
 
@@ -1656,7 +1659,7 @@ bc -q <<< "${EXP}"
   \frametitle{高级概念 | 输入输出重定向 | 管道与while、read组合}
 \begin{lstlisting}
 LINE_NO=0
-cat test.txt | 
+cat test.txt |
 while read LINE
 do
   (( LINE_NO++ ))
@@ -1689,7 +1692,7 @@ cat test.txt
 #a
 #b
 #c
-cat test.txt | xargs echo rm 
+cat test.txt | xargs echo rm
 #rm a b c
 cat test.txt | xargs -i echo rm {}
 #rm a
@@ -1738,7 +1741,7 @@ echo ${CONTENT}
 
 #若需要保留换行符，则在打印时必须加上""：
 CONTENT=`cat test.txt`
-echo "${CONTENT}"      
+echo "${CONTENT}"
 #a
 #b
 #c
@@ -1854,7 +1857,7 @@ rm L????.txt    # 通配一个文件名以L开头，后面跟着4个字符，并
 # { }用于通配在它枚举范围内的值。它是直接展开的，可以将它用于批量创建目录或文件，也可以用于生成序列
 
 # 批量生成目录
-ls; mkdir dir{0..2}{0..2}    
+ls; mkdir dir{0..2}{0..2}
 ls #dir00  dir01  dir02  dir10  dir11  dir12  dir20  dir21  dir22
 
 # 生成序列；{ }生成的序列常用于for循环
@@ -1987,8 +1990,8 @@ repeat Your Name
   \begin{block}{显式}
 \begin{lstlisting}
 return code
-return 0 
-return 1 
+return 0
+return 1
 \end{lstlisting}
   \end{block}
 \end{frame}
@@ -2226,7 +2229,7 @@ unset day[@]
 # 关联数组必须用declare -A显示声明类型，否则数值会出错
 
 # 声明关联数组（必须有此句）
-declare -A a 
+declare -A a
 
 # 初始化关联数组
 a=(["apple"]="a1" ["banana"]="b2" ["carrot"]="c3")
@@ -2371,10 +2374,10 @@ set +x    # turns off debugging
 \end{frame}
 
 
-\begin{frame}                                                                          
-  \frametitle{下节预告}                                                                
-  还记得学习过的C语言吗？C语言中如何处理变量？如何进行条件判断？如何进行迭代循环？                    
-\end{frame}  
+\begin{frame}
+  \frametitle{下节预告}
+  还记得学习过的C语言吗？C语言中如何处理变量？如何进行条件判断？如何进行迭代循环？
+\end{frame}
 
 
 \input{snippet/class_tail}

@@ -76,6 +76,7 @@
 
 \begin{frame}
   \frametitle{引言 | 文本编辑器 | 键盘磨损$\Rightarrow$用户习惯}
+  \vspace{-0.5em}
   \begin{columns}
     \column{0.55\textwidth}
   \begin{block}{键盘磨损}
@@ -101,7 +102,7 @@
    \begin{block}{用户习惯/职业}
     \begin{itemize}
       \item FIFA高手
-      \item 版主
+      \item 论坛版主
       \item 游戏迷（CS，35*，…）
       \item 拳皇迷
       \item QQ狂人
@@ -121,7 +122,7 @@
 \section{Vim简介}
 \begin{frame}
   \frametitle{Vim简介}
-  Vim/vi是一个功能强大的全屏幕文本编辑器，是Linux/UNIX上最常用的文本编辑器，它的作用是建立、编辑、显示文本文件。Vim/vi没有菜单，只有命令。
+  Vim/vi是一个功能强大的全屏幕文本编辑器，是Linux/UNIX上最常用的文本编辑器，它的作用是创建、编辑、显示文本文件。Vim/vi没有菜单，只有命令。
 \end{frame}
 
 \subsection{vi版本}
@@ -145,14 +146,14 @@
     %\begin{description}[<+-|alert@+>]
     \begin{description}[<+->]
       \item[Vim初学者教学] 在Linux系统\textcolor{red}{命令行下}输入：\verb|vimtutor|
-      \item[Vim用户手册] 在\textcolor{red}{Vim中}输入：\verb|:help user-manual@cn|（中文版），\verb|:help user-manual|（英文版）
-      \item[Vim帮助系统] 在\textcolor{red}{Vim中}输入：\verb|:help|
+      \item[Vim用户手册] 在 \textcolor{red}{Vim中}输入：\verb|:help user-manual@cn|（中文版），\verb|:help user-manual|（英文版）
+      \item[Vim帮助系统] 在 \textcolor{red}{Vim中}输入：\verb|:help|
     \end{description}
   \end{block}
   {\footnotesize
   对于大多数用户来说，Vim有着一个比较陡峭的学习曲线。这意味着开始学习的时候可能会进展缓慢，但是一旦掌握一些基本操作之后，能大幅度提高编辑效率。\\
   为了帮助学习，Vim为初学者准备了Vim教学。通常可以在Linux系统命令行下输入“vimtutor”或者点击Windows系统桌面上的Vim教学图标进入。\\
-  在Vim用户手册中更加详细的描述了Vim的基础和进阶功能。可以在Vim中输入“:help user-manual”进入用户手册。手册除了原始的英文版本之外，也被志愿者翻译成了各国文字，其中包括中文。\\
+  在Vim用户手册中更加详细得描述了Vim的基础和进阶功能。可以在Vim中输入“:help user-manual”进入用户手册。手册除了原始的英文版本之外，也被志愿者翻译成了各国文字，其中包括中文。\\
   新用户也应该学习Vim的帮助系统，可以在Vim中输入不带参数的“:help”来阅读主帮助文件。}
 \end{frame}
 
@@ -169,7 +170,7 @@
       vim & 不使用文件名参数启动Vim & 启动一个空的Vim面板。退出前必须把所做的编辑保存到新文件中\\
       vim filename & 使用已有文件名作为参数 & 在Vim中打开已有的文件。保存时将更新文件中修改过的内容\\
       vim filename & 使用新文件名作为参数 & 保存时将使用指定的文件名创建新文件\\
-      vim -R filename & 以只读模式打开文件 & 文件是只读的，不能保存修改（练习使用Vim命令的好方法）\\
+      vim -R filename & 以只读模式打开文件 & 文件是只读的，不能保存修改（\alert{练习使用Vim命令的好方法}）\\
       view filename & 同vim -R filename & ---\\
       vim -r filename & 以修复模式打开文件 & ---\\
       \hline
@@ -664,13 +665,15 @@
       \hline
       \verb|:q| & 未修改，退出Vim编辑器\\
       \verb|:w| & 写入修改，保存当前文件\\
-      \verb|:w! filename| & 覆盖文件\\
+      \verb|:w filename| & 文件另存为filename\\
       \verb|:wq| & 保存文件并退出\\
-      \verb|:q!| & 放弃对文件的修改并退出\\
-      \verb|:wq!| & 保存修改并退出（文件所有者可忽略文件的只读属性）\\
       \verb|ZZ| & 同 \verb|:wq|\\
       \verb|:x| & 保存文件并退出\\
-      \verb|:w filename| & 文件另存为filename\\
+      \hline
+      \verb|:q!| & 放弃对文件的修改并退出\\
+      \verb|:w! filename| & 覆盖文件\\
+      \verb|:wq!| & 保存修改并退出（文件所有者可忽略文件的只读属性）\\
+      \hline
       \verb|:e!| & 打开文件的上一次成功写入的版本\\
       \verb|:r /path/filename| & 插入filename文件的内容\\
       \hline
@@ -747,7 +750,7 @@
       \verb|:earlier 1m| & 按时间回退文件\\ 
       \verb|:later| & 与上述相反\\ 
       \hline
-      基本计算器 & 插入模式，依次：Ctrl+R，=，算式，Enter\\
+      基本计算器 & 插入模式下，依次：Ctrl+R，=，算式，Enter\\
       \hline
       \verb|:TOhtml| & 把当前文件转换成网页\\
       \hline
@@ -938,8 +941,8 @@
       \item vis：visual select inside sentence，选区一个句子
       \item ciw：change inside word，修改一个单词
       \item caw：change around word，修改一个单词
-      \item dtx：delete to x，删除文本直到字符“x”（不包括字符“x”）
-      \item dfx：delete forward x，删除文本直到字符“x”（包括字符“x”）
+      \item dtx：delete to x，删除文本直到字符“x”前（不包括字符“x”）
+      \item dfx：delete forward x，删除文本直到字符“x”上（包括字符“x”）
     \end{itemize}
   \end{block}
 \end{frame}
