@@ -145,16 +145,34 @@
   \begin{block}{\alert{入门学习}}
     %\begin{description}[<+-|alert@+>]
     \begin{description}[<+->]
-      \item[Vim初学者教学] 在Linux系统\textcolor{red}{命令行下}输入：\verb|vimtutor|
-      \item[Vim用户手册] 在 \textcolor{red}{Vim中}输入：\verb|:help user-manual@cn|（中文版），\verb|:help user-manual|（英文版）
-      \item[Vim帮助系统] 在 \textcolor{red}{Vim中}输入：\verb|:help|
+      \item[Vim初学者教学] 在Linux系统\textcolor{red}{命令行下}输入
+        \begin{itemize}
+          \item 英文版：\qquad \verb|vimtutor|
+          \item 中文版：\qquad \verb|vimtutor -g zh|
+        \end{itemize}
+      \item[Vim用户手册] 在 \textcolor{red}{Vim中}输入
+        \begin{itemize}
+          \item 英文版：\qquad \verb|:help user-manual|
+          \item 中文版：\qquad \verb|:help user-manual@cn|
+        \end{itemize}
+      \item[Vim帮助系统] 在 \textcolor{red}{Vim中}输入
+        \begin{itemize}
+          \item \verb|:help|
+        \end{itemize}
     \end{description}
   \end{block}
-  {\footnotesize
-  对于大多数用户来说，Vim有着一个比较陡峭的学习曲线。这意味着开始学习的时候可能会进展缓慢，但是一旦掌握一些基本操作之后，能大幅度提高编辑效率。\\
-  为了帮助学习，Vim为初学者准备了Vim教学。通常可以在Linux系统命令行下输入“vimtutor”或者点击Windows系统桌面上的Vim教学图标进入。\\
-  在Vim用户手册中更加详细得描述了Vim的基础和进阶功能。可以在Vim中输入“:help user-manual”进入用户手册。手册除了原始的英文版本之外，也被志愿者翻译成了各国文字，其中包括中文。\\
-  新用户也应该学习Vim的帮助系统，可以在Vim中输入不带参数的“:help”来阅读主帮助文件。}
+\end{frame}
+
+\begin{frame}
+  \frametitle{简介 | 学习}
+  \begin{block}{入门学习}
+    \begin{itemize}
+      \item 对于大多数用户来说，Vim有着一个比较陡峭的学习曲线。这意味着开始学习的时候可能会进展缓慢，但是一旦掌握一些基本操作之后，能大幅度提高编辑效率。
+      \item 为了帮助学习，Vim为初学者准备了Vim教学。通常可以在Linux系统命令行下输入“vimtutor”或者点击Windows系统桌面上的Vim教学图标进入。
+      \item 在Vim用户手册中更加详细得描述了Vim的基础和进阶功能。可以在Vim中输入“:help user-manual”进入用户手册。手册除了原始的英文版本之外，也被志愿者翻译成了各国文字，其中包括中文。
+      \item 新用户也应该学习Vim的帮助系统，可以在Vim中输入不带参数的“:help”来阅读主帮助文件。
+    \end{itemize}
+  \end{block}
 \end{frame}
 
 \subsection{启动Vim}
@@ -336,8 +354,8 @@
       \hline
       gg & 两个小写g & 光标移至第一行（\verb|:0|）\\
       G & 大写G & 光标移至最后一行（\verb|:$|）\\
-      xG & G前加数字 & 光标移至指定行\\
-      \verb|:x| & 冒号后跟数字 & 光标移至指定行\\
+      nG & G前加数字 & 光标移至指定行\\
+      \verb|:n| & 冒号后跟数字 & 光标移至指定行\\
       \hline
       \verb|(| & 左圆括号 & 光标移至当前句子或上一句子的开始处\\
       \verb|)| & 右圆括号 & 光标移至下一句子的开始处\\
