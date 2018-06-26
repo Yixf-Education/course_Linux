@@ -803,8 +803,15 @@
       \item 下载\\ \verb|wget -c https://url/Miniconda3-latest-Linux-x86_64.sh|
       \item 安装\\ \verb|bash Miniconda3-latest-Linux-x86_64.sh|
       \item 配置（修改 .bashrc）\\ \verb|export PATH="PathToMiniconda/bin:$PATH"|
-      \item 配置 .bashrc（修改 .profile）\\ \verb|source $HOME/.bashrc|
+      \item 配置 .bashrc（修改 .bash\_profile或者.profile）\\ \verb|source $HOME/.bashrc|
     \end{enumerate}
+  \end{block}
+  \pause
+  \begin{block}{补充说明}
+    \begin{itemize}
+      \item {\footnotesize 安装Miniconda的过程中可以让其自动配置 .bashrc，从而避免手动配置的繁琐。}
+      \item {\footnotesize 一般 .bash\_profile里面已经有加载 .bashrc的命令了；而 .profile可能需要手动创建。}
+    \end{itemize}
   \end{block}
 \end{frame}
 
