@@ -5,8 +5,9 @@
 一、实验要求
 \begin{enumerate}
   \item 掌握在命令行中下载文件的方法。
-  \item 掌握使用APT与Yum管理软件的方法。
-  \item 掌握使用dpkg与RPM管理软件的方法。
+  \item 掌握bioconda的安装、配置与使用。
+  \item 了解使用APT与Yum管理软件的方法。
+  \item 了解使用dpkg与RPM管理软件的方法。
   \item 掌握通过源代码安装软件的步骤。
   \item 熟悉其他安装软件的方法。
 \end{enumerate}
@@ -25,10 +26,59 @@
 \vspace{0.1in}
 （一）在命令行中下载安装包
 
-为便于后续软件的安装，使用wget和/或curl在命令行中下载datamash、htop和Glances的安装包。通过查阅wget和curl的帮助页，掌握它们的使用方法。（提示：主要是wget的 \verb|-c| 选项和curl的 \verb|-o| 和 \verb|-O| 选项）
+为便于后续软件的安装，使用wget和/或curl在命令行中下载Miniconda、datamash、htop和Glances的安装包。通过查阅wget和curl的帮助页，掌握它们的使用方法。（提示：主要是wget的 \verb|-c| 选项和curl的 \verb|-o| 和 \verb|-O| 选项）
 
 \vspace{0.1in}
-（二）通过APT与Yum安装软件
+（二）使用bioconda管理生物信息学软件
+
+\begin{enumerate}
+  \item 下载Miniconda/Anaconda（此处以Miniconda为例）。主要参考网址为：\href{https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/}{https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/}。
+\begin{lstlisting}[language=bash]
+# 从国外官网下载
+#wget -c https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+# 从国内（清华）镜像下载
+wget -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh
+\end{lstlisting}
+\textbf{提示：}从国外官网上下载Miniconda的速度很慢，建议通过国内镜像进行下载。另外，在真正使用conda之前，也强烈建议首先配置国内镜像，详细方法参看后文。
+  \item 安装Miniconda。
+\begin{lstlisting}[language=bash]
+bash Miniconda3-latest-Linux-x86_64.sh
+\end{lstlisting}
+\textbf{提示：}理解安装过程中交互式步骤的具体含义，尤其是最后配置PATH环境变量的步骤要选择yes（如果选择了no，请按照提示进行手动配置）。
+  \item 使更新后的PATH环境变量生效。下面两种方法任选其一即可：
+    \begin{itemize}
+      \item \verb|source ~/.bashrc|
+      \item 重开一个终端或者重登服务器
+    \end{itemize}
+  \item 设置镜像/添加channels。
+\begin{lstlisting}[language=bash]
+# free and main
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+# conda-forge
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+# r
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r/
+# bioconda
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
+conda config --set show_channel_urls yes
+\end{lstlisting}
+\textbf{提示：}conda的配置文件是\verb|$HOME/.condarc|，可以直接编辑该文件添加channels或者调整channel的顺序。（也可以使用conda命令间接修改该文件。）
+  \item 使用conda管理软件。
+\begin{lstlisting}[language=bash]
+# 查看使用帮助
+conda -h
+# 安装软件
+conda install ucsc-fasize
+# 使用软件（查看软件使用帮助）
+faSize
+# 删除软件
+conda remove ucsc-fasize
+\end{lstlisting}
+\end{enumerate}
+
+\vspace{0.1in}
+（三）通过APT与Yum安装软件
 
 以dos2unix（或htop，Glances等）为例，使用APT在Ubuntu中安装dos2unix，使用Yum在CentOS中安装dos2unix。
 \begin{lstlisting}[language=bash]
@@ -40,7 +90,7 @@ yum install dos2unix
 \end{lstlisting}
 
 \vspace{0.1in}
-（三）通过dpkg与RPM安装软件
+（四）通过dpkg与RPM安装软件
 
 以datamash（或Webmin，TeamViewer，RStudio等）为例，使用dpkg在Ubuntu中安装Webmin，使用RPM在CentOS中安装Webmin。
 \begin{lstlisting}[language=bash]
@@ -53,7 +103,7 @@ rpm -ivh datamash-1.0.6-1.el6.x86_64.rpm
 \end{lstlisting}
 
 \vspace{0.1in}
-（四）通过源代码安装软件
+（五）通过源代码安装软件
 
 以htop（或datamash，dos2unix，parallel，FASTX-Toolkit，msort，SAMtools，BEDTools，seqtk等）为例，使用源代码对其进行安装。
 \begin{lstlisting}[language=bash]
@@ -69,7 +119,7 @@ make install
 \end{lstlisting}
 
 \vspace{0.1in}
-（五）通过脚本安装软件
+（六）通过脚本安装软件
 
 以Glances（或cheat，Webmin等）为例，使用脚本对其进行安装。
 \begin{lstlisting}[language=bash]
@@ -82,7 +132,7 @@ python setup.py install
 \end{lstlisting}
 
 \vspace{0.1in}
-（六）通过其他方式安装软件
+（七）通过其他方式安装软件
 
 以Galaxy（或cheat，Glances等）为例，根据安装说明对其进行安装。
 \begin{lstlisting}[language=bash]
@@ -94,7 +144,7 @@ git checkout -b master orgin/master
 \end{lstlisting}
 
 \vspace{0.1in}
-（七）不需要安装的软件
+（八）不需要安装的软件
 
 以CPU-G（或FASTX-Toolkit，WebLogo，TeamViewer，IGV等）为例，下载后可以直接使用。
 \begin{lstlisting}[language=bash]
@@ -107,7 +157,7 @@ chmod 755 cpu-g
 \end{lstlisting}
 
 \vspace{0.1in}
-（八）软件管理
+（九）软件管理
 
 尝试使用dpkg与APT、RPM与Yum对软件（如：htop，Glances，dos2unix等）进行管理（如：查询、安装、卸载等）。
 
