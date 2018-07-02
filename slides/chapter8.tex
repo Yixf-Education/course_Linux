@@ -382,6 +382,14 @@ echo \$SHELL # 输出：$SHELL
 echo "What is your name?"
 # read读取键盘输入，并赋值给变量PERSON
 read PERSON
+
+echo "Hello, $PERSON"
+\end{lstlisting}
+\pause
+\begin{lstlisting}
+read -p "What is your name?" PERSON
+# read读取键盘输入，并赋值给变量PERSON
+
 echo "Hello, $PERSON"
 \end{lstlisting}
 \end{frame}
@@ -779,10 +787,10 @@ if (test -e filename)
       \hline
       \rowcolor{blue!50}运算符 & 示例 & 功能\\
       \hline
-      = & stringA=stringB & stringA与stringB相同，与==等价\\
-      != & stringA!=stringB & stringA与stringB不同\\
-      > & stringA>stringB & stringA大于stringB\\
-      < & stringA<stringB & stringA小于stringB\\
+      = & stringA = stringB & stringA与stringB相同，与==等价\\
+      != & stringA != stringB & stringA与stringB不同\\
+      > & stringA > stringB & stringA大于stringB\\
+      < & stringA < stringB & stringA小于stringB\\
       -z & -z string & string为空\\
       -n & -n string & string非空\\
       \hline
@@ -930,20 +938,19 @@ echo $MYVAR # 输出：2
   \frametitle{流程控制 | 条件流程 | 比较运算符 | 算数运算 | \alert{四种方法}}
 \begin{lstlisting}
 var=1 # var：1
-
 # 第一种方法：$(( ))
 var=$(($var+1)) # var：2
 ((var++)) # var：3
-
 # 第二种方法：$[ ]
 var=$[$var+1] # var：4
-
+var=$[var+1] # var：5
 # 第三种方法：let
-let var+=1 # var：5
-
+let var+=1 # var：6
+let var=var+1 # var：7
+let var=$var+1 # var：8
 # 第四种方法：expr（注意加号两边的空格，否则还是按照字符串的方式赋值）
-var=$(expr $var + 1) # var：6，不建议使用
-var=`expr $var + 1` # var：7，强烈不建议使用
+var=$(expr $var + 1) # var：9，不建议使用
+var=`expr $var + 1` # var：10，强烈不建议使用
 \end{lstlisting}
 \end{frame}
 
@@ -1668,6 +1675,26 @@ done
 
 echo "${LINE_NO}"
 # 输出0，原因是管道中的while语句是执行在子进程中的，不会改变父进程中LINE_NO变量的值
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{高级概念 | 输入输出重定向 | read-while处理文件}
+\begin{lstlisting}
+cat test.txt | while read LINE
+do
+  echo $LINE
+done
+
+While read LINE
+do
+  echo $LINE
+done  < test.txt
+
+for LINE in $(cat test.txt)
+do
+  echo $LINE
+done
 \end{lstlisting}
 \end{frame}
 
