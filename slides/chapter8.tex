@@ -359,17 +359,19 @@ echo 'Hello, $PERSON' # 输出：Hello, $PERSON
 \begin{lstlisting}
 #!/bin/bash
 
-echo *.jpg # 通配符扩展
-
+# 通配符扩展
+echo *.jpg
+# 防止通配符扩展
 echo "*.jpg" # 输出：*.jpg
 echo '*.jpg' # 同上
+echo \*.jpg  # 同上
 
-echo $SHELL # 输出：/bin/bash
+# 变量展开
+echo $SHELL   # 输出：/bin/bash
 echo "$SHELL" # 同上
+# 防止变量展开
 echo '$SHELL' # 输出：$SHELL
-
-echo \*.jpg # 输出：*.jpg
-echo \$SHELL # 输出：$SHELL
+echo \$SHELL  # 同上
 \end{lstlisting}
 \end{frame}
 
@@ -379,16 +381,16 @@ echo \$SHELL # 输出：$SHELL
   \frametitle{编程起步 | 从键盘读取输入}
   用户可以通过 \alert{read} 命令读取键盘的输入值为变量赋值。
 \begin{lstlisting}
-echo "What is your name?"
 # read读取键盘输入，并赋值给变量PERSON
+echo "What is your name?"
 read PERSON
 
 echo "Hello, $PERSON"
 \end{lstlisting}
 \pause
 \begin{lstlisting}
-read -p "What is your name?" PERSON
 # read读取键盘输入，并赋值给变量PERSON
+read -p "What is your name?" PERSON
 
 echo "Hello, $PERSON"
 \end{lstlisting}
@@ -438,15 +440,18 @@ echo "Hello, $PERSON"
 
 \begin{frame}[fragile]
   \frametitle{编程起步 | 特殊变量 | \alert{脚本参数}}
+%echo The number of arguments passed from the command line is: $#
 \begin{lstlisting}
 #!/bin/bash
+
 echo The name of this program is: $0
-echo The first argument passed from the command line is: $1
-echo The second argument passed from the command line is: $2
-echo The third argument passed from the command line is: $3
-echo All of the arguments passed from the command line are : $*
-echo
-echo All done with $0
+
+echo The number of arguments is: $#
+
+echo The first argument is: $1
+echo The second argument is: $2
+
+echo All of the arguments are : $*
 \end{lstlisting}
 \end{frame}
 
@@ -459,7 +464,7 @@ echo All done with $0
 \end{frame}
 
 \begin{frame}
-  \frametitle{编程起步 | 特殊变量 | \alert{演示}}
+  \frametitle{编程起步 | 特殊变量 | 演示}
   \begin{figure}
     \centering
     \includegraphics[width=10cm]{c8_shell_buildin_05.png}
@@ -538,8 +543,9 @@ else
   statements
 fi
 
+# example
 if [ -f /etc/passwd  ] ; then
-  ACTION
+  cat /etc/passwd
 fi
 \end{lstlisting}
 \end{frame}
@@ -1034,7 +1040,7 @@ fi
 \begin{frame}[fragile]
   \frametitle{流程控制 | 条件流程控制 | 补充}
   \begin{itemize}
-    \item 在[\ ]表达式中，不直接支持>、<运算符，需要加转义字符，表示字符串大小比较，以ASCII码位置作为比较。
+    \item 在[\ ]表达式中，不直接支持>、<运算符，需要加转义字符，表示字符串大小比较，以ASCII码位置进行比较。
     \item 在[\ ]表达式中，逻辑运算符||、\&\&需要分别用-o和-a表示。
     \item {[[}\ {]]}运算符只是[\ ]运算符的扩充。能够支持>、>符号运算，不再需要转义符，它还是以字符串比较大小。
     \item {[[}\ {]]}运算符里面支持逻辑运算符||和\&\&。
@@ -1084,7 +1090,7 @@ select var in WORDS
 do
   command(s)
 done
-... now $var can be used ...
+# ... now $var can be used ...
 \end{lstlisting}
   \end{block}
 \end{frame}
@@ -1212,7 +1218,7 @@ case "$1" in
     pkill -x "sleep"
     ;;
   *)
-    echo "用法：$0 {start|stop}"
+    echo "Usage: $0 {start|stop}"
     ;;
 esac
 \end{lstlisting}
@@ -1223,15 +1229,16 @@ esac
 \begin{lstlisting}
 #!/bin/bash
 read -p "请输入一个字符，并按Enter键确认：" KEY
+
 case "$KEY" in
   [a-z]|[A-Z])
-    echo "您输入的是——字母。"
+    echo "您输入的是—字母。"
     ;;
   [0-9])
-    echo "您输入的是——数字。"
+    echo "您输入的是—数字。"
     ;;
   *)
-    echo "您输入的是——空格、功能键或其他控制字符。"
+    echo "您输入的是—空格、功能键或其他控制字符。"
     ;;
 esac
 \end{lstlisting}
@@ -1551,7 +1558,7 @@ fi
 sum=0
 while [ $# -gt 0 ]
 do
-  sum=`expr $sum + $1`
+  sum=$(($sum+$1))
   shift
 done
 echo $sum
@@ -1633,7 +1640,7 @@ echo $sum
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{高级概念 | 输入输出重定向 | here文档}
+  \frametitle{高级概念 | 输入输出重定向 | \textcolor{gray}{here文档}}
 \begin{lstlisting}
 tr a-z A-Z <<END_TEXT
 one two three
@@ -1663,22 +1670,6 @@ bc -q <<< "${EXP}"
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{高级概念 | 输入输出重定向 | 管道与while、read组合}
-\begin{lstlisting}
-LINE_NO=0
-cat test.txt |
-while read LINE
-do
-  (( LINE_NO++ ))
-  echo "${LINE_NO} ${LINE}"
-done
-
-echo "${LINE_NO}"
-# 输出0，原因是管道中的while语句是执行在子进程中的，不会改变父进程中LINE_NO变量的值
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
   \frametitle{高级概念 | 输入输出重定向 | read-while处理文件}
 \begin{lstlisting}
 cat test.txt | while read LINE
@@ -1695,6 +1686,22 @@ for LINE in $(cat test.txt)
 do
   echo $LINE
 done
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{高级概念 | 输入输出重定向 | 管道与while、read组合}
+\begin{lstlisting}
+LINE_NO=0
+cat test.txt |
+while read LINE
+do
+  (( LINE_NO++ ))
+  echo "${LINE_NO} ${LINE}"
+done
+
+echo "${LINE_NO}"
+# 输出0，原因是管道中的while语句是执行在子进程中的，不会改变父进程中LINE_NO变量的值
 \end{lstlisting}
 \end{frame}
 
@@ -1747,7 +1754,9 @@ cat test.txt | xargs -i echo rm {}
 L=`wc -l textfile` # 使用反引号``
 L=$(wc -l textfile) # 使用$()
 echo "Next year will be 20$(expr $(date +%y) + 1)" # 嵌套
+echo "Next year will be 20$(($(date +%y)+1))"
 \end{lstlisting}
+\vspace{-0.5em}
   \begin{figure}
     \centering
     \includegraphics[width=10cm]{c8_substitution.jpg}
@@ -2026,12 +2035,12 @@ return 1
 \subsection{嵌套和递归}
 \begin{frame}[fragile]
   \frametitle{shell函数 | 嵌套和递归}
-  \begin{block}{递归函数}
-  函数可以调用自己，就像调用其他函数一样。这种调用自己的函数称为递归函数。
-  \end{block}
-  \pause
   \begin{block}{函数嵌套}
   在一个函数中调用包含在另一个函数中的功能，这种情况叫做函数嵌套。
+  \end{block}
+  \pause
+  \begin{block}{递归函数}
+  函数可以调用自己，就像调用其他函数一样。这种调用自己的函数称为递归函数。
   \end{block}
 \end{frame}
 
@@ -2160,7 +2169,7 @@ fi
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{shell函数 | 文件处理 | 清除文件}
+  \frametitle{shell函数 | 文件处理 | \textcolor{gray}{清除文件}}
 \begin{lstlisting}
 #!/bin/bash
 
