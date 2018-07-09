@@ -793,7 +793,7 @@
       uptime & --- & 显示系统从开机到现在所运行的时间\\
       uname -a & --- & 显示内核等系统信息\\
       free & --- & 显示内存及交换区占用情况\\
-      jobs & --- & 显示正在运行的shell作业\\
+      jobs & --- & 显示后台（挂起/运行）的shell作业\\
       bg & BackGround & 列出已停止或后台运行的作业\\
       fg & ForeGround & 将作业从后台转到前台\\
       cron & --- & 周期性执行计划任务\\
@@ -1048,7 +1048,7 @@
   \frametitle{常用命令 | 进程管理 | Managing Jobs}
   The \textbf{jobs} utility displays all jobs running in background. The display shows the job ID, state, and command name, as shown here.\\
   \vspace{0.2cm}
-  \verb|jobs -l| provides a the same information as \verb|jobs| including the PID of the background jobs.\\
+  \verb|jobs -l| provides the same information as \verb|jobs| including the PID of the background jobs.\\
   \vspace{0.2cm}
   The background \textbf{jobs} are connected to the terminal window, so if you log off, the jobs utility will not show the ones started from that window.
 \end{frame}
@@ -1060,7 +1060,7 @@
     \item 进程的终止：Ctrl+C
     \item 恢复挂起/后台的进程到前台继续运行：fg
     \item 恢复挂起/后台的进程到后台继续运行：bg
-    \item 查看被挂起的进程：jobs
+    \item 查看后台挂起或正在运行的进程：jobs
   \end{itemize}
 \end{frame}
 
