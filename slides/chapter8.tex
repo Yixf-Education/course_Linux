@@ -1672,6 +1672,11 @@ bc -q <<< "${EXP}"
 \begin{frame}[fragile]
   \frametitle{高级概念 | 输入输出重定向 | read-while处理文件}
 \begin{lstlisting}
+for LINE in $(cat test.txt)
+do
+  echo $LINE
+done
+
 cat test.txt | while read LINE
 do
   echo $LINE
@@ -1681,11 +1686,6 @@ While read LINE
 do
   echo $LINE
 done  < test.txt
-
-for LINE in $(cat test.txt)
-do
-  echo $LINE
-done
 \end{lstlisting}
 \end{frame}
 
@@ -1981,9 +1981,31 @@ ls {1..5}.txt
   \begin{block}{注意}
     \begin{itemize}
       \item \$0：在脚本中，\$0是脚本的名字；在函数中，\$0还是脚本的名字，而非函数的名字
-      \item \$\#：在脚本和函数中，都是读入的参数个数
+      \item \$\#：在脚本和函数中，分别是脚本和函数读入的参数个数
     \end{itemize}
   \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{shell函数 | \alert{变量与参数}}
+\begin{lstlisting}
+#!/bin/bash
+# test with: sVSf.sh s1 s2
+
+echo "\$0 in script: $0"     # sVSf.sh
+echo "\$1 in script: $1"     # s1
+echo "\$# in script: $#"     # 2
+echo "\$@ in script: $@"     # s1 s2
+
+repeat () {
+  echo "\$0 in function: $0" # sVSf.sh
+  echo "\$1 in function: $1" # f1
+  echo "\$# in function: $#" # 3
+  echo "\$@ in function: $@" # f1 f2 f3
+}
+
+repeat f1 f2 f3
+\end{lstlisting}
 \end{frame}
 
 \subsection{声明与调用}
