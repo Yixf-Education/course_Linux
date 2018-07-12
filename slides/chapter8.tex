@@ -1351,13 +1351,32 @@ done
 \begin{lstlisting}
 #!/bin/bash
 
-read -p "Guess the secret color(red, blue, yellow, purple, or orange):" COLOR
+read -p "Guess the secret color (red, blue, yellow, purple, or orange):" COLOR
 
 while [ $COLOR != "purple" ]
 do
   read -p "Incorrect. Guess again:" COLOR
 done
 
+echo "Correct."
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{流程控制 | 迭代流程控制 | while | 使用函数}
+\begin{lstlisting}
+#!/bin/bash
+
+guess_color () {
+  read -p "Guess the secret color (red, blue, yellow, purple, or orange):" COLOR
+  while [ $COLOR != "purple" ]
+  do
+    echo "Incorrect. Guess again!"
+    guess_color
+  done
+}
+
+guess_color
 echo "Correct."
 \end{lstlisting}
 \end{frame}
