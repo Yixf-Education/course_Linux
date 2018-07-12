@@ -21,6 +21,40 @@
   \end{multicols}
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{引言 | shell脚本 | 实例}
+\begin{lstlisting}[basicstyle=\scriptsize\tt]
+#!/bin/bash
+read -p "Input number of lines: " var
+for i in $(seq $var $((2*$var-1))); do
+  for j in $(seq $i); do
+    if [ $j -lt $var ]; then
+      echo -e " \c"
+    else
+      k=$((RANDOM%10)); m=$((RANDOM%7)); n=$((RANDOM%7))
+      case $k in
+        3)
+          echo -e "\033[3$m;5m★\033[0m\c"
+          ;;
+        *)
+          echo -e "\033[4$m;3$n;6m♥\033[0m\c"
+          ;;
+      esac
+    fi
+  done
+  ((var--))
+  echo
+done
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+  \frametitle{引言 | shell脚本 | 实例 | 输出}
+  \begin{figure}
+    \centering
+    \includegraphics[width=7cm]{c8_star_heart_30.png}
+  \end{figure}
+\end{frame}
 
 \section{引言}
 \begin{frame}
