@@ -511,7 +511,7 @@ echo All of the arguments are : $*
   \begin{block}{退出状态}
     \begin{itemize}
       \item 退出状态（exit status）是每个命令在完成时返回的一个数值。
-      \item 通常情况下，如果命令执行成功，返回退出状态0；如果不成功，则返回1（非零的数值）。
+      \item 通常情况下，如果命令执行成功，返回退出状态0；如果不成功，则返回1（非零的数值，最大是255）。
       \item 有些命令由于特殊原因会返回额外的退出状态。
       \item \verb|exit 0|
     \end{itemize}
@@ -522,6 +522,29 @@ echo All of the arguments are : $*
     \includegraphics[width=9cm,height=2.1cm]{c8_shell_exit_01.png}\\
     \includegraphics[width=9cm,height=2.1cm]{c8_shell_exit_10.jpg}
   \end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{编程起步 | \alert{退出状态}}
+  \begin{table}
+    \centering
+    \rowcolors[]{1}{blue!20}{blue!10}
+    \begin{tabularx}{0.65\textwidth}{cX}
+      \hline
+      \rowcolor{blue!50}状态码 & 描述\\
+      \hline
+      0 & 命令成功结束\\
+      1 & 一般性未知错误\\
+      2 & 不适合的shell命令\\
+      126 & 命令无法执行\\
+      127 & 没有找到命令\\
+      128 & 无效的退出参数\\
+      128+x & 与Linux信号x相关的严重错误\\
+      130 & 通过Ctrl+C终止的命令\\
+      255 & 正常范围之外的退出状态码\\
+      \hline
+    \end{tabularx}
+  \end{table}
 \end{frame}
 
 \section{流程控制}
