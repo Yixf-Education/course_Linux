@@ -129,7 +129,9 @@
       /etc/login.defs & 用户配置文件 & 文件，设置默认登录环境\\
       /etc/default/useradd & 用户配置文件 & 文件，添加用户时的默认设置\\
       /etc/skel & 新用户信息文件 & 目录，里面放置用户的初始配置文件\\
-      /etc/issue & 登录显示信息 & 文件，设置登录的默认显示信息\\
+      /etc/issue & 登录显示信息 & 文件，设置本地登录的默认显示信息\\
+      /etc/issue.net & 登录显示信息 & 文件，设置网络（Telnet，ssh默认不开启）登录的默认显示信息\\
+      /etc/motd & 登录显示信息 & 文件，设置任何（本地+Telnet+ssh）登录的默认显示信息\\
       \hline
     \end{tabularx}
   \end{table}
