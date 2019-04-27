@@ -395,7 +395,8 @@
   \begin{description}
     \item[GNOME] GNU网络对象模型环境（The GNU Network Object Model Environment），GNU计划的一部分，开放源代码运动的一个重要组成部分。其目标是基于自由软件，为Unix及类Unix系统构造一个功能完善、操作简单以及界面友好的桌面环境。它是GNU计划的正式桌面。
     \item[KDE] 一个国际性的自由软件社区，开发运行在Linux、BSD、Solaris、Microsoft Windows与Mac OS X等平台上的一系列跨平台应用程序。它最著名的产品是Plasma桌面，是许多Linux发布版的默认桌面环境。
-    \item[Unity] Canonical公司为GNOME桌面环境所开发的图形用户界面，用于Ubuntu操作系统。Unity在Ubuntu 10.10上网本版中首次推出，最初是为了充分利用上网本有限的屏幕尺寸。不同于GNOME、KDE，Unity并非一个桌面包。Ubuntu 17.04是最后一个预载Unity桌面环境的版本。
+    \item[Cinnamon] Unix-like系统下的一个用户接口。是GNOME Shell的一个派生版本，最初是为Linux Mint所开发，其提供了如同GNOME 2般易于使用的拟真接口。
+    \item[MATE] 由已经停止官方维护的GNOME 2源代码派生而来的桌面环境。
   \end{description}
 \end{frame}
 
@@ -403,12 +404,11 @@
   \frametitle{Linux基础 | 简介 | 发行版 | 桌面环境 | Linux}
   {\footnotesize
   \begin{description}
+    \item[Unity] \textcolor{gray}{Canonical公司为GNOME桌面环境所开发的图形用户界面，用于Ubuntu操作系统。Unity在Ubuntu 10.10上网本版中首次推出，最初是为了充分利用上网本有限的屏幕尺寸。不同于GNOME、KDE，Unity并非一个桌面包。Ubuntu 17.04是最后一个预载Unity桌面环境的版本。}
     \item[CDE] 通用桌面环境（Common Desktop Environment），运行于Unix、基于Motif部件工具箱开发的商业桌面环境。
     \item[Xfce] 一个在Unix与Unix-like操作系统上运行的桌面环境。Xfce的设计目的是“设计为可作为实际应用，快速加载及运行程序，并减少耗用系统资源”。
     \item[LXDE] Lightweight X11 Desktop Environment，是自由桌面环境，可在Unix以及Linux等POSIX兼容平台运行。LXDE项目旨在提供新的轻量、快速的桌面环境。LXDE重视实用性和轻巧性，并且尽力降低其所耗系统资源。
     \item[Enlightenment] 常简称为E。0.17以前版本属于X窗口管理器，0.17版已经接近完整的桌面环境。而从0.19版开始，同时也是Wayland的合成管理器。
-    \item[Cinnamon] Unix-like系统下的一个用户接口。是GNOME Shell的一个派生版本，最初是为Linux Mint所开发，其提供了如同GNOME 2般易于使用的拟真接口。
-    \item[MATE] 由已经停止官方维护的GNOME 2源代码派生而来的桌面环境。
     \item[深度桌面环境] Deepin Desktop Environment，基于HTML5和WebKit开发，主要由桌面、启动器、任务栏和深度控制中心组成。除深度控制中心前端使用QML技术，后端使用Go语言编写外，其余部分均为HTML5和WebKit实现。
   \end{description}
   }
@@ -431,13 +431,13 @@
       \hline
       \rowcolor{blue!50}桌面环境 & 代表性发行版\\
       \hline
-      GNOME & RHEL、CentOS、Fedora、Debian\\
+      GNOME & RHEL、CentOS、Fedora、Debian、Ubuntu\\
       KDE & openSUSE、Mandriva Linux、Kubuntu\\
-      Unity & Ubuntu（11.04～17.04）\\
-      Xfce & Xubuntu\\
-      LXDE & Lubuntu\\
       Cinnamon & Linux Mint\\
       MATE & Linux Mint\\
+      \textcolor{gray}{Unity} & \textcolor{gray}{Ubuntu（11.04～17.04）}\\
+      Xfce & Xubuntu\\
+      LXDE & Lubuntu\\
       Pantheon & Elementary OS\\
       深度桌面环境 & Deepin\\
       \hline
@@ -482,20 +482,36 @@
 \end{frame}
 
 \begin{frame}
+  \frametitle{Linux基础 | 简介 | 发行版 | 最热门}
+  \begin{block}{有史以来最热门的Linux发行版}
+    \begin{description}
+      \item[自2011年以来的最高排名] Linux Mint
+      \item[自2002年以来最热门的点击] Ubuntu
+      \item[最稳定的登山者] Debian
+      \item[堕落之星] Gentoo
+      \item[最稳定的顶级表演者] openSUSE
+      \item[一致的中型表演者] CentOS
+      \item[被遗忘的最爱] Mandrake/Mandriva
+      \item[低估的主力] Slackware
+    \end{description}
+  \end{block}
+\end{frame}
+
+\begin{frame}
   \frametitle{Linux基础 | 简介 | 发行版 | 2018}
   \begin{block}{2018最佳Linux发行版排行榜}
     \begin{description}
       \item[最适合系统管理员的发行版] Debian GNU/Linux
       \item[最好的服务器发行版] Ubuntu Server
       \item[最好的桌面发行版] elementary OS
-      \item[最漂亮的发行版] Pop!\_OS 
+      \item[最漂亮的发行版] Pop!\_OS
       \item[最好的轻量级发行版] Lubuntu
       \item[最年轻的发行版] Nitrux
-      \item[发展最快的发行版] Manjaro Linux 
+      \item[发展最快的发行版] Manjaro Linux
       \item[性能最好的发行版] Clear Linux
       \item[包管理最好的发行版] Arch Linux
       \item[最能证明能力的发行版] Linux From Scratch 8.0
-      \item[最好的教育发行版] ezgo Linux 
+      \item[最好的教育发行版] ezgo Linux
       \item[最好的物联网发行版] Ubuntu Core
     \end{description}
   \end{block}
@@ -573,7 +589,7 @@
   \frametitle{Linux基础 | 简介 | 应用领域 | 桌面电脑：微乎其微}
   \begin{figure}
     \centering
-    \includegraphics[width=10cm]{c1_linux_area_desktop_2018.png}
+    \includegraphics[width=10cm]{c1_linux_area_desktop_2019.png}
   \end{figure}
 \end{frame}
 
@@ -597,7 +613,7 @@
   \frametitle{Linux基础 | 简介 | 应用领域 | 超级计算机：独领风骚}
   \begin{figure}
     \centering
-    \includegraphics[width=12cm]{c1_linux_area_super_2018.png}
+    \includegraphics[width=12cm]{c1_linux_area_super_2019.png}
   \end{figure}
 \end{frame}
 
@@ -605,7 +621,7 @@
   \frametitle{Linux基础 | 简介 | 应用领域 | 分类汇总}
   \begin{figure}
     \centering
-    \includegraphics[width=7.5cm]{c1_linux_area_all_2018.png}
+    \includegraphics[width=12cm]{c1_linux_area_all_2019.png}
   \end{figure}
 \end{frame}
 
@@ -729,7 +745,7 @@
   \pause
   \begin{block}{安装使用}
     \begin{enumerate}
-      \item 安装Docker：sudo apt-get install docker.io，sudo yum install docker
+      \item 安装Docker：sudo apt install docker.io，sudo yum install docker
       \item 获取镜像：sudo docker pull ubuntu:18.04（centos:centos7，……)
       \item 启动容器：sudo docker run -t -i ubuntu:18.04（centos:centos7） /bin/bash
     \end{enumerate}
@@ -823,7 +839,7 @@ possible.
 \end{frame}
 
 \begin{frame}
-  \frametitle{Linux基础 | 学习 | 方法 | 提问}
+  \frametitle{Linux基础 | 学习 | 方法 | \alert{提问}}
   \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{c1_asking.png}
@@ -831,7 +847,7 @@ possible.
 \end{frame}
 
 \begin{frame}
-  \frametitle{Linux基础 | 学习 | 方法 | 提问}
+  \frametitle{Linux基础 | 学习 | 方法 | \alert{提问}}
     \begin{block}{提问前}
       \begin{itemize}
         \item 尝试搜索答案——官网/手册/FAQ/Google/论坛
