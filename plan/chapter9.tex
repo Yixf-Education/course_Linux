@@ -14,9 +14,9 @@
 %职称
 \zhicheng{讲师}
 %教学日期（格式：XXXX年XX月XX日XX时-XX时）
-\riqi{2018年7月9日10:00-12:00}
+\riqi{2019年6月25日13:30-15:10}
 %授课对象（格式：XXX系XXXX年级XX班（硕/本/专科））
-\duixiang{生物医学工程与技术学院2016级生信班（本）}
+\duixiang{生物医学工程与技术学院2017级生信班（本）}
 %听课人数
 \renshu{28}
 %授课方式
@@ -284,19 +284,19 @@ $fields = join ':', $data_field1, $data_field2, $data_field3;
 # splitting a scalar and creating an array
 @fields = split /:/, $raw_data;
 
-# open the file and slurp its contents into an array 
+# open the file and slurp its contents into an array
 # and then close the file
 open(FILE, "/etc/passwd");
 @filedata = <FILE>;
 close(FILE);
 
-open my $IN, '<', $file_in or die "$0 : failed to open 
+open my $IN, '<', $file_in or die "$0 : failed to open
   input file '$file_in' : $!\n";
 while(<$IN>){
   chomp;
   actions;
 }
-close $IN or warn "$0 : failed to close input file 
+close $IN or warn "$0 : failed to close input file
   '$file_in' : $!\n";
 
 # Global variable $name is given a name
@@ -305,7 +305,7 @@ $name = "Paul";
 foreach (@filedata) {
   # declare a new variable for just the loop
     my $current_file;
-    # create a local version of name to temporarily 
+    # create a local version of name to temporarily
     # assign values within the loop to
     local $name；
     ...
