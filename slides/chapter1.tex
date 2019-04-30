@@ -625,75 +625,6 @@
   \end{figure}
 \end{frame}
 
-\section{操作系统组件}
-\begin{frame}
-  \frametitle{Linux基础 | 系统组件}
-  \begin{block}{Linux操作系统的\alert{构成组件}}
-    内核、shell、文件系统和实用程序（应用程序）。
-  \end{block}
-  \begin{figure}
-    \centering
-    \includegraphics[width=6cm]{c1_system_parts_01.png}
-  \end{figure}
-\end{frame}
-
-\subsection{内核}
-\begin{frame}
-  \frametitle{Linux基础 | 系统组件 | 内核}
-  \begin{block}{内核}
-    内核控制计算机，是操作系统的核心。
-  \end{block}
-  \pause
-  \begin{block}{功能}
-  \begin{itemize}
-    \item 内存管理（虚拟内存管理，包括页面调度、交换）
-    \item 进程管理（进程创建、终止、调度、通信）
-    \item 输入/输出（通过设备驱动程序）
-    \item 文件管理，网络访问，安全和访问控制
-  \end{itemize}
-  \end{block}
-  \pause
-  \begin{block}{版本}
-  \begin{itemize}
-    \item 版本格式为3.A.B（3.0版本之后，含4.0）
-    \item A：内核版本，随新版本的发布而增加
-    \item B：安全补丁，bug修复、安全更新、新特性和驱动的次数
-  \end{itemize}
-  \end{block}
-\end{frame}
-
-\subsection{shell}
-\begin{frame}
-  \frametitle{Linux基础 | 系统组件 | shell}
-  \begin{block}{shell}
-    shell是一个命令行解释器，它使得用户能够与操作系统进行交互。
-  \end{block}
-  \pause
-  \begin{block}{\alert{种类}}
-  %\begin{itemize}[<+-|alert@+>]
-  \begin{itemize}[<+->]
-    \item sh（Bourne shell）：Unix的第一个shell
-    \item bash（Bourne-Again shell）：Bourne shell的后继相容版本与开放源代码版本
-    \item dash（Debian Almquist shell）：快而轻巧，兼容于POSIX标准
-    \item zsh（Z shell）：一种Bourne shell的扩展，带有数量庞大的改进
-    \item csh（C shell）：语法类似于C语言；tcsh：csh的增强版本
-    \item ksh（Korn shell）：完全向上兼容Bourne shell并包含了C shell的很多特性
-  \end{itemize}
-  \end{block}
-\end{frame}
-
-\subsection{其他组件}
-\begin{frame}
-  \frametitle{Linux基础 | 系统组件 | 其他}
-  \begin{block}{文件系统}
-    使得用户能够以统一的方式查看、组织以及保护存储设备上的文件和目录并与其进行交互。
-  \end{block}
-  \pause
-  \begin{block}{实用程序}
-    使得用户能够在系统上进行工作，包括Web浏览器、文字处理程序、e-mail程序等应用程序。
-  \end{block}
-\end{frame}
-
 \section{Linux的学习}
 \subsection{安装Linux}
 \begin{frame}
@@ -1141,6 +1072,76 @@ possible.
   \end{figure}
 \end{frame}
 
+
+\section{操作系统组件}
+\begin{frame}
+  \frametitle{Linux基础 | 系统组件}
+  \begin{block}{Linux操作系统的\alert{构成组件}}
+    内核、shell、文件系统和实用程序（应用程序）。
+  \end{block}
+  \begin{figure}
+    \centering
+    \includegraphics[width=6cm]{c1_system_parts_01.png}
+  \end{figure}
+\end{frame}
+
+\subsection{内核}
+\begin{frame}
+  \frametitle{Linux基础 | 系统组件 | 内核}
+  \begin{block}{内核}
+    内核控制计算机，是操作系统的核心。
+  \end{block}
+  \pause
+  \begin{block}{功能}
+  \begin{itemize}
+    \item 内存管理（虚拟内存管理，包括页面调度、交换）
+    \item 进程管理（进程创建、终止、调度、通信）
+    \item 输入/输出（通过设备驱动程序）
+    \item 文件管理，网络访问，安全和访问控制
+  \end{itemize}
+  \end{block}
+  \pause
+  \begin{block}{版本}
+  \begin{itemize}
+    \item 版本格式为3.A.B（3.0版本之后，含4.0）
+    \item A：内核版本，随新版本的发布而增加
+    \item B：安全补丁，bug修复、安全更新、新特性和驱动的次数
+  \end{itemize}
+  \end{block}
+\end{frame}
+
+\subsection{shell}
+\begin{frame}
+  \frametitle{Linux基础 | 系统组件 | shell}
+  \begin{block}{shell}
+    shell是一个命令行解释器，它使得用户能够与操作系统进行交互。
+  \end{block}
+  \pause
+  \begin{block}{\alert{种类}}
+  %\begin{itemize}[<+-|alert@+>]
+  \begin{itemize}[<+->]
+    \item sh（Bourne shell）：Unix的第一个shell
+    \item bash（Bourne-Again shell）：Bourne shell的后继相容版本与开放源代码版本
+    \item dash（Debian Almquist shell）：快而轻巧，兼容于POSIX标准
+    \item zsh（Z shell）：一种Bourne shell的扩展，带有数量庞大的改进
+    \item csh（C shell）：语法类似于C语言；tcsh：csh的增强版本
+    \item ksh（Korn shell）：完全向上兼容Bourne shell并包含了C shell的很多特性
+  \end{itemize}
+  \end{block}
+\end{frame}
+
+\subsection{其他组件}
+\begin{frame}
+  \frametitle{Linux基础 | 系统组件 | 其他}
+  \begin{block}{文件系统}
+    使得用户能够以统一的方式查看、组织以及保护存储设备上的文件和目录并与其进行交互。
+  \end{block}
+  \pause
+  \begin{block}{实用程序}
+    使得用户能够在系统上进行工作，包括Web浏览器、文字处理程序、e-mail程序等应用程序。
+  \end{block}
+\end{frame}
+
 \section{回顾与总结}
 \subsection{总结}
 \begin{frame}
@@ -1150,9 +1151,9 @@ possible.
       \item Linux的历史与现状
       \item Linux的含义
       \item Linux发行版
-      \item 操作系统组件
       \item Linux的登录与退出
       \item Linux的联机帮助页
+      \item 操作系统组件
     \end{itemize}
   \end{block}
   \begin{block}{技能}
@@ -1172,11 +1173,11 @@ possible.
     \item Unix和Linux分别是由谁开发的？
     \item Linux发行版主要分成哪两大系统？
     \item 列举几个常见的Linux发行版。
-    \item Linux操作系统主要包括哪些组件？
-    \item 列举几种常见的shell。
     \item 登录、退出、关闭Linux的常用命令。
     \item 如何查看命令的联机帮助页？
     \item 如何根据关键字查找相关命令？
+    \item Linux操作系统主要包括哪些组件？
+    \item 列举几种常见的shell。
   \end{enumerate}
 \end{frame}
 
@@ -1194,7 +1195,6 @@ possible.
     机密安全等级（Clearance Level）（《神盾局特工》），部门分配，组别划分，……
   \end{block}
 \end{frame}
-
 
 
 \input{snippet/class_tail}
