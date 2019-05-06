@@ -6,7 +6,7 @@
 \title[用户和组]{第二章\quad 用户和组}
 \author[Yixf]{伊现富（Yi Xianfu）}
 \institute[TIJMU]{天津医科大学（TIJMU）\\ 生物医学工程与技术学院}
-\date{2018年5月}
+\date{2019年5月}
 
 
 \begin{frame}
@@ -53,7 +53,7 @@
         \item<6-> 对系统特定组件进行操作，协助用户所需的服务或程序
         \item<7-> 不要轻易修改，否则可能会给系统带来不良影响
       \end{itemize}
-    \item<3-> 用户账户（普通用户账户，UID：500/1000-60000；CentOS/Ubuntu）
+    \item<3-> 用户账户（普通用户账户，UID：500/1000-65535；CentOS/Ubuntu）
       \begin{itemize}
         \item<8-> 为用户和用户组提供对系统的交互式访问
         \item<8-> 对关键系统文件和目录的访问权限是有限的
@@ -785,6 +785,7 @@ useradd -c COMMENT -d HOME.DIRECTORY -e EXPIRATION.DATE -f INACTIVE.DTAE -g PRIM
 
 \begin{frame}[fragile]
   \frametitle{知识拓展 | PS1环境变量 | 配置}
+  \vspace{-1.5em}
 \begin{lstlisting}
 PS1=">" # >
 PS1="Type command here >>>" # Type command here >>>
@@ -839,7 +840,7 @@ PS1=" [\u@\h \w]\$ " # 显示用户名、主机名和工作目录
     \end{itemize}
   \end{block}
   \pause
-  \vspace{-1em}
+  \vspace{-1.8em}
 \begin{lstlisting}
 PATH=$PATH:NewPath # 向PATH变量添加值的格式
 PATH=$PATH:/home/joe/bin
@@ -908,6 +909,7 @@ PATH=$PATH:/home/joe/bin:/home/joe/myprog/bin
 
 \begin{frame}[fragile]
   \frametitle{知识拓展 | 配置shell | $\sim$/.profile}
+  \vspace{-1.5em}
 \begin{lstlisting}
 # .bash_profile
 # Get the aliases and functions
@@ -923,6 +925,7 @@ export PATH
 
 \begin{frame}[fragile]
   \frametitle{知识拓展 | 配置shell | $\sim$/.bashrc}
+  \vspace{-1.5em}
 \begin{lstlisting}
 umask 0002
 export HISTSIZE=1000
