@@ -110,8 +110,9 @@
       \hline
       /etc/passwd & 用户信息文件，为系统识别已授权的用户 & 任何用户都可以查看，只有根用户才能修改\\
       /etc/shadow & 密码文件，保存相应账户加密后的口令 & 普通用户无法查看，根用户能读取但不能直接编辑\\
-      /etc/group & 用户组文件，存放组账户的信息 & 同/etc/passwd\\
-      /etc/gshadow & 用户组密码文件，保存相应组加密后的口令 & 同/etc/shadow\\
+      \hline
+      /etc/group & 用户组文件，存放组账户的信息 & 同 /etc/passwd\\
+      /etc/gshadow & 用户组密码文件，保存相应组加密后的口令 & 同 /etc/shadow\\
       \hline
     \end{tabularx}
   \end{table}
@@ -129,6 +130,7 @@
       /etc/login.defs & 用户配置文件 & 文件，设置默认登录环境\\
       /etc/default/useradd & 用户配置文件 & 文件，添加用户时的默认设置\\
       /etc/skel & 新用户信息文件 & 目录，里面放置用户的初始配置文件\\
+      \hline
       /etc/issue & 登录显示信息 & 文件，设置本地登录的默认显示信息\\
       /etc/issue.net & 登录显示信息 & 文件，设置网络（Telnet，ssh默认不开启）登录的默认显示信息\\
       /etc/motd & 登录显示信息 & 文件，设置任何（本地+Telnet+ssh）登录的默认显示信息\\
@@ -179,7 +181,7 @@
       \rowcolor{blue!50}字段 & 含义 & 说明\\
       \hline
       1 & 用户名 & 用户登录系统时输入的账户；UID的字符串标记方式，方便阅读\\
-      2 & 密码 & x，密码位，密码放在/etc/shadow中\\
+      2 & 密码 & x，密码位，密码放在 /etc/shadow中\\
       3 & UID & User ID，用户标识号\\
       4 & GID & Group ID，默认组标识号\\
       5 & 注释 & 账户的相关信息（全名、电话等）\\
@@ -240,7 +242,7 @@
       \hline
       \rowcolor{blue!50}字段 & 含义 & 说明\\
       \hline
-      1 & 用户名 & 与/etc/passwd文件中的第一个字段相对应\\
+      1 & 用户名 & 与 /etc/passwd文件中的第一个字段相对应\\
       2 & 密码 & 加密后的密码\\
       3 & 最后一次修改密码的时间 & 上一次修改密码的日期与1970-01-01相距的天数\\
       4 & 两次修改密码的最短时间间隔 & 0表示禁用，随时可以修改密码\\
@@ -259,17 +261,17 @@
   \begin{enumerate}
     \item 奇奇怪怪的字符串：加密过的密码文件 
       \begin{itemize}
-        \item 以\verb|$1$|起始：MD5加密
-        \item 以\verb|$2a$|起始：Blowfish加密
-        \item 以\verb|$2y$|起始：Blowfish（correct handling of 8-bit chars）加密
-        \item 以\verb|$5$|起始：SHA-256加密
-        \item 以\verb|$6$|起始：SHA-512加密
+        \item 以 \verb|$1$|起始：MD5加密
+        \item 以 \verb|$2a$|起始：Blowfish加密
+        \item 以 \verb|$2y$|起始：Blowfish（correct handling of 8-bit chars）加密
+        \item 以 \verb|$5$|起始：SHA-256加密
+        \item 以 \verb|$6$|起始：SHA-512加密
       \end{itemize}
-    \item 星号\verb|*|，叹号\verb|!|，两个叹号\verb|!!|：\alert{帐号被锁定}
+    \item 星号 \verb|*|，叹号 \verb|!|，两个叹号 \verb|!!|：\alert{帐号被锁定}
       \begin{itemize}
-        \item 星号\verb|*|，或\verb|*LK*|：帐号被锁定
-        \item 一个叹号\verb|!|，后跟加密的密码：有密码但被锁定，便于日后解锁
-        \item 两个叹号\verb|!!|：未设置密码且被锁定；密码已经过期
+        \item 星号 \verb|*|，或 \verb|*LK*|：帐号被锁定
+        \item 一个叹号 \verb|!|，后跟加密的密码：有密码但被锁定，便于日后解锁
+        \item 两个叹号 \verb|!!|：未设置密码且被锁定；密码已经过期
       \end{itemize}
     \item 字段为空：没有密码
   \end{enumerate}
@@ -301,7 +303,7 @@
       \rowcolor{blue!50}字段 & 含义 & 说明\\
       \hline
       1 & 组名 & 用户通过它来识别组\\
-      2 & 组密码 & 空：没有组密码；x：密码位，密码放在/etc/gshadow中\\
+      2 & 组密码 & 空：没有组密码；x：密码位，密码放在 /etc/gshadow中\\
       3 & GID & Group ID，标识系统中的组\\
       4 & 组成员 & 属于组的账户列表，账户之间用逗号隔开\\
       \hline
@@ -335,7 +337,7 @@
       \rowcolor{blue!50}字段 & 含义 & 说明\\
       \hline
       1 & 组名 & 用户通过它来识别组\\
-      2 & 组密码 & 可以是空或\verb|!|（表示没有密码）\\
+      2 & 组密码 & 可以是空或 \verb|!|（表示没有密码）\\
       3 & 组管理员 & 可以为空；多个组管理员用逗号隔开\\
       4 & 组成员 & 多个组成员用逗号隔开\\
       \hline
@@ -357,9 +359,9 @@
 \begin{frame}
   \frametitle{用户和组 | 管理 | 手动}
   \begin{enumerate}
-    \item 修改/etc/passwd：添加或删除账户行
-    \item 修改/etc/shadow：添加或删除账户行
-    \item 修改/etc/group：添加或删除账户引用
+    \item 修改 /etc/passwd：添加或删除账户行
+    \item 修改 /etc/shadow：添加或删除账户行
+    \item 修改 /etc/group：添加或删除账户引用
     \item 添加或删除账户的家目录
   \end{enumerate}
 \end{frame}
@@ -367,7 +369,7 @@
 \begin{frame}
   \frametitle{用户和组 | 管理 | 手动 | 添加用户}
   \begin{enumerate}
-    \item 分别在/etc/passwd、/etc/group和/etc/shadow文件中添加一笔记录
+    \item 分别在 /etc/passwd、/etc/group和 /etc/shadow文件中添加一笔记录
     \item 创建用户家目录
     \item 在用户家目录中设置默认的配置文件
     \item 设置用户初始密码
@@ -441,6 +443,7 @@ useradd -c COMMENT -d HOME.DIRECTORY -e EXPIRATION.DATE -f INACTIVE.DTAE -g PRIM
     \end{itemize}
   \end{block}
   \begin{block}{Answer}
+    \only<2>{useradd\quad \alert{unixnewbie}\\}
     \only<2>{useradd\quad -d\quad /home/unixnewbie\quad -m\quad \alert{unixnewbie}}
     \only<3>{useradd\quad -d\quad /home/unixnewbie\quad \alert{-g\quad users}\quad -m\quad unixnewbie}
     \only<4>{useradd\quad -d\quad /home/unixnewbie\quad -g\quad users\quad \alert{-s\quad /bin/sh}\quad -m\quad unixnewbie}
@@ -514,7 +517,7 @@ useradd -c COMMENT -d HOME.DIRECTORY -e EXPIRATION.DATE -f INACTIVE.DTAE -g PRIM
 \begin{frame}
   \frametitle{用户和组 | 管理 | 实例}
   \begin{block}{需求}
-    授权用户jack和mary对目录/software有写权限。
+    授权用户jack和mary对目录 /software有写权限。
   \end{block}
   \pause
   \begin{block}{命令}
@@ -584,8 +587,8 @@ useradd -c COMMENT -d HOME.DIRECTORY -e EXPIRATION.DATE -f INACTIVE.DTAE -g PRIM
   \pause
   \begin{block}{\alert{提示符}}
     \begin{itemize}
-      \item 普通用户为\verb|$|
-      \item 超级用户root为\verb|#|
+      \item 普通用户为 \verb|$|
+      \item 超级用户root为 \verb|#|
     \end{itemize}
   \end{block}
   \begin{figure}
@@ -694,10 +697,10 @@ useradd -c COMMENT -d HOME.DIRECTORY -e EXPIRATION.DATE -f INACTIVE.DTAE -g PRIM
       chgrp & 修改文件所属组\\
       chage & 更改用户密码过期信息\\
       \hline
-      pwck & 检测/etc/passwd文件（锁定文件）\\
+      pwck & 检测 /etc/passwd文件（锁定文件）\\
       grpck & 用户组配置文件检测\\
-      vipw & 编辑/etc/passwd文件\\
-      vigr & 编辑/etc/group文件（锁定文件）\\
+      vipw & 编辑 /etc/passwd文件\\
+      vigr & 编辑 /etc/group文件（锁定文件）\\
       \hline
     \end{tabular}
   \end{table}
@@ -730,7 +733,7 @@ useradd -c COMMENT -d HOME.DIRECTORY -e EXPIRATION.DATE -f INACTIVE.DTAE -g PRIM
   \begin{enumerate}
     \item Linux系统中主要有哪三种类型的账户？
     \item 用户和组管理相关的文件主要有哪些？
-    \item 解释/etc/passwd中各个字段的含义。
+    \item 解释 /etc/passwd中各个字段的含义。
     \item 根据要求，使用useradd创建一个新账户。
     \item 改变用户身份的方法有哪些？
     \item 列举几个用户和组管理的辅助命令。
@@ -806,7 +809,7 @@ PS1=" [\u@\h \w]\$ " # 显示用户名、主机名和工作目录
       \verb|\w| & 工作目录的绝对路径\\
       \verb|\u| & 当前用户的用户名\\
       \verb|\h| & 当前机器的主机名\\
-      \verb|\$| & UID为0时使用\verb|#|，否则使用\verb|$|\\
+      \verb|\$| & UID为0时使用 \verb|#|，否则使用 \verb|$|\\
       \hline
     \end{tabularx}
   \end{table}
@@ -840,12 +843,12 @@ PS1=" [\u@\h \w]\$ " # 显示用户名、主机名和工作目录
     \end{itemize}
   \end{block}
   \pause
-  \vspace{-1.8em}
+  \vspace{-0.8em}
 \begin{lstlisting}
-PATH=$PATH:NewPath # 向PATH变量添加值的格式
-PATH=$PATH:/home/joe/bin
+PATH=NewPath:$PATH # 向PATH变量添加值的格式
+PATH=/home/joe/bin:$PATH
 # 一次添加多个目录，用冒号将这些目录隔开
-PATH=$PATH:/home/joe/bin:/home/joe/myprog/bin
+PATH=/home/joe/bin:/home/joe/myprog/bin:$PATH
 \end{lstlisting}
 \end{frame}
 
@@ -918,7 +921,7 @@ if [ -f ~/.bashrc ]; then
 fi
 
 # User specific environment and startup programs
-PATH=$PATH:$HOME/bin
+PATH=$HOME/bin:$PATH
 export PATH
 \end{lstlisting}
 \end{frame}
