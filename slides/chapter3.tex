@@ -464,8 +464,11 @@
       \rowcolor{blue!50}命令 & 助记 & 说明\\
       \hline
       which & --- & 如果文件位于用户的PATH内，则显示文件位置\\
-      whereis & --- & 显示文件的位置\\
-      find & --- & 查找文件/目录\\
+      whereis & --- & 显示程序名文件的位置\\
+      \hline
+      locate & --- & 在文件索引数据库中查找文件/目录\\
+      find & --- & 在文件系统中查找文件/目录\\
+      \hline
       df & Disk Free & 显示磁盘空间的使用情况\\
       du & Disk Usage & 显示目录空间占用情况\\
       \hline
@@ -629,7 +632,7 @@
     \begin{itemize}[<+->]
       \item 能够跨越文件系统，相当于Windows中的快捷方式
       \item 软链接具有唯一的inode，内部保存的是原文件的路径地址
-      \item 如果打开并修改软链接，原文件也会随之改变
+      \item 如果“打开并修改”软链接，原文件也会随之改变
       \item 如果删除软链接，原文件并不会受到影响
       \item 如果删除原文件，软链接将失效
     \end{itemize}
