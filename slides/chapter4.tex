@@ -6,7 +6,7 @@
 \title[常用Linux命令]{第四章\quad 常用Linux命令}
 \author[Yixf]{伊现富（Yi Xianfu）}
 \institute[TIJMU]{天津医科大学（TIJMU）\\ 生物医学工程与技术学院}
-\date{2018年5月}
+\date{2019年5月}
 
 
 \begin{frame}
@@ -99,7 +99,7 @@
     \item The man pages (short for manual pages)
     \item GNU Info
     \item The help command and -\!-help option
-    \item Other Documentation Sources, e.g. \href{https://www.gentoo.org/doc/en/}{https://www.gentoo.org/doc/en/}
+    \item Other Documentation Sources
   \end{enumerate}
   \begin{figure}
     \centering
@@ -131,8 +131,8 @@
       1 & 可执行程序或shell命令 & 可由任何人启动 \\
       2 & 系统调用 & 内核提供的函数\\
       3 & 库调用 & 程序库中的函数\\
-      4 & 特殊文件 & 通常位于/dev\\
-      5 & 文件格式和规范 & 如/etc/passwd\\
+      4 & 特殊文件 & 通常位于 /dev\\
+      5 & 文件格式和规范 & 如 /etc/passwd\\
       6 & 游戏 & ---\\
       7 & 杂项(包括宏包和规范) & 如man(7), groff(7)\\
       8 & 系统管理命令 & 通常只针对root用户\\
@@ -223,7 +223,7 @@
     %\begin{itemize}[<+-|alert@+>]
     \begin{itemize}[<+->]
       \item 通配符是专用字符，能够用于同时匹配多个文件，从而增大一次性找到想要的文件名或目标的可能性。
-      \item 通配符一种命令行的路径扩展（path expansion）功能，只作用在argument的path上。
+      \item 通配符是一种命令行的路径扩展（path expansion）功能，只作用在argument的path上。
       \item 指定工作目录中的所有word文件（*.doc）
       \item 指定工作目录中的所有以txt或text为后缀的文本文件（*.t[ex]*）
     \end{itemize}
@@ -254,6 +254,7 @@
     \includegraphics[width=12cm]{c4_shell_01.png}
   \end{figure}
   \pause
+  \vspace{-1em}
   \begin{columns}
     \column{0.55\textwidth}
   \begin{block}{转义符使用}
@@ -355,7 +356,7 @@
       \item \verb|ls $(pwd)|
       \item \verb|ls `pwd`|
       %\item \verb|ls ${pwd}|
-      \item 等同于 \verb|ls|或者 \verb|ls .|
+      \item 等同于 \verb|ls| 或者 \verb|ls .|
     \end{itemize}
   \end{block}
 \end{frame}
@@ -468,7 +469,7 @@
   \pause
   \begin{block}{\alert{-e}}
     \begin{itemize}
-      \item 启用反斜线控制字符（如 \verb|\n|，\verb|\t|等转义字符）的转换
+      \item 启用反斜线控制字符（如 \verb|\n|，\verb|\t| 等转义字符）的转换
       \item \verb|echo "line1\tline2"|（输出：\verb|line1\tline2|）
       \item \verb|echo -e "line1\tline2"|（输出：\verb|line1    line2|）
     \end{itemize}
@@ -485,7 +486,7 @@
       \rowcolor{blue!50}选项 & 助记 & 说明\\
       \hline
       -e & --- & 等同于 \verb|-vE|\\
-      -E & End & 在每一行的结尾显示一个 \verb|$|字符\\
+      -E & End & 在每一行的结尾显示一个 \verb|$| 字符\\
       -n & Number & 在每一行的开头显示行号\\
       -s & Squeeze & 将连续的空行合并成一个空行\\
       -t & Tabs & 将非打印字符tab显示成 \verb|^I|\\
@@ -690,7 +691,7 @@
       \rowcolor{blue!50}命令 & 助记 & 说明\\
       \hline
       which & --- & \scriptsize{如果文件位于用户的PATH内，则显示文件位置}\\
-      whereis & --- & 显示文件的位置\\
+      whereis & --- & 显示程序名文件的位置\\
       find & --- & 在目录结构中查找文件/目录\\
       locate & --- & 通过名字在数据库中查找文件\\
       updatedb & UPDATE DataBase & 建立整个系统目录文件的数据库\\
@@ -919,7 +920,7 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{常用命令 | 进程管理 | top}
   \begin{block}{作用}
     进程状态显示和进程控制；动态显示（每5秒钟自动刷新一次）。
@@ -939,7 +940,7 @@
       \item r：重新设置进程优先级
       \item s：改变刷新的时间间隔
       \item u：查看指定用户的进程
-      \item W：将当前设置写入~/.toprc文件中
+      \item W：将当前设置写入 \verb|~/.toprc| 文件中
     \end{itemize}
   \end{block}
 \end{frame}
@@ -1140,7 +1141,8 @@
   \end{block}
   \pause
   \begin{block}{使用}
-    nohup COMMADN/PROGRAM \&
+    nohup COMMADN/PROGRAM \& \\
+    nohup COMMAND/PROGRAM > nohup2.out 2>\&1 \&
   \end{block}
 \end{frame}
 
@@ -1280,6 +1282,7 @@
       scp & \footnotesize{基于SSH登录进行安全的远程文件拷贝（Secure CoPy）}\\
       wget & 命令行下载工具\\
       curl & 利用URL规则在命令行下工作的文件传输工具\\
+      http & httpie: CLI, cURL-like tool for humans\\
       \hline
       ftp, sftp & 命令行下的FTP客户端\\
       ncftp, yafc & 命令行下的FTP客户端，支持Windows和Linux\\
@@ -1362,9 +1365,9 @@
   \frametitle{命令技巧 | \alert{连接符}}
   \begin{block}{命令连接符}
     \begin{description}
-      \item[;] 用 \verb|;|间隔的各命令按顺序依次执行
-      \item[\&\&] 前后命令的执行存在逻辑与关系：只有 \verb|&&|前面的命令执行成功后，它后面的命令才被执行
-      \item[||] 前后命令的执行存在逻辑或关系：只有 \verb=||=前面的命令执行失败后，它后面的命令才被执行。
+      \item[;] 用 \verb|;| 间隔的各命令按顺序依次执行
+      \item[\&\&] 前后命令的执行存在逻辑与关系：只有 \verb|&&| 前面的命令执行成功后，它后面的命令才被执行
+      \item[||] 前后命令的执行存在逻辑或关系：只有 \verb=||= 前面的命令执行失败后，它后面的命令才被执行。
     \end{description}
   \end{block}
   \pause
