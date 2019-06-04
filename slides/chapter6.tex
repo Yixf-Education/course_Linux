@@ -6,7 +6,7 @@
 \title[软件安装]{第六章\quad 软件安装}
 \author[Yixf]{伊现富（Yi Xianfu）}
 \institute[TIJMU]{天津医科大学（TIJMU）\\ 生物医学工程与技术学院}
-\date{2018年6月}
+\date{2019年6月}
 
 
 \begin{frame}
@@ -712,9 +712,9 @@
   \pause
   \begin{block}{下载技巧}
     \begin{itemize}
-      \item Web浏览器：Firefox，Chrome
+      \item Web浏览器：Firefox, Chrome
       \item FTP客户端：FileZilla
-      \item 命令行：wget，lftp，curl, aria2(aria2c)
+      \item 命令行：wget, lftp, curl, aria2(aria2c), httpie(http)
     \end{itemize}
   \end{block}
   \pause
@@ -752,9 +752,9 @@
   \frametitle{源代码安装 | 编译和安装}
   \begin{block}{补充说明}
     \begin{itemize}
-      \item 阅读软件的指南或说明：\verb|vim INSTALL|，或 \verb|vim README|
+      \item 阅读软件的指南或说明：\verb|vim INSTALL| 或 \verb|vim README|
       \item 指定软件的安装目录：\verb|./configure --prefix=PATH|
-      \item 安装软件前进行测试：\verb|make test|，或 \verb|make check|
+      \item 安装软件前进行测试：\verb|make test| 或 \verb|make check|
       \item 以超级用户身份安装软件：\verb|sudo make install|
       \item 删除编译产生的临时文件：\verb|make clean|
     \end{itemize}
@@ -778,7 +778,7 @@
       \item 提取文件：\verb|tar -xzvf software.tar.gz|
       \item 切换目录：\verb|cd software|
       \item 查阅说明：\verb|vim README|
-      \item 安装软件：\verb|./setup.sh|，或 \verb|./install.sh|
+      \item 安装软件：\verb|./setup.sh| 或 \verb|./install.sh|
     \end{enumerate}
   \end{block}
 \end{frame}
@@ -803,7 +803,7 @@
       \item 下载\\ \verb|wget -c https://url/Miniconda3-latest-Linux-x86_64.sh|
       \item 安装\\ \verb|bash Miniconda3-latest-Linux-x86_64.sh|
       \item 配置（修改 .bashrc）\\ \verb|export PATH="PathToMiniconda/bin:$PATH"|
-      \item 配置 .bashrc（修改 .bash\_profile或者.profile）\\ \verb|source $HOME/.bashrc|
+      \item 配置 .bashrc（修改 .bash\_profile或者 .profile）\\ \verb|source $HOME/.bashrc|
     \end{enumerate}
   \end{block}
   \pause
@@ -838,8 +838,8 @@
 \vspace{-0.5em}
 \begin{lstlisting}
 conda config --add channels defaults
-conda config --add channels conda-forge
 conda config --add channels bioconda
+conda config --add channels conda-forge
 \end{lstlisting}
 \vspace{-0.8em}
       \item Install packages
@@ -855,7 +855,7 @@ conda create -n aligners bwa bowtie
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{bioconda | 使用镜像加速}
+  \frametitle{bioconda | \textcolor{gray}{使用镜像加速}}
   \begin{block}{镜像}
     \begin{itemize}
       \item 清华（TUNA）镜像\\ \verb|https://mirrors.tuna.tsinghua.edu.cn|
@@ -876,7 +876,7 @@ conda config --set show_channel_urls yes
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{bioconda | 使用镜像加速}
+  \frametitle{bioconda | \textcolor{gray}{使用镜像加速}}
   \begin{block}{添加镜像（2/2）}
     \begin{itemize}
       \item Conda Forge
