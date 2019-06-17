@@ -6,7 +6,7 @@
 \title[shell编程]{第八章\quad shell编程}
 \author[Yixf]{伊现富（Yi Xianfu）}
 \institute[TIJMU]{天津医科大学（TIJMU）\\ 生物医学工程与技术学院}
-\date{2018年7月}
+\date{2019年6月}
 
 
 \begin{frame}
@@ -23,6 +23,7 @@
 
 \begin{frame}[fragile]
   \frametitle{引言 | shell脚本 | 实例}
+  \vspace{-0.5em}
 \begin{lstlisting}[basicstyle=\scriptsize\tt]
 #!/bin/bash
 read -p "Input number of lines: " var
@@ -166,7 +167,7 @@ ls
     \begin{enumerate}
       \item 创建一个包含命令和控制结构的文件。\verb|vim script.sh|
       \item 修改文件的权限使它可执行。\verb|chmod u+x script.sh|
-      \item 运行文件。\verb|./script.sh|或 \verb|sh script.sh|（不需要可执行权限）
+      \item 运行文件。\verb|./script.sh| 或 \verb|bash script.sh|（不需要可执行权限）
     \end{enumerate}
   \end{block}
 \end{frame}
@@ -192,9 +193,9 @@ ls
   \frametitle{编程起步 | \alert{调用shell}}
   \begin{itemize}
     \item 在向脚本中添加任何其他内容之前，用户需要告诉系统将要启动一个shell脚本。
-    \item 使用shebang结构，如：\verb|#!/bin/bash|告诉系统接下来的命令由bash shell执行。
+    \item 使用shebang结构，如：\verb|#!/bin/bash| 告诉系统接下来的命令由bash shell执行。
     \item 要创建一个脚本，用户应该首先添加shebang行，然后添加命令。
-    \item shebang是因为 \verb|#|称为hash，\verb|!|称为bang。
+    \item shebang是因为 \verb|#| 称为hash，\verb|!| 称为bang。
   \end{itemize}
 \end{frame}
 
@@ -257,9 +258,9 @@ ls
   \frametitle{编程起步 | 特殊字符 | 脚本注释 | \alert{注释方法}}
   \begin{block}{注释方法}
     \begin{itemize}
-      \item 注释行以散列符号（\verb|#|）开头，在 \verb|#|之后出现的所有内容都认为是注释，不解释为命令。
+      \item 注释行以散列符号（\verb|#|）开头，在 \verb|#| 之后出现的所有内容都认为是注释，不解释为命令。
       \item 占用多行的注释在每行的开头都有一个 \verb|#|。
-      \item 可以在一行的中间插入 \verb|#|，\verb|#|右边的所有内容都将看作注释。
+      \item 可以在一行的中间插入 \verb|#| ，\verb|#| 右边的所有内容都将看作注释。
     \end{itemize}
   \end{block}
   \pause
@@ -322,10 +323,10 @@ command # This is comment explaining the cmd
 \begin{frame}[fragile]
   \frametitle{编程起步 | 变量 | \alert{使用}}
   \begin{itemize}
-    \item 使用赋值运算符 \verb|=|对变量进行赋值，\verb|=|两边不能有空格。
-    \item 如果要给变量赋空值，可以在 \verb|=|后面跟一个换行符。
+    \item 使用赋值运算符 \verb|=| 对变量进行赋值，\verb|=| 两边不能有空格。
+    \item 如果要给变量赋空值，可以在 \verb|=| 后面跟一个换行符。
     \item 在bash shell中，默认情况下将变量视作文本字符串。
-    \item 通过在变量名前加一个美元符号 \verb|$|来访问该变量的值。
+    \item 通过在变量名前加一个美元符号 \verb|$| 来访问该变量的值。
     \item 如果变量名的前面有美元符号 \verb|$|，那么可以将该变量替换成一个表达式。
     \item 变量名对大小写敏感。按照惯例，Linux变量用大写字母表示。
     \item 变量名长度没有限制，由字母、数字或下划线序列组成。
@@ -355,6 +356,7 @@ command # This is comment explaining the cmd
 
 \begin{frame}[fragile]
   \frametitle{编程起步 | 变量 | \alert{实例}}
+  \vspace{-0.5em}
 \begin{lstlisting}
 # 变量的赋值与访问
 EDITOR="vim"
@@ -588,6 +590,7 @@ echo All of the arguments are : $*
 
 \begin{frame}[fragile]
   \frametitle{流程控制 | 条件流程控制 | if-then | Syntax}
+  \vspace{-0.5em}
 \begin{lstlisting}
 # compact form
 if TEST-COMMANDS; then CONSEQUENT-COMMANDS; fi
@@ -1794,6 +1797,7 @@ find . -type f -name *.log | xargs -i mv {} /data/log
 
 \begin{frame}[fragile]
   \frametitle{高级概念 | 输入输出重定向 | 管道与xargs组合 | xargs}
+  \vspace{-0.5em}
 \begin{lstlisting}
 # xargs可以从标准输入读取内容，以之构建并执行另一个命令行
 # xargs直接接命令名称，则将从标准输入读取的所有内容合并为一行构建命令行并执行
@@ -1841,6 +1845,7 @@ echo "Next year will be 20$(($(date +%y)+1))"
 
 \begin{frame}[fragile]
   \frametitle{高级概念 | 命令替换 | \alert{注意}}
+  \vspace{-0.5em}
 \begin{lstlisting}
 # 如果命令执行结果有多行内容，存入变量并打印时换行符会丢失：
 cat test.txt
@@ -1949,6 +1954,7 @@ echo "The $numst." #The .
 
 \begin{frame}[fragile]
   \frametitle{高级概念 | 通配 | 通配符}
+  \vspace{-0.5em}
 \begin{lstlisting}
 # *用于通配文件名或目录名中某一部分为任意内容
 rm *.log          # 删除当前目录中所有后缀名为.log的文件
@@ -1983,9 +1989,9 @@ done
 \begin{frame}[fragile]
   \frametitle{高级概念 | 通配 | 补充}
   \begin{itemize}
-    \item \verb|*|、\verb|?|、\verb|[ ]|的通配都会按读取目录并过滤的方式展开通配项目
-    \item \verb|{ }|则不会有读取目录的过程，它是通过枚举所有符合条件的通配项直接展开的
-    \item \verb|*|通配的结果与目录中存在哪些文件有关系，而 \verb|{ }|的通配结果与目录中存在哪些文件无关。若用 \verb|{ }|进行通配，则有可能将不存在的文件路径作为命令行参数传给程序。
+    \item \verb|*|、\verb|?|、\verb|[ ]| 的通配都会按读取目录并过滤的方式展开通配项目
+    \item \verb|{ }| 则不会有读取目录的过程，它是通过枚举所有符合条件的通配项直接展开的
+    \item \verb|*| 通配的结果与目录中存在哪些文件有关系，而 \verb|{ }| 的通配结果与目录中存在哪些文件无关。若用 \verb|{ }| 进行通配，则有可能将不存在的文件路径作为命令行参数传给程序。
   \end{itemize}
 \end{frame}
 
@@ -2064,6 +2070,7 @@ ls {1..5}.txt
 
 \begin{frame}[fragile]
   \frametitle{shell函数 | \alert{变量与参数}}
+  \vspace{-0.5em}
 \begin{lstlisting}
 #!/bin/bash
 # test with: sVSf.sh s1 s2
@@ -2144,6 +2151,7 @@ return 1
 
 \begin{frame}[fragile]
   \frametitle{shell函数 | 嵌套和递归}
+  \vspace{-0.5em}
 \begin{lstlisting}
 #!/bin/bash
 
@@ -2164,6 +2172,7 @@ number_one
 
 \begin{frame}[fragile]
   \frametitle{shell函数 | 嵌套和递归 | Fork炸弹（\alert{切勿尝试！}）}
+  \vspace{-0.5em}
 \begin{lstlisting}
 # 经典的只有13个字符的Linux Fork炸弹
 :(){ :|:& };:
@@ -2306,6 +2315,7 @@ day=([0]=Sunday [6]=Saturday [1]=Monday)
 \begin{frame}[fragile]
   %\frametitle{shell函数 | 数组 | \alert{解引用数组}}
   \frametitle{shell函数 | 数组 | 解引用数组}
+  \vspace{-0.5em}
 \begin{lstlisting}
 # 获得数组中某个特定索引位置的数据：${array[index]}
 # 索引从0开始
