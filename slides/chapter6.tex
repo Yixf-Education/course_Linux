@@ -855,7 +855,7 @@ conda create -n aligners bwa bowtie
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{bioconda | \textcolor{gray}{使用镜像加速}}
+  \frametitle{bioconda | 使用镜像加速}
   \begin{block}{镜像}
     \begin{itemize}
       \item 清华（TUNA）镜像\\ \verb|https://mirrors.tuna.tsinghua.edu.cn|
@@ -867,8 +867,8 @@ conda create -n aligners bwa bowtie
     \begin{itemize}
       \item Anaconda
 \begin{lstlisting}
-conda config --add channels TUNA/anaconda/pkgs/main/
 conda config --add channels TUNA/anaconda/pkgs/free/
+conda config --add channels TUNA/anaconda/pkgs/main/
 conda config --set show_channel_urls yes
 \end{lstlisting}
     \end{itemize}
@@ -876,17 +876,16 @@ conda config --set show_channel_urls yes
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{bioconda | \textcolor{gray}{使用镜像加速}}
+  \frametitle{bioconda | 使用镜像加速}
   \begin{block}{添加镜像（2/2）}
     \begin{itemize}
+      \item bioconda
+\begin{lstlisting}
+conda config --add channels TUNA/anaconda/cloud/bioconda/
+\end{lstlisting}
       \item Conda Forge
 \begin{lstlisting}
 conda config --add channels TUNA/anaconda/cloud/conda-forge/
-\end{lstlisting}
-      \item R \& bioconda
-\begin{lstlisting}
-conda config --add channels TUNA/anaconda/pkgs/r/
-conda config --add channels TUNA/anaconda/cloud/bioconda/
 \end{lstlisting}
     \end{itemize}
   \end{block}
