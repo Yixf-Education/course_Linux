@@ -1815,6 +1815,68 @@ cat test.txt | xargs -i echo rm {}
 \end{lstlisting}
 \end{frame}
 
+\subsection{并行}
+\begin{frame}[fragile]
+  \frametitle{高级概念 | 并行 | 基本语法}
+  \vspace{-0.5em}
+\begin{lstlisting}
+#!/bin/bash
+
+# 输出1到10：需要10秒
+for i in $(seq 1 10)
+do
+  echo $i; sleep 2
+done
+
+# 输出1到10：只需要2秒
+for i in $(seq 1 10)
+do
+  {
+    echo $i; sleep 2
+  } &
+done
+wait
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{高级概念 | 并行 | 控制并行数量}
+  \vspace{-0.5em}
+\begin{lstlisting}
+#!/bin/bash
+
+# 输出1到100：每次输出10个数，每次输出后间隔2秒继续下一轮的输出；只需要20秒
+n=10
+for  ((i=0; $n*i<100; i++))
+do
+  for ((j=$n*i+1; j<$n*i+($n+1); j++))
+  do
+    {
+      echo $j
+      sleep 2
+    } &
+  done
+  wait
+done
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{高级概念 | 并行 | 并行读取文件}
+  \vspace{-0.5em}
+\begin{lstlisting}
+#!/bin/bash
+
+while read LINE
+do
+  {
+    echo $LINE
+  } &
+done < test.txt
+wait
+\end{lstlisting}
+\end{frame}
+
 \subsection{命令替换}
 \begin{frame}[fragile]
   \frametitle{高级概念 | 命令替换}
