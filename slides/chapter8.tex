@@ -2477,6 +2477,82 @@ done
 \end{lstlisting}
 \end{frame}
 
+\subsection{GAOXIAO的睡眠排序}
+\begin{frame}[fragile]
+  \frametitle{shell函数 | 睡眠排序 | 原版}
+\begin{lstlisting}
+#!/bin/bash
+
+function sleepSort() {
+  sleep "$1"
+  # sleep $(echo "$1 / 10" | bc -l)
+  echo "$1"
+}
+
+while [ -n "$1" ]
+do
+  sleepSort "$1" &
+  shift
+done
+
+wait
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{shell函数 | 睡眠排序 | 优化版}
+\begin{lstlisting}
+#!/bin/bash
+
+function f() {
+  sleep $(echo "($2 - 1) + $1 / 10 ^ $2" | bc -l)
+  echo "$1"
+}
+
+while [ -n "$1" ]
+do
+  f "$1" $(echo -n "$1" | wc -c) &
+  shift
+done
+
+wait
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{shell函数 | 睡眠排序 | 函数版}
+\begin{lstlisting}[basicstyle=\footnotesize\tt]
+sleepSortA() {
+  while [ -n "$1" ]
+  do
+    (sleep "$1"; echo "$1") &
+    shift
+  done
+  wait
+}
+
+sleepSortB() {
+  if test -n "$1"
+  then
+    ( sleep $1; echo $1 ) &
+    shift
+    sleepSortB $*
+    wait
+  fi
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+  \frametitle{shell函数 | 睡眠排序 | 参考资料}
+  \begin{block}{\href{https://archive.tinychan.org/read/prog/1295544154}{Genius sorting algorithm: Sleep sort}}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.7\textwidth]{c8_sleep_sort.png}
+    \end{figure}
+  \end{block}
+\end{frame}
+
 \section{脚本调试}
 \begin{frame}
   \frametitle{脚本调试 | Introduction}
