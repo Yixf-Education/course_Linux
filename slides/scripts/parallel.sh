@@ -38,3 +38,19 @@ do
   } &
 done < test.txt
 wait
+
+# https://kaopubear.top/post/2019-05-17-linuxparallelbasic/
+t=0
+for i in `ls split_file*`
+do
+    echo $i
+    grep -w -f need.id $i > ${i}.out &
+    sleep 1s
+    t=$(($t+1))
+    if [[ $t -gt 19 ]]
+    then
+        echo $t wait a moment
+        wait
+        t=0
+    fi
+done
