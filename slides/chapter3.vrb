@@ -1,0 +1,15 @@
+\frametitle{文件系统 | 挂载 | mount }
+  \begin{figure}
+    \centering
+    \includegraphics[width=9cm]{c3_mount.jpg}
+  \end{figure}
+  \pause
+  \vspace{-0.3cm}
+  \begin{block}{\alert{语法}}
+    \begin{itemize}
+      \item \verb|mount -t FILE.SYSTEM.TYPE DEVICE DIRECTORY|
+      \item \verb|mount -t iso9660 /dev/cdrom /mnt/cdrom|
+      \item \verb|umount DEVICE.TO.UNMOUNT|
+      \item \verb|umount /dev/cdrom|
+    \end{itemize}
+  \end{block}
