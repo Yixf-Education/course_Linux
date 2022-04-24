@@ -19,4 +19,5 @@
 ## Linux
 
 * [深度剖析 Linux 的 3 种“拷贝”命令](https://mp.weixin.qq.com/s/WzKHogp_eqvnYucIRsLrvA)
+* [技术 | 精选 10 个最美的 Linux 发行版](https://linux.cn/article-14501-1.html)
 
